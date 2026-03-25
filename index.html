@@ -214,8 +214,8 @@
 
         .hero-container {
             display: flex;
-            flex-direction: row-reverse; /* Met l'élément 1 (Photo) à droite, et l'élément 2 (Texte) à gauche */
-            align-items: flex-start; /* Aligne les éléments tout en haut */
+            flex-direction: row-reverse;
+            align-items: flex-start;
             justify-content: space-between;
             gap: 60px;
             width: 100%;
@@ -224,10 +224,10 @@
         .hero-photo {
             flex: 1; 
             display: flex;
-            justify-content: flex-end; /* Pousse la photo vers la droite */
+            justify-content: flex-end;
             opacity: 0;
             animation: fadeIn 1s ease forwards 0.2s;
-            margin-top: 15px; /* Ajustement pour être parfaitement en face du prénom */
+            margin-top: 15px;
         }
 
         .hero-text {
@@ -313,7 +313,6 @@
         .hero-info p { margin-bottom: 10px; }
         .hero-info p:last-child { margin-bottom: 0; }
         
-        /* Couleurs spécifiques dans la boite info */
         .hero-info strong {
             color: var(--accent-cyan);
             text-shadow: none;
@@ -340,7 +339,6 @@
             margin: 0 auto;
         }
 
-        /* La ligne centrale */
         .timeline::after {
             content: '';
             position: absolute;
@@ -349,10 +347,10 @@
             top: 0;
             bottom: 0;
             left: 50%;
-            margin-left: -2px; /* Centrage exact de la ligne (4px/2 = 2px) */
+            margin-left: -2px;
             border-radius: 2px;
             box-shadow: 0 0 10px var(--accent);
-            z-index: 0; /* Passe derrière les ronds */
+            z-index: 0;
         }
 
         .timeline-item {
@@ -364,28 +362,22 @@
             animation: fadeIn 1s ease forwards 0.2s;
         }
 
-        /* Les ronds sur la timeline */
         .timeline-item::after {
             content: '';
             position: absolute;
             width: 20px;
             height: 20px;
-            background-color: var(--bg-card); /* Fond solide pour cacher la ligne */
+            background-color: var(--bg-card);
             border: 4px solid var(--accent);
             top: 35px;
             border-radius: 50%;
-            z-index: 2; /* Passe devant la ligne */
+            z-index: 2;
             box-shadow: 0 0 15px var(--accent);
             transition: all 0.3s ease;
         }
         
-        /* Calcul du centrage : Largeur totale = 20px + (2 * 4px) = 28px. Moitié = 14px. */
-        .timeline-item.left::after {
-            right: -14px; 
-        }
-        .timeline-item.right::after {
-            left: -14px; 
-        }
+        .timeline-item.left::after { right: -14px; }
+        .timeline-item.right::after { left: -14px; }
         
         .timeline-item:hover::after {
             background-color: var(--accent-hover);
@@ -467,7 +459,7 @@
             opacity: 0.5;
         }
 
-        /* --- SECTION COMPETENCES (Grids & Colors) --- */
+        /* --- SECTION COMPETENCES --- */
         .grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
@@ -489,13 +481,12 @@
             flex-direction: column;
         }
 
-        /* Attribution de couleurs spécifiques via des classes */
-        .card.sys { --card-accent: #4facfe; } /* Bleu clair */
-        .card.net { --card-accent: #a18cd1; } /* Violet doux */
-        .card.sec { --card-accent: #f5576c; } /* Rouge/Rose (Cyber) */
-        .card.dev { --card-accent: #00f2fe; } /* Cyan */
-        .card.tel { --card-accent: #f093fb; } /* Rose */
-        .card.srv { --card-accent: #f6d365; } /* Jaune/Or */
+        .card.sys { --card-accent: #4facfe; }
+        .card.net { --card-accent: #a18cd1; }
+        .card.sec { --card-accent: #f5576c; }
+        .card.dev { --card-accent: #00f2fe; }
+        .card.tel { --card-accent: #f093fb; }
+        .card.srv { --card-accent: #f6d365; }
 
         .card::before {
             content: "";
@@ -515,7 +506,6 @@
             box-shadow: 0 15px 40px rgba(0,0,0,0.4), 0 0 20px rgba(255,255,255,0.05);
         }
         
-        /* Effet de lueur lors du survol d'une carte */
         .card:hover::after {
             content: '';
             position: absolute;
@@ -528,9 +518,7 @@
             pointer-events: none;
         }
         
-        .card:hover::before {
-            transform: scaleX(1);
-        }
+        .card:hover::before { transform: scaleX(1); }
 
         .card h3 {
             color: var(--card-accent, #ffffff);
@@ -550,9 +538,7 @@
             line-height: 1.5;
         }
 
-        .skill-list {
-            margin-top: auto; 
-        }
+        .skill-list { margin-top: auto; }
 
         .skill-list li {
             position: relative;
@@ -563,9 +549,7 @@
             transition: color 0.3s ease;
         }
         
-        .skill-list li:hover {
-            color: #ffffff;
-        }
+        .skill-list li:hover { color: #ffffff; }
 
         .skill-list li::before {
             content: '◆';
@@ -640,7 +624,7 @@
 
         .cv-box {
             flex: 1;
-            max-width: 420px;
+            max-width: 450px; /* Légèrement agrandi pour le PDF */
             min-width: 300px;
             background-color: rgba(255,255,255,0.02);
             border: 1px solid var(--border-color);
@@ -667,23 +651,18 @@
 
         .cv-preview-placeholder {
             width: 100%;
-            height: 280px;
+            height: 400px; /* Plus haut pour bien voir le PDF */
             background-color: rgba(0,0,0,0.3);
             margin-bottom: 30px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            color: var(--text-muted);
-            border: 2px dashed var(--border-color);
-            border-radius: var(--radius-md);
-            font-family: var(--font-mono);
+            border: 2px solid var(--border-color);
+            border-radius: 8px;
+            overflow: hidden; /* Important pour que le PDF respecte l'arrondi */
             transition: all 0.3s ease;
         }
         
         .cv-box:hover .cv-preview-placeholder {
             border-color: var(--accent);
-            background-color: rgba(0,0,0,0.5);
-            color: #ffffff;
+            box-shadow: 0 0 15px var(--accent-glow);
         }
 
         /* --- DIVERS & CONTACT --- */
@@ -775,7 +754,6 @@
             transform: translateY(-3px);
         }
         
-        /* Effet de brillance lors du survol d'un hobby */
         .tag::after {
             content: '';
             position: absolute;
@@ -787,9 +765,7 @@
             transition: left 0.5s ease;
         }
         
-        .tag:hover::after {
-            left: 100%;
-        }
+        .tag:hover::after { left: 100%; }
 
         /* --- FOOTER --- */
         footer {
@@ -807,7 +783,6 @@
             .timeline::after { left: 31px; }
             .timeline-item { width: 100%; padding-left: 70px; padding-right: 25px; margin-bottom: 30px;}
             .timeline-item.right { left: 0%; }
-            /* Repositionnement précis pour mobile (31px - 14px = 17px) */
             .timeline-item.left::after, .timeline-item.right::after { 
                 left: 17px; 
                 right: auto;
@@ -817,8 +792,6 @@
         @media (max-width: 768px) {
             section { padding: 60px 0; }
             .section-title { font-size: 2.2rem; }
-            /* Mobile : On passe en colonne. Comme la photo est en premier dans l'HTML, 
-               flex-direction: column la gardera TOUJOURS au-dessus du texte ! */
             .hero-container { flex-direction: column; text-align: center; gap: 40px; align-items: center;}
             .hero-text { text-align: center; align-items: center; }
             .hero-photo { justify-content: center; margin-top: 0; }
@@ -828,6 +801,7 @@
             .grid { grid-template-columns: 1fr; }
             .btn { width: 100%; margin-right: 0; margin-bottom: 15px; } 
             .btn:last-child { margin-bottom: 0; }
+            .cv-preview-placeholder { height: 250px; } /* Moins haut sur mobile */
         }
     </style>
 </head>
@@ -969,7 +943,6 @@
                         <li><strong>Linux :</strong> Administration avancée Debian, Kali Linux.</li>
                     </ul>
                 </div>
-
                 <div class="card net">
                     <h3>Réseau & Routage</h3>
                     <p class="card-summary">Conception, simulation et interconnexion d'infrastructures réseaux LAN/WAN.</p>
@@ -978,7 +951,6 @@
                         <li><strong>Équipements :</strong> Configuration Switchs/Routeurs (VLAN, OSPF, Routage dynamique).</li>
                     </ul>
                 </div>
-
                 <div class="card sec">
                     <h3>Cybersécurité</h3>
                     <p class="card-summary">Analyse des vulnérabilités, mise en place de politiques de sécurité et sécurisation des flux.</p>
@@ -987,7 +959,6 @@
                         <li><strong>Infrasec :</strong> Gestion de clés (PKI), déploiement de tunnels VPN.</li>
                     </ul>
                 </div>
-
                 <div class="card dev">
                     <h3>Programmation</h3>
                     <p class="card-summary">Création d'outils automatisés, de scripts d'administration et bases en développement Web.</p>
@@ -997,7 +968,6 @@
                         <li><strong>Web :</strong> HTML5, CSS3.</li>
                     </ul>
                 </div>
-
                 <div class="card tel">
                     <h3>Télécommunications</h3>
                     <p class="card-summary">Mise en place et gestion de solutions de téléphonie sur IP et communications unifiées.</p>
@@ -1006,7 +976,6 @@
                         <li><strong>Outils :</strong> Configuration de clients (Linphone) et serveurs (Asterisk).</li>
                     </ul>
                 </div>
-
                 <div class="card srv">
                     <h3>Services & Virtualisation</h3>
                     <p class="card-summary">Hébergement et virtualisation des services de base nécessaires au fonctionnement d'un SI.</p>
@@ -1036,8 +1005,7 @@
                 <div class="cv-box">
                     <h3>Version Française</h3>
                     <div class="cv-preview-placeholder">
-                        <img src="preview-cv-fr.png" alt="Aperçu CV FR" style="max-width: 100%; max-height: 100%; border-radius: 8px; display:none;">
-                        [ Aperçu PDF ]
+                        <embed src="files/CV-HENRYDELANGLE-Camille-FR.pdf" type="application/pdf" width="100%" height="100%">
                     </div>
                     <a href="files/CV-HENRYDELANGLE-Camille-FR.pdf" class="btn" download style="margin: 0;">Télécharger (FR)</a>
                 </div>
@@ -1045,8 +1013,7 @@
                 <div class="cv-box">
                     <h3>English Version</h3>
                     <div class="cv-preview-placeholder">
-                        <img src="preview-cv-en.png" alt="Preview CV EN" style="max-width: 100%; max-height: 100%; border-radius: 8px; display:none;">
-                        [ PDF Preview ]
+                        <embed src="files/CV-HENRYDELANGLE-Camille-EN.pdf" type="application/pdf" width="100%" height="100%">
                     </div>
                     <a href="files/CV-HENRYDELANGLE-Camille-EN.pdf" class="btn btn-secondary" download style="margin: 0;">Download (EN)</a>
                 </div>
