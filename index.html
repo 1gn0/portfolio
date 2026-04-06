@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portfolio | Camille HENRY--DELANGLE</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Saira+Stencil+One&display=swap" rel="stylesheet">
     <style>
         /* --- VARIABLES ET RESET --- */
         :root {
@@ -19,7 +22,8 @@
             --accent-glow: rgba(157, 78, 221, 0.25); 
             
             --border-color: #2d2a3a;
-            --font-main: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            --font-main: 'Inter', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            --font-title: 'Saira Stencil One', sans-serif; /* Nouvelle police appliquée */
             --font-mono: 'Courier New', Courier, monospace;
             
             --radius-md: 16px; 
@@ -42,6 +46,11 @@
             font-family: var(--font-main);
             line-height: 1.7; 
             overflow-x: hidden;
+        }
+        
+        h1, h2, h3, .name {
+            font-family: var(--font-title);
+            font-weight: normal; /* Ajusté pour Saira Stencil */
         }
 
         a {
@@ -73,10 +82,9 @@
 
         /* Titres soulignés */
         .section-title {
-            font-size: 2.8rem;
+            font-size: 3.2rem;
             color: var(--accent);
             margin-bottom: 60px; 
-            font-family: var(--font-mono);
             display: flex;
             align-items: center;
             justify-content: center; 
@@ -84,7 +92,8 @@
             opacity: 0;
             animation: fadeIn 1s ease forwards;
             position: relative;
-            padding-bottom: 20px;
+            padding-bottom: 25px;
+            font-weight: normal;
         }
 
         .section-title::before {
@@ -93,9 +102,9 @@
             color: var(--accent-cyan);
             font-weight: bold;
             text-shadow: 0 0 10px var(--accent-cyan);
+            font-family: var(--font-main);
         }
 
-        /* Le trait de soulignement */
         .section-title::after {
             content: "";
             position: absolute;
@@ -108,7 +117,6 @@
             border-radius: 2px;
         }
 
-        /* --- ANIMATIONS --- */
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
@@ -117,7 +125,7 @@
         /* --- HEADER & NAV --- */
         header {
             background-color: rgba(13, 11, 20, 0.95);
-            padding: 15px 0;
+            padding: 10px 0;
             position: fixed;
             width: 100%;
             top: 0;
@@ -134,24 +142,32 @@
         }
 
         .logo {
-            font-size: 1.5rem;
-            font-weight: bold;
+            font-size: 1.8rem;
+            font-weight: normal;
             color: var(--accent);
-            font-family: var(--font-mono);
-            letter-spacing: 1px;
-            text-shadow: 0 0 8px var(--accent);
+            font-family: var(--font-title);
+            letter-spacing: -1px;
+            text-shadow: 0 0 10px var(--accent);
         }
 
         .nav-links {
             display: flex;
-            gap: 15px;
+            gap: 10px;
+            align-items: center;
             background-color: var(--bg-card);
-            padding: 5px 10px;
+            padding: 5px 8px;
             border-radius: var(--radius-lg);
             border: 1px solid var(--border-color);
+            flex-grow: 1;
+            justify-content: flex-end;
+            margin-left: 40px; 
         }
 
-        .nav-links a {
+        .nav-links li {
+            margin: 0 5px;
+        }
+
+        .nav-links li a {
             font-weight: 500;
             font-size: 0.95rem;
             padding: 8px 18px;
@@ -159,10 +175,28 @@
             position: relative;
         }
 
-        .nav-links a:hover {
+        .nav-links li a:not(.nav-contact-btn):hover {
             background-color: rgba(157, 78, 221, 0.15);
             color: var(--accent-hover);
             text-shadow: 0 0 5px var(--accent-hover);
+        }
+        
+        .nav-contact-btn {
+            background-color: transparent;
+            border: 2px solid var(--accent);
+            color: var(--accent);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.85rem;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-contact-btn:hover {
+            background-color: var(--accent);
+            color: #ffffff;
+            box-shadow: 0 0 15px var(--accent-glow);
+            border-color: var(--accent-hover);
         }
 
         /* --- BOUTONS --- */
@@ -269,10 +303,11 @@
         }
 
         .hero-text h1 {
-            font-size: 3.8rem;
+            font-size: 3.5rem;
             line-height: 1.1;
-            margin-bottom: 20px;
-            letter-spacing: -1px;
+            margin-bottom: 25px;
+            letter-spacing: 0px;
+            font-weight: normal;
         }
 
         .hero-text .name {
@@ -289,8 +324,8 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             margin-bottom: 30px;
-            font-family: var(--font-mono);
-            font-weight: bold;
+            font-family: var(--font-title);
+            font-weight: normal;
         }
 
         .hero-info {
@@ -339,35 +374,48 @@
             margin: 0 auto;
         }
 
-        .timeline::after {
-            content: '';
-            position: absolute;
-            width: 4px;
-            background: linear-gradient(to bottom, transparent, var(--accent), transparent);
-            top: 0;
-            bottom: 0;
-            left: 50%;
-            margin-left: -2px;
-            border-radius: 2px;
-            box-shadow: 0 0 10px var(--accent);
-            z-index: 0;
-        }
-
         .timeline-item {
             padding: 20px 50px;
             position: relative;
-            background-color: inherit;
+            background-color: transparent;
             width: 50%;
             opacity: 0;
             animation: fadeIn 1s ease forwards 0.2s;
         }
 
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            width: 4px;
+            background: linear-gradient(to bottom, transparent, var(--accent), var(--accent));
+            top: 0;
+            bottom: calc(100% - 35px); 
+            box-shadow: 0 0 10px var(--accent);
+        }
+        
+        .timeline-item .line-bottom {
+            position: absolute;
+            width: 4px;
+            background: linear-gradient(to bottom, var(--accent), var(--accent), transparent);
+            top: 55px; 
+            bottom: 0;
+            box-shadow: 0 0 10px var(--accent);
+        }
+
+        .timeline-item.left::before, .timeline-item.left .line-bottom {
+            right: -2px; 
+        }
+        .timeline-item.right::before, .timeline-item.right .line-bottom {
+            left: -2px; 
+        }
+
+        /* Le rond */
         .timeline-item::after {
             content: '';
             position: absolute;
             width: 20px;
             height: 20px;
-            background-color: var(--bg-card);
+            background-color: var(--bg-color); 
             border: 4px solid var(--accent);
             top: 35px;
             border-radius: 50%;
@@ -385,6 +433,9 @@
             box-shadow: 0 0 20px var(--accent-cyan);
             border-color: var(--accent-cyan);
         }
+
+        .timeline-item:last-child .line-bottom { display: none; }
+        .timeline-item:first-child::before { display: none; }
 
         .left { left: 0; }
         .right { left: 50%; }
@@ -523,8 +574,7 @@
         .card h3 {
             color: var(--card-accent, #ffffff);
             margin-bottom: 12px;
-            font-size: 1.5rem;
-            letter-spacing: -0.5px;
+            font-size: 1.6rem;
             transition: color 0.3s ease;
             text-shadow: 0 0 10px rgba(255,255,255,0.1);
         }
@@ -559,6 +609,7 @@
             font-size: 0.9rem;
             opacity: 0.8;
             transition: transform 0.3s ease;
+            font-family: var(--font-main);
         }
         
         .skill-list li:hover::before {
@@ -581,12 +632,13 @@
             padding: 22px;
             text-align: center;
             border-radius: var(--radius-lg);
-            font-weight: bold;
+            font-weight: normal;
             color: var(--accent-hover);
             transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
             font-size: 1.05rem;
+            font-family: var(--font-title);
         }
         
         .soft-skill-item:hover {
@@ -624,7 +676,7 @@
 
         .cv-box {
             flex: 1;
-            max-width: 450px; /* Légèrement agrandi pour le PDF */
+            max-width: 450px; 
             min-width: 300px;
             background-color: rgba(255,255,255,0.02);
             border: 1px solid var(--border-color);
@@ -651,12 +703,12 @@
 
         .cv-preview-placeholder {
             width: 100%;
-            height: 400px; /* Plus haut pour bien voir le PDF */
+            height: 400px; 
             background-color: rgba(0,0,0,0.3);
             margin-bottom: 30px;
             border: 2px solid var(--border-color);
             border-radius: 8px;
-            overflow: hidden; /* Important pour que le PDF respecte l'arrondi */
+            overflow: hidden; 
             transition: all 0.3s ease;
         }
         
@@ -664,108 +716,6 @@
             border-color: var(--accent);
             box-shadow: 0 0 15px var(--accent-glow);
         }
-
-        /* --- DIVERS & CONTACT --- */
-        .flex-row {
-            display: flex;
-            gap: 40px;
-            align-items: stretch;
-            flex-wrap: wrap;
-            opacity: 0;
-            animation: fadeIn 1s ease forwards 0.2s;
-        }
-        
-        .divers, .contact-infos {
-            flex: 1;
-            min-width: 320px;
-            background-color: var(--bg-card);
-            padding: 40px;
-            border-radius: var(--radius-md);
-            border: 1px solid var(--border-color);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-            display: flex;
-            flex-direction: column;
-            transition: all 0.3s ease;
-        }
-        
-        .divers:hover, .contact-infos:hover {
-            border-color: var(--accent);
-            box-shadow: 0 15px 40px var(--accent-glow);
-            transform: translateY(-5px);
-        }
-
-        .contact-infos h3, .divers h3 {
-            font-size: 1.8rem;
-            color: var(--accent-hover);
-            margin-bottom: 30px;
-            text-align: center;
-            letter-spacing: -0.5px;
-            text-shadow: 0 0 10px rgba(199, 125, 255, 0.2);
-        }
-
-        .contact-infos p {
-            margin-bottom: 20px;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            color: var(--text-main);
-            font-size: 1.1rem;
-            transition: color 0.3s ease;
-        }
-
-        .info-link {
-            color: var(--accent-cyan);
-            font-weight: 600;
-        }
-        
-        .info-link:hover {
-            text-decoration: underline;
-            color: #ffffff;
-            text-shadow: 0 0 8px var(--accent-cyan);
-        }
-
-        .hobbies-tags {
-            display: flex;
-            gap: 15px;
-            margin-top: 15px;
-            flex-wrap: wrap;
-            justify-content: center; 
-        }
-
-        .tag {
-            background-color: rgba(255, 255, 255, 0.05);
-            border: 1px solid var(--border-color);
-            color: var(--text-main);
-            padding: 10px 25px;
-            border-radius: var(--radius-lg);
-            font-size: 1rem;
-            font-weight: 600;
-            transition: all 0.4s ease;
-            position: relative;
-            overflow: hidden;
-            cursor: default;
-        }
-        
-        .tag:hover {
-            background-color: rgba(157, 78, 221, 0.2);
-            border-color: var(--accent-hover);
-            color: #ffffff;
-            box-shadow: 0 0 20px var(--accent-glow);
-            transform: translateY(-3px);
-        }
-        
-        .tag::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-            transition: left 0.5s ease;
-        }
-        
-        .tag:hover::after { left: 100%; }
 
         /* --- FOOTER --- */
         footer {
@@ -780,11 +730,15 @@
         /* --- RESPONSIVE --- */
         @media (max-width: 992px) {
             .hero-text h1 { font-size: 3rem; }
-            .timeline::after { left: 31px; }
             .timeline-item { width: 100%; padding-left: 70px; padding-right: 25px; margin-bottom: 30px;}
             .timeline-item.right { left: 0%; }
+            .timeline-item.left::before, .timeline-item.right::before,
+            .timeline-item.left .line-bottom, .timeline-item.right .line-bottom {
+                left: 20px;
+                right: auto;
+            }
             .timeline-item.left::after, .timeline-item.right::after { 
-                left: 17px; 
+                left: 11px; 
                 right: auto;
             }
         }
@@ -801,7 +755,7 @@
             .grid { grid-template-columns: 1fr; }
             .btn { width: 100%; margin-right: 0; margin-bottom: 15px; } 
             .btn:last-child { margin-bottom: 0; }
-            .cv-preview-placeholder { height: 250px; } /* Moins haut sur mobile */
+            .cv-preview-placeholder { height: 250px; } 
         }
     </style>
 </head>
@@ -813,11 +767,11 @@
                 <div class="logo">C.H.D</div>
                 <ul class="nav-links">
                     <li><a href="#hero">Accueil</a></li>
-                    <li><a href="#contact">Contact</a></li>
                     <li><a href="#parcours">Parcours</a></li>
                     <li><a href="#competences">Compétences</a></li>
                     <li><a href="#cv">CV</a></li>
                     <li><a href="projets.html">Projets</a></li> 
+                    <li><a href="contact.html" class="nav-contact-btn">Contact</a></li>
                 </ul>
             </nav>
         </div>
@@ -839,7 +793,7 @@
                 <div class="hero-info">
                     <p>📍 Localisation : <strong>FR, Colmar (IUT Colmar)</strong></p>
                     <p>💡 Passion : <strong>Informatique et Cybersécurité</strong></p>
-                    <p>🎯 Objectif : <strong>Pentester</strong> (Hacker Éthique)</p>
+                    <p>🎯 Objectif : <strong>Pentester</strong></p>
                 </div>
                 
                 <p style="color: var(--text-main); margin-bottom: 35px; max-width: 650px; font-size: 1.15rem; text-align: left;">
@@ -848,7 +802,7 @@
 
                 <div style="width: 100%; display: flex; flex-wrap: wrap; gap: 15px;">
                     <a href="#cv" class="btn" style="margin: 0;">Consulter mon CV</a>
-                    <a href="#contact" class="btn btn-secondary" style="margin: 0;">Me contacter</a>
+                    <a href="contact.html" class="btn btn-secondary" style="margin: 0;">Me contacter</a>
                 </div>
             </div>
             
@@ -861,6 +815,7 @@
             
             <div class="timeline">
                 <div class="timeline-item left">
+                    <div class="line-bottom"></div>
                     <div class="content">
                         <span class="date">2025 - Aujourd'hui</span>
                         <h3>BUT R&T - 2ème Année</h3>
@@ -868,6 +823,7 @@
                     </div>
                 </div>
                 <div class="timeline-item right">
+                    <div class="line-bottom"></div>
                     <div class="content">
                         <span class="date">Début 2025</span>
                         <h3>Réorientation & Validation BUT1</h3>
@@ -875,6 +831,7 @@
                     </div>
                 </div>
                 <div class="timeline-item left">
+                    <div class="line-bottom"></div>
                     <div class="content">
                         <span class="date">Fin 2024</span>
                         <h3>INSA Rennes</h3>
@@ -882,11 +839,12 @@
                     </div>
                 </div>
                 <div class="timeline-item right">
+                    <div class="line-bottom"></div>
                     <div class="content">
                         <span class="date">2024</span>
                         <h3>Baccalauréat</h3>
                         <p>Mention <strong>Très Bien</strong>. Spécialités <strong>NSI</strong> et <strong>Mathématiques</strong>. Lycée Victor Grignard, Cherbourg.</p>
-                        <a href="files/ReleveNotes-HENRYDELANGLE-Camille.pdf" class="info-link" target="_blank" style="font-size: 0.95rem; display: inline-block; margin-top: 10px;">📄 Aperçu de mes résultats du bac</a>
+                        <a href="files/ReleveNotes-HENRYDELANGLE-Camille.pdf" target="_blank" style="font-size: 0.95rem; display: inline-block; margin-top: 10px; color: var(--accent-cyan);">📄 Aperçu de mes résultats du bac</a>
                     </div>
                 </div>
             </div>
@@ -986,7 +944,7 @@
                 </div>
             </div>
 
-            <h3 style="margin-top: 80px; color: var(--accent-hover); font-family: var(--font-mono); text-align: center; font-size: 1.8rem; text-shadow: 0 0 10px rgba(199, 125, 255, 0.2);">Compétences Humaines (Soft Skills)</h3>
+            <h3 style="margin-top: 80px; color: var(--accent-hover); font-family: var(--font-title); text-align: center; font-size: 1.8rem; text-shadow: 0 0 10px rgba(199, 125, 255, 0.2);">Compétences Humaines (Soft Skills)</h3>
             <div class="soft-skill-grid">
                 <div class="soft-skill-item">Communication en entreprise</div>
                 <div class="soft-skill-item">Anglais (Niveau <strong>B2</strong>)</div>
@@ -1021,40 +979,10 @@
         </div>
     </section>
 
-    <section id="contact">
-        <div class="container">
-            <h2 class="section-title" style="display: none;">Contact & Infos</h2>
-            <div class="flex-row">
-                <div class="contact-infos">
-                    <h3>Coordonnées</h3>
-                    <p>📧 Email : <a href="mailto:camille.henrydelangle@proton.me" class="info-link">camille.henrydelangle@proton.me</a></p>
-                    <p>📱 Téléphone : <a href="tel:+33749981608" class="info-link">07 49 98 16 08</a></p>
-                    <p>💻 GitHub : <a href="https://github.com/1gn0" class="info-link" target="_blank">https://github.com/1gn0</a></p>
-                </div>
-                
-                <div class="divers">
-                    <h3>Infos Complémentaires</h3>
-                    <ul class="skill-list" style="margin-bottom: auto; margin-left: 20px;">
-                        <li>Permis de conduire (<strong>B</strong>)</li>
-                        <li>Certifications : <strong>Pix</strong>, <strong>Linphone</strong></li>
-                    </ul>
-                    
-                    <p style="color: var(--accent-cyan); text-align: center; margin-top: 30px; font-weight: bold; font-size: 1.2rem; text-shadow: 0 0 5px rgba(79, 172, 254, 0.4);">Mes hobbies</p>
-                    
-                    <div class="hobbies-tags">
-                        <span class="tag">Échecs</span>
-                        <span class="tag">Informatique</span>
-                        <span class="tag">Guitare</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <footer>
         <div class="container">
             <p>&copy; 2026 <strong>Camille HENRY--DELANGLE</strong>.</p>
-            <p style="font-size: 0.85rem; font-family: var(--font-mono); opacity: 0.5; margin-top: 20px;">Root@Portfolio:~# exit</p>
+            <p style="font-size: 0.85rem; font-family: var(--font-mono); opacity: 0.5; margin-top: 20px; font-family: var(--font-main);">Root@Portfolio:~# exit</p>
         </div>
     </footer>
 
