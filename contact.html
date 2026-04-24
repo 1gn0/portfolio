@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact | Camille HENRY--DELANGLE</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Saira+Stencil+One&display=swap" rel="stylesheet">
+    <style>
+        /* --- VARIABLES ET RESET --- */
+        :root {
+            --bg-color: #0d0b14; 
+            --bg-card: #161420;  
+            --text-main: #e0e6ed;
+            --text-muted: #a1aabf;
+            
+            --accent: #9d4edd;          
+            --accent-hover: #c77dff;    
+            --accent-cyan: #4facfe;
+            --accent-glow: rgba(157, 78, 221, 0.25); 
+            
+            --border-color: #2d2a3a;
+            --font-main: 'Inter', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            --font-title: 'Saira Stencil One', sans-serif; 
+            --font-mono: 'Courier New', Courier, monospace;
+            
+            --radius-md: 16px; 
+            --radius-lg: 30px; 
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: var(--font-main);
+            line-height: 1.7; 
+            overflow-x: hidden;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        
+        h1, h2, h3 {
+            font-family: var(--font-title);
+            font-weight: normal; 
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.3s ease;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        /* --- STYLES GENERAUX AVEC EFFETS --- */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            width: 100%;
+        }
+
+        /* Titre souligné */
+        .section-title {
+            font-size: 3.2rem;
+            color: var(--accent);
+            margin-bottom: 50px; 
+            display: flex;
+            align-items: center;
+            justify-content: center; 
+            text-align: center;
+            opacity: 0;
+            animation: fadeIn 1s ease forwards;
+            position: relative;
+            padding-bottom: 25px;
+        }
+
+        .section-title::before {
+            content: ">";
+            margin-right: 15px;
+            color: var(--accent-cyan);
+            font-weight: bold;
+            text-shadow: 0 0 10px var(--accent-cyan);
+            font-family: var(--font-main);
+        }
+
+        .section-title::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 150px;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--accent-hover), var(--accent-cyan), transparent);
+            border-radius: 2px;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* --- HEADER & NAV --- */
+        header {
+            background-color: rgba(13, 11, 20, 0.95);
+            padding: 10px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(0,0,0,0.4);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            color: var(--accent);
+            font-family: var(--font-title);
+            text-shadow: 0 0 10px var(--accent);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            background-color: var(--bg-card);
+            padding: 5px 8px;
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--border-color);
+            flex-grow: 1;
+            justify-content: flex-end;
+            margin-left: 40px; 
+        }
+
+        .nav-links li {
+            margin: 0 5px;
+        }
+
+        .nav-links li a {
+            font-weight: 500;
+            font-size: 0.95rem;
+            padding: 8px 18px;
+            border-radius: var(--radius-lg);
+            position: relative;
+        }
+
+        .nav-links li a:not(.nav-contact-btn):hover {
+            background-color: rgba(157, 78, 221, 0.15);
+            color: var(--accent-hover);
+            text-shadow: 0 0 5px var(--accent-hover);
+        }
+        
+        .nav-contact-btn {
+            background-color: var(--accent); 
+            border: 2px solid var(--accent);
+            color: #ffffff;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.85rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 15px var(--accent-glow);
+        }
+
+        /* --- PAGE CONTACT --- */
+        #contact-page {
+            flex-grow: 1; 
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 160px 20px 80px 20px;
+        }
+
+        .contact-subtitle {
+            color: var(--text-muted);
+            font-size: 1.15rem;
+            text-align: center;
+            max-width: 600px;
+            margin-bottom: 50px;
+            opacity: 0;
+            animation: fadeIn 1s ease forwards 0.2s;
+        }
+
+        .contact-grid {
+            display: grid;
+            /* On agrandit un peu la carte (280px) pour laisser respirer l'email */
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            width: 100%;
+            max-width: 1000px;
+            opacity: 0;
+            animation: fadeIn 1s ease forwards 0.4s;
+        }
+
+        .contact-card {
+            background-color: var(--bg-card);
+            padding: 40px 30px;
+            border-radius: var(--radius-md);
+            border: 1px solid var(--border-color);
+            text-align: center;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .contact-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, transparent, var(--accent), transparent);
+            transform: scaleX(0);
+            transition: transform 0.4s ease;
+        }
+
+        .contact-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--border-color);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.4), 0 0 20px rgba(255,255,255,0.05);
+        }
+        
+        .contact-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .contact-card:hover::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: var(--radius-md);
+            box-shadow: 0 0 30px rgba(157, 78, 221, 0.15) inset;
+            pointer-events: none;
+        }
+
+        /* Style pour les icônes texte (Mail / Tel) */
+        .contact-text-icon {
+            font-family: var(--font-title);
+            font-size: 2.2rem; /* Légèrement réduit pour être équilibré */
+            color: var(--accent-hover);
+            margin-bottom: 5px;
+            text-shadow: 0 0 15px rgba(199, 125, 255, 0.2);
+            transition: transform 0.3s ease, color 0.3s ease, text-shadow 0.3s ease;
+            letter-spacing: 2px;
+        }
+
+        /* Style pour les logos images (LinkedIn / GitHub) */
+        .contact-logo {
+            width: 45px;
+            height: 45px;
+            object-fit: contain;
+            margin-bottom: 5px;
+            transition: transform 0.3s ease, filter 0.3s ease;
+            filter: drop-shadow(0 0 8px rgba(255,255,255,0.1));
+        }
+
+        /* Animations au survol pour les icônes */
+        .contact-card:hover .contact-text-icon {
+            transform: scale(1.1);
+            color: var(--accent-cyan);
+            text-shadow: 0 0 20px var(--accent-cyan);
+        }
+
+        .contact-card:hover .contact-logo {
+            transform: scale(1.1);
+            filter: drop-shadow(0 0 12px var(--accent-hover));
+        }
+
+        .contact-label {
+            font-family: var(--font-title);
+            font-size: 1.4rem;
+            color: #ffffff;
+            margin-bottom: 5px;
+        }
+
+        .contact-link {
+            color: var(--accent-cyan);
+            font-weight: 600;
+            font-size: 0.95rem; /* Réduit pour éviter les cassures moches */
+            font-family: var(--font-main);
+            overflow-wrap: break-word; /* Garde la sécurité pour les très petits écrans */
+        }
+
+        .contact-link:hover {
+            text-decoration: underline;
+            color: #ffffff;
+            text-shadow: 0 0 8px var(--accent-cyan);
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            text-align: center;
+            padding: 40px 0;
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            border-top: 1px solid var(--border-color);
+            width: 100%;
+            margin-top: auto;
+        }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .section-title { font-size: 2.2rem; }
+            #contact-page { padding-top: 120px; }
+            .contact-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">C.H.D</div>
+                <ul class="nav-links">
+                    <li><a href="index.html#hero">Accueil</a></li>
+                    <li><a href="index.html#parcours">Parcours</a></li>
+                    <li><a href="index.html#competences">Compétences</a></li>
+                    <li><a href="index.html#cv">CV</a></li>
+                    <li><a href="projets.html">Projets</a></li> 
+                    <li><a href="contact.html" class="nav-contact-btn">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section id="contact-page">
+        <div class="container">
+            <h1 class="section-title">Me Contacter</h1>
+            
+            <p class="contact-subtitle">
+                Vous avez un projet, une question ou une opportunité à me proposer ? <br>
+                N'hésitez pas à me joindre via l'un des moyens ci-dessous.
+            </p>
+
+            <div class="contact-grid">
+                
+                <div class="contact-card">
+                    <div class="contact-text-icon">MAIL</div>
+                    <div class="contact-label">Email</div>
+                    <a href="mailto:camille.henrydelangle@proton.me" class="contact-link">camille.henrydelangle@<wbr>proton.me</a>
+                </div>
+
+                <div class="contact-card">
+                    <div class="contact-text-icon">TEL</div>
+                    <div class="contact-label">Téléphone</div>
+                    <a href="tel:+33749981608" class="contact-link">07 49 98 16 08</a>
+                </div>
+
+                <div class="contact-card">
+                    <img src="files/logo/linkedin.png" alt="Logo LinkedIn" class="contact-logo">
+                    <div class="contact-label">LinkedIn</div>
+                    <a href="https://linkedin.com/in/camille-hd" target="_blank" class="contact-link">Mon Profil Professionnel</a>
+                </div>
+
+                <div class="contact-card">
+                    <img src="files/logo/github.png" alt="Logo GitHub" class="contact-logo">
+                    <div class="contact-label">GitHub</div>
+                    <a href="https://github.com/1gn0" target="_blank" class="contact-link">https://github.com/1gn0</a>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 <strong>Camille HENRY--DELANGLE</strong>.</p>
+            <p style="font-size: 0.85rem; font-family: var(--font-mono); opacity: 0.5; margin-top: 15px;">Root@Portfolio:~# exit</p>
+        </div>
+    </footer>
+
+</body>
+</html>
