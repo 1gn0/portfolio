@@ -201,10 +201,11 @@
 
         .contact-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            /* On force 2 colonnes pour faire un carré de 4 éléments */
+            grid-template-columns: repeat(2, 1fr);
             gap: 30px;
             width: 100%;
-            max-width: 1000px;
+            max-width: 850px; /* Légèrement réduit pour de jolies proportions à 2 colonnes */
             margin: 0 auto; 
             opacity: 0;
             animation: fadeIn 1s ease forwards 0.4s;
@@ -275,10 +276,10 @@
         .contact-logo {
             width: 45px;
             height: 45px;
-            fill: var(--accent-hover); /* Couleur violette par défaut */
+            fill: var(--accent-hover); 
             margin-bottom: 5px;
             transition: transform 0.3s ease, fill 0.3s ease, filter 0.3s ease;
-            filter: drop-shadow(0 0 8px rgba(199, 125, 255, 0.3)); /* Lueur violette */
+            filter: drop-shadow(0 0 8px rgba(199, 125, 255, 0.3)); 
         }
 
         /* Animations au survol pour TOUTES les icônes */
@@ -290,7 +291,7 @@
 
         .contact-card:hover .contact-logo {
             transform: scale(1.1);
-            fill: var(--accent-cyan); /* Passe en cyan au survol ! */
+            fill: var(--accent-cyan); 
             filter: drop-shadow(0 0 12px var(--accent-cyan));
         }
 
@@ -331,6 +332,7 @@
             .nav-links { display: none; }
             .section-title { font-size: 2.2rem; }
             #contact-page { padding-top: 120px; }
+            /* Sur mobile, on repasse sur une seule colonne */
             .contact-grid { grid-template-columns: 1fr; }
         }
     </style>
