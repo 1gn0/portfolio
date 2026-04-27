@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Compétences | Camille HENRY--DELANGLE</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Saira+Stencil+One&display=swap" rel="stylesheet">
+    <style>
+        /* --- VARIABLES ET RESET --- */
+        :root {
+            --bg-color: #0d0b14; 
+            --bg-card: #161420;  
+            --text-main: #e0e6ed;
+            --text-muted: #a1aabf;
+            
+            --accent: #9d4edd;          
+            --accent-hover: #c77dff;    
+            --accent-cyan: #4facfe;
+            --accent-glow: rgba(157, 78, 221, 0.25); 
+            
+            --border-color: #2d2a3a;
+            --font-main: 'Inter', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            --font-title: 'Saira Stencil One', sans-serif; 
+            --font-mono: 'Courier New', Courier, monospace;
+            
+            --radius-md: 16px; 
+            --radius-lg: 30px; 
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: var(--font-main);
+            line-height: 1.7; 
+            overflow-x: hidden;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        
+        h1, h2, h3, h4 {
+            font-family: var(--font-title);
+            font-weight: normal; 
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.3s ease;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        strong {
+            color: var(--accent-hover);
+            font-weight: 600;
+        }
+
+        /* --- STYLES GENERAUX AVEC EFFETS --- */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            width: 100%;
+        }
+
+        .page-header {
+            padding: 160px 20px 60px 20px;
+            text-align: center;
+        }
+
+        /* Titre souligné */
+        .section-title {
+            font-size: 3.2rem;
+            color: var(--accent);
+            margin-bottom: 30px; 
+            display: flex;
+            align-items: center;
+            justify-content: center; 
+            text-align: center;
+            opacity: 0;
+            animation: fadeIn 1s ease forwards;
+            position: relative;
+            padding-bottom: 25px;
+        }
+
+        .section-title::before {
+            content: ">";
+            margin-right: 15px;
+            color: var(--accent-cyan);
+            font-weight: bold;
+            text-shadow: 0 0 10px var(--accent-cyan);
+            font-family: var(--font-main);
+        }
+
+        .section-title::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 150px;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--accent-hover), var(--accent-cyan), transparent);
+            border-radius: 2px;
+        }
+
+        .page-subtitle {
+            color: var(--text-muted);
+            font-size: 1.15rem;
+            max-width: 700px;
+            margin: 0 auto;
+            opacity: 0;
+            animation: fadeIn 1s ease forwards 0.2s;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* --- HEADER & NAV --- */
+        header {
+            background-color: rgba(13, 11, 20, 0.95);
+            padding: 10px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(0,0,0,0.4);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            color: var(--accent);
+            font-family: var(--font-title);
+            text-shadow: 0 0 10px var(--accent);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            background-color: var(--bg-card);
+            padding: 5px 8px;
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--border-color);
+            flex-grow: 1;
+            justify-content: flex-end;
+            margin-left: 40px; 
+        }
+
+        .nav-links li {
+            margin: 0 5px;
+        }
+
+        .nav-links li a {
+            font-weight: 500;
+            font-size: 0.95rem;
+            padding: 8px 18px;
+            border-radius: var(--radius-lg);
+            position: relative;
+        }
+
+        .nav-links li a:not(.nav-contact-btn):hover, .nav-links li a.active {
+            background-color: rgba(157, 78, 221, 0.15);
+            color: var(--accent-hover);
+            text-shadow: 0 0 5px var(--accent-hover);
+        }
+        
+        .nav-contact-btn {
+            background-color: transparent; 
+            border: 2px solid var(--accent);
+            color: var(--accent);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.85rem;
+            transition: all 0.3s ease;
+        }
+
+        .nav-contact-btn:hover {
+            background-color: var(--accent);
+            color: #ffffff;
+            box-shadow: 0 0 15px var(--accent-glow);
+            border-color: var(--accent-hover);
+        }
+
+        /* --- BLOCS UE (COMPETENCES) --- */
+        .ue-container {
+            display: flex;
+            flex-direction: column;
+            gap: 60px;
+            padding-bottom: 80px;
+        }
+
+        .ue-card {
+            background-color: var(--bg-card);
+            border-radius: var(--radius-md);
+            border: 1px solid var(--border-color);
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            transition: all 0.4s ease;
+            opacity: 0;
+            animation: fadeIn 1s ease forwards 0.4s;
+            position: relative;
+        }
+
+        .ue-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(to bottom, var(--ue-color), transparent);
+            box-shadow: 0 0 15px var(--ue-color);
+        }
+
+        .ue-card:hover {
+            border-color: rgba(255,255,255,0.1);
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.5), 0 0 20px rgba(255,255,255,0.02);
+        }
+
+        .ue-header {
+            padding: 40px 40px 20px 40px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .ue-badge {
+            display: inline-block;
+            background-color: rgba(255,255,255,0.05);
+            color: var(--ue-color);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-family: var(--font-mono);
+            border: 1px solid var(--ue-color);
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 0 10px rgba(255,255,255,0.05);
+        }
+
+        .ue-title {
+            font-size: 2rem;
+            color: #ffffff;
+            margin-bottom: 15px;
+            text-shadow: 0 0 10px rgba(255,255,255,0.1);
+        }
+
+        .ue-summary {
+            color: var(--text-muted);
+            font-size: 1.05rem;
+        }
+
+        .ue-body {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            padding: 40px;
+        }
+
+        .ue-col h4 {
+            color: var(--ue-color);
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            border-bottom: 1px dashed var(--border-color);
+            padding-bottom: 10px;
+        }
+
+        .ue-list {
+            margin-left: 10px;
+        }
+
+        .ue-list li {
+            position: relative;
+            padding-left: 25px;
+            margin-bottom: 15px;
+            color: var(--text-main);
+            font-size: 0.95rem;
+        }
+
+        .ue-list li::before {
+            content: '▹';
+            position: absolute;
+            left: 0;
+            color: var(--ue-color);
+            font-family: var(--font-mono);
+            font-weight: bold;
+        }
+        
+        .ue-list li span.code {
+            color: var(--ue-color);
+            font-family: var(--font-mono);
+            font-weight: bold;
+            margin-right: 5px;
+        }
+
+        /* Encart Analyse Réflexive */
+        .ue-reflexive {
+            margin: 0 40px 40px 40px;
+            padding: 30px;
+            background-color: rgba(0,0,0,0.2);
+            border-radius: 8px;
+            border-left: 4px solid var(--accent-hover);
+        }
+
+        .ue-reflexive h4 {
+            color: var(--accent-hover);
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .ue-reflexive p {
+            color: var(--text-muted);
+            font-style: italic;
+        }
+
+        /* Attribution des couleurs par UE */
+        .ue-1 { --ue-color: #4facfe; } /* Bleu */
+        .ue-2 { --ue-color: #c77dff; } /* Violet */
+        .ue-3 { --ue-color: #00f2fe; } /* Cyan */
+        .ue-cyber { --ue-color: #f5576c; } /* Rouge/Rose */
+
+        /* --- FOOTER --- */
+        footer {
+            text-align: center;
+            padding: 40px 0;
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            border-top: 1px solid var(--border-color);
+            width: 100%;
+            margin-top: auto;
+        }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 900px) {
+            .ue-body { grid-template-columns: 1fr; gap: 30px; }
+        }
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .section-title { font-size: 2.2rem; }
+            .page-header { padding-top: 120px; }
+            .ue-header, .ue-body, .ue-reflexive { padding: 20px; }
+            .ue-reflexive { margin: 0 20px 20px 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">C.H.D</div>
+                <ul class="nav-links">
+                    <li><a href="index.html#hero">Accueil</a></li>
+                    <li><a href="index.html#parcours">Parcours</a></li>
+                    <li><a href="competences.html" class="active">Compétences</a></li>
+                    <li><a href="index.html#cv">CV</a></li>
+                    <li><a href="projets.html">Projets</a></li> 
+                    <li><a href="contact.html" class="nav-contact-btn">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="page-header container">
+        <h1 class="section-title">Mes Compétences</h1>
+        <p class="page-subtitle">
+            Découvrez le détail des compétences acquises lors de ma formation en BUT Réseaux et Télécommunications (Parcours Cybersécurité). Le référentiel s'articule autour de grandes Unités d'Enseignement (UE).
+        </p>
+    </div>
+
+    <main class="container ue-container">
+
+        <article class="ue-card ue-1">
+            <div class="ue-header">
+                <span class="ue-badge">UE1 - Administrer</span>
+                <h2 class="ue-title">Administrer les réseaux et l'Internet</h2>
+                <p class="ue-summary">
+                    Cette compétence se concentre sur la conception, l'administration, et la sécurisation d'infrastructures réseaux d'entreprise[cite: 1, 2, 10]. Elle implique le choix des technologies adaptées, la configuration des services et du routage, tout en respectant les règles métiers et en résolvant rigoureusement les dysfonctionnements[cite: 4, 6, 7].
+                </p>
+            </div>
+            <div class="ue-body">
+                <div class="ue-col">
+                    <h4>Composantes Essentielles (CE)</h4>
+                    <ul class="ue-list">
+                        <li><span class="code">CE1.01</span> Choisir les solutions et technologies réseaux adaptées[cite: 4].</li>
+                        <li><span class="code">CE1.02</span> Respecter les principes fondamentaux de la sécurité[cite: 5].</li>
+                        <li><span class="code">CE1.03</span> Résoudre les dysfonctionnements avec une approche rigoureuse[cite: 6].</li>
+                        <li><span class="code">CE1.04</span> Respecter les règles métiers[cite: 7].</li>
+                        <li><span class="code">CE1.05</span> Assurer une veille technologique[cite: 8].</li>
+                    </ul>
+                </div>
+                <div class="ue-col">
+                    <h4>Apprentissages Critiques (AC) - BUT2</h4>
+                    <ul class="ue-list">
+                        <li><span class="code">AC21.01</span> Configurer et dépanner le routage dynamique dans un réseau[cite: 21].</li>
+                        <li><span class="code">AC21.02</span> Configurer une politique simple de QoS et les fonctions de base de sécurité[cite: 22].</li>
+                        <li><span class="code">AC21.03</span> Déployer des postes clients et des solutions virtualisées[cite: 23].</li>
+                        <li><span class="code">AC21.04</span> Déployer des services réseaux avancés[cite: 24].</li>
+                        <li><span class="code">AC21.05</span> Identifier les réseaux opérateurs et l’architecture d’Internet[cite: 25].</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="ue-reflexive">
+                <h4>🧠 Mon Analyse Réflexive</h4>
+                <p>[ Ton texte d'analyse réflexive pour l'UE1 viendra s'insérer ici... ]</p>
+            </div>
+        </article>
+
+        <article class="ue-card ue-2">
+            <div class="ue-header">
+                <span class="ue-badge">UE2 - Connecter</span>
+                <h2 class="ue-title">Connecter les entreprises et les usagers</h2>
+                <p class="ue-summary">
+                    Axée sur le déploiement des supports de transmission, l'administration des accès sans fil ou opérateurs, et les systèmes de communications unifiées[cite: 34, 42, 44]. Elle nécessite une communication efficace, parfois en anglais, et la capacité de choisir des solutions respectueuses de l'environnement[cite: 37, 39, 40].
+                </p>
+            </div>
+            <div class="ue-body">
+                <div class="ue-col">
+                    <h4>Composantes Essentielles (CE)</h4>
+                    <ul class="ue-list">
+                        <li><span class="code">CE2.01</span> Communiquer avec le client et les acteurs, y compris en anglais[cite: 37].</li>
+                        <li><span class="code">CE2.02</span> Faire preuve d’une démarche scientifique[cite: 38].</li>
+                        <li><span class="code">CE2.03</span> Choisir les solutions et technologies adaptées[cite: 39].</li>
+                        <li><span class="code">CE2.04</span> Proposer des solutions respectueuses de l'environnement[cite: 40].</li>
+                    </ul>
+                </div>
+                <div class="ue-col">
+                    <h4>Apprentissages Critiques (AC) - BUT2</h4>
+                    <ul class="ue-list">
+                        <li><span class="code">AC22.01</span> Déployer et caractériser des systèmes de transmissions complexes[cite: 53].</li>
+                        <li><span class="code">AC22.02</span> Mettre en place un accès distant sécurisé[cite: 54].</li>
+                        <li><span class="code">AC22.03</span> Mettre en place une connexion multi-site via un réseau opérateur[cite: 55].</li>
+                        <li><span class="code">AC22.04</span> Déployer des réseaux d’accès des opérateurs[cite: 56].</li>
+                        <li><span class="code">AC22.05</span> Questionner un cahier des charges R&T[cite: 57].</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="ue-reflexive">
+                <h4>🧠 Mon Analyse Réflexive</h4>
+                <p>[ Ton texte d'analyse réflexive pour l'UE2 viendra s'insérer ici... ]</p>
+            </div>
+        </article>
+
+        <article class="ue-card ue-3">
+            <div class="ue-header">
+                <span class="ue-badge">UE3 - Programmer</span>
+                <h2 class="ue-title">Créer des outils et applications informatiques</h2>
+                <p class="ue-summary">
+                    Cette UE couvre le développement logiciel, l'automatisation des tâches d'administration via des scripts, et la conception d'applications (Web ou mobiles)[cite: 76, 86, 97]. Elle implique l'utilisation appropriée des bases de données, la documentation du travail, et l'intégration continue des problématiques de sécurité[cite: 80, 83, 99].
+                </p>
+            </div>
+            <div class="ue-body">
+                <div class="ue-col">
+                    <h4>Composantes Essentielles (CE)</h4>
+                    <ul class="ue-list">
+                        <li><span class="code">CE3.01</span> Être à l’écoute des besoins du client[cite: 79].</li>
+                        <li><span class="code">CE3.02</span> Documenter le travail réalisé[cite: 80].</li>
+                        <li><span class="code">CE3.03</span> Utiliser les outils numériques à bon escient[cite: 81].</li>
+                        <li><span class="code">CE3.04</span> Choisir les outils de développement adaptés[cite: 82].</li>
+                        <li><span class="code">CE3.05</span> Intégrer les problématiques de sécurité[cite: 83].</li>
+                    </ul>
+                </div>
+                <div class="ue-col">
+                    <h4>Apprentissages Critiques (AC) - BUT2</h4>
+                    <ul class="ue-list">
+                        <li><span class="code">AC23.01</span> Automatiser l’administration système avec des scripts[cite: 96].</li>
+                        <li><span class="code">AC23.02</span> Développer une application Web ou mobile depuis un cahier des charges[cite: 97].</li>
+                        <li><span class="code">AC23.03</span> Utiliser un protocole réseau pour une application client/serveur[cite: 98].</li>
+                        <li><span class="code">AC23.04</span> Installer et administrer un système de gestion de données[cite: 99].</li>
+                        <li><span class="code">AC23.05</span> Accéder à des données depuis une application[cite: 100].</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="ue-reflexive">
+                <h4>🧠 Mon Analyse Réflexive</h4>
+                <p>[ Ton texte d'analyse réflexive pour l'UE3 viendra s'insérer ici... ]</p>
+            </div>
+        </article>
+
+        <article class="ue-card ue-cyber">
+            <div class="ue-header">
+                <span class="ue-badge">Parcours Cybersécurité</span>
+                <h2 class="ue-title">Administrer et Surveiller un SI sécurisé</h2>
+                <p class="ue-summary">
+                    Au cœur de ma spécialisation, ces compétences visent à auditer, protéger et surveiller un Système d'Information[cite: 110, 134]. De la mise en œuvre d'outils de sécurisation à l'application de tests de pénétration, le but est de trouver un compromis entre sécurité et utilisation, tout en assurant une veille active sur les vulnérabilités[cite: 114, 124, 138, 150].
+                </p>
+            </div>
+            <div class="ue-body">
+                <div class="ue-col">
+                    <h4>Composantes Essentielles (CE)</h4>
+                    <ul class="ue-list">
+                        <li><span class="code">CE4.01</span> Viser un compromis entre sécurité et contraintes d’utilisation[cite: 114].</li>
+                        <li><span class="code">CE4.05</span> Sensibiliser efficacement les utilisateurs[cite: 118].</li>
+                        <li><span class="code">CE5.01</span> Assurer une veille technologique permanente[cite: 138].</li>
+                        <li><span class="code">CE5.02</span> Réaliser les mises à jour critiques de sécurité[cite: 139].</li>
+                        <li><span class="code">CE5.05</span> Surveiller le comportement du réseau de manière proactive[cite: 142].</li>
+                    </ul>
+                </div>
+                <div class="ue-col">
+                    <h4>Apprentissages Critiques (AC) - BUT2</h4>
+                    <ul class="ue-list">
+                        <li><span class="code">AC24.01</span> Connaître et utiliser les recommandations de cybersécurité[cite: 123].</li>
+                        <li><span class="code">AC24.02</span> Mettre en œuvre les outils de sécurisation de l'infrastructure[cite: 124].</li>
+                        <li><span class="code">AC24.04</span> Choisir les outils cryptographiques adaptés[cite: 126].</li>
+                        <li><span class="code">AC24.05</span> Connaître les différents types d’attaque informatique[cite: 127].</li>
+                        <li><span class="code">AC25.02</span> Prendre en main des outils de test de pénétration (Pentest)[cite: 150].</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="ue-reflexive">
+                <h4>🧠 Mon Analyse Réflexive</h4>
+                <p>[ Ton texte d'analyse réflexive pour la partie Cybersécurité viendra s'insérer ici... ]</p>
+            </div>
+        </article>
+
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 <strong>Camille HENRY--DELANGLE</strong>.</p>
+            <p style="font-size: 0.85rem; font-family: var(--font-mono); opacity: 0.5; margin-top: 15px;">Root@Portfolio:~# exit</p>
+        </div>
+    </footer>
+
+</body>
+</html>
