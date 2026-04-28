@@ -60,6 +60,12 @@
         /* --- BLOCS UE (COMPETENCES) --- */
         .ue-container { display: flex; flex-direction: column; gap: 60px; padding-bottom: 80px; }
 
+        /* Encart Choix du parcours */
+        .path-intro { background: linear-gradient(135deg, rgba(157, 78, 221, 0.1), rgba(79, 172, 254, 0.05)); border: 1px solid var(--accent); border-radius: var(--radius-md); padding: 40px; text-align: center; box-shadow: 0 10px 30px var(--accent-glow); opacity: 0; animation: fadeIn 1s ease forwards 0.3s; position: relative; overflow: hidden; }
+        .path-intro::before { content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 4px; background: linear-gradient(90deg, var(--accent-cyan), var(--accent-hover)); }
+        .path-intro h3 { color: #ffffff; font-size: 2rem; margin-bottom: 20px; text-shadow: 0 0 10px rgba(199, 125, 255, 0.3); }
+        .path-intro p { color: var(--text-main); font-size: 1.1rem; max-width: 900px; margin: 0 auto; line-height: 1.8; }
+
         .ue-card { background-color: var(--bg-card); border-radius: var(--radius-md); border: 1px solid var(--border-color); overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.3); transition: all 0.4s ease; opacity: 0; animation: fadeIn 1s ease forwards 0.4s; position: relative; }
         .ue-card::before { content: ""; position: absolute; top: 0; left: 0; width: 4px; height: 100%; background: linear-gradient(to bottom, var(--ue-color), transparent); box-shadow: 0 0 15px var(--ue-color); }
         .ue-card:hover { border-color: rgba(255,255,255,0.1); transform: translateY(-5px); box-shadow: 0 15px 40px rgba(0,0,0,0.5), 0 0 20px rgba(255,255,255,0.02); }
@@ -87,10 +93,12 @@
         .ue-reflexive h4 { color: var(--accent-hover); margin-bottom: 15px; font-size: 1.2rem; display: flex; align-items: center; gap: 10px; }
         .ue-reflexive p { color: var(--text-muted); font-style: italic; }
 
-        .ue-1 { --ue-color: #4facfe; } 
-        .ue-2 { --ue-color: #c77dff; } 
-        .ue-3 { --ue-color: #00f2fe; } 
-        .ue-cyber { --ue-color: #f5576c; } 
+        /* Couleurs des UEs */
+        .ue-1 { --ue-color: #4facfe; } /* Bleu */
+        .ue-2 { --ue-color: #c77dff; } /* Violet */
+        .ue-3 { --ue-color: #00f2fe; } /* Cyan */
+        .ue-4 { --ue-color: #f5576c; } /* Rouge/Rose (Sécuriser) */
+        .ue-5 { --ue-color: #f6d365; } /* Jaune/Or (Surveiller) */
 
         /* Bouton Preuves */
         .action-container { text-align: center; margin-top: 40px; }
@@ -100,7 +108,7 @@
         footer { text-align: center; padding: 40px 0; color: var(--text-muted); font-size: 0.95rem; border-top: 1px solid var(--border-color); width: 100%; margin-top: auto; }
 
         @media (max-width: 900px) { .ue-body { grid-template-columns: 1fr; gap: 30px; } .grade-container { position: relative; top: 0; right: 0; flex-direction: row; flex-wrap: wrap; justify-content: flex-start; margin-bottom: 20px; } .ue-title { padding-right: 0; } }
-        @media (max-width: 768px) { .nav-links { display: none; } .section-title { font-size: 2.2rem; } .page-header { padding-top: 120px; } .ue-header, .ue-body, .ue-reflexive { padding: 20px; } .ue-reflexive { margin: 0 20px 20px 20px; } }
+        @media (max-width: 768px) { .nav-links { display: none; } .section-title { font-size: 2.2rem; } .page-header { padding-top: 120px; } .ue-header, .ue-body, .ue-reflexive, .path-intro { padding: 20px; } .ue-reflexive { margin: 0 20px 20px 20px; } }
     </style>
 </head>
 <body>
@@ -133,34 +141,35 @@
         <article class="ue-card ue-1">
             <div class="ue-header">
                 <div class="grade-container">
-                    <span class="grade-badge">Moyenne S3 : 11.95/20</span>
+                    <span class="grade-badge">Moyenne S3 : --/20</span>
                     <span class="grade-badge">Moyenne S4 : --/20</span>
                 </div>
                 <span class="ue-badge">UE1 - Administrer</span>
-                <h2 class="ue-title">Administrer les réseaux et l'Internet</h2>
+                <h2 class="ue-title">Administrer les réseaux et l'Internet </h2>
                 <p class="ue-summary">
-                    Conception et administration de l’infrastructure du réseau informatique d’une entreprise, installation et administration des services réseau.
+                    Conception et administration de l’infrastructure du réseau informatique d’une entreprise, installation et administration des services réseau[cite: 10, 11].
                 </p>
             </div>
             <div class="ue-body">
                 <div class="ue-col">
-                    <h4>Composantes Essentielles</h4>
+                    <h4>Composantes Essentielles [cite: 3]</h4>
                     <ul class="ue-list">
-                        <li><span class="code">CE1.01</span> Choisir les solutions et technologies réseaux adaptées.</li>
-                        <li><span class="code">CE1.02</span> Respecter les principes fondamentaux de la sécurité informatique.</li>
-                        <li><span class="code">CE1.03</span> Utiliser une approche rigoureuse pour la résolution des dysfonctionnements.</li>
-                        <li><span class="code">CE1.04</span> Respecter les règles métiers.</li>
-                        <li><span class="code">CE1.05</span> Assurer une veille technologique.</li>
+                        <li><span class="code">CE1.01</span> Choisir les solutions et technologies réseaux adaptées[cite: 4].</li>
+                        <li><span class="code">CE1.02</span> Respecter les principes fondamentaux de la sécurité informatique[cite: 5].</li>
+                        <li><span class="code">CE1.03</span> Utiliser une approche rigoureuse pour la résolution des dysfonctionnements[cite: 6].</li>
+                        <li><span class="code">CE1.04</span> Respecter les règles métiers[cite: 7].</li>
+                        <li><span class="code">CE1.05</span> Assurer une veille technologique[cite: 8].</li>
                     </ul>
                 </div>
                 <div class="ue-col">
-                    <h4>Apprentissages Critiques</h4>
+                    <h4>Apprentissages Critiques [cite: 20]</h4>
                     <ul class="ue-list">
-                        <li><span class="code">AC21.01</span> Configurer et dépanner le routage dynamique dans un réseau.</li>
-                        <li><span class="code">AC21.02</span> Configurer et expliquer une politique simple de QoS et les fonctions de base de la sécurité d’un réseau.</li>
-                        <li><span class="code">AC21.03</span> Déployer des postes clients et des solutions virtualisées adaptées à une situation donnée.</li>
-                        <li><span class="code">AC21.04</span> Déployer des services réseaux avancés.</li>
-                        <li><span class="code">AC21.05</span> Identifier les réseaux opérateurs et l’architecture d’Internet.</li>
+                        <li><span class="code">AC21.01</span> Configurer et dépanner le routage dynamique dans un réseau[cite: 21].</li>
+                        <li><span class="code">AC21.02</span> Configurer et expliquer une politique simple de QoS et les fonctions de base de la sécurité d’un réseau[cite: 22].</li>
+                        <li><span class="code">AC21.03</span> Déployer des postes clients et des solutions virtualisées adaptées à une situation donnée[cite: 23].</li>
+                        <li><span class="code">AC21.04</span> Déployer des services réseaux avancés[cite: 24].</li>
+                        <li><span class="code">AC21.05</span> Identifier les réseaux opérateurs et l’architecture d’Internet[cite: 25].</li>
+                        <li><span class="code">AC21.06</span> Travailler en équipe pour développer ses compétences professionnelles[cite: 26].</li>
                     </ul>
                 </div>
             </div>
@@ -173,33 +182,33 @@
         <article class="ue-card ue-2">
             <div class="ue-header">
                 <div class="grade-container">
-                    <span class="grade-badge">Moyenne S3 : 15.70/20</span>
+                    <span class="grade-badge">Moyenne S3 : --/20</span>
                     <span class="grade-badge">Moyenne S4 : --/20</span>
                 </div>
                 <span class="ue-badge">UE2 - Connecter</span>
-                <h2 class="ue-title">Connecter les entreprises et les usagers</h2>
+                <h2 class="ue-title">Connecter les entreprises et les usagers [cite: 34, 35]</h2>
                 <p class="ue-summary">
-                    Déploiement des supports et systèmes de transmission, mise en service et administration des équipements d’accès pour l'entreprise.
+                    Déploiement des supports et systèmes de transmission, mise en service et administration des équipements d’accès pour l'entreprise[cite: 41, 42, 43].
                 </p>
             </div>
             <div class="ue-body">
                 <div class="ue-col">
-                    <h4>Composantes Essentielles</h4>
+                    <h4>Composantes Essentielles [cite: 36]</h4>
                     <ul class="ue-list">
-                        <li><span class="code">CE2.01</span> Communiquer avec le client et les différents acteurs impliqués, parfois en anglais.</li>
-                        <li><span class="code">CE2.02</span> Faire preuve d’une démarche scientifique.</li>
-                        <li><span class="code">CE2.03</span> Choisir les solutions et technologies adaptées.</li>
-                        <li><span class="code">CE2.04</span> Proposer des solutions respectueuses de l'environnement.</li>
+                        <li><span class="code">CE2.01</span> Communiquer avec le client et les différents acteurs impliqués, parfois en anglais[cite: 37, 66].</li>
+                        <li><span class="code">CE2.02</span> Faire preuve d’une démarche scientifique[cite: 38, 67].</li>
+                        <li><span class="code">CE2.03</span> Choisir les solutions et technologies adaptées[cite: 39, 68].</li>
+                        <li><span class="code">CE2.04</span> Proposer des solutions respectueuses de l'environnement[cite: 40, 69].</li>
                     </ul>
                 </div>
                 <div class="ue-col">
-                    <h4>Apprentissages Critiques</h4>
+                    <h4>Apprentissages Critiques [cite: 52]</h4>
                     <ul class="ue-list">
-                        <li><span class="code">AC22.01</span> Déployer et caractériser des systèmes de transmissions complexes.</li>
-                        <li><span class="code">AC22.02</span> Mettre en place un accès distant sécurisé.</li>
-                        <li><span class="code">AC22.03</span> Mettre en place une connexion multi-site via un réseau opérateur.</li>
-                        <li><span class="code">AC22.04</span> Déployer des réseaux d’accès des opérateurs.</li>
-                        <li><span class="code">AC22.05</span> Capacité à questionner un cahier des charges RT.</li>
+                        <li><span class="code">AC22.01</span> Déployer et caractériser des systèmes de transmissions complexes[cite: 53].</li>
+                        <li><span class="code">AC22.02</span> Mettre en place un accès distant sécurisé[cite: 54].</li>
+                        <li><span class="code">AC22.03</span> Mettre en place une connexion multi-site via un réseau opérateur[cite: 55].</li>
+                        <li><span class="code">AC22.04</span> Déployer des réseaux d’accès des opérateurs[cite: 56].</li>
+                        <li><span class="code">AC22.05</span> Capacité à questionner un cahier des charges RT[cite: 57].</li>
                     </ul>
                 </div>
             </div>
@@ -212,34 +221,34 @@
         <article class="ue-card ue-3">
             <div class="ue-header">
                 <div class="grade-container">
-                    <span class="grade-badge">Moyenne S3 : 13.02/20</span>
+                    <span class="grade-badge">Moyenne S3 : --/20</span>
                     <span class="grade-badge">Moyenne S4 : --/20</span>
                 </div>
-                <span class="ue-badge">UE3 - Programmer</span>
-                <h2 class="ue-title">Créer des outils et applications informatiques</h2>
+                <span class="ue-badge">UE3 - Programmer [cite: 76]</span>
+                <h2 class="ue-title">Créer des outils et applications informatiques [cite: 75, 77]</h2>
                 <p class="ue-summary">
-                    Automatisation du déploiement et de la maintenance des outils logiciels, et développement d’outils informatiques à usage interne d'une équipe.
+                    Automatisation du déploiement et de la maintenance des outils logiciels, et développement d’outils informatiques à usage interne d'une équipe[cite: 86, 87].
                 </p>
             </div>
             <div class="ue-body">
                 <div class="ue-col">
-                    <h4>Composantes Essentielles</h4>
+                    <h4>Composantes Essentielles [cite: 78]</h4>
                     <ul class="ue-list">
-                        <li><span class="code">CE3.01</span> Être à l’écoute des besoins du client.</li>
-                        <li><span class="code">CE3.02</span> Documenter le travail réalisé.</li>
-                        <li><span class="code">CE3.03</span> Utiliser les outils numériques à bon escient.</li>
-                        <li><span class="code">CE3.04</span> Choisir les outils de développement adaptés.</li>
-                        <li><span class="code">CE3.05</span> Intégrer les problématiques de sécurité.</li>
+                        <li><span class="code">CE3.01</span> Être à l’écoute des besoins du client[cite: 79].</li>
+                        <li><span class="code">CE3.02</span> Documenter le travail réalisé[cite: 80].</li>
+                        <li><span class="code">CE3.03</span> Utiliser les outils numériques à bon escient[cite: 81].</li>
+                        <li><span class="code">CE3.04</span> Choisir les outils de développement adaptés[cite: 82].</li>
+                        <li><span class="code">CE3.05</span> Intégrer les problématiques de sécurité[cite: 83].</li>
                     </ul>
                 </div>
                 <div class="ue-col">
-                    <h4>Apprentissages Critiques</h4>
+                    <h4>Apprentissages Critiques [cite: 95]</h4>
                     <ul class="ue-list">
-                        <li><span class="code">AC23.01</span> Automatiser l’administration système avec des scripts.</li>
-                        <li><span class="code">AC23.02</span> Développer une application à partir d’un cahier des charges donné, pour le Web ou les périphériques mobiles.</li>
-                        <li><span class="code">AC23.03</span> Utiliser un protocole réseau pour programmer une application client/serveur.</li>
-                        <li><span class="code">AC23.04</span> Installer, administrer un système de gestion de données.</li>
-                        <li><span class="code">AC23.05</span> Accéder à un ensemble de données depuis une application et/ou un site web.</li>
+                        <li><span class="code">AC23.01</span> Automatiser l’administration système avec des scripts[cite: 96].</li>
+                        <li><span class="code">AC23.02</span> Développer une application à partir d’un cahier des charges donné, pour le Web ou les périphériques mobiles[cite: 97].</li>
+                        <li><span class="code">AC23.03</span> Utiliser un protocole réseau pour programmer une application client/serveur[cite: 98].</li>
+                        <li><span class="code">AC23.04</span> Installer, administrer un système de gestion de données[cite: 99].</li>
+                        <li><span class="code">AC23.05</span> Accéder à un ensemble de données depuis une application et/ou un site web[cite: 100].</li>
                     </ul>
                 </div>
             </div>
@@ -249,37 +258,83 @@
             </div>
         </article>
 
-        <article class="ue-card ue-cyber">
+        <div class="path-intro">
+            <h3>Mon Choix de Parcours : Cybersécurité</h3>
+            <p>
+                J'ai choisi de m'orienter vers le parcours Cybersécurité afin de me spécialiser dans la protection, la surveillance et l'audit des systèmes d'information. Face aux menaces numériques croissantes, cette spécialisation me permet d'allier mes solides compétences en administration réseau avec une dimension sécuritaire incontournable. L'objectif est d'intervenir à la fois sur la sécurisation des infrastructures (défense) et sur l'analyse des vulnérabilités (tests de pénétration), garantissant ainsi l'intégrité et la disponibilité des données au sein des organisations.
+            </p>
+        </div>
+
+        <article class="ue-card ue-4">
             <div class="ue-header">
                 <div class="grade-container">
-                    <span class="grade-badge">Moyenne S3 : 16.01/20</span>
+                    <span class="grade-badge">Moyenne S3 : --/20</span>
                     <span class="grade-badge">Moyenne S4 : --/20</span>
                 </div>
-                <span class="ue-badge">Parcours Cybersécurité</span>
-                <h2 class="ue-title">Administrer et Surveiller un SI sécurisé</h2>
+                <span class="ue-badge">UE4 - Sécuriser [cite: 111]</span>
+                <h2 class="ue-title">Administrer un système d’information sécurisé [cite: 110, 112]</h2>
                 <p class="ue-summary">
-                    Évolution et mise en conformité du système d’information d’une entreprise. Surveillance, analyse et audit de sécurité du système d’information.
+                    Évolution et mise en conformité du système d’information d’une entreprise. Mise en œuvre d'outils de sécurisation et analyse des besoins en sécurité[cite: 120, 121].
                 </p>
             </div>
             <div class="ue-body">
                 <div class="ue-col">
-                    <h4>Composantes Essentielles</h4>
+                    <h4>Composantes Essentielles [cite: 113]</h4>
                     <ul class="ue-list">
-                        <li><span class="code">CE4.01</span> Viser un juste compromis entre exigences de sécurité et contraintes d’utilisation.</li>
-                        <li><span class="code">CE4.05</span> Sensibiliser efficacement des utilisateurs.</li>
-                        <li><span class="code">CE5.01</span> Assurer une veille permanente.</li>
-                        <li><span class="code">CE5.02</span> Réaliser les mises à jour critiques.</li>
-                        <li><span class="code">CE5.05</span> Surveiller le comportement du réseau.</li>
+                        <li><span class="code">CE4.01</span> Viser un juste compromis entre exigences de sécurité et contraintes d’utilisation[cite: 114].</li>
+                        <li><span class="code">CE4.02</span> Respecter les normes et le cadre juridique[cite: 115].</li>
+                        <li><span class="code">CE4.03</span> Intégrer les dernières technologies[cite: 116].</li>
+                        <li><span class="code">CE4.04</span> Travailler en équipe[cite: 117].</li>
+                        <li><span class="code">CE4.05</span> Sensibiliser efficacement des utilisateurs[cite: 118].</li>
                     </ul>
                 </div>
                 <div class="ue-col">
-                    <h4>Apprentissages Critiques</h4>
+                    <h4>Apprentissages Critiques [cite: 122]</h4>
                     <ul class="ue-list">
-                        <li><span class="code">AC24.01</span> Connaître et utiliser les bonnes pratiques et les recommandations de cybersécurité.</li>
-                        <li><span class="code">AC24.02</span> Mettre en œuvre les outils fondamentaux de sécurisation d’une infrastructure du réseau.</li>
-                        <li><span class="code">AC24.04</span> Choisir les outils cryptographiques adaptés au besoin fonctionnel du système d’information.</li>
-                        <li><span class="code">AC25.01</span> Administrer les protections contre les logiciels malveillants.</li>
-                        <li><span class="code">AC25.02</span> Prendre en main des outils de test de pénétration réseau/système.</li>
+                        <li><span class="code">AC24.01</span> Connaître et utiliser les bonnes pratiques et les recommandations de cybersécurité[cite: 123].</li>
+                        <li><span class="code">AC24.02</span> Mettre en œuvre les outils fondamentaux de sécurisation d’une infrastructure du réseau[cite: 124].</li>
+                        <li><span class="code">AC24.03</span> Sécuriser les services[cite: 125].</li>
+                        <li><span class="code">AC24.04</span> Choisir les outils cryptographiques adaptés au besoin fonctionnel du système d’information[cite: 126].</li>
+                        <li><span class="code">AC24.05</span> Connaître les différents types d’attaque[cite: 127].</li>
+                        <li><span class="code">AC24.06</span> Comprendre des documents techniques en anglais[cite: 128].</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="ue-reflexive">
+                <h4>Mon Analyse Réflexive</h4>
+                <p>[ Insérer l'analyse réflexive ici ]</p>
+            </div>
+        </article>
+
+        <article class="ue-card ue-5">
+            <div class="ue-header">
+                <div class="grade-container">
+                    <span class="grade-badge">Moyenne S3 : --/20</span>
+                    <span class="grade-badge">Moyenne S4 : --/20</span>
+                </div>
+                <span class="ue-badge">UE5 - Surveiller [cite: 135]</span>
+                <h2 class="ue-title">Surveiller un système d’information sécurisé [cite: 134, 136]</h2>
+                <p class="ue-summary">
+                    Surveillance et analyse du système d’information, audit de sécurité et gestion des incidents pour garantir la disponibilité et la fiabilité des réseaux[cite: 145, 146, 147].
+                </p>
+            </div>
+            <div class="ue-body">
+                <div class="ue-col">
+                    <h4>Composantes Essentielles [cite: 137]</h4>
+                    <ul class="ue-list">
+                        <li><span class="code">CE5.01</span> Assurer une veille permanente[cite: 138].</li>
+                        <li><span class="code">CE5.02</span> Réaliser les mises à jour critiques[cite: 139].</li>
+                        <li><span class="code">CE5.03</span> Automatiser des tâches[cite: 140].</li>
+                        <li><span class="code">CE5.04</span> S’intégrer dans une équipe[cite: 141].</li>
+                        <li><span class="code">CE5.05</span> Surveiller le comportement du réseau[cite: 142].</li>
+                        <li><span class="code">CE5.06</span> Veiller au respect des contrats et à la conformité des obligations du SI[cite: 143].</li>
+                    </ul>
+                </div>
+                <div class="ue-col">
+                    <h4>Apprentissages Critiques [cite: 148]</h4>
+                    <ul class="ue-list">
+                        <li><span class="code">AC25.01</span> Administrer les protections contre les logiciels malveillants[cite: 149].</li>
+                        <li><span class="code">AC25.02</span> Prendre en main des outils de test de pénétration réseau/système[cite: 150].</li>
                     </ul>
                 </div>
             </div>
