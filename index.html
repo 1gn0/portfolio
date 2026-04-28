@@ -321,11 +321,13 @@
             margin-bottom: -5px; 
         }
         
+        /* Force le nom de famille sur une seule ligne */
         .name-last {
             display: block;
             white-space: nowrap;
         }
 
+        /* Encart de présentation de la formation */
         .hero-formation-badge {
             background: linear-gradient(90deg, rgba(157, 78, 221, 0.1), transparent);
             border-left: 4px solid var(--accent-cyan);
@@ -429,7 +431,7 @@
             position: absolute;
             width: 4px;
             background: linear-gradient(to bottom, var(--accent-cyan), transparent);
-            top: 67px; /* 35 (top) + 32 (taille du rond) */
+            top: 67px; 
             bottom: 0;
             box-shadow: 0 0 12px var(--accent-cyan);
             border-radius: 2px;
@@ -457,11 +459,19 @@
         .timeline-item.left::after { right: -16px; }
         .timeline-item.right::after { left: -16px; }
         
+        /* AU SURVOL : Synchronisation parfaite entre la carte et le rond */
         .timeline-item:hover::after {
             background-color: #ffffff;
             transform: scale(1.25);
             box-shadow: 0 0 30px var(--accent-cyan), 0 0 20px var(--accent-hover);
             border-color: var(--accent-hover);
+        }
+
+        .timeline-item:hover .content {
+            border-color: var(--accent-cyan);
+            box-shadow: 0 10px 30px rgba(79, 172, 254, 0.15);
+            background-color: rgba(79, 172, 254, 0.05);
+            transform: translateY(-5px);
         }
 
         .timeline-item:last-child .line-bottom { display: none; }
@@ -478,13 +488,6 @@
             box-shadow: 0 5px 15px rgba(0,0,0,0.2);
             transition: all 0.4s ease;
             border: 1px solid transparent;
-        }
-        
-        .content:hover {
-            border-color: var(--accent-cyan);
-            box-shadow: 0 10px 30px rgba(79, 172, 254, 0.15);
-            background-color: rgba(79, 172, 254, 0.05);
-            transform: translateY(-5px);
         }
 
         .content h3 {
@@ -991,7 +994,7 @@
                 <div class="card">
                     <h3>Manutentionnaire</h3>
                     <p class="company-date"><strong>Intermarché Tourlaville</strong> | 2024</p>
-                    <p>Gestion logistique des stocks et mise en rayon. <em>Job d'été.</em></p>
+                    <p>Gestion logistique des stocks et mise en rayon. Job d'été.</p>
                 </div>
                 <div class="card">
                     <h3>Stage d'observation (3e)</h3>
