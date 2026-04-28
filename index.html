@@ -3,103 +3,849 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Compétences BUT2 | Camille HENRY--DELANGLE</title>
+    <title>Portfolio | Camille HENRY--DELANGLE</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Saira+Stencil+One&display=swap" rel="stylesheet">
     <style>
+        /* --- VARIABLES ET RESET --- */
         :root {
             --bg-color: #0d0b14; 
             --bg-card: #161420;  
             --text-main: #e0e6ed;
             --text-muted: #a1aabf;
+            
             --accent: #9d4edd;          
             --accent-hover: #c77dff;    
             --accent-cyan: #4facfe;
             --accent-glow: rgba(157, 78, 221, 0.25); 
+            
             --border-color: #2d2a3a;
             --font-main: 'Inter', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
             --font-title: 'Saira Stencil One', sans-serif; 
             --font-mono: 'Courier New', Courier, monospace;
+            
             --radius-md: 16px; 
             --radius-lg: 30px; 
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { background-color: var(--bg-color); color: var(--text-main); font-family: var(--font-main); line-height: 1.7; overflow-x: hidden; display: flex; flex-direction: column; min-height: 100vh; }
-        h1, h2, h3, h4 { font-family: var(--font-title); font-weight: normal; }
-        a { text-decoration: none; color: inherit; transition: all 0.3s ease; }
-        ul { list-style: none; }
-        strong { color: var(--accent-hover); font-weight: 600; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; width: 100%; }
-        .page-header { padding: 160px 20px 60px 20px; text-align: center; }
+        html {
+            scroll-behavior: smooth;
+        }
 
-        .section-title { font-size: 3.2rem; color: var(--accent); margin-bottom: 30px; display: flex; align-items: center; justify-content: center; text-align: center; opacity: 0; animation: fadeIn 1s ease forwards; position: relative; padding-bottom: 25px; }
-        .section-title::before { content: ">"; margin-right: 15px; color: var(--accent-cyan); font-weight: bold; text-shadow: 0 0 10px var(--accent-cyan); font-family: var(--font-main); }
-        .section-title::after { content: ""; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 150px; height: 3px; background: linear-gradient(90deg, transparent, var(--accent-hover), var(--accent-cyan), transparent); border-radius: 2px; }
-
-        .page-subtitle { color: var(--text-muted); font-size: 1.15rem; max-width: 700px; margin: 0 auto; opacity: 0; animation: fadeIn 1s ease forwards 0.2s; line-height: 1.8; }
-
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-
-        header { background-color: rgba(13, 11, 20, 0.95); padding: 10px 0; position: fixed; width: 100%; top: 0; z-index: 1000; backdrop-filter: blur(10px); box-shadow: 0 2px 20px rgba(0,0,0,0.4); border-bottom: 1px solid var(--border-color); }
-        nav { display: flex; justify-content: space-between; align-items: center; }
-        .logo { font-size: 1.8rem; color: var(--accent); font-family: var(--font-title); text-shadow: 0 0 10px var(--accent); }
-        .nav-links { display: flex; gap: 10px; align-items: center; background-color: var(--bg-card); padding: 5px 8px; border-radius: var(--radius-lg); border: 1px solid var(--border-color); flex-grow: 1; justify-content: flex-end; margin-left: 40px; }
-        .nav-links li { margin: 0 5px; }
-        .nav-links li a { font-weight: 500; font-size: 0.95rem; padding: 8px 18px; border-radius: var(--radius-lg); position: relative; }
-        .nav-links li a:not(.nav-contact-btn):hover, .nav-links li a.active { background-color: rgba(157, 78, 221, 0.15); color: var(--accent-hover); text-shadow: 0 0 5px var(--accent-hover); }
-        .nav-contact-btn { background-color: transparent; border: 2px solid var(--accent); color: var(--accent); font-weight: 600; text-transform: uppercase; letter-spacing: 1px; font-size: 0.85rem; transition: all 0.3s ease; }
-        .nav-contact-btn:hover { background-color: var(--accent); color: #ffffff; box-shadow: 0 0 15px var(--accent-glow); border-color: var(--accent-hover); }
-
-        .ue-container { display: flex; flex-direction: column; gap: 60px; padding-bottom: 80px; align-items: center; width: 100%; }
-
-        /* Encart Choix du parcours centré */
-        .path-intro { background: linear-gradient(135deg, rgba(157, 78, 221, 0.1), rgba(79, 172, 254, 0.05)); border: 1px solid var(--accent); border-radius: var(--radius-md); padding: 40px; text-align: center; box-shadow: 0 10px 30px var(--accent-glow); opacity: 0; animation: fadeIn 1s ease forwards 0.3s; position: relative; overflow: hidden; max-width: 1000px; width: 100%; margin: 0 auto; }
-        .path-intro::before { content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 4px; background: linear-gradient(90deg, var(--accent-cyan), var(--accent-hover)); }
-        .path-intro h3 { color: #ffffff; font-size: 2rem; margin-bottom: 20px; text-shadow: 0 0 10px rgba(199, 125, 255, 0.3); }
-        .path-intro p { color: var(--text-main); font-size: 1.1rem; max-width: 900px; margin: 0 auto; line-height: 1.8; }
-
-        .ue-card { background-color: var(--bg-card); border-radius: var(--radius-md); border: 1px solid var(--border-color); overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.3); transition: all 0.4s ease; opacity: 0; animation: fadeIn 1s ease forwards 0.4s; position: relative; width: 100%; max-width: 1160px; }
-        .ue-card::before { content: ""; position: absolute; top: 0; left: 0; width: 4px; height: 100%; background: linear-gradient(to bottom, var(--ue-color), transparent); box-shadow: 0 0 15px var(--ue-color); }
-        .ue-card:hover { border-color: rgba(255,255,255,0.1); transform: translateY(-5px); box-shadow: 0 15px 40px rgba(0,0,0,0.5), 0 0 20px rgba(255,255,255,0.02); }
-
-        .ue-header { padding: 40px 40px 20px 40px; border-bottom: 1px solid var(--border-color); position: relative;}
-        .ue-badge { display: inline-block; background-color: rgba(255,255,255,0.05); color: var(--ue-color); padding: 5px 15px; border-radius: 20px; font-size: 0.85rem; font-family: var(--font-mono); border: 1px solid var(--ue-color); margin-bottom: 15px; text-transform: uppercase; letter-spacing: 1px; box-shadow: 0 0 10px rgba(255,255,255,0.05); }
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: var(--font-main);
+            line-height: 1.7; 
+            overflow-x: hidden;
+        }
         
-        .grade-container { position: absolute; top: 40px; right: 40px; display: flex; flex-direction: column; gap: 10px; align-items: flex-end; }
-        .grade-badge { background-color: rgba(79, 172, 254, 0.05); border: 1px solid var(--accent-cyan); color: #ffffff; padding: 6px 15px; border-radius: var(--radius-lg); font-family: var(--font-mono); font-weight: bold; font-size: 0.95rem; box-shadow: 0 0 10px rgba(79, 172, 254, 0.15); }
+        h1, h2, h3, .name {
+            font-family: var(--font-title);
+            font-weight: normal; 
+        }
 
-        .ue-title { font-size: 2rem; color: #ffffff; margin-bottom: 15px; text-shadow: 0 0 10px rgba(255,255,255,0.1); padding-right: 150px; }
-        .ue-summary { color: var(--text-muted); font-size: 1.05rem; }
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.3s ease;
+        }
 
-        .ue-body { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; padding: 40px; }
-        .ue-col h4 { color: var(--ue-color); font-size: 1.3rem; margin-bottom: 20px; border-bottom: 1px dashed var(--border-color); padding-bottom: 10px; }
+        ul {
+            list-style: none;
+        }
+        
+        strong {
+            color: var(--accent-hover);
+            font-weight: 600;
+            text-shadow: 0 0 8px rgba(199, 125, 255, 0.3);
+        }
 
-        .ue-list { margin-left: 10px; }
-        .ue-list li { position: relative; padding-left: 25px; margin-bottom: 15px; color: var(--text-main); font-size: 0.95rem; }
-        .ue-list li::before { content: '>'; position: absolute; left: 0; color: var(--ue-color); font-family: var(--font-mono); font-weight: bold; }
-        .ue-list li span.code { color: var(--ue-color); font-family: var(--font-mono); font-weight: bold; margin-right: 5px; }
+        /* --- STYLES GENERAUX AVEC EFFETS --- */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
 
-        .ue-reflexive { margin: 0 40px 40px 40px; padding: 30px; background-color: rgba(0,0,0,0.2); border-radius: 8px; border-left: 4px solid var(--accent-hover); }
-        .ue-reflexive h4 { color: var(--accent-hover); margin-bottom: 15px; font-size: 1.2rem; display: flex; align-items: center; gap: 10px; }
-        .ue-reflexive p { color: var(--text-muted); font-style: italic; }
+        section {
+            padding: 100px 0;
+        }
 
-        .ue-1 { --ue-color: #4facfe; } 
-        .ue-2 { --ue-color: #c77dff; } 
-        .ue-3 { --ue-color: #00f2fe; } 
-        .ue-4 { --ue-color: #f5576c; } 
-        .ue-5 { --ue-color: #f6d365; } 
+        /* Titres soulignés */
+        .section-title {
+            font-size: 3.2rem;
+            color: var(--accent);
+            margin-bottom: 60px; 
+            display: flex;
+            align-items: center;
+            justify-content: center; 
+            text-align: center;
+            opacity: 0;
+            animation: fadeIn 1s ease forwards;
+            position: relative;
+            padding-bottom: 25px;
+        }
 
-        .action-container { text-align: center; margin-top: 40px; width: 100%; }
-        .btn-large { display: inline-flex; justify-content: center; align-items: center; padding: 18px 40px; background-color: rgba(157, 78, 221, 0.1); border: 2px solid var(--accent); color: #ffffff; font-weight: 600; font-family: var(--font-main); text-transform: uppercase; letter-spacing: 1px; cursor: pointer; border-radius: var(--radius-lg); transition: all 0.4s ease; font-size: 1.1rem; box-shadow: 0 0 15px var(--accent-glow); margin: 0 auto; }
-        .btn-large:hover { background-color: var(--accent); transform: translateY(-3px); border-color: var(--accent-hover); box-shadow: 0 10px 30px var(--accent-glow); }
+        .section-title::before {
+            content: ">";
+            margin-right: 15px;
+            color: var(--accent-cyan);
+            font-weight: bold;
+            text-shadow: 0 0 10px var(--accent-cyan);
+            font-family: var(--font-main);
+        }
 
-        footer { text-align: center; padding: 40px 0; color: var(--text-muted); font-size: 0.95rem; border-top: 1px solid var(--border-color); width: 100%; margin-top: auto; }
+        .section-title::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 150px;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--accent-hover), var(--accent-cyan), transparent);
+            border-radius: 2px;
+        }
 
-        @media (max-width: 900px) { .ue-body { grid-template-columns: 1fr; gap: 30px; } .grade-container { position: relative; top: 0; right: 0; flex-direction: row; flex-wrap: wrap; justify-content: flex-start; margin-bottom: 20px; } .ue-title { padding-right: 0; } }
-        @media (max-width: 768px) { .nav-links { display: none; } .section-title { font-size: 2.2rem; } .page-header { padding-top: 120px; } .ue-header, .ue-body, .ue-reflexive, .path-intro { padding: 20px; } .ue-reflexive { margin: 0 20px 20px 20px; } }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* --- HEADER & NAV --- */
+        header {
+            background-color: rgba(13, 11, 20, 0.95);
+            padding: 10px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(0,0,0,0.4);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            color: var(--accent);
+            font-family: var(--font-title);
+            text-shadow: 0 0 10px var(--accent);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            background-color: var(--bg-card);
+            padding: 5px 8px;
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--border-color);
+            flex-grow: 1;
+            justify-content: flex-end;
+            margin-left: 40px; 
+        }
+
+        .nav-links li {
+            margin: 0 5px;
+        }
+
+        .nav-links li a {
+            font-weight: 500;
+            font-size: 0.95rem;
+            padding: 8px 18px;
+            border-radius: var(--radius-lg);
+            position: relative;
+        }
+
+        .nav-links li a:not(.nav-contact-btn):hover {
+            background-color: rgba(157, 78, 221, 0.15);
+            color: var(--accent-hover);
+            text-shadow: 0 0 5px var(--accent-hover);
+        }
+        
+        .nav-contact-btn {
+            background-color: transparent;
+            border: 2px solid var(--accent);
+            color: var(--accent);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.85rem;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-contact-btn:hover {
+            background-color: var(--accent);
+            color: #ffffff;
+            box-shadow: 0 0 15px var(--accent-glow);
+            border-color: var(--accent-hover);
+        }
+
+        /* --- BOUTONS --- */
+        .btn {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            min-width: 220px; 
+            padding: 14px 30px;
+            background-color: transparent;
+            border: 2px solid var(--accent);
+            color: var(--accent-hover);
+            font-weight: 600;
+            font-family: var(--font-main);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            border-radius: var(--radius-lg);
+            transition: all 0.4s ease;
+            margin-right: 15px; 
+            position: relative;
+            overflow: hidden;
+            text-shadow: 0 0 5px rgba(199, 125, 255, 0.3);
+        }
+
+        .btn:last-child {
+            margin-right: 0; 
+        }
+
+        .btn:hover {
+            background-color: var(--accent);
+            color: #ffffff;
+            box-shadow: 0 5px 25px var(--accent-glow);
+            transform: translateY(-3px);
+            border-color: var(--accent-hover);
+        }
+
+        .btn-secondary {
+            background-color: rgba(157, 78, 221, 0.1);
+        }
+
+        /* --- SECTION HERO (Présentation) --- */
+        #hero {
+            padding-top: 150px;
+            min-height: 90vh;
+            display: flex;
+            align-items: center;
+        }
+
+        .hero-container {
+            display: flex;
+            flex-direction: row-reverse;
+            align-items: flex-start;
+            justify-content: space-between;
+            gap: 60px;
+            width: 100%;
+        }
+
+        .hero-photo {
+            flex: 1; 
+            display: flex;
+            justify-content: flex-end;
+            opacity: 0;
+            animation: fadeIn 1s ease forwards 0.2s;
+            margin-top: 15px;
+        }
+
+        .hero-text {
+            flex: 1.2; 
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            text-align: left; 
+            opacity: 0;
+            animation: fadeIn 1s ease forwards 0.4s;
+        }
+
+        .photo-placeholder {
+            width: 320px; 
+            height: 320px;
+            border-radius: 50%;
+            border: 3px solid var(--accent);
+            background-color: var(--bg-card);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: var(--text-muted);
+            font-family: var(--font-mono);
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5), 0 0 30px var(--accent-glow);
+            position: relative;
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+        }
+        
+        .photo-placeholder:hover {
+            transform: scale(1.02) translateY(-5px);
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.6), 0 0 40px var(--accent-hover);
+        }
+        
+        .photo-placeholder img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .hero-text h1 {
+            font-size: 3.5rem;
+            line-height: 1.1;
+            margin-bottom: 25px;
+            letter-spacing: 0px;
+        }
+
+        .hero-text .name {
+            color: #ffffff;
+            background: linear-gradient(135deg, #ffffff 0%, var(--accent-hover) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 15px rgba(255,255,255,0.1);
+        }
+
+        .hero-subtitle {
+            font-size: 1.6rem;
+            background: linear-gradient(90deg, var(--accent-cyan), var(--accent-hover));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 30px;
+            font-family: var(--font-title);
+        }
+
+        .hero-info {
+            margin-bottom: 40px;
+            color: var(--text-main);
+            background-color: var(--bg-card);
+            padding: 25px;
+            border-radius: var(--radius-md);
+            display: inline-block;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+        }
+        
+        .hero-info:hover {
+            border-color: rgba(157, 78, 221, 0.4);
+            box-shadow: 0 5px 25px var(--accent-glow);
+        }
+        
+        .hero-info p { margin-bottom: 10px; }
+        .hero-info p:last-child { margin-bottom: 0; }
+        
+        .hero-info strong {
+            color: var(--accent-cyan);
+            text-shadow: none;
+        }
+
+        /* --- SECTION PARCOURS (Timeline) --- */
+        #parcours {
+            background-color: var(--bg-card);
+            border-radius: 40px;
+            margin: 20px auto;
+            border: 1px solid var(--border-color);
+            max-width: 1160px; 
+            transition: all 0.3s ease;
+        }
+        
+        #parcours:hover {
+            border-color: rgba(157, 78, 221, 0.2);
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+        }
+
+        .timeline {
+            position: relative;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .timeline-item {
+            padding: 20px 50px;
+            position: relative;
+            background-color: transparent;
+            width: 50%;
+            opacity: 0;
+            animation: fadeIn 1s ease forwards 0.2s;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            width: 4px;
+            background: linear-gradient(to bottom, transparent, var(--accent), var(--accent));
+            top: 0;
+            bottom: calc(100% - 35px); 
+            box-shadow: 0 0 10px var(--accent);
+        }
+        
+        .timeline-item .line-bottom {
+            position: absolute;
+            width: 4px;
+            background: linear-gradient(to bottom, var(--accent), var(--accent), transparent);
+            top: 55px; 
+            bottom: 0;
+            box-shadow: 0 0 10px var(--accent);
+        }
+
+        .timeline-item.left::before, .timeline-item.left .line-bottom { right: -2px; }
+        .timeline-item.right::before, .timeline-item.right .line-bottom { left: -2px; }
+
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: var(--bg-color); 
+            border: 4px solid var(--accent);
+            top: 35px;
+            border-radius: 50%;
+            z-index: 2;
+            box-shadow: 0 0 15px var(--accent);
+            transition: all 0.3s ease;
+        }
+        
+        .timeline-item.left::after { right: -14px; }
+        .timeline-item.right::after { left: -14px; }
+        
+        .timeline-item:hover::after {
+            background-color: var(--accent-hover);
+            transform: scale(1.3);
+            box-shadow: 0 0 20px var(--accent-cyan);
+            border-color: var(--accent-cyan);
+        }
+
+        .timeline-item:last-child .line-bottom { display: none; }
+        .timeline-item:first-child::before { display: none; }
+
+        .left { left: 0; }
+        .right { left: 50%; }
+
+        .content {
+            padding: 30px;
+            background-color: rgba(255,255,255,0.02);
+            position: relative;
+            border-radius: var(--radius-md);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            transition: all 0.4s ease;
+            border: 1px solid transparent;
+        }
+        
+        .content:hover {
+            border-color: var(--accent);
+            box-shadow: 0 10px 30px var(--accent-glow);
+            background-color: rgba(157, 78, 221, 0.05);
+            transform: translateY(-5px);
+        }
+
+        .content h3 {
+            color: #ffffff;
+            margin-bottom: 10px;
+            font-size: 1.4rem;
+        }
+
+        .content .date {
+            font-family: var(--font-mono);
+            font-size: 1rem;
+            color: var(--accent-cyan);
+            margin-bottom: 15px;
+            display: block;
+            font-weight: bold;
+            text-shadow: 0 0 5px rgba(79, 172, 254, 0.4);
+        }
+
+        /* --- SECTION EXPERIENCES --- */
+        .experiences-intro {
+            color: var(--text-main);
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 50px auto;
+            font-size: 1.15rem;
+            opacity: 0;
+            animation: fadeIn 1s ease forwards 0.2s;
+        }
+
+        .badge {
+            display: inline-block;
+            background-color: rgba(157, 78, 221, 0.2);
+            color: var(--accent-hover);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-family: var(--font-mono);
+            margin-left: 10px;
+            border: 1px solid var(--accent);
+            vertical-align: middle;
+            position: relative;
+        }
+        
+        .badge::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 20px;
+            box-shadow: 0 0 10px var(--accent);
+            opacity: 0.5;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+            opacity: 0;
+            animation: fadeIn 1s ease forwards 0.2s;
+        }
+
+        .card {
+            background-color: var(--bg-card);
+            padding: 40px;
+            border-radius: var(--radius-md);
+            border: 1px solid transparent;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, transparent, var(--accent), transparent);
+            transform: scaleX(0);
+            transition: transform 0.4s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            border-color: var(--border-color);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.4), 0 0 20px rgba(255,255,255,0.05);
+        }
+        
+        .card:hover::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: var(--radius-md);
+            box-shadow: 0 0 30px rgba(157, 78, 221, 0.15) inset;
+            pointer-events: none;
+        }
+        
+        .card:hover::before { transform: scaleX(1); }
+
+        .card h3 {
+            color: #ffffff;
+            margin-bottom: 12px;
+            font-size: 1.6rem;
+            transition: color 0.3s ease;
+            text-shadow: 0 0 10px rgba(255,255,255,0.1);
+        }
+
+        .company-date {
+            color: var(--accent-cyan);
+            font-family: var(--font-mono);
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+        }
+
+        /* --- NOUVELLE SECTION COMPETENCES (CARTES PAR ANNÉES) --- */
+        .year-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+            width: 100%;
+            max-width: 1000px;
+            margin: 0 auto 60px auto;
+            opacity: 0;
+            animation: fadeIn 1s ease forwards 0.2s;
+        }
+        
+        .year-card {
+            background-color: var(--bg-card);
+            padding: 50px 40px;
+            border-radius: var(--radius-md);
+            border: 1px solid var(--border-color);
+            text-align: center;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .year-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, transparent, var(--accent), transparent);
+            transform: scaleX(0);
+            transition: transform 0.4s ease;
+        }
+        
+        .year-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--accent);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.4), 0 0 20px rgba(157, 78, 221, 0.15) inset;
+        }
+        
+        .year-card:hover::before {
+            transform: scaleX(1);
+        }
+        
+        .year-card h3 {
+            font-size: 2.2rem;
+            color: #ffffff;
+            margin-bottom: 15px;
+        }
+        
+        .year-card p {
+            color: var(--text-muted);
+            font-size: 1.05rem;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+        
+        .year-actions {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            width: 100%;
+        }
+        
+        .year-actions .btn {
+            margin: 0;
+            width: 100%;
+        }
+
+        .soft-skill-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 40px;
+            opacity: 0;
+            animation: fadeIn 1s ease forwards 0.2s;
+        }
+        
+        .soft-skill-item {
+            background: rgba(157, 78, 221, 0.05);
+            border: 1px solid var(--border-color);
+            padding: 22px;
+            text-align: center;
+            border-radius: var(--radius-lg);
+            font-weight: normal;
+            color: var(--accent-hover);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            font-size: 1.05rem;
+            font-family: var(--font-title);
+        }
+        
+        .soft-skill-item:hover {
+            border-color: var(--accent-cyan);
+            background: rgba(79, 172, 254, 0.1);
+            color: #ffffff;
+            transform: scale(1.03);
+            box-shadow: 0 5px 20px rgba(79, 172, 254, 0.2);
+        }
+
+        /* --- SECTION CV & MODAL --- */
+        #cv {
+            background-color: var(--bg-card);
+            border-radius: 40px;
+            margin: 20px auto;
+            border: 1px solid var(--border-color);
+            max-width: 1160px;
+            transition: all 0.3s ease;
+        }
+        
+        #cv:hover {
+            border-color: rgba(157, 78, 221, 0.2);
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+        }
+
+        .cv-container {
+            display: flex;
+            gap: 40px;
+            justify-content: center;
+            margin-top: 50px;
+            flex-wrap: wrap;
+            opacity: 0;
+            animation: fadeIn 1s ease forwards 0.2s;
+        }
+
+        .cv-box {
+            flex: 1;
+            max-width: 450px; 
+            min-width: 300px;
+            background-color: rgba(255,255,255,0.02);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            padding: 50px 40px;
+            text-align: center;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .cv-box:hover {
+            border-color: var(--accent);
+            background-color: rgba(157, 78, 221, 0.05);
+            box-shadow: 0 10px 30px var(--accent-glow);
+            transform: translateY(-5px);
+        }
+
+        .cv-icon-large {
+            font-family: var(--font-title);
+            font-size: 3rem;
+            color: var(--accent-hover);
+            margin-bottom: 20px;
+            text-shadow: 0 0 15px rgba(199, 125, 255, 0.3);
+        }
+
+        .cv-box h3 {
+            color: #ffffff;
+            margin-bottom: 30px;
+            font-size: 1.8rem;
+        }
+
+        .cv-actions {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            width: 100%;
+        }
+
+        .cv-actions .btn {
+            margin: 0;
+            width: 100%;
+        }
+
+        /* --- MODAL (FENÊTRE OVERLAY POUR LE CV) --- */
+        .cv-modal {
+            display: none; 
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(13, 11, 20, 0.85); 
+            backdrop-filter: blur(8px);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .cv-modal.show {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 1;
+        }
+
+        .cv-modal-content {
+            position: relative;
+            width: 90%;
+            max-width: 1000px;
+            height: 85vh;
+            background-color: var(--bg-card);
+            border: 1px solid var(--accent);
+            border-radius: var(--radius-md);
+            box-shadow: 0 15px 50px var(--accent-glow);
+            padding: 50px 20px 20px 20px; 
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            color: var(--text-muted);
+            font-size: 2rem;
+            font-family: var(--font-main);
+            font-weight: bold;
+            cursor: pointer;
+            transition: color 0.3s, text-shadow 0.3s;
+            z-index: 2001;
+        }
+
+        .close-btn:hover {
+            color: var(--accent-cyan);
+            text-shadow: 0 0 10px var(--accent-cyan);
+        }
+
+        #cv-iframe {
+            width: 100%;
+            height: 100%;
+            border-radius: 8px;
+            background-color: #ffffff; 
+            border: none;
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            text-align: center;
+            padding: 50px 0;
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            border-top: 1px solid var(--border-color);
+            margin-top: 50px;
+        }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 992px) {
+            .hero-text h1 { font-size: 3rem; }
+            .timeline-item { width: 100%; padding-left: 70px; padding-right: 25px; margin-bottom: 30px;}
+            .timeline-item.right { left: 0%; }
+            .timeline-item.left::before, .timeline-item.right::before,
+            .timeline-item.left .line-bottom, .timeline-item.right .line-bottom {
+                left: 20px;
+                right: auto;
+            }
+            .timeline-item.left::after, .timeline-item.right::after { 
+                left: 11px; 
+                right: auto;
+            }
+        }
+
+        @media (max-width: 768px) {
+            section { padding: 60px 0; }
+            .section-title { font-size: 2.2rem; }
+            .hero-container { flex-direction: column; text-align: center; gap: 40px; align-items: center;}
+            .hero-text { text-align: center; align-items: center; }
+            .hero-photo { justify-content: center; margin-top: 0; }
+            .photo-placeholder { width: 260px; height: 260px; }
+            .nav-links { display: none; }
+            .hero-text h1 { font-size: 2.5rem; }
+            .grid, .year-grid { grid-template-columns: 1fr; }
+            .btn { width: 100%; margin-right: 0; margin-bottom: 15px; } 
+            .btn:last-child { margin-bottom: 0; }
+            .cv-modal-content { height: 90vh; width: 95%; padding: 45px 10px 10px 10px;}
+        }
     </style>
 </head>
 <body>
@@ -109,10 +855,10 @@
             <nav>
                 <div class="logo">C.H.D</div>
                 <ul class="nav-links">
-                    <li><a href="index.html#hero">Accueil</a></li>
-                    <li><a href="index.html#parcours">Parcours</a></li>
-                    <li><a href="competences.html" class="active">Compétences</a></li>
-                    <li><a href="index.html#cv">CV</a></li>
+                    <li><a href="#hero">Accueil</a></li>
+                    <li><a href="#parcours">Parcours</a></li>
+                    <li><a href="#competences">Compétences</a></li>
+                    <li><a href="#cv">CV</a></li>
                     <li><a href="projets.html">Projets</a></li> 
                     <li><a href="contact.html" class="nav-contact-btn">Contact</a></li>
                 </ul>
@@ -120,233 +866,226 @@
         </div>
     </header>
 
-    <div class="page-header container">
-        <h1 class="section-title">Deuxième Année</h1>
-        <p class="page-subtitle">
-            Détail de mes apprentissages critiques et analyses réflexives pour l'année de BUT Réseaux et Télécommunications, parcours Cybersécurité (Semestres 3 et 4).
-        </p>
-    </div>
-
-    <main class="container ue-container">
-
-        <article class="ue-card ue-1">
-            <div class="ue-header">
-                <div class="grade-container">
-                    <span class="grade-badge">Moyenne S3 : --/20</span>
-                    <span class="grade-badge">Moyenne S4 : --/20</span>
+    <section id="hero">
+        <div class="container hero-container">
+            
+            <div class="hero-photo">
+                <div class="photo-placeholder">
+                     <img src="photo.jpg" alt="Photo de Camille Henry--Delangle">
                 </div>
-                <span class="ue-badge">UE1 - Administrer</span>
-                <h2 class="ue-title">Administrer les réseaux et l'Internet</h2>
-                <p class="ue-summary">
-                    Conception et administration de l’infrastructure du réseau informatique d’une entreprise, installation et administration des services réseau.
+            </div>
+
+            <div class="hero-text">
+                <h1><span class="name">Camille HENRY--DELANGLE</span></h1>
+                <p class="hero-subtitle">Réseaux, Télécommunications & Cybersécurité</p>
+                
+                <div class="hero-info">
+                    <p>📍 Localisation : <strong>FR, Colmar (IUT Colmar)</strong></p>
+                    <p>💡 Passion : <strong>Informatique et Cybersécurité</strong></p>
+                    <p>🎯 Objectif : <strong>Pentester</strong> (Hacker Éthique)</p>
+                </div>
+                
+                <p style="color: var(--text-main); margin-bottom: 35px; max-width: 650px; font-size: 1.15rem; text-align: left;">
+                    Bienvenue sur mon portfolio. Vous y découvrirez en détail mon parcours, mes projets ainsi que les compétences techniques que je développe au quotidien. Actuellement en <strong>2ème année de BUT Réseaux et Télécommunications</strong>, j'affine mon expertise en <strong>administration système</strong>, en <strong>réseaux</strong> et en <strong>cybersécurité</strong>. Curieux et déterminé, mon objectif est de devenir <strong>pentester</strong>.
                 </p>
-            </div>
-            <div class="ue-body">
-                <div class="ue-col">
-                    <h4>Composantes Essentielles</h4>
-                    <ul class="ue-list">
-                        <li><span class="code">CE1.01</span> Choisir les solutions et technologies réseaux adaptées.</li>
-                        <li><span class="code">CE1.02</span> Respecter les principes fondamentaux de la sécurité informatique.</li>
-                        <li><span class="code">CE1.03</span> Utiliser une approche rigoureuse pour la résolution des dysfonctionnements.</li>
-                        <li><span class="code">CE1.04</span> Respecter les règles métiers.</li>
-                        <li><span class="code">CE1.05</span> Assurer une veille technologique.</li>
-                    </ul>
-                </div>
-                <div class="ue-col">
-                    <h4>Apprentissages Critiques</h4>
-                    <ul class="ue-list">
-                        <li><span class="code">AC21.01</span> Configurer et dépanner le routage dynamique dans un réseau.</li>
-                        <li><span class="code">AC21.02</span> Configurer et expliquer une politique simple de QoS et les fonctions de base de la sécurité d’un réseau.</li>
-                        <li><span class="code">AC21.03</span> Déployer des postes clients et des solutions virtualisées adaptées à une situation donnée.</li>
-                        <li><span class="code">AC21.04</span> Déployer des services réseaux avancés.</li>
-                        <li><span class="code">AC21.05</span> Identifier les réseaux opérateurs et l’architecture d’Internet.</li>
-                        <li><span class="code">AC21.06</span> Travailler en équipe pour développer ses compétences professionnelles.</li>
-                    </ul>
-                </div>
-            </div>
-            <div class="ue-reflexive">
-                <h4>Mon Analyse Réflexive</h4>
-                <p>[ Insérer l'analyse réflexive ici ]</p>
-            </div>
-        </article>
 
-        <article class="ue-card ue-2">
-            <div class="ue-header">
-                <div class="grade-container">
-                    <span class="grade-badge">Moyenne S3 : --/20</span>
-                    <span class="grade-badge">Moyenne S4 : --/20</span>
-                </div>
-                <span class="ue-badge">UE2 - Connecter</span>
-                <h2 class="ue-title">Connecter les entreprises et les usagers</h2>
-                <p class="ue-summary">
-                    Déploiement des supports et systèmes de transmission, mise en service et administration des équipements d’accès pour l'entreprise.
-                </p>
-            </div>
-            <div class="ue-body">
-                <div class="ue-col">
-                    <h4>Composantes Essentielles</h4>
-                    <ul class="ue-list">
-                        <li><span class="code">CE2.01</span> Communiquer avec le client et les différents acteurs impliqués, parfois en anglais.</li>
-                        <li><span class="code">CE2.02</span> Faire preuve d’une démarche scientifique.</li>
-                        <li><span class="code">CE2.03</span> Choisir les solutions et technologies adaptées.</li>
-                        <li><span class="code">CE2.04</span> Proposer des solutions respectueuses de l'environnement.</li>
-                    </ul>
-                </div>
-                <div class="ue-col">
-                    <h4>Apprentissages Critiques</h4>
-                    <ul class="ue-list">
-                        <li><span class="code">AC22.01</span> Déployer et caractériser des systèmes de transmissions complexes.</li>
-                        <li><span class="code">AC22.02</span> Mettre en place un accès distant sécurisé.</li>
-                        <li><span class="code">AC22.03</span> Mettre en place une connexion multi-site via un réseau opérateur.</li>
-                        <li><span class="code">AC22.04</span> Déployer des réseaux d’accès des opérateurs.</li>
-                        <li><span class="code">AC22.05</span> Capacité à questionner un cahier des charges RT.</li>
-                    </ul>
+                <div style="width: 100%; display: flex; flex-wrap: wrap; gap: 15px;">
+                    <a href="#cv" class="btn" style="margin: 0;">Consulter mon CV</a>
+                    <a href="contact.html" class="btn btn-secondary" style="margin: 0;">Me contacter</a>
                 </div>
             </div>
-            <div class="ue-reflexive">
-                <h4>Mon Analyse Réflexive</h4>
-                <p>[ Insérer l'analyse réflexive ici ]</p>
-            </div>
-        </article>
+            
+        </div>
+    </section>
 
-        <article class="ue-card ue-3">
-            <div class="ue-header">
-                <div class="grade-container">
-                    <span class="grade-badge">Moyenne S3 : --/20</span>
-                    <span class="grade-badge">Moyenne S4 : --/20</span>
+    <section id="parcours">
+        <div class="container">
+            <h2 class="section-title">Mon Parcours</h2>
+            
+            <div class="timeline">
+                <div class="timeline-item left">
+                    <div class="line-bottom"></div>
+                    <div class="content">
+                        <span class="date">2025 - Aujourd'hui</span>
+                        <h3>BUT R&T - 2ème Année</h3>
+                        <p><strong>IUT Colmar</strong>. Spécialisation dans le parcours <strong>Cybersécurité</strong>.</p>
+                    </div>
                 </div>
-                <span class="ue-badge">UE3 - Programmer</span>
-                <h2 class="ue-title">Créer des outils et applications informatiques</h2>
-                <p class="ue-summary">
-                    Automatisation du déploiement et de la maintenance des outils logiciels, et développement d’outils informatiques à usage interne d'une équipe.
-                </p>
-            </div>
-            <div class="ue-body">
-                <div class="ue-col">
-                    <h4>Composantes Essentielles</h4>
-                    <ul class="ue-list">
-                        <li><span class="code">CE3.01</span> Être à l’écoute des besoins du client.</li>
-                        <li><span class="code">CE3.02</span> Documenter le travail réalisé.</li>
-                        <li><span class="code">CE3.03</span> Utiliser les outils numériques à bon escient.</li>
-                        <li><span class="code">CE3.04</span> Choisir les outils de développement adaptés.</li>
-                        <li><span class="code">CE3.05</span> Intégrer les problématiques de sécurité.</li>
-                    </ul>
+                <div class="timeline-item right">
+                    <div class="line-bottom"></div>
+                    <div class="content">
+                        <span class="date">Début 2025</span>
+                        <h3>Réorientation & Validation BUT1</h3>
+                        <p>Intégration du <strong>BUT R&T Colmar</strong> au 2ème semestre. Validation de la première année.</p>
+                    </div>
                 </div>
-                <div class="ue-col">
-                    <h4>Apprentissages Critiques</h4>
-                    <ul class="ue-list">
-                        <li><span class="code">AC23.01</span> Automatiser l’administration système avec des scripts.</li>
-                        <li><span class="code">AC23.02</span> Développer une application à partir d’un cahier des charges donné, pour le Web ou les périphériques mobiles.</li>
-                        <li><span class="code">AC23.03</span> Utiliser un protocole réseau pour programmer une application client/serveur.</li>
-                        <li><span class="code">AC23.04</span> Installer, administrer un système de gestion de données.</li>
-                        <li><span class="code">AC23.05</span> Accéder à un ensemble de données depuis une application et/ou un site web.</li>
-                    </ul>
+                <div class="timeline-item left">
+                    <div class="line-bottom"></div>
+                    <div class="content">
+                        <span class="date">Fin 2024</span>
+                        <h3>INSA Rennes</h3>
+                        <p>Classe préparatoire intégrée <strong>STPI</strong>. J'ai fait le choix de me réorienter dès le deuxième semestre vers le BUT R&T, recherchant une approche plus concrète, technique et immédiatement centrée sur l'informatique et les réseaux.</p>
+                    </div>
+                </div>
+                <div class="timeline-item right">
+                    <div class="line-bottom"></div>
+                    <div class="content">
+                        <span class="date">2024</span>
+                        <h3>Baccalauréat</h3>
+                        <p>Mention <strong>Très Bien</strong>. Spécialités <strong>NSI</strong> et <strong>Mathématiques</strong>. Lycée Victor Grignard, Cherbourg.</p>
+                        <a href="files/ReleveNotes-HENRYDELANGLE-Camille.pdf" target="_blank" class="info-link" style="font-size: 0.95rem; display: inline-block; margin-top: 10px; color: var(--accent-cyan);">Aperçu de mes résultats du bac</a>
+                    </div>
                 </div>
             </div>
-            <div class="ue-reflexive">
-                <h4>Mon Analyse Réflexive</h4>
-                <p>[ Insérer l'analyse réflexive ici ]</p>
-            </div>
-        </article>
+        </div>
+    </section>
 
-        <div class="path-intro">
-            <h3>Mon Choix de Parcours : Cybersécurité</h3>
-            <p>
-                J'ai choisi de m'orienter vers le parcours Cybersécurité afin de me spécialiser dans la protection, la surveillance et l'audit des systèmes d'information. Face aux menaces numériques croissantes, cette spécialisation me permet d'allier mes solides compétences en administration réseau avec une dimension sécuritaire incontournable. L'objectif est d'intervenir à la fois sur la sécurisation des infrastructures et sur l'analyse des vulnérabilités, garantissant ainsi l'intégrité et la disponibilité des données.
+    <section id="experiences">
+        <div class="container">
+            <h2 class="section-title">Expériences Professionnelles</h2>
+            
+            <p class="experiences-intro">
+                En dehors de mon parcours scolaire, j'ai pu acquérir une expérience professionnelle au cours de stages et d'emplois saisonniers. Ces expériences m'ont permis de découvrir plusieurs facettes du monde de l'entreprise et d'affiner mon orientation professionnelle.
             </p>
+
+            <div class="grid">
+                <div class="card" style="border-color: rgba(157, 78, 221, 0.4);">
+                    <h3>Stage d'application <span class="badge">Prévu en 2026</span></h3>
+                    <p class="company-date"><strong>OCI Mulhouse</strong> | 8 Semaines</p>
+                    <p>Immersion prévue au sein d'un prestataire informatique. L'objectif sera de consolider mes acquis en environnement professionnel et de participer à la gestion d'infrastructures.</p>
+                </div>
+                <div class="card">
+                    <h3>Auxiliaire de banque</h3>
+                    <p class="company-date"><strong>CIC Héricourt</strong> | 2025</p>
+                    <p>Accueil de la clientèle, gestion des opérations courantes et accompagnement administratif.</p>
+                </div>
+                <div class="card">
+                    <h3>Manutentionnaire</h3>
+                    <p class="company-date"><strong>Intermarché Tourlaville</strong> | 2024</p>
+                    <p>Gestion logistique des stocks et mise en rayon. <em>Job d'été.</em></p>
+                </div>
+                <div class="card">
+                    <h3>Stage d'observation (3e)</h3>
+                    <p class="company-date"><strong>Oreka Ingénierie</strong></p>
+                    <p>Découverte du fonctionnement d'un bureau d'étude technique spécialisé en <strong>réalité virtuelle et augmentée</strong>.</p>
+                </div>
+            </div>
         </div>
+    </section>
 
-        <article class="ue-card ue-4">
-            <div class="ue-header">
-                <div class="grade-container">
-                    <span class="grade-badge">Moyenne S3 : --/20</span>
-                    <span class="grade-badge">Moyenne S4 : --/20</span>
+    <section id="competences">
+        <div class="container">
+            <h2 class="section-title">Compétences</h2>
+            
+            <p style="color: var(--text-main); font-size: 1.15rem; text-align: center; max-width: 800px; margin: 0 auto 50px auto; line-height: 1.8; opacity: 0; animation: fadeIn 1s ease forwards 0.2s;">
+                Au cours de mon parcours, j'ai pu développer de solides compétences techniques dans plusieurs domaines clés : l'administration système, les réseaux de télécommunications, la programmation et la cybersécurité. Retrouvez ci-dessous le détail de mes apprentissages par année de formation.
+            </p>
+            
+            <div class="year-grid">
+                <div class="year-card">
+                    <h3>Première Année</h3>
+                    <p>BUT R&T - Découverte et acquisition des fondamentaux en réseaux, télécommunications et informatique.</p>
+                    <div class="year-actions">
+                        <a href="competences-but1.html" class="btn btn-secondary">Détail des UE & Notes</a>
+                        <a href="projets-but1.html" class="btn">Preuves d'acquisition (Projets)</a>
+                    </div>
                 </div>
-                <span class="ue-badge">UE4 - Sécuriser</span>
-                <h2 class="ue-title">Administrer un système d’information sécurisé</h2>
-                <p class="ue-summary">
-                    Évolution et mise en conformité du système d’information d’une entreprise. Mise en œuvre d'outils de sécurisation et analyse des besoins en sécurité.
-                </p>
-            </div>
-            <div class="ue-body">
-                <div class="ue-col">
-                    <h4>Composantes Essentielles</h4>
-                    <ul class="ue-list">
-                        <li><span class="code">CE4.01</span> Viser un juste compromis entre exigences de sécurité et contraintes d’utilisation.</li>
-                        <li><span class="code">CE4.02</span> Respecter les normes et le cadre juridique.</li>
-                        <li><span class="code">CE4.03</span> Intégrer les dernières technologies.</li>
-                        <li><span class="code">CE4.04</span> Travailler en équipe.</li>
-                        <li><span class="code">CE4.05</span> Sensibiliser efficacement des utilisateurs.</li>
-                    </ul>
-                </div>
-                <div class="ue-col">
-                    <h4>Apprentissages Critiques</h4>
-                    <ul class="ue-list">
-                        <li><span class="code">AC24.01</span> Connaître et utiliser les bonnes pratiques et les recommandations de cybersécurité.</li>
-                        <li><span class="code">AC24.02</span> Mettre en œuvre les outils fondamentaux de sécurisation d’une infrastructure du réseau.</li>
-                        <li><span class="code">AC24.03</span> Sécuriser les services.</li>
-                        <li><span class="code">AC24.04</span> Choisir les outils cryptographiques adaptés au besoin fonctionnel du système d’information.</li>
-                        <li><span class="code">AC24.05</span> Connaître les différents types d’attaque.</li>
-                        <li><span class="code">AC24.06</span> Comprendre des documents techniques en anglais.</li>
-                    </ul>
+                
+                <div class="year-card">
+                    <h3>Deuxième Année</h3>
+                    <p>BUT R&T - Spécialisation Cybersécurité, administration avancée et surveillance des systèmes d'information.</p>
+                    <div class="year-actions">
+                        <a href="competences-but2.html" class="btn btn-secondary">Détail des UE & Notes</a>
+                        <a href="projets-but2.html" class="btn">Preuves d'acquisition (Projets)</a>
+                    </div>
                 </div>
             </div>
-            <div class="ue-reflexive">
-                <h4>Mon Analyse Réflexive</h4>
-                <p>[ Insérer l'analyse réflexive ici ]</p>
-            </div>
-        </article>
 
-        <article class="ue-card ue-5">
-            <div class="ue-header">
-                <div class="grade-container">
-                    <span class="grade-badge">Moyenne S3 : --/20</span>
-                    <span class="grade-badge">Moyenne S4 : --/20</span>
-                </div>
-                <span class="ue-badge">UE5 - Surveiller</span>
-                <h2 class="ue-title">Surveiller un système d’information sécurisé</h2>
-                <p class="ue-summary">
-                    Surveillance et analyse du système d’information, audit de sécurité et gestion des incidents pour garantir la disponibilité et la fiabilité des réseaux.
-                </p>
+            <h3 style="margin-top: 80px; color: var(--accent-hover); font-family: var(--font-title); text-align: center; font-size: 1.8rem; text-shadow: 0 0 10px rgba(199, 125, 255, 0.2);">Compétences Humaines (Soft Skills)</h3>
+            <div class="soft-skill-grid">
+                <div class="soft-skill-item">Communication en entreprise</div>
+                <div class="soft-skill-item">Anglais (Niveau <strong>B2</strong>)</div>
+                <div class="soft-skill-item">Travail en équipe</div>
+                <div class="soft-skill-item">Curiosité technique</div>
             </div>
-            <div class="ue-body">
-                <div class="ue-col">
-                    <h4>Composantes Essentielles</h4>
-                    <ul class="ue-list">
-                        <li><span class="code">CE5.01</span> Assurer une veille permanente.</li>
-                        <li><span class="code">CE5.02</span> Réaliser les mises à jour critiques.</li>
-                        <li><span class="code">CE5.03</span> Automatiser des tâches.</li>
-                        <li><span class="code">CE5.04</span> S’intégrer dans une équipe.</li>
-                        <li><span class="code">CE5.05</span> Surveiller le comportement du réseau.</li>
-                        <li><span class="code">CE5.06</span> Veiller au respect des contrats et à la conformité des obligations du SI.</li>
-                    </ul>
-                </div>
-                <div class="ue-col">
-                    <h4>Apprentissages Critiques</h4>
-                    <ul class="ue-list">
-                        <li><span class="code">AC25.01</span> Administrer les protections contre les logiciels malveillants.</li>
-                        <li><span class="code">AC25.02</span> Prendre en main des outils de test de pénétration réseau ou système.</li>
-                    </ul>
-                </div>
-            </div>
-            <div class="ue-reflexive">
-                <h4>Mon Analyse Réflexive</h4>
-                <p>[ Insérer l'analyse réflexive ici ]</p>
-            </div>
-        </article>
-
-        <div class="action-container">
-            <a href="projets-but2.html" class="btn-large">Preuves d'acquisition des compétences (Projets)</a>
         </div>
+    </section>
 
-    </main>
+    <section id="cv">
+        <div class="container">
+            <h2 class="section-title">Curriculum Vitae</h2>
+            <p style="text-align: center; color: var(--text-main); font-size: 1.15rem; margin-bottom: 50px;">Consultez ou téléchargez mes CV mis à jour.</p>
+            
+            <div class="cv-container" style="margin-top: 0;">
+                <div class="cv-box">
+                    <div class="cv-icon-large">FR</div>
+                    <h3>Version Française</h3>
+                    <div class="cv-actions">
+                        <button class="btn btn-secondary" onclick="openCvModal('files/CV-HENRYDELANGLE-Camille-FR.pdf')">Visualiser</button>
+                        <a href="files/CV-HENRYDELANGLE-Camille-FR.pdf" class="btn" download>Télécharger</a>
+                    </div>
+                </div>
+                
+                <div class="cv-box">
+                    <div class="cv-icon-large">EN</div>
+                    <h3>English Version</h3>
+                    <div class="cv-actions">
+                        <button class="btn btn-secondary" onclick="openCvModal('files/CV-HENRYDELANGLE-Camille-EN.pdf')">View</button>
+                        <a href="files/CV-HENRYDELANGLE-Camille-EN.pdf" class="btn" download>Download</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div id="cv-modal" class="cv-modal">
+        <div class="cv-modal-content">
+            <span class="close-btn" onclick="closeCvModal()">&times;</span>
+            <iframe id="cv-iframe" src="" title="Visionneuse CV"></iframe>
+        </div>
+    </div>
 
     <footer>
         <div class="container">
             <p>&copy; 2026 <strong>Camille HENRY--DELANGLE</strong>.</p>
-            <p style="font-size: 0.85rem; font-family: var(--font-mono); opacity: 0.5; margin-top: 15px;">Root@Portfolio:~# exit</p>
+            <p style="font-size: 0.85rem; font-family: var(--font-mono); opacity: 0.5; margin-top: 20px; font-family: var(--font-main);">Root@Portfolio:~# exit</p>
         </div>
     </footer>
 
+    <script>
+        function openCvModal(pdfSrc) {
+            const modal = document.getElementById('cv-modal');
+            const iframe = document.getElementById('cv-iframe');
+            
+            iframe.src = pdfSrc;
+            
+            modal.style.display = 'flex';
+            document.body.style.overflow = 'hidden'; 
+            
+            setTimeout(() => {
+                modal.classList.add('show');
+            }, 10);
+        }
+
+        function closeCvModal() {
+            const modal = document.getElementById('cv-modal');
+            const iframe = document.getElementById('cv-iframe');
+            
+            modal.classList.remove('show');
+            document.body.style.overflow = 'auto'; 
+            
+            setTimeout(() => {
+                modal.style.display = 'none';
+                iframe.src = ''; 
+            }, 300);
+        }
+
+        window.onclick = function(event) {
+            const modal = document.getElementById('cv-modal');
+            if (event.target == modal) {
+                closeCvModal();
+            }
+        }
+    </script>
 </body>
 </html>
