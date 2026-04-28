@@ -151,7 +151,7 @@
             text-shadow: 0 0 10px var(--accent);
         }
 
-        /* NAV LINKS */
+        /* NAV LINKS - Mode Pilule ajustée */
         .nav-links {
             display: inline-flex;
             width: max-content;
@@ -246,7 +246,7 @@
 
         /* --- SECTION HERO (Présentation) --- */
         #hero {
-            padding-top: 100px; /* Resserré pour remonter le tout */
+            padding-top: 130px; 
             min-height: 100vh;
             display: flex;
             flex-direction: column;
@@ -254,6 +254,7 @@
             justify-content: center;
             position: relative;
             overflow: hidden;
+            width: 100%;
         }
 
         /* Lueur d'arrière-plan animée */
@@ -301,7 +302,7 @@
         .hero-text h1 {
             font-size: 4.8rem;
             line-height: 1.1;
-            margin-bottom: 20px; /* Resserré */
+            margin-bottom: 35px; 
             letter-spacing: 2px;
         }
 
@@ -323,7 +324,7 @@
             white-space: nowrap;
         }
 
-        /* BANDEAU DE FORMATION */
+        /* --- BANDEAU DE FORMATION (RUBAN LUMINEUX) --- */
         @keyframes ribbonGlow {
             0% { box-shadow: 0 0 30px rgba(79, 172, 254, 0.1), inset 0 0 15px rgba(157, 78, 221, 0.05); }
             100% { box-shadow: 0 0 60px rgba(79, 172, 254, 0.25), inset 0 0 30px rgba(157, 78, 221, 0.15); }
@@ -339,12 +340,9 @@
             border: none;
             border-top: 1px solid rgba(79, 172, 254, 0.4);
             border-bottom: 1px solid rgba(157, 78, 221, 0.4);
-            padding: 20px 0; /* Resserré */
-            margin-bottom: 25px; /* Resserré */
-            width: 100vw;
-            position: relative;
-            left: 50%;
-            transform: translateX(-50%);
+            padding: 30px 0; 
+            margin-bottom: 45px; 
+            width: 100%; /* Remplacé le 100vw par 100% pour éviter le décalage lié à la barre de scroll */
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -360,7 +358,7 @@
             font-family: var(--font-mono);
             text-transform: uppercase;
             letter-spacing: 4px;
-            margin-bottom: 5px; /* Resserré */
+            margin-bottom: 8px;
         }
         
         .formation-highlight {
@@ -370,7 +368,7 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             text-shadow: 0 0 20px rgba(79, 172, 254, 0.4);
-            margin-bottom: 3px; /* Resserré */
+            margin-bottom: 5px;
             line-height: 1.2;
             letter-spacing: 2px;
             text-transform: uppercase;
@@ -378,23 +376,24 @@
         }
         
         .formation-spe {
-            color: #ff4d4d; /* Rouge Cyber */
+            color: #ff2a2a; /* Rouge Cyber plus vif */
             font-size: 1.5rem;
             font-family: var(--font-title);
             letter-spacing: 2px;
-            text-shadow: 0 0 15px rgba(255, 77, 77, 0.5);
+            text-shadow: 0 0 15px rgba(255, 42, 42, 0.6); /* Lueur rouge plus forte */
             text-align: center;
         }
 
+        /* Cartes d'infos alignées horizontalement */
         .hero-info {
             display: flex;
             flex-wrap: wrap;
             gap: 30px;
             justify-content: center;
-            margin-bottom: 20px; /* Resserré */
+            margin-bottom: 30px; 
             background-color: rgba(22, 20, 32, 0.7);
             backdrop-filter: blur(10px);
-            padding: 12px 40px; /* Resserré */
+            padding: 15px 40px; 
             border-radius: var(--radius-lg);
             border: 1px solid var(--border-color);
             box-shadow: 0 10px 30px rgba(0,0,0,0.3);
@@ -415,7 +414,7 @@
         
         .hero-desc {
             color: var(--text-main);
-            margin-bottom: 25px; /* Resserré */
+            margin-bottom: 40px; 
             max-width: 1000px; 
             font-size: 1.15rem;
             line-height: 1.8;
@@ -452,6 +451,7 @@
             animation: fadeIn 1s ease forwards 0.2s;
         }
 
+        /* Lignes avec effet Néon cyan */
         .timeline-item::before {
             content: '';
             position: absolute;
@@ -478,6 +478,7 @@
         .timeline-item.left::before, .timeline-item.left .line-bottom { right: -2px; }
         .timeline-item.right::before, .timeline-item.right .line-bottom { left: -2px; }
 
+        /* Le rond avec un effet Fancy / Glowing */
         .timeline-item::after {
             content: '';
             position: absolute;
@@ -495,6 +496,7 @@
         .timeline-item.left::after { right: -16px; }
         .timeline-item.right::after { left: -16px; }
         
+        /* AU SURVOL : Synchronisation parfaite entre la carte et le rond */
         .timeline-item:hover::after {
             background-color: #ffffff;
             transform: scale(1.25);
@@ -890,11 +892,11 @@
             section { padding: 60px 0; }
             .section-title { font-size: 2.2rem; }
             
-            #hero { padding-top: 90px; }
+            #hero { padding-top: 100px; }
             .hero-text h1 { font-size: 3rem; }
             .name-last { font-size: 2.2rem; } 
             
-            .hero-formation-badge { padding: 15px 0; }
+            .hero-formation-badge { padding: 20px 0; }
             .formation-highlight { font-size: 1.5rem; }
             .formation-spe { font-size: 1.2rem; }
             
