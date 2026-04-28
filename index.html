@@ -15,7 +15,6 @@
             --text-main: #e0e6ed;
             --text-muted: #a1aabf;
             
-            /* DA Violette Globale & Accents */
             --accent: #9d4edd;          
             --accent-hover: #c77dff;    
             --accent-cyan: #4facfe;
@@ -307,7 +306,6 @@
             line-height: 1.1;
             margin-bottom: 25px;
             letter-spacing: 0px;
-            font-weight: normal;
         }
 
         .name {
@@ -320,7 +318,7 @@
         
         .name-first {
             display: block;
-            margin-bottom: -5px; /* Rapproche un peu le prénom du nom */
+            margin-bottom: -5px; 
         }
         
         /* Force le nom de famille sur une seule ligne */
@@ -329,7 +327,7 @@
             white-space: nowrap;
         }
 
-        /* Encart de présentation de la formation (remplace l'ancien subtitle) */
+        /* Encart de présentation de la formation */
         .hero-formation-badge {
             background: linear-gradient(90deg, rgba(157, 78, 221, 0.1), transparent);
             border-left: 4px solid var(--accent-cyan);
@@ -559,6 +557,13 @@
             flex-direction: column;
         }
 
+        .card.sys { --card-accent: #4facfe; }
+        .card.net { --card-accent: #a18cd1; }
+        .card.sec { --card-accent: #f5576c; }
+        .card.dev { --card-accent: #00f2fe; }
+        .card.tel { --card-accent: #f093fb; }
+        .card.srv { --card-accent: #f6d365; }
+
         .card::before {
             content: "";
             position: absolute;
@@ -566,7 +571,7 @@
             left: 0;
             width: 100%;
             height: 4px;
-            background: linear-gradient(90deg, transparent, var(--accent), transparent);
+            background: linear-gradient(90deg, transparent, var(--card-accent, var(--accent)), transparent);
             transform: scaleX(0);
             transition: transform 0.4s ease;
         }
@@ -592,11 +597,20 @@
         .card:hover::before { transform: scaleX(1); }
 
         .card h3 {
-            color: #ffffff;
+            color: var(--card-accent, #ffffff);
             margin-bottom: 12px;
             font-size: 1.6rem;
             transition: color 0.3s ease;
             text-shadow: 0 0 10px rgba(255,255,255,0.1);
+        }
+
+        .card-summary {
+            color: var(--text-main);
+            font-size: 0.95rem;
+            margin-bottom: 25px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--border-color);
+            line-height: 1.5;
         }
 
         .company-date {
@@ -606,80 +620,36 @@
             margin-bottom: 15px;
         }
 
-        /* --- SECTION COMPETENCES (CARTES PAR ANNÉES) --- */
-        .year-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 40px;
-            width: 100%;
-            max-width: 1000px;
-            margin: 0 auto 60px auto;
-            opacity: 0;
-            animation: fadeIn 1s ease forwards 0.2s;
-        }
-        
-        .year-card {
-            background-color: var(--bg-card);
-            padding: 50px 40px;
-            border-radius: var(--radius-md);
-            border: 1px solid var(--border-color);
-            text-align: center;
-            transition: all 0.4s ease;
-            position: relative;
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-        }
-        
-        .year-card::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 4px;
-            background: linear-gradient(90deg, transparent, var(--accent), transparent);
-            transform: scaleX(0);
-            transition: transform 0.4s ease;
-        }
-        
-        .year-card:hover {
-            transform: translateY(-8px);
-            border-color: var(--accent);
-            box-shadow: 0 15px 40px rgba(0,0,0,0.4), 0 0 20px rgba(157, 78, 221, 0.15) inset;
-        }
-        
-        .year-card:hover::before {
-            transform: scaleX(1);
-        }
-        
-        .year-card h3 {
-            font-size: 2.2rem;
-            color: #ffffff;
-            margin-bottom: 15px;
-        }
-        
-        .year-card p {
-            color: var(--text-muted);
-            font-size: 1.05rem;
-            margin-bottom: 30px;
-            line-height: 1.6;
-        }
-        
-        .year-actions {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-            width: 100%;
-        }
-        
-        .year-actions .btn {
-            margin: 0;
-            width: 100%;
-        }
+        .skill-list { margin-top: auto; }
 
+        .skill-list li {
+            position: relative;
+            padding-left: 25px;
+            margin-bottom: 12px;
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            transition: color 0.3s ease;
+        }
+        
+        .skill-list li:hover { color: #ffffff; }
+
+        .skill-list li::before {
+            content: '>';
+            position: absolute;
+            left: 0;
+            color: var(--card-accent, var(--accent));
+            font-size: 0.9rem;
+            opacity: 0.8;
+            transition: transform 0.3s ease;
+            font-family: var(--font-main);
+            font-weight: bold;
+        }
+        
+        .skill-list li:hover::before {
+            transform: scale(1.3);
+            text-shadow: 0 0 5px var(--card-accent, var(--accent));
+        }
+        
         .soft-skill-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -881,18 +851,18 @@
             .nav-links { display: none; }
             
             .hero-text h1 { font-size: 2.5rem; }
-            .name-last { font-size: 2.2rem; } /* Ajustement nom de famille sur mobile */
+            .name-last { font-size: 2.2rem; } 
             .formation-highlight { font-size: 1.3rem; }
             .formation-spe { font-size: 1.2rem; }
             
-            .grid, .year-grid { grid-template-columns: 1fr; }
+            .grid { grid-template-columns: 1fr; }
             .btn { width: 100%; margin-right: 0; margin-bottom: 15px; } 
             .btn:last-child { margin-bottom: 0; }
             .cv-modal-content { height: 90vh; width: 95%; padding: 45px 10px 10px 10px;}
         }
         
         @media (max-width: 480px) {
-            .name-last { font-size: 1.7rem; } /* Évite le débordement sur les très petits écrans */
+            .name-last { font-size: 1.7rem; } 
         }
     </style>
 </head>
@@ -1030,29 +1000,61 @@
 
     <section id="competences">
         <div class="container">
-            <h2 class="section-title">Compétences</h2>
+            <h2 class="section-title">Compétences Techniques</h2>
             
-            <p style="color: var(--text-main); font-size: 1.15rem; text-align: center; max-width: 800px; margin: 0 auto 50px auto; line-height: 1.8; opacity: 0; animation: fadeIn 1s ease forwards 0.2s;">
-                Au cours de mon parcours, j'ai pu développer de solides compétences techniques dans plusieurs domaines clés : l'administration système, les réseaux de télécommunications, la programmation et la cybersécurité. Retrouvez ci-dessous le détail de mes apprentissages par année de formation.
-            </p>
+            <div style="text-align: center; margin-bottom: 60px;">
+                <a href="competences.html" class="btn btn-secondary" style="margin: 0 auto;">Voir le détail complet de mes compétences</a>
+            </div>
             
-            <div class="year-grid">
-                <div class="year-card">
-                    <h3>Première Année</h3>
-                    <p>BUT R&T - Découverte et acquisition des fondamentaux en réseaux, télécommunications et informatique.</p>
-                    <div class="year-actions">
-                        <a href="competences-but1.html" class="btn btn-secondary">Détail des UE & Notes</a>
-                        <a href="projets-but1.html" class="btn">Preuves d'acquisition (Projets)</a>
-                    </div>
+            <div class="grid">
+                <div class="card sys">
+                    <h3>Administration Système</h3>
+                    <p class="card-summary">Déploiement, configuration et maintien en condition opérationnelle d'environnements clients et serveurs.</p>
+                    <ul class="skill-list">
+                        <li><strong>Windows Server :</strong> Gestion Active Directory, GPO, DNS/DHCP.</li>
+                        <li><strong>Linux :</strong> Administration avancée Debian, Kali Linux.</li>
+                    </ul>
                 </div>
-                
-                <div class="year-card">
-                    <h3>Deuxième Année</h3>
-                    <p>BUT R&T - Spécialisation Cybersécurité, administration avancée et surveillance des systèmes d'information.</p>
-                    <div class="year-actions">
-                        <a href="competences-but2.html" class="btn btn-secondary">Détail des UE & Notes</a>
-                        <a href="projets-but2.html" class="btn">Preuves d'acquisition (Projets)</a>
-                    </div>
+                <div class="card net">
+                    <h3>Réseau & Routage</h3>
+                    <p class="card-summary">Conception, simulation et interconnexion d'infrastructures réseaux LAN/WAN.</p>
+                    <ul class="skill-list">
+                        <li><strong>Simulation :</strong> Maîtrise de Eve-NG, Packet Tracer, GNS3.</li>
+                        <li><strong>Équipements :</strong> Configuration Switchs/Routeurs (VLAN, OSPF, Routage dynamique).</li>
+                    </ul>
+                </div>
+                <div class="card sec">
+                    <h3>Cybersécurité</h3>
+                    <p class="card-summary">Analyse des vulnérabilités, mise en place de politiques de sécurité et sécurisation des flux.</p>
+                    <ul class="skill-list">
+                        <li><strong>Offensif :</strong> Introduction aux méthodologies de pentest.</li>
+                        <li><strong>Infrasec :</strong> Gestion de clés (PKI), déploiement de tunnels VPN.</li>
+                    </ul>
+                </div>
+                <div class="card dev">
+                    <h3>Programmation</h3>
+                    <p class="card-summary">Création d'outils automatisés, de scripts d'administration et bases en développement Web.</p>
+                    <ul class="skill-list">
+                        <li><strong>Python :</strong> Programmation Orientée Objet, framework Django.</li>
+                        <li><strong>Scripting :</strong> Automatisation (Bash, PowerShell).</li>
+                        <li><strong>Web :</strong> HTML5, CSS3.</li>
+                    </ul>
+                </div>
+                <div class="card tel">
+                    <h3>Télécommunications</h3>
+                    <p class="card-summary">Mise en place et gestion de solutions de téléphonie sur IP et communications unifiées.</p>
+                    <ul class="skill-list">
+                        <li><strong>ToIP / VoIP :</strong> Architectures voix, protocoles SIP.</li>
+                        <li><strong>Outils :</strong> Configuration de clients (Linphone).</li>
+                    </ul>
+                </div>
+                <div class="card srv">
+                    <h3>Services & Virtualisation</h3>
+                    <p class="card-summary">Hébergement et virtualisation des services de base nécessaires au fonctionnement d'un SI.</p>
+                    <ul class="skill-list">
+                        <li><strong>Virtualisation :</strong> Utilisation de VirtualBox / Proxmox / VMware Workstation.</li>
+                        <li><strong>Services Web :</strong> Déploiement de serveurs Apache / Nginx.</li>
+                    </ul>
                 </div>
             </div>
 
