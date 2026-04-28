@@ -37,7 +37,7 @@
 
         html {
             scroll-behavior: smooth;
-            overflow-x: hidden; /* Empêche tout dépassement horizontal */
+            overflow-x: hidden; 
         }
 
         body {
@@ -74,6 +74,7 @@
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 20px;
+            width: 100%;
         }
 
         section {
@@ -150,7 +151,7 @@
             text-shadow: 0 0 10px var(--accent);
         }
 
-        /* NAV LINKS - Correction pour un effet "pilule" parfaitement ajusté */
+        /* NAV LINKS - Mode Pilule ajustée */
         .nav-links {
             display: inline-flex;
             width: max-content;
@@ -158,10 +159,10 @@
             align-items: center;
             justify-content: center;
             background-color: var(--bg-card);
-            padding: 5px 8px;
+            padding: 6px 8px; 
             border-radius: var(--radius-lg);
             border: 1px solid var(--border-color);
-            margin-left: auto; /* Pousse la pilule à droite sans l'étirer */
+            margin-left: auto; 
         }
 
         .nav-links li {
@@ -248,7 +249,9 @@
             padding-top: 130px; 
             min-height: 100vh;
             display: flex;
+            flex-direction: column;
             align-items: center;
+            justify-content: center;
             position: relative;
             overflow: hidden;
         }
@@ -315,7 +318,6 @@
             margin-bottom: -5px; 
         }
         
-        /* Force le nom de famille sur une seule ligne */
         .name-last {
             display: block;
             white-space: nowrap;
@@ -334,20 +336,18 @@
                 rgba(79, 172, 254, 0.2) 50%, 
                 rgba(157, 78, 221, 0.15) 80%, 
                 transparent 100%);
-            border: none;
             border-top: 1px solid rgba(79, 172, 254, 0.4);
             border-bottom: 1px solid rgba(157, 78, 221, 0.4);
-            padding: 30px 0; 
+            padding: 30px 20px; 
             margin-bottom: 45px; 
-            width: 100vw;
-            position: relative;
-            left: 50%;
-            transform: translateX(-50%);
+            width: 100%; /* Prend parfaitement la largeur de l'écran grâce à sa position hors du conteneur limité */
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            animation: ribbonGlow 3s infinite alternate ease-in-out;
+            z-index: 2;
+            opacity: 0;
+            animation: fadeIn 1s ease forwards 0.3s, ribbonGlow 3s infinite alternate ease-in-out 1.3s;
         }
         
         .formation-title {
@@ -370,14 +370,16 @@
             line-height: 1.2;
             letter-spacing: 2px;
             text-transform: uppercase;
+            text-align: center;
         }
         
         .formation-spe {
-            color: var(--accent-hover);
+            color: #ff4d4d; /* Rouge Cyber */
             font-size: 1.5rem;
             font-family: var(--font-title);
             letter-spacing: 2px;
-            text-shadow: 0 0 15px rgba(157, 78, 221, 0.5);
+            text-shadow: 0 0 15px rgba(255, 77, 77, 0.5); /* Lueur rouge */
+            text-align: center;
         }
 
         /* Cartes d'infos alignées horizontalement */
@@ -937,19 +939,22 @@
 
     <section id="hero">
         <div class="container hero-container">
-            
             <div class="hero-text">
                 <h1>
                     <span class="name name-first">Camille</span>
                     <span class="name name-last">HENRY--DELANGLE</span>
                 </h1>
-                
-                <div class="hero-formation-badge">
-                    <p class="formation-title">2ème Année de BUT</p>
-                    <p class="formation-highlight">Réseaux & Télécommunications</p>
-                    <p class="formation-spe">Parcours Cybersécurité</p>
-                </div>
-                
+            </div>
+        </div>
+        
+        <div class="hero-formation-badge">
+            <p class="formation-title">2ème Année de BUT</p>
+            <p class="formation-highlight">Réseaux & Télécommunications</p>
+            <p class="formation-spe">Parcours Cybersécurité</p>
+        </div>
+        
+        <div class="container hero-container">
+            <div class="hero-text">
                 <div class="hero-info">
                     <p>Localisation : <strong>FR, Colmar (IUT)</strong></p>
                     <p>Objectif : <strong>Pentester</strong></p>
@@ -964,7 +969,6 @@
                     <a href="contact.html" class="btn btn-secondary">Me contacter</a>
                 </div>
             </div>
-            
         </div>
     </section>
 
