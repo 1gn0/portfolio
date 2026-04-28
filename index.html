@@ -15,6 +15,7 @@
             --text-main: #e0e6ed;
             --text-muted: #a1aabf;
             
+            /* DA Violette Globale & Accents */
             --accent: #9d4edd;          
             --accent-hover: #c77dff;    
             --accent-cyan: #4facfe;
@@ -92,6 +93,7 @@
             animation: fadeIn 1s ease forwards;
             position: relative;
             padding-bottom: 25px;
+            font-weight: normal;
         }
 
         .section-title::before {
@@ -141,8 +143,10 @@
 
         .logo {
             font-size: 1.8rem;
+            font-weight: normal;
             color: var(--accent);
             font-family: var(--font-title);
+            letter-spacing: -1px;
             text-shadow: 0 0 10px var(--accent);
         }
 
@@ -303,22 +307,57 @@
             line-height: 1.1;
             margin-bottom: 25px;
             letter-spacing: 0px;
+            font-weight: normal;
         }
 
-        .hero-text .name {
+        .name {
             color: #ffffff;
             background: linear-gradient(135deg, #ffffff 0%, var(--accent-hover) 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             text-shadow: 0 0 15px rgba(255,255,255,0.1);
         }
+        
+        .name-first {
+            display: block;
+            margin-bottom: -5px; /* Rapproche un peu le prénom du nom */
+        }
+        
+        /* Force le nom de famille sur une seule ligne */
+        .name-last {
+            display: block;
+            white-space: nowrap;
+        }
 
-        .hero-subtitle {
-            font-size: 1.6rem;
-            background: linear-gradient(90deg, var(--accent-cyan), var(--accent-hover));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+        /* Encart de présentation de la formation (remplace l'ancien subtitle) */
+        .hero-formation-badge {
+            background: linear-gradient(90deg, rgba(157, 78, 221, 0.1), transparent);
+            border-left: 4px solid var(--accent-cyan);
+            padding: 15px 20px;
             margin-bottom: 30px;
+            border-radius: 0 var(--radius-md) var(--radius-md) 0;
+            display: inline-block;
+        }
+        
+        .formation-title {
+            color: var(--text-main);
+            font-size: 1.2rem;
+            font-family: var(--font-title);
+            margin-bottom: 2px;
+        }
+        
+        .formation-highlight {
+            color: var(--accent-cyan);
+            font-size: 1.6rem;
+            font-family: var(--font-title);
+            text-shadow: 0 0 10px rgba(79, 172, 254, 0.2);
+            margin-bottom: 2px;
+            line-height: 1.2;
+        }
+        
+        .formation-spe {
+            color: var(--accent-hover);
+            font-size: 1.4rem;
             font-family: var(--font-title);
         }
 
@@ -567,7 +606,7 @@
             margin-bottom: 15px;
         }
 
-        /* --- NOUVELLE SECTION COMPETENCES (CARTES PAR ANNÉES) --- */
+        /* --- SECTION COMPETENCES (CARTES PAR ANNÉES) --- */
         .year-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
@@ -840,11 +879,20 @@
             .hero-photo { justify-content: center; margin-top: 0; }
             .photo-placeholder { width: 260px; height: 260px; }
             .nav-links { display: none; }
+            
             .hero-text h1 { font-size: 2.5rem; }
+            .name-last { font-size: 2.2rem; } /* Ajustement nom de famille sur mobile */
+            .formation-highlight { font-size: 1.3rem; }
+            .formation-spe { font-size: 1.2rem; }
+            
             .grid, .year-grid { grid-template-columns: 1fr; }
             .btn { width: 100%; margin-right: 0; margin-bottom: 15px; } 
             .btn:last-child { margin-bottom: 0; }
             .cv-modal-content { height: 90vh; width: 95%; padding: 45px 10px 10px 10px;}
+        }
+        
+        @media (max-width: 480px) {
+            .name-last { font-size: 1.7rem; } /* Évite le débordement sur les très petits écrans */
         }
     </style>
 </head>
@@ -876,17 +924,24 @@
             </div>
 
             <div class="hero-text">
-                <h1><span class="name">Camille HENRY--DELANGLE</span></h1>
-                <p class="hero-subtitle">Réseaux, Télécommunications & Cybersécurité</p>
+                <h1>
+                    <span class="name name-first">Camille</span>
+                    <span class="name name-last">HENRY--DELANGLE</span>
+                </h1>
+                
+                <div class="hero-formation-badge">
+                    <p class="formation-title">2ème Année de BUT</p>
+                    <p class="formation-highlight">Réseaux & Télécommunications</p>
+                    <p class="formation-spe">Parcours Cybersécurité</p>
+                </div>
                 
                 <div class="hero-info">
-                    <p>📍 Localisation : <strong>FR, Colmar (IUT Colmar)</strong></p>
-                    <p>💡 Passion : <strong>Informatique et Cybersécurité</strong></p>
-                    <p>🎯 Objectif : <strong>Pentester</strong> (Hacker Éthique)</p>
+                    <p>Localisation : <strong>FR, Colmar (IUT Colmar)</strong></p>
+                    <p>Objectif : <strong>Pentester</strong> (Hacker Éthique)</p>
                 </div>
                 
                 <p style="color: var(--text-main); margin-bottom: 35px; max-width: 650px; font-size: 1.15rem; text-align: left;">
-                    Bienvenue sur mon portfolio. Vous y découvrirez en détail mon parcours, mes projets ainsi que les compétences techniques que je développe au quotidien. Actuellement en <strong>2ème année de BUT Réseaux et Télécommunications</strong>, j'affine mon expertise en <strong>administration système</strong>, en <strong>réseaux</strong> et en <strong>cybersécurité</strong>. Curieux et déterminé, mon objectif est de devenir <strong>pentester</strong>.
+                    Bienvenue sur mon portfolio. Vous y découvrirez en détail mon parcours, mes projets ainsi que les compétences techniques que je développe au quotidien. Actuellement en BUT Réseaux et Télécommunications, j'affine mon expertise en administration système, en réseaux et en cybersécurité. Curieux et déterminé, mon objectif est de devenir pentester.
                 </p>
 
                 <div style="width: 100%; display: flex; flex-wrap: wrap; gap: 15px;">
