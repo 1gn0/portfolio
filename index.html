@@ -321,13 +321,11 @@
             margin-bottom: -5px; 
         }
         
-        /* Force le nom de famille sur une seule ligne */
         .name-last {
             display: block;
             white-space: nowrap;
         }
 
-        /* Encart de présentation de la formation */
         .hero-formation-badge {
             background: linear-gradient(90deg, rgba(157, 78, 221, 0.1), transparent);
             border-left: 4px solid var(--accent-cyan);
@@ -384,7 +382,7 @@
             text-shadow: none;
         }
 
-        /* --- SECTION PARCOURS (Timeline) --- */
+        /* --- SECTION PARCOURS (Timeline Fancy) --- */
         #parcours {
             background-color: var(--bg-card);
             border-radius: 40px;
@@ -414,50 +412,56 @@
             animation: fadeIn 1s ease forwards 0.2s;
         }
 
+        /* Lignes avec effet Néon cyan */
         .timeline-item::before {
             content: '';
             position: absolute;
             width: 4px;
-            background: linear-gradient(to bottom, transparent, var(--accent), var(--accent));
+            background: linear-gradient(to bottom, transparent, var(--accent-cyan));
             top: 0;
             bottom: calc(100% - 35px); 
-            box-shadow: 0 0 10px var(--accent);
+            box-shadow: 0 0 12px var(--accent-cyan);
+            border-radius: 2px;
+            z-index: 1;
         }
         
         .timeline-item .line-bottom {
             position: absolute;
             width: 4px;
-            background: linear-gradient(to bottom, var(--accent), var(--accent), transparent);
-            top: 55px; 
+            background: linear-gradient(to bottom, var(--accent-cyan), transparent);
+            top: 67px; /* 35 (top) + 32 (taille du rond) */
             bottom: 0;
-            box-shadow: 0 0 10px var(--accent);
+            box-shadow: 0 0 12px var(--accent-cyan);
+            border-radius: 2px;
+            z-index: 1;
         }
 
         .timeline-item.left::before, .timeline-item.left .line-bottom { right: -2px; }
         .timeline-item.right::before, .timeline-item.right .line-bottom { left: -2px; }
 
+        /* Le rond avec un effet Fancy / Glowing */
         .timeline-item::after {
             content: '';
             position: absolute;
-            width: 20px;
-            height: 20px;
-            background-color: var(--bg-color); 
-            border: 4px solid var(--accent);
+            width: 32px;
+            height: 32px;
+            background-color: var(--accent-hover); 
+            border: 6px solid var(--accent-cyan);
             top: 35px;
             border-radius: 50%;
             z-index: 2;
-            box-shadow: 0 0 15px var(--accent);
-            transition: all 0.3s ease;
+            box-shadow: 0 0 20px var(--accent-cyan), inset 0 0 8px rgba(255,255,255,0.6);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
         
-        .timeline-item.left::after { right: -14px; }
-        .timeline-item.right::after { left: -14px; }
+        .timeline-item.left::after { right: -16px; }
+        .timeline-item.right::after { left: -16px; }
         
         .timeline-item:hover::after {
-            background-color: var(--accent-hover);
-            transform: scale(1.3);
-            box-shadow: 0 0 20px var(--accent-cyan);
-            border-color: var(--accent-cyan);
+            background-color: #ffffff;
+            transform: scale(1.25);
+            box-shadow: 0 0 30px var(--accent-cyan), 0 0 20px var(--accent-hover);
+            border-color: var(--accent-hover);
         }
 
         .timeline-item:last-child .line-bottom { display: none; }
@@ -477,9 +481,9 @@
         }
         
         .content:hover {
-            border-color: var(--accent);
-            box-shadow: 0 10px 30px var(--accent-glow);
-            background-color: rgba(157, 78, 221, 0.05);
+            border-color: var(--accent-cyan);
+            box-shadow: 0 10px 30px rgba(79, 172, 254, 0.15);
+            background-color: rgba(79, 172, 254, 0.05);
             transform: translateY(-5px);
         }
 
@@ -836,7 +840,7 @@
                 right: auto;
             }
             .timeline-item.left::after, .timeline-item.right::after { 
-                left: 11px; 
+                left: 6px; 
                 right: auto;
             }
         }
