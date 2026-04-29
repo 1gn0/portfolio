@@ -37,60 +37,61 @@
 
         /* --- STYLES GENERAUX --- */
         .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; width: 100%; }
-        
-        .page-header { padding: 160px 20px 60px 20px; text-align: center; }
+        .page-header { padding: 160px 20px 40px 20px; text-align: center; }
 
-        .section-title { font-size: 3.2rem; color: var(--accent); margin-bottom: 30px; display: flex; align-items: center; justify-content: center; text-align: center; opacity: 0; animation: fadeIn 1s ease forwards; position: relative; padding-bottom: 25px; }
-        .section-title::before { content: ">"; margin-right: 15px; color: var(--accent-cyan); font-weight: bold; text-shadow: 0 0 10px var(--accent-cyan); font-family: var(--font-main); }
+        .section-title { font-size: 3.2rem; color: var(--accent); margin-bottom: 30px; display: flex; align-items: center; justify-content: center; text-align: center; position: relative; padding-bottom: 25px; }
+        .section-title::before { content: ">"; margin-right: 15px; color: var(--accent-cyan); font-weight: bold; text-shadow: 0 0 10px var(--accent-cyan); }
         .section-title::after { content: ""; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 150px; height: 3px; background: linear-gradient(90deg, transparent, var(--accent-hover), var(--accent-cyan), transparent); border-radius: 2px; }
 
-        .page-subtitle { color: var(--text-muted); font-size: 1.15rem; max-width: 700px; margin: 0 auto; opacity: 0; animation: fadeIn 1s ease forwards 0.2s; line-height: 1.8; }
+        .page-subtitle { color: var(--text-muted); font-size: 1.15rem; max-width: 700px; margin: 0 auto; line-height: 1.8; }
         
-        .alert-box { background-color: rgba(79, 172, 254, 0.05); border-left: 3px solid var(--accent-cyan); padding: 15px 25px; margin: 30px auto 0 auto; max-width: 800px; text-align: left; font-size: 1.05rem; color: var(--text-main); border-radius: 4px; opacity: 0; animation: fadeIn 1s ease forwards 0.3s; }
+        .alert-box { background-color: rgba(79, 172, 254, 0.05); border-left: 3px solid var(--accent-cyan); padding: 15px 25px; margin: 30px auto 0 auto; max-width: 800px; text-align: center; font-size: 1.05rem; color: var(--text-main); border-radius: 4px; }
 
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        /* --- BILAN STYLE --- */
+        .bilan-section { margin: 40px auto 60px auto; max-width: 1160px; }
+        .bilan-card { background-color: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 40px; position: relative; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.2); }
+        .bilan-card::before { content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 4px; background: linear-gradient(90deg, var(--accent), var(--accent-cyan)); }
+        .bilan-card h3 { font-size: 2rem; color: #ffffff; margin-bottom: 20px; }
+        .bilan-card p { font-size: 1.1rem; color: var(--text-main); line-height: 1.8; }
 
         /* --- HEADER & NAV --- */
-        header { background-color: rgba(13, 11, 20, 0.95); padding: 10px 0; position: fixed; width: 100%; top: 0; z-index: 1000; backdrop-filter: blur(10px); box-shadow: 0 2px 20px rgba(0,0,0,0.4); border-bottom: 1px solid var(--border-color); }
+        header { background-color: rgba(13, 11, 20, 0.95); padding: 10px 0; position: fixed; width: 100%; top: 0; z-index: 1000; backdrop-filter: blur(10px); border-bottom: 1px solid var(--border-color); }
         nav { display: flex; justify-content: space-between; align-items: center; }
         .logo { font-size: 1.8rem; color: var(--accent); font-family: var(--font-title); text-shadow: 0 0 10px var(--accent); }
         .nav-links { display: inline-flex; width: max-content; gap: 5px; align-items: center; justify-content: center; background-color: var(--bg-card); padding: 6px 8px; border-radius: var(--radius-lg); border: 1px solid var(--border-color); margin-left: auto; }
         .nav-links li a { font-weight: 500; font-size: 0.95rem; padding: 8px 18px; border-radius: var(--radius-lg); }
-        .nav-links li a:not(.nav-contact-btn):hover { background-color: rgba(157, 78, 221, 0.15); color: var(--accent-hover); text-shadow: 0 0 5px var(--accent-hover); }
-        .nav-contact-btn { background-color: transparent; border: 2px solid var(--accent); color: var(--accent); font-weight: 600; text-transform: uppercase; font-size: 0.85rem; transition: all 0.3s ease; }
+        .nav-links li a:not(.nav-contact-btn):hover { background-color: rgba(157, 78, 221, 0.15); color: var(--accent-hover); }
+        .nav-contact-btn { background-color: transparent; border: 2px solid var(--accent); color: var(--accent); font-weight: 600; text-transform: uppercase; font-size: 0.85rem; }
         .nav-contact-btn:hover { background-color: var(--accent); color: #ffffff; box-shadow: 0 0 15px var(--accent-glow); }
 
         /* --- BLOCS UE --- */
         .ue-container { display: flex; flex-direction: column; gap: 60px; padding-bottom: 80px; }
+        .ue-card { background-color: var(--bg-card); border-radius: var(--radius-md); border: 1px solid var(--border-color); overflow: hidden; position: relative; }
+        .ue-card::before { content: ""; position: absolute; top: 0; left: 0; width: 4px; height: 100%; background: linear-gradient(to bottom, var(--ue-color), transparent); }
 
-        .ue-card { background-color: var(--bg-card); border-radius: var(--radius-md); border: 1px solid var(--border-color); overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.3); transition: all 0.4s ease; position: relative; }
-        .ue-card::before { content: ""; position: absolute; top: 0; left: 0; width: 4px; height: 100%; background: linear-gradient(to bottom, var(--ue-color), transparent); box-shadow: 0 0 15px var(--ue-color); }
-        .ue-card:hover { border-color: rgba(255,255,255,0.1); transform: translateY(-5px); }
-
-        .ue-header { padding: 40px 40px 20px 40px; border-bottom: 1px solid var(--border-color); position: relative;}
+        .ue-header { padding: 40px 40px 10px 40px; position: relative;}
         .ue-badge { display: inline-block; background-color: rgba(255,255,255,0.05); color: var(--ue-color); padding: 5px 15px; border-radius: 20px; font-size: 0.85rem; font-family: var(--font-mono); border: 1px solid var(--ue-color); margin-bottom: 15px; text-transform: uppercase; letter-spacing: 1px; }
         
-        .grade-container { position: absolute; top: 40px; right: 40px; display: flex; flex-direction: column; gap: 10px; align-items: flex-end; }
+        .grade-container { position: absolute; top: 40px; right: 40px; }
         .grade-badge { background-color: rgba(79, 172, 254, 0.05); border: 1px solid var(--accent-cyan); color: #ffffff; padding: 6px 15px; border-radius: var(--radius-lg); font-family: var(--font-mono); font-weight: bold; font-size: 0.95rem; }
 
         .ue-title { font-size: 2rem; color: #ffffff; margin-bottom: 15px; padding-right: 150px; }
-        .ue-summary { color: var(--text-main); font-size: 1.05rem; margin-bottom: 20px; padding: 0 0px 0 0px; }
-
-        .ue-body { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; padding: 40px; background: rgba(255,255,255,0.01); border-top: 1px solid var(--border-color); border-bottom: 1px solid var(--border-color); }
-        .ue-col h4 { color: var(--ue-color); font-size: 1.3rem; margin-bottom: 20px; border-bottom: 1px dashed var(--border-color); padding-bottom: 10px; }
-
-        .ue-list li { position: relative; padding-left: 25px; margin-bottom: 15px; color: var(--text-main); font-size: 0.95rem; }
-        .ue-list li::before { content: '>'; position: absolute; left: 0; color: var(--ue-color); font-family: var(--font-mono); font-weight: bold; }
-        .ue-list li span.code { color: var(--ue-color); font-family: var(--font-mono); font-weight: bold; margin-right: 5px; }
-
-        /* --- ANALYSE REFLEXIVE DIVISEE --- */
-        .ue-reflexive { margin: 0 40px 40px 40px; padding: 30px; }
-        .ue-reflexive h4 { color: #ffffff; margin-bottom: 20px; font-size: 1.4rem; display: flex; align-items: center; gap: 10px; }
         
+        .ue-user-desc { padding: 0 40px 20px 40px; color: var(--text-main); font-size: 1.05rem; line-height: 1.6; }
+
+        .ue-body { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; padding: 20px 40px 30px 40px; border-top: 1px solid var(--border-color); border-bottom: 1px solid var(--border-color); background: rgba(255,255,255,0.01); }
+        .ue-col h4 { color: var(--ue-color); font-size: 1.1rem; margin-bottom: 20px; text-transform: uppercase; letter-spacing: 1px; border-bottom: 1px dashed var(--border-color); padding-bottom: 10px;}
+        .ue-list li { position: relative; padding-left: 25px; margin-bottom: 12px; color: var(--text-muted); font-size: 0.9rem; }
+        .ue-list li::before { content: '>'; position: absolute; left: 0; color: var(--ue-color); font-family: var(--font-mono); font-weight: bold; }
+        .ue-list li span.code { color: var(--ue-color); font-weight: bold; margin-right: 5px; }
+
+        /* --- ANALYSE REFLEXIVE SCINDÉE --- */
+        .ue-reflexive { padding: 30px 40px; }
+        .ue-reflexive h4 { color: #ffffff; margin-bottom: 20px; font-size: 1.4rem; text-align: center; }
         .reflexive-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
-        .reflexive-box { background: rgba(255,255,255,0.03); padding: 20px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.05); }
-        .reflexive-box h5 { font-size: 1rem; margin-bottom: 10px; letter-spacing: 1px; text-transform: uppercase; font-family: var(--font-main); font-weight: 700; }
-        .reflexive-box p { color: var(--text-muted); font-style: italic; font-size: 0.95rem; }
+        .reflexive-box { padding: 20px; border-radius: 8px; background: rgba(0,0,0,0.2); border: 1px solid rgba(255,255,255,0.05); }
+        .reflexive-box h5 { font-size: 1rem; margin-bottom: 10px; letter-spacing: 1px; text-transform: uppercase; }
+        .reflexive-box p { color: var(--text-muted); font-size: 0.95rem; line-height: 1.6; font-style: italic;}
         
         .success h5 { color: var(--success); }
         .improvement h5 { color: var(--improvement); }
@@ -103,10 +104,9 @@
         .btn-large { display: inline-flex; justify-content: center; align-items: center; padding: 18px 40px; background-color: rgba(157, 78, 221, 0.1); border: 2px solid var(--accent); color: #ffffff; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; cursor: pointer; border-radius: var(--radius-lg); transition: all 0.4s ease; font-size: 1.1rem; box-shadow: 0 0 15px var(--accent-glow); }
         .btn-large:hover { background-color: var(--accent); transform: translateY(-3px); box-shadow: 0 10px 30px var(--accent-glow); }
 
-        footer { text-align: center; padding: 40px 0; color: var(--text-muted); font-size: 0.95rem; border-top: 1px solid var(--border-color); width: 100%; margin-top: auto; }
+        footer { text-align: center; padding: 40px 0; color: var(--text-muted); border-top: 1px solid var(--border-color); margin-top: auto; }
 
-        @media (max-width: 900px) { .ue-body, .reflexive-grid { grid-template-columns: 1fr; gap: 30px; } .grade-container { position: relative; top: 0; right: 0; flex-direction: row; margin-bottom: 15px; } .ue-title { padding-right: 0; } }
-        @media (max-width: 768px) { .nav-links { display: none; } .section-title { font-size: 2.2rem; } .page-header { padding-top: 120px; } .ue-header, .ue-body, .ue-reflexive { padding: 20px; } .ue-reflexive { margin: 0 20px 20px 20px; } }
+        @media (max-width: 900px) { .ue-body, .reflexive-grid { grid-template-columns: 1fr; } .ue-title { padding-right: 0; } }
     </style>
 </head>
 <body>
@@ -129,11 +129,19 @@
 
     <div class="page-header container">
         <h1 class="section-title">Première Année</h1>
-        <p class="page-subtitle">
-            Détail de mes apprentissages critiques et analyses réflexives pour la 1ère année de BUT Réseaux et Télécommunications.
-        </p>
+        <p class="page-subtitle">Détail des apprentissages critiques et analyses réflexives de mon BUT1.</p>
+        
         <div class="alert-box">
             Suite à une réorientation, j'ai intégré cette formation en cours d'année. Les résultats et compétences présentés ici ne reflètent donc que mon travail sur le <strong>semestre 2</strong>.
+        </div>
+
+        <div class="bilan-section">
+            <div class="bilan-card">
+                <h3>Bilan de la première année</h3>
+                <p>
+                    Au cours de la première année, j'ai pu découvrir différentes notions en <strong>réseaux informatiques</strong> (matériel Cisco, configuration de switchs et routeurs), en <strong>télécommunications</strong> (systèmes de transmission et ToIP) ainsi qu'en <strong>développement informatique</strong> (programmation Python et framework Django). Etant arrivé au <strong>second semestre</strong>, je suis parvenu à rattraper les connaissances essentielles pour réussir mon année. J'ai apprécié rejoindre cette formation car elle s'appuie notamment sur la <strong>mise en pratique</strong> des connaissances lors de travaux pratiques et de <strong>SAE (Situation d'apprentissage et d'évaluation)</strong>, ce qui permet aussi le <strong>travail en équipe</strong>.
+                </p>
+            </div>
         </div>
     </div>
 
@@ -141,13 +149,15 @@
 
         <article class="ue-card ue-1">
             <div class="ue-header">
-                <div class="grade-container">
-                    <span class="grade-badge">Moyenne S2 : --/20</span>
-                </div>
+                <div class="grade-container"><span class="grade-badge">Moyenne S2 : --/20</span></div>
                 <span class="ue-badge">UE1 - Administrer</span>
                 <h2 class="ue-title">Administrer les réseaux et l'Internet</h2>
-                <p class="ue-summary">Cette UE se concentre sur la partie "Réseaux" de la formation, notamment les bases de la mise en place et de la gestion de systèmes d'information simple. Au cours de celle-ci, j'ai pu découvrir l'utilisation de matériel réseau simples comme des routeurs ou des switch à travers des TP sur Cisco Packet Tracer, GNS3 ou encore en version physique, ainsi que la configuration de VLAN. J'ai aussi découvert l'utilisation de différents protocoles comme ARP, ICMP, DHCP, RIP et le routage statique.</p>
             </div>
+            
+            <div class="ue-user-desc">
+                Cette UE se concentre sur la partie <strong>"Réseaux"</strong> de la formation, notamment les bases de la mise en place et de la gestion de systèmes d'information simple. Au cours de celle-ci, j'ai pu découvrir l'utilisation de matériel réseau simples comme des <strong>routeurs</strong> ou des <strong>switch</strong> à travers des TP sur <strong>Cisco Packet Tracer</strong>, <strong>GNS3</strong> ou encore en version physique, ainsi que la configuration de <strong>VLAN</strong>. J'ai aussi découvert l'utilisation de différents protocoles comme <strong>ARP, ICMP, DHCP, RIP</strong> et le <strong>routage statique</strong>.
+            </div>
+
             <div class="ue-body">
                 <div class="ue-col">
                     <h4>Composantes Essentielles</h4>
@@ -171,16 +181,17 @@
                     </ul>
                 </div>
             </div>
+
             <div class="ue-reflexive">
                 <h4>Analyse Réflexive</h4>
                 <div class="reflexive-grid">
                     <div class="reflexive-box success">
                         <h5>Ce que j'ai réussi</h5>
-                        <p>Etant arrivé en cours d'année, j'ai pu à l'aide des TP comprendre par moi même certaines notions vues au premier semestre et rattraper petit à petit sur le programme. J'ai pu rattraper certaines notions grâce aux travaux de groupes notamment.</p>
+                        <p>Etant arrivé en cours d'année, j'ai pu à l'aide des <strong>TP</strong> comprendre par moi même certaines notions vues au premier semestre et rattraper petit à petit sur le programme. J'ai pu rattraper certaines notions grâce aux <strong>travaux de groupes</strong> notamment.</p>
                     </div>
                     <div class="reflexive-box improvement">
                         <h5>Ce que j'ai moins réussi</h5>
-                        <p>Lors des TP, la mise en place d'un réseau comme dans la SAE2.01, j'ai eu plus de mal à utiliser des logiciels comme Packet Tracer ou GNS3. L'aspect parfois capricieux de l'émulation et la gestion de topologies étendues ont nécessité plus de temps d'adaptation.</p>
+                        <p>Lors des TP, la mise en place d'un réseau comme dans la <strong>SAE2.01</strong>, j'ai eu plus de mal à utiliser des logiciels comme <strong>Packet Tracer</strong> ou <strong>GNS3</strong>. L'aspect parfois capricieux de l'émulation et la gestion de topologies étendues ont nécessité plus de temps d'adaptation.</p>
                     </div>
                 </div>
             </div>
@@ -188,13 +199,15 @@
 
         <article class="ue-card ue-2">
             <div class="ue-header">
-                <div class="grade-container">
-                    <span class="grade-badge">Moyenne S2 : --/20</span>
-                </div>
+                <div class="grade-container"><span class="grade-badge">Moyenne S2 : --/20</span></div>
                 <span class="ue-badge">UE2 - Connecter</span>
                 <h2 class="ue-title">Connecter les entreprises et les usagers</h2>
-                <p class="ue-summary">Cette UE se concentre sur la partie "Télécommunications" de la formation, c'est à dire la mise en place de supports et systèmes de transmission, la mise en service d'équipements d’accès et des accès sans fil, comme la téléphonie IP (utilisation de Linphone). Elle fait notamment appel à l'éléctronique et aux mathématiques.</p>
             </div>
+
+            <div class="ue-user-desc">
+                Cette UE se concentre sur la partie <strong>"Télécommunications"</strong> de la formation, c'est à dire la mise en place de supports et systèmes de transmission, la mise en service d'équipements d’accès et des accès sans fil, comme la <strong>téléphonie IP</strong> (utilisation de <strong>Linphone</strong>). Elle fait notamment appel à l'<strong>éléctronique</strong> et aux <strong>mathématiques</strong>.
+            </div>
+
             <div class="ue-body">
                 <div class="ue-col">
                     <h4>Composantes Essentielles</h4>
@@ -216,16 +229,17 @@
                     </ul>
                 </div>
             </div>
+
             <div class="ue-reflexive">
                 <h4>Analyse Réflexive</h4>
                 <div class="reflexive-grid">
                     <div class="reflexive-box success">
                         <h5>Ce que j'ai bien réussi</h5>
-                        <p>Venant d'une formation accès principalement sur les mathématiques et la physique, je n'ai pas eu beaucoup de difficultés à rattraper le programme dans ces matières.</p>
+                        <p>Venant d'une formation axée principalement sur les <strong>mathématiques</strong> et la <strong>physique</strong>, je n'ai pas eu beaucoup de difficultés à rattraper le programme dans ces matières. La compréhension des signaux et les modélisations mathématiques ont été un point fort.</p>
                     </div>
                     <div class="reflexive-box improvement">
                         <h5>Ce que j'ai moins réussi</h5>
-                        <p>N'ayant pas fait d'électronique, j'ai eu plus de mal à comprendre les principes de certains systèmes de transmissions et utiliser, lors des TP et SAE, des logiciels comme Tinkercad ou encore à me familiariser avec le fonctionnement de cartes arduino (ESP32).</p>
+                        <p>N'ayant pas fait d'électronique, j'ai eu plus de mal à comprendre les principes de certains systèmes de transmissions et utiliser, lors des TP et SAE, des logiciels comme <strong>Tinkercad</strong> ou encore à me familiariser avec le fonctionnement de cartes <strong>arduino (ESP32)</strong>.</p>
                     </div>
                 </div>
             </div>
@@ -233,13 +247,15 @@
 
         <article class="ue-card ue-3">
             <div class="ue-header">
-                <div class="grade-container">
-                    <span class="grade-badge">Moyenne S2 : --/20</span>
-                </div>
+                <div class="grade-container"><span class="grade-badge">Moyenne S2 : --/20</span></div>
                 <span class="ue-badge">UE3 - Programmer</span>
                 <h2 class="ue-title">Créer des outils et applications informatiques</h2>
-                <p class="ue-summary">Cette UE se concentre sur la partie conception, déploiement et maintenance du système d’information d’une entreprise et développement d’outils informatiques. On y voit notamment des notions de programmation avec Python (programmation orientée objet ou développement de sites web dynamiques avec le module Django).</p>
             </div>
+
+            <div class="ue-user-desc">
+                Cette UE se concentre sur la partie conception, déploiement et maintenance du système d’information d’une entreprise et développement d’outils informatiques. On y voit notamment des notions de programmation avec <strong>Python</strong> (<strong>programmation orientée objet</strong> ou développement de sites web dynamiques avec le module <strong>Django</strong>).
+            </div>
+
             <div class="ue-body">
                 <div class="ue-col">
                     <h4>Composantes Essentielles</h4>
@@ -263,16 +279,17 @@
                     </ul>
                 </div>
             </div>
+
             <div class="ue-reflexive">
                 <h4>Analyse Réflexive</h4>
                 <div class="reflexive-grid">
                     <div class="reflexive-box success">
                         <h5>Ce que j'ai bien réussi</h5>
-                        <p>Etant déjà familier avec le développement en Python, j'ai pu comprendre les notions de première année, notamment sur l'implémentation de la programmation orientée objet dans mes projets.</p>
+                        <p>Etant déjà familier avec le développement en <strong>Python</strong>, j'ai pu comprendre les notions de première année, notamment sur l'implémentation de la <strong>programmation orientée objet</strong> dans mes projets.</p>
                     </div>
                     <div class="reflexive-box improvement">
                         <h5>Ce que j'ai moins réussi</h5>
-                        <p>Certaines notions en développement web, notamment la compréhension de l'architecture MVT de Django et la liaison entre les vues et les templates.</p>
+                        <p>Certaines notions en <strong>développement web</strong>, notamment la compréhension de l'architecture <strong>MVT de Django</strong> et la liaison entre les vues et les templates.</p>
                     </div>
                 </div>
             </div>
