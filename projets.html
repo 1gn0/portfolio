@@ -63,15 +63,14 @@
         /* --- PROJETS GRID --- */
         .projets-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin: 40px auto 100px auto; opacity: 0; animation: fadeIn 1s ease forwards 0.4s; }
 
-        .projet-year-card { background-color: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 50px 40px; text-align: center; transition: all 0.4s ease; position: relative; overflow: hidden; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+        .projet-year-card { background-color: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 60px 40px; text-align: center; transition: all 0.4s ease; position: relative; overflow: hidden; display: flex; flex-direction: column; align-items: center; justify-content: center; }
         .projet-year-card::before { content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 4px; background: linear-gradient(90deg, var(--accent-cyan), var(--accent)); transform: scaleX(0); transition: transform 0.4s ease; }
         .projet-year-card:hover { transform: translateY(-10px); border-color: var(--accent-cyan); box-shadow: 0 15px 40px rgba(0,0,0,0.4), 0 0 20px var(--accent-glow); }
         .projet-year-card:hover::before { transform: scaleX(1); }
 
         .year-icon { font-size: 3.5rem; color: var(--accent-cyan); margin-bottom: 25px; font-family: var(--font-title); text-shadow: 0 0 15px rgba(79, 172, 254, 0.3); }
 
-        .projet-year-card h3 { font-size: 2.2rem; color: #ffffff; margin-bottom: 20px; }
-        .projet-year-card p { color: var(--text-muted); margin-bottom: 35px; font-size: 1.05rem; }
+        .projet-year-card h3 { font-size: 2.2rem; color: #ffffff; margin-bottom: 30px; }
 
         /* --- BOUTONS --- */
         .btn-view { display: inline-flex; justify-content: center; align-items: center; padding: 14px 35px; background-color: transparent; border: 2px solid var(--accent); color: #ffffff; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; cursor: pointer; border-radius: var(--radius-lg); transition: all 0.4s ease; font-size: 0.9rem; }
@@ -113,14 +112,12 @@
             <div class="projet-year-card">
                 <div class="year-icon">01</div>
                 <h3>Première Année</h3>
-                <p>Découverte des infrastructures réseaux, initiation au développement Python et mise en place de services de base.</p>
                 <a href="projets-but1.html" class="btn-view">Découvrir les SAE</a>
             </div>
 
             <div class="projet-year-card">
                 <div class="year-icon">02</div>
                 <h3>Deuxième Année</h3>
-                <p>Approfondissement en Cybersécurité, administration système avancée et gestion de réseaux complexes.</p>
                 <a href="projets-but2.html" class="btn-view">Découvrir les SAE</a>
             </div>
         </div>
