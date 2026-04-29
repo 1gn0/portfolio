@@ -366,7 +366,7 @@
             bottom: 0;
             left: 50%;
             transform: translateX(-50%);
-            z-index: 1;
+            z-index: 0;
         }
 
         .timeline-item { padding: 0 50px; position: relative; width: 50%; opacity: 0; animation: fadeIn 1s ease forwards 0.2s; margin-bottom: 50px; }
@@ -379,12 +379,13 @@
             position: absolute;
             width: 20px;
             height: 20px;
-            background-color: var(--bg-color); /* FOND SOLIDE POUR MASQUER LA BARRE */
-            border: 3px solid rgba(79, 172, 254, 0.6); /* BORDURE COMME SUR LE SCREEN */
+            background-color: var(--bg-card); /* FOND SOLIDE POUR MASQUER LA BARRE */
+            border: 3px solid rgba(79, 172, 254, 0.7); /* BORDURE COMME SUR LE SCREEN */
             top: 45px; 
             transform: translateY(-50%) rotate(45deg);
             z-index: 3; /* PASSE DEVANT LA BARRE (Z-INDEX 1) */
             transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            .timeline-item::after box-shadow: 0 0 0 2px var(--bg-card);
         }
         
         .timeline-item.left::after { right: -10px; }
