@@ -274,12 +274,12 @@
         .name-first { display: block; margin-bottom: -5px; }
         .name-last { display: block; white-space: nowrap; }
 
-        /* BANDEAU FORMATION FULL WIDTH */
+        /* --- BANDEAU FORMATION (RUBAN) --- */
         .hero-formation-badge {
             background: linear-gradient(90deg, transparent 0%, rgba(157, 78, 221, 0.15) 20%, rgba(79, 172, 254, 0.2) 50%, rgba(157, 78, 221, 0.15) 80%, transparent 100%);
             border-top: 1px solid rgba(79, 172, 254, 0.4);
             border-bottom: 1px solid rgba(157, 78, 221, 0.4);
-            padding: 20px 0; 
+            padding: 25px 0; 
             margin-bottom: 25px; 
             width: 100%; 
             display: flex;
@@ -295,9 +295,33 @@
             100% { box-shadow: 0 0 60px rgba(79, 172, 254, 0.2); }
         }
 
-        .formation-title { color: var(--text-muted); font-size: 1.2rem; font-family: var(--font-mono); text-transform: uppercase; letter-spacing: 4px; margin-bottom: 5px; }
-        .formation-highlight { font-size: 2.5rem; color: #fff; text-shadow: 0 0 20px rgba(79, 172, 254, 0.4); margin-bottom: 3px; line-height: 1.2; letter-spacing: 2px; text-transform: uppercase; }
-        .formation-spe { color: #ff2a2a; font-size: 1.5rem; letter-spacing: 2px; text-shadow: 0 0 15px rgba(255, 42, 42, 0.6); }
+        .formation-title { 
+            color: var(--text-muted); 
+            font-size: 1.2rem; 
+            font-family: var(--font-title); /* Retour à Saira Stencil One */
+            text-transform: uppercase; 
+            letter-spacing: 4px; 
+            margin-bottom: 5px; 
+        }
+        
+        .formation-highlight { 
+            font-size: 2.5rem; 
+            font-family: var(--font-title); /* Retour à Saira Stencil One */
+            color: #fff; 
+            text-shadow: 0 0 20px rgba(79, 172, 254, 0.4); 
+            margin-bottom: 3px; 
+            line-height: 1.2; 
+            letter-spacing: 2px; 
+            text-transform: uppercase; 
+        }
+        
+        .formation-spe { 
+            font-family: var(--font-title); /* Retour à Saira Stencil One */
+            color: #ff2a2a; 
+            font-size: 1.5rem; 
+            letter-spacing: 2px; 
+            text-shadow: 0 0 15px rgba(255, 42, 42, 0.6); 
+        }
 
         .hero-info { display: flex; flex-wrap: wrap; gap: 30px; justify-content: center; margin-bottom: 20px; background-color: rgba(22, 20, 32, 0.7); backdrop-filter: blur(10px); padding: 12px 40px; border-radius: var(--radius-lg); border: 1px solid var(--border-color); }
         .hero-desc { color: var(--text-main); margin-bottom: 25px; max-width: 1000px; font-size: 1.15rem; text-align: center; }
@@ -308,7 +332,6 @@
 
         .timeline { position: relative; max-width: 1000px; margin: 0 auto; padding: 60px 0; }
 
-        /* La ligne centrale */
         .timeline::before {
             content: '';
             position: absolute;
@@ -331,18 +354,18 @@
             position: absolute;
             width: 22px;
             height: 22px;
-            background-color: var(--bg-color); /* Fond solide opaque */
+            background-color: var(--bg-color); 
             border: 3px solid rgba(79, 172, 254, 0.7);
             top: 45px; 
             transform: translateY(-50%) rotate(45deg);
-            z-index: 10; /* Très élevé pour passer devant tout */
+            z-index: 10; 
             transition: all 0.4s ease;
         }
         
         .timeline-item.left::after { right: -11px; }
         .timeline-item.right::after { left: -11px; }
         
-        /* Cache supplémentaire derrière le losange pour assurer la coupure du trait */
+        /* Cache supplémentaire derrière le losange */
         .timeline-item::before {
             content: '';
             position: absolute;
@@ -350,13 +373,12 @@
             height: 30px;
             background-color: var(--bg-color);
             top: 45px;
-            z-index: 9; /* Juste derrière le losange */
+            z-index: 9; 
             transform: translateY(-50%);
         }
         .timeline-item.left::before { right: -15px; }
         .timeline-item.right::before { left: -15px; }
 
-        /* Animation au survol */
         .timeline-item:hover::after {
             background-color: var(--accent-cyan);
             border-color: #fff;
