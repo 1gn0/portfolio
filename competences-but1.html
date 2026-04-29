@@ -25,7 +25,8 @@
             --radius-md: 16px; 
             --radius-lg: 30px; 
             --success: #2ecc71;
-            --improvement: #e74c3c;
+            --improvement: #f39c12;
+            --danger: #e74c3c; /* Rouge pour le bilan */
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -47,13 +48,6 @@
         
         .alert-box { background-color: rgba(79, 172, 254, 0.05); border-left: 3px solid var(--accent-cyan); padding: 15px 25px; margin: 30px auto 0 auto; max-width: 800px; text-align: center; font-size: 1.05rem; color: var(--text-main); border-radius: 4px; }
 
-        /* --- BILAN STYLE --- */
-        .bilan-section { margin: 40px auto 60px auto; max-width: 1160px; }
-        .bilan-card { background-color: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 40px; position: relative; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.2); }
-        .bilan-card::before { content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 4px; background: linear-gradient(90deg, var(--accent), var(--accent-cyan)); }
-        .bilan-card h3 { font-size: 2rem; color: #ffffff; margin-bottom: 20px; }
-        .bilan-card p { font-size: 1.1rem; color: var(--text-main); line-height: 1.8; }
-
         /* --- HEADER & NAV --- */
         header { background-color: rgba(13, 11, 20, 0.95); padding: 10px 0; position: fixed; width: 100%; top: 0; z-index: 1000; backdrop-filter: blur(10px); border-bottom: 1px solid var(--border-color); }
         nav { display: flex; justify-content: space-between; align-items: center; }
@@ -65,7 +59,7 @@
         .nav-contact-btn:hover { background-color: var(--accent); color: #ffffff; box-shadow: 0 0 15px var(--accent-glow); }
 
         /* --- BLOCS UE --- */
-        .ue-container { display: flex; flex-direction: column; gap: 60px; padding-bottom: 80px; }
+        .ue-container { display: flex; flex-direction: column; gap: 60px; padding-bottom: 40px; }
         .ue-card { background-color: var(--bg-card); border-radius: var(--radius-md); border: 1px solid var(--border-color); overflow: hidden; position: relative; }
         .ue-card::before { content: ""; position: absolute; top: 0; left: 0; width: 4px; height: 100%; background: linear-gradient(to bottom, var(--ue-color), transparent); }
 
@@ -100,7 +94,15 @@
         .ue-2 { --ue-color: #c77dff; } 
         .ue-3 { --ue-color: #00f2fe; } 
 
-        .action-container { text-align: center; margin-top: 40px; }
+        /* --- BILAN STYLE (ROUGE) --- */
+        .bilan-section { margin: 60px auto 40px auto; max-width: 1200px; padding: 0 20px; }
+        .bilan-card { background-color: var(--bg-card); border: 1px solid rgba(231, 76, 60, 0.3); border-radius: var(--radius-md); padding: 40px; position: relative; overflow: hidden; box-shadow: 0 10px 40px rgba(231, 76, 60, 0.1); }
+        .bilan-card::before { content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 4px; background: linear-gradient(90deg, var(--danger), #ff7675); }
+        .bilan-card h3 { font-size: 2rem; color: var(--danger); margin-bottom: 20px; text-shadow: 0 0 10px rgba(231, 76, 60, 0.2); }
+        .bilan-card p { font-size: 1.1rem; color: var(--text-main); line-height: 1.8; }
+        .bilan-card strong { color: #ff7675; }
+
+        .action-container { text-align: center; margin-top: 20px; margin-bottom: 80px; }
         .btn-large { display: inline-flex; justify-content: center; align-items: center; padding: 18px 40px; background-color: rgba(157, 78, 221, 0.1); border: 2px solid var(--accent); color: #ffffff; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; cursor: pointer; border-radius: var(--radius-lg); transition: all 0.4s ease; font-size: 1.1rem; box-shadow: 0 0 15px var(--accent-glow); }
         .btn-large:hover { background-color: var(--accent); transform: translateY(-3px); box-shadow: 0 10px 30px var(--accent-glow); }
 
@@ -134,15 +136,6 @@
         <div class="alert-box">
             Suite à une réorientation, j'ai intégré cette formation en cours d'année. Les résultats et compétences présentés ici ne reflètent donc que mon travail sur le <strong>semestre 2</strong>.
         </div>
-
-        <div class="bilan-section">
-            <div class="bilan-card">
-                <h3>Bilan de la première année</h3>
-                <p>
-                    Au cours de la première année, j'ai pu découvrir différentes notions en <strong>réseaux informatiques</strong> (matériel Cisco, configuration de switchs et routeurs), en <strong>télécommunications</strong> (systèmes de transmission et ToIP) ainsi qu'en <strong>développement informatique</strong> (programmation Python et framework Django). Etant arrivé au <strong>second semestre</strong>, je suis parvenu à rattraper les connaissances essentielles pour réussir mon année. J'ai apprécié rejoindre cette formation car elle s'appuie notamment sur la <strong>mise en pratique</strong> des connaissances lors de travaux pratiques et de <strong>SAE (Situation d'apprentissage et d'évaluation)</strong>, ce qui permet aussi le <strong>travail en équipe</strong>.
-                </p>
-            </div>
-        </div>
     </div>
 
     <main class="container ue-container">
@@ -165,8 +158,6 @@
                         <li><span class="code">CE1.01</span> Choisir les solutions et technologies réseaux adaptées.</li>
                         <li><span class="code">CE1.02</span> Respecter les principes fondamentaux de la sécurité informatique.</li>
                         <li><span class="code">CE1.03</span> Utiliser une approche rigoureuse pour la résolution des dysfonctionnements.</li>
-                        <li><span class="code">CE1.04</span> Respecter les règles métiers.</li>
-                        <li><span class="code">CE1.05</span> Assurer une veille technologique.</li>
                     </ul>
                 </div>
                 <div class="ue-col">
@@ -215,7 +206,6 @@
                         <li><span class="code">CE2.01</span> Communiquer avec le client et les acteurs impliqués.</li>
                         <li><span class="code">CE2.02</span> Faire preuve d’une démarche scientifique.</li>
                         <li><span class="code">CE2.03</span> Choisir les solutions et technologies adaptées.</li>
-                        <li><span class="code">CE2.04</span> Proposer des solutions respectueuses de l'environnement.</li>
                     </ul>
                 </div>
                 <div class="ue-col">
@@ -264,7 +254,6 @@
                         <li><span class="code">CE3.02</span> Documenter le travail réalisé.</li>
                         <li><span class="code">CE3.03</span> Utiliser les outils numériques à bon escient.</li>
                         <li><span class="code">CE3.04</span> Choisir les outils de développement adaptés.</li>
-                        <li><span class="code">CE3.05</span> Intégrer les problématiques de sécurité.</li>
                     </ul>
                 </div>
                 <div class="ue-col">
@@ -295,16 +284,25 @@
             </div>
         </article>
 
-        <div class="action-container">
-            <a href="projets-but1.html" class="btn-large">Preuves d'acquisition des compétences (Projets S2)</a>
-        </div>
-
     </main>
+
+    <div class="bilan-section">
+        <div class="bilan-card">
+            <h3>Bilan de la première année</h3>
+            <p>
+                Au cours de la première année, j'ai pu découvrir différentes notions en <strong>réseaux informatiques</strong> (matériel Cisco, configuration de switchs et routeurs), en <strong>télécommunications</strong> (systèmes de transmission et ToIP) ainsi qu'en <strong>développement informatique</strong> (programmation Python et framework Django). Etant arrivé au <strong>second semestre</strong>, je suis parvenu à rattraper les connaissances essentielles pour réussir mon année. J'ai apprécié rejoindre cette formation car elle s'appuie notamment sur la <strong>mise en pratique</strong> des connaissances lors de travaux pratiques et de <strong>SAE (Situation d'apprentissage et d'évaluation)</strong>, ce qui permet aussi le <strong>travail en équipe</strong>.
+            </p>
+        </div>
+    </div>
+
+    <div class="action-container">
+        <a href="projets-but1.html" class="btn-large">Preuves d'acquisition des compétences (Projets S2)</a>
+    </div>
 
     <footer>
         <div class="container">
             <p>&copy; 2026 <strong>Camille HENRY--DELANGLE</strong>.</p>
-            <p style="font-size: 0.85rem; font-family: var(--font-mono); opacity: 0.5; margin-top: 15px;">Root@Portfolio:~# exit</p>
+            <p style="font-size: 0.85rem; font-family: var(--font-mono); opacity: 0.5; margin-top: 20px;">Root@Portfolio:~# exit</p>
         </div>
     </footer>
 
