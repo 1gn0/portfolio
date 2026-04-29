@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projets | Camille HENRY--DELANGLE</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Saira+Stencil+One&display=swap" rel="stylesheet">
+    <style>
+        /* --- VARIABLES ET RESET --- */
+        :root {
+            --bg-color: #0d0b14; 
+            --bg-card: #161420;  
+            --text-main: #e0e6ed;
+            --text-muted: #a1aabf;
+            
+            --accent: #9d4edd;          
+            --accent-hover: #c77dff;    
+            --accent-cyan: #4facfe;
+            --accent-glow: rgba(157, 78, 221, 0.25); 
+            
+            --border-color: #2d2a3a;
+            --font-main: 'Inter', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            --font-title: 'Saira Stencil One', sans-serif; 
+            
+            --radius-md: 16px; 
+            --radius-lg: 30px; 
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; overflow-x: hidden; }
+        body { background-color: var(--bg-color); color: var(--text-main); font-family: var(--font-main); line-height: 1.7; overflow-x: hidden; display: flex; flex-direction: column; min-height: 100vh; }
+        h1, h2, h3 { font-family: var(--font-title); font-weight: normal; }
+        a { text-decoration: none; color: inherit; transition: all 0.3s ease; }
+        ul { list-style: none; }
+        strong { color: var(--accent-hover); font-weight: 600; }
+
+        /* --- STYLES GENERAUX --- */
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; width: 100%; }
+        
+        .page-header { padding: 160px 20px 60px 20px; text-align: center; }
+
+        .section-title { font-size: 3.2rem; color: var(--accent); margin-bottom: 30px; display: flex; align-items: center; justify-content: center; text-align: center; opacity: 0; animation: fadeIn 1s ease forwards; position: relative; padding-bottom: 25px; }
+        .section-title::before { content: ">"; margin-right: 15px; color: var(--accent-cyan); font-weight: bold; text-shadow: 0 0 10px var(--accent-cyan); font-family: var(--font-main); }
+        .section-title::after { content: ""; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 150px; height: 3px; background: linear-gradient(90deg, transparent, var(--accent-hover), var(--accent-cyan), transparent); border-radius: 2px; }
+
+        .page-subtitle { color: var(--text-main); font-size: 1.2rem; max-width: 900px; margin: 0 auto; opacity: 0; animation: fadeIn 1s ease forwards 0.2s; line-height: 1.8; text-align: center; }
+
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* --- HEADER & NAV --- */
+        header { background-color: rgba(13, 11, 20, 0.95); padding: 10px 0; position: fixed; width: 100%; top: 0; z-index: 1000; backdrop-filter: blur(10px); box-shadow: 0 2px 20px rgba(0,0,0,0.4); border-bottom: 1px solid var(--border-color); }
+        nav { display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-size: 1.8rem; color: var(--accent); font-family: var(--font-title); text-shadow: 0 0 10px var(--accent); }
+        .nav-links { display: inline-flex; width: max-content; gap: 5px; align-items: center; justify-content: center; background-color: var(--bg-card); padding: 6px 8px; border-radius: var(--radius-lg); border: 1px solid var(--border-color); margin-left: auto; }
+        .nav-links li a { font-weight: 500; font-size: 0.95rem; padding: 8px 18px; border-radius: var(--radius-lg); }
+        .nav-links li a:not(.nav-contact-btn):hover { background-color: rgba(157, 78, 221, 0.15); color: var(--accent-hover); }
+        .nav-links li a.active { background-color: var(--accent); color: #fff; }
+        .nav-contact-btn { background-color: transparent; border: 2px solid var(--accent); color: var(--accent); font-weight: 600; text-transform: uppercase; font-size: 0.85rem; transition: all 0.3s ease; }
+        .nav-contact-btn:hover { background-color: var(--accent); color: #ffffff; box-shadow: 0 0 15px var(--accent-glow); }
+
+        /* --- PROJETS GRID --- */
+        .projets-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin: 40px auto 100px auto; opacity: 0; animation: fadeIn 1s ease forwards 0.4s; }
+
+        .projet-year-card { background-color: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 50px 40px; text-align: center; transition: all 0.4s ease; position: relative; overflow: hidden; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+        .projet-year-card::before { content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 4px; background: linear-gradient(90deg, var(--accent-cyan), var(--accent)); transform: scaleX(0); transition: transform 0.4s ease; }
+        .projet-year-card:hover { transform: translateY(-10px); border-color: var(--accent-cyan); box-shadow: 0 15px 40px rgba(0,0,0,0.4), 0 0 20px var(--accent-glow); }
+        .projet-year-card:hover::before { transform: scaleX(1); }
+
+        .year-icon { font-size: 3.5rem; color: var(--accent-cyan); margin-bottom: 25px; font-family: var(--font-title); text-shadow: 0 0 15px rgba(79, 172, 254, 0.3); }
+
+        .projet-year-card h3 { font-size: 2.2rem; color: #ffffff; margin-bottom: 20px; }
+        .projet-year-card p { color: var(--text-muted); margin-bottom: 35px; font-size: 1.05rem; }
+
+        /* --- BOUTONS --- */
+        .btn-view { display: inline-flex; justify-content: center; align-items: center; padding: 14px 35px; background-color: transparent; border: 2px solid var(--accent); color: #ffffff; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; cursor: pointer; border-radius: var(--radius-lg); transition: all 0.4s ease; font-size: 0.9rem; }
+        .projet-year-card:hover .btn-view { background-color: var(--accent); box-shadow: 0 0 20px var(--accent-glow); }
+
+        footer { text-align: center; padding: 60px 0; color: var(--text-muted); font-size: 0.95rem; border-top: 1px solid var(--border-color); width: 100%; margin-top: auto; }
+
+        @media (max-width: 900px) { .projets-grid { grid-template-columns: 1fr; } .section-title { font-size: 2.5rem; } }
+        @media (max-width: 768px) { .nav-links { display: none; } .page-header { padding-top: 120px; } }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">C.H.D</div>
+                <ul class="nav-links">
+                    <li><a href="index.html#hero">Accueil</a></li>
+                    <li><a href="index.html#parcours">Parcours</a></li>
+                    <li><a href="competences.html">Compétences</a></li>
+                    <li><a href="index.html#cv">CV</a></li>
+                    <li><a href="projets.html" class="active">Projets</a></li> 
+                    <li><a href="contact.html" class="nav-contact-btn">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="page-header">
+            <h1 class="section-title">Mes Projets</h1>
+            <p class="page-subtitle">
+                Lors de ma formation, j'ai pu participer à divers <strong>SAE (Situations d'Apprentissage et d'Évaluation)</strong> regroupant les compétences acquises en première et en deuxième année. Ces projets permettent de mettre mes connaissances directement en application dans des environnements réalistes. La majorité étant réalisée en groupe, ces projets participent aussi à améliorer mes compétences en <strong>communication</strong>, en <strong>travail d'équipe</strong> et en <strong>gestion de projet</strong>.
+            </p>
+        </div>
+
+        <div class="projets-grid">
+            <div class="projet-year-card">
+                <div class="year-icon">01</div>
+                <h3>Première Année</h3>
+                <p>Découverte des infrastructures réseaux, initiation au développement Python et mise en place de services de base.</p>
+                <a href="projets-but1.html" class="btn-view">Découvrir les SAE</a>
+            </div>
+
+            <div class="projet-year-card">
+                <div class="year-icon">02</div>
+                <h3>Deuxième Année</h3>
+                <p>Approfondissement en Cybersécurité, administration système avancée et gestion de réseaux complexes.</p>
+                <a href="projets-but2.html" class="btn-view">Découvrir les SAE</a>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 <strong>Camille HENRY--DELANGLE</strong>.</p>
+            <p style="font-size: 0.85rem; font-family: var(--font-mono); opacity: 0.5; margin-top: 20px;">Root@Portfolio:~# ls -la /projets</p>
+        </div>
+    </footer>
+
+</body>
+</html>
