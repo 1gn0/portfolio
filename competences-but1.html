@@ -25,7 +25,7 @@
             --radius-md: 16px; 
             --radius-lg: 30px; 
             --success: #2ecc71;
-            --improvement: #e74c3c;
+            --improvement: #f39c12;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -46,7 +46,7 @@
 
         .page-subtitle { color: var(--text-muted); font-size: 1.15rem; max-width: 700px; margin: 0 auto; opacity: 0; animation: fadeIn 1s ease forwards 0.2s; line-height: 1.8; }
         
-        .alert-box { background-color: rgba(79, 172, 254, 0.05); border-left: 3px solid var(--accent-cyan); padding: 15px 25px; margin: 30px auto 0 auto; max-width: 800px; text-align: left; font-size: 1.05rem; color: var(--text-main); border-radius: 4px; opacity: 0; animation: fadeIn 1s ease forwards 0.3s; }
+        .alert-box { background: linear-gradient(90deg, rgba(157, 78, 221, 0.1), rgba(79, 172, 254, 0.1)); border-left: 4px solid var(--accent-cyan); padding: 20px 30px; margin: 30px auto 0 auto; max-width: 900px; text-align: center; font-size: 1.1rem; color: var(--text-main); border-radius: 8px; box-shadow: 0 5px 20px rgba(0,0,0,0.2); opacity: 0; animation: fadeIn 1s ease forwards 0.3s; }
 
         @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
 
@@ -57,7 +57,7 @@
         .nav-links { display: inline-flex; width: max-content; gap: 5px; align-items: center; justify-content: center; background-color: var(--bg-card); padding: 6px 8px; border-radius: var(--radius-lg); border: 1px solid var(--border-color); margin-left: auto; }
         .nav-links li a { font-weight: 500; font-size: 0.95rem; padding: 8px 18px; border-radius: var(--radius-lg); }
         .nav-links li a:not(.nav-contact-btn):hover { background-color: rgba(157, 78, 221, 0.15); color: var(--accent-hover); }
-        .nav-contact-btn { background-color: transparent; border: 2px solid var(--accent); color: var(--accent); font-weight: 600; text-transform: uppercase; font-size: 0.85rem; transition: all 0.3s ease; }
+        .nav-contact-btn { background-color: transparent; border: 2px solid var(--accent); color: var(--accent); font-weight: 600; text-transform: uppercase; font-size: 0.85rem; }
         .nav-contact-btn:hover { background-color: var(--accent); color: #ffffff; box-shadow: 0 0 15px var(--accent-glow); }
 
         /* --- BLOCS UE --- */
@@ -65,7 +65,6 @@
 
         .ue-card { background-color: var(--bg-card); border-radius: var(--radius-md); border: 1px solid var(--border-color); overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.3); transition: all 0.4s ease; position: relative; }
         .ue-card::before { content: ""; position: absolute; top: 0; left: 0; width: 4px; height: 100%; background: linear-gradient(to bottom, var(--ue-color), transparent); box-shadow: 0 0 15px var(--ue-color); }
-        .ue-card:hover { border-color: rgba(255,255,255,0.1); transform: translateY(-5px); }
 
         .ue-header { padding: 40px 40px 20px 40px; border-bottom: 1px solid var(--border-color); position: relative;}
         .ue-badge { display: inline-block; background-color: rgba(255,255,255,0.05); color: var(--ue-color); padding: 5px 15px; border-radius: 20px; font-size: 0.85rem; font-family: var(--font-mono); border: 1px solid var(--ue-color); margin-bottom: 15px; text-transform: uppercase; letter-spacing: 1px; }
@@ -74,25 +73,24 @@
         .grade-badge { background-color: rgba(79, 172, 254, 0.05); border: 1px solid var(--accent-cyan); color: #ffffff; padding: 6px 15px; border-radius: var(--radius-lg); font-family: var(--font-mono); font-weight: bold; font-size: 0.95rem; }
 
         .ue-title { font-size: 2rem; color: #ffffff; margin-bottom: 15px; padding-right: 150px; }
-        .ue-summary { color: var(--text-muted); font-size: 1.05rem; }
-
-        .ue-body { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; padding: 40px; }
-        .ue-col h4 { color: var(--ue-color); font-size: 1.3rem; margin-bottom: 20px; border-bottom: 1px dashed var(--border-color); padding-bottom: 10px; }
-
-        .ue-list li { position: relative; padding-left: 25px; margin-bottom: 15px; color: var(--text-main); font-size: 0.95rem; }
-        .ue-list li::before { content: '>'; position: absolute; left: 0; color: var(--ue-color); font-family: var(--font-mono); font-weight: bold; }
-        .ue-list li span.code { color: var(--ue-color); font-family: var(--font-mono); font-weight: bold; margin-right: 5px; }
+        .ue-summary { color: var(--text-main); font-size: 1.05rem; line-height: 1.6; }
 
         /* --- ANALYSE REFLEXIVE DIVISEE --- */
-        .ue-reflexive { margin: 0 40px 40px 40px; padding: 30px; background-color: rgba(0,0,0,0.2); border-radius: 8px; border-left: 4px solid var(--accent-hover); }
-        .ue-reflexive h4 { color: var(--accent-hover); margin-bottom: 20px; font-size: 1.4rem; display: flex; align-items: center; gap: 10px; }
+        .ue-reflexive { margin: 30px 40px 40px 40px; padding: 30px; background-color: rgba(0,0,0,0.2); border-radius: 12px; border: 1px solid rgba(255,255,255,0.05); }
+        .ue-reflexive h4 { color: #ffffff; margin-bottom: 25px; font-size: 1.5rem; text-align: center; border-bottom: 1px solid var(--border-color); padding-bottom: 15px; }
         
         .reflexive-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
-        .reflexive-box h5 { font-size: 1rem; margin-bottom: 10px; letter-spacing: 1px; text-transform: uppercase; font-family: var(--font-main); font-weight: 700; }
-        .reflexive-box p { color: var(--text-muted); font-style: italic; font-size: 0.95rem; }
+        .reflexive-box { padding: 20px; border-radius: 8px; background: rgba(255,255,255,0.02); border: 1px solid transparent; }
+        .reflexive-box h5 { font-size: 1.1rem; margin-bottom: 15px; letter-spacing: 1px; text-transform: uppercase; display: flex; align-items: center; gap: 10px; }
+        .reflexive-box p { color: var(--text-muted); font-size: 0.95rem; line-height: 1.6; text-align: justify; }
         
+        .success { border-color: rgba(46, 204, 113, 0.2); }
         .success h5 { color: var(--success); }
+        .success h5::before { content: "✓"; }
+
+        .improvement { border-color: rgba(243, 156, 18, 0.2); }
         .improvement h5 { color: var(--improvement); }
+        .improvement h5::before { content: "⚠"; }
 
         .ue-1 { --ue-color: #4facfe; } 
         .ue-2 { --ue-color: #c77dff; } 
@@ -104,8 +102,8 @@
 
         footer { text-align: center; padding: 40px 0; color: var(--text-muted); font-size: 0.95rem; border-top: 1px solid var(--border-color); width: 100%; margin-top: auto; }
 
-        @media (max-width: 900px) { .ue-body, .reflexive-grid { grid-template-columns: 1fr; gap: 30px; } .grade-container { position: relative; top: 0; right: 0; flex-direction: row; margin-bottom: 15px; } .ue-title { padding-right: 0; } }
-        @media (max-width: 768px) { .nav-links { display: none; } .section-title { font-size: 2.2rem; } .page-header { padding-top: 120px; } .ue-header, .ue-body, .ue-reflexive { padding: 20px; } .ue-reflexive { margin: 0 20px 20px 20px; } }
+        @media (max-width: 900px) { .ue-body, .reflexive-grid { grid-template-columns: 1fr; gap: 20px; } .grade-container { position: relative; top: 0; right: 0; flex-direction: row; margin-bottom: 15px; } .ue-title { padding-right: 0; } }
+        @media (max-width: 768px) { .nav-links { display: none; } .section-title { font-size: 2.2rem; } .page-header { padding-top: 120px; } .ue-header, .ue-body, .ue-reflexive { padding: 20px; } .ue-reflexive { margin: 20px; } }
     </style>
 </head>
 <body>
@@ -128,9 +126,7 @@
 
     <div class="page-header container">
         <h1 class="section-title">Première Année</h1>
-        <p class="page-subtitle">
-            Détail de mes apprentissages critiques et analyses réflexives pour la 1ère année de BUT Réseaux et Télécommunications.
-        </p>
+        <p class="page-subtitle">Récapitulatif des acquis techniques et analyses réflexives du Semestre 2.</p>
         <div class="alert-box">
             Suite à une réorientation, j'ai intégré cette formation en cours d'année. Les résultats et compétences présentés ici ne reflètent donc que mon travail sur le <strong>semestre 2</strong>.
         </div>
@@ -140,46 +136,23 @@
 
         <article class="ue-card ue-1">
             <div class="ue-header">
-                <div class="grade-container">
-                    <span class="grade-badge">Moyenne S2 : --/20</span>
-                </div>
+                <div class="grade-container"><span class="grade-badge">Moyenne S2 : --/20</span></div>
                 <span class="ue-badge">UE1 - Administrer</span>
                 <h2 class="ue-title">Administrer les réseaux et l'Internet</h2>
-                <p class="ue-summary">Conception et administration de l’infrastructure du réseau informatique d’une entreprise, installation et administration des services réseau informatique.</p>
-            </div>
-            <div class="ue-body">
-                <div class="ue-col">
-                    <h4>Composantes Essentielles</h4>
-                    <ul class="ue-list">
-                        <li><span class="code">CE1.01</span> Choisir les solutions et technologies réseaux adaptées.</li>
-                        <li><span class="code">CE1.02</span> Respecter les principes fondamentaux de la sécurité informatique.</li>
-                        <li><span class="code">CE1.03</span> Utiliser une approche rigoureuse pour la résolution des dysfonctionnements.</li>
-                        <li><span class="code">CE1.04</span> Respecter les règles métiers.</li>
-                        <li><span class="code">CE1.05</span> Assurer une veille technologique.</li>
-                    </ul>
-                </div>
-                <div class="ue-col">
-                    <h4>Apprentissages Critiques (BUT1)</h4>
-                    <ul class="ue-list">
-                        <li><span class="code">AC11.01</span> Maîtriser les lois fondamentales de l’électricité.</li>
-                        <li><span class="code">AC11.02</span> Comprendre l'architecture et les fondements des systèmes numériques.</li>
-                        <li><span class="code">AC11.03</span> Configurer les fonctions de base du réseau local.</li>
-                        <li><span class="code">AC11.04</span> Maîtriser les principes fondamentaux des systèmes d’exploitation.</li>
-                        <li><span class="code">AC11.05</span> Identifier les dysfonctionnements du réseau local.</li>
-                        <li><span class="code">AC11.06</span> Installer un poste client et expliquer la procédure.</li>
-                    </ul>
-                </div>
+                <p class="ue-summary">
+                    Cette UE se concentre sur la partie "Réseaux" de la formation, notamment les bases de la mise en place et de la gestion de systèmes d'information simples. Au cours de celle-ci, j'ai pu découvrir l'utilisation de matériel réseau comme des routeurs ou des switchs à travers des TP sur <strong>Cisco Packet Tracer</strong>, <strong>GNS3</strong> ou encore sur matériel physique, incluant la configuration de <strong>VLAN</strong>. J'ai aussi appris l'utilisation de différents protocoles comme <strong>ARP, ICMP, DHCP</strong> ainsi que les bases du routage statique et dynamique (<strong>RIP</strong>).
+                </p>
             </div>
             <div class="ue-reflexive">
                 <h4>Analyse Réflexive</h4>
                 <div class="reflexive-grid">
                     <div class="reflexive-box success">
                         <h5>Ce que j'ai réussi</h5>
-                        <p>[ Insérer le contenu ici ]</p>
+                        <p>Étant arrivé en cours d'année, j'ai pu, à l'aide des travaux pratiques, comprendre par moi-même certaines notions théoriques vues au premier semestre. J'ai réussi à rattraper progressivement le programme et à valider mes acquis. Les travaux de groupe ont été particulièrement pertinents pour échanger sur les méthodes de configuration et consolider ma compréhension de l'architecture réseau.</p>
                     </div>
                     <div class="reflexive-box improvement">
                         <h5>Ce que j'ai moins réussi</h5>
-                        <p>[ Insérer le contenu ici ]</p>
+                        <p>Lors de la mise en place de réseaux plus complexes, comme dans la <strong>SAE 2.01</strong>, j'ai éprouvé plus de difficultés à manipuler les logiciels de simulation comme Packet Tracer ou GNS3. L'aspect parfois capricieux de l'émulation et la gestion de topologies étendues ont nécessité plus de temps d'adaptation pour devenir réellement fluide dans mon travail.</p>
                     </div>
                 </div>
             </div>
@@ -187,44 +160,23 @@
 
         <article class="ue-card ue-2">
             <div class="ue-header">
-                <div class="grade-container">
-                    <span class="grade-badge">Moyenne S2 : --/20</span>
-                </div>
+                <div class="grade-container"><span class="grade-badge">Moyenne S2 : --/20</span></div>
                 <span class="ue-badge">UE2 - Connecter</span>
                 <h2 class="ue-title">Connecter les entreprises et les usagers</h2>
-                <p class="ue-summary">Déploiement des supports et systèmes de transmission, mise en service des équipements d’accès et des accès sans fil.</p>
-            </div>
-            <div class="ue-body">
-                <div class="ue-col">
-                    <h4>Composantes Essentielles</h4>
-                    <ul class="ue-list">
-                        <li><span class="code">CE2.01</span> Communiquer avec le client et les acteurs impliqués.</li>
-                        <li><span class="code">CE2.02</span> Faire preuve d’une démarche scientifique.</li>
-                        <li><span class="code">CE2.03</span> Choisir les solutions et technologies adaptées.</li>
-                        <li><span class="code">CE2.04</span> Proposer des solutions respectueuses de l'environnement.</li>
-                    </ul>
-                </div>
-                <div class="ue-col">
-                    <h4>Apprentissages Critiques (BUT1)</h4>
-                    <ul class="ue-list">
-                        <li><span class="code">AC12.01</span> Mesurer, analyser et commenter les signaux.</li>
-                        <li><span class="code">AC12.02</span> Caractériser des systèmes de transmissions élémentaires.</li>
-                        <li><span class="code">AC12.03</span> Déployer des supports de transmission.</li>
-                        <li><span class="code">AC12.04</span> Connecter les systèmes de ToIP.</li>
-                        <li><span class="code">AC12.05</span> Communiquer avec un tiers et adapter son discours.</li>
-                    </ul>
-                </div>
+                <p class="ue-summary">
+                    Cette UE se concentre sur la partie "Télécommunications", c'est-à-dire le déploiement de supports de transmission, la mise en service d'équipements d’accès et la gestion des réseaux sans fil. J'y ai notamment étudié la <strong>téléphonie sur IP (ToIP)</strong> avec l'utilisation de <strong>Linphone</strong>. Cette unité fait massivement appel à des notions d'électronique et de mathématiques appliquées au signal.
+                </p>
             </div>
             <div class="ue-reflexive">
                 <h4>Analyse Réflexive</h4>
                 <div class="reflexive-grid">
                     <div class="reflexive-box success">
                         <h5>Ce que j'ai réussi</h5>
-                        <p>[ Insérer le contenu ici ]</p>
+                        <p>Venant d'une formation initiale axée principalement sur les mathématiques et la physique, je n'ai pas rencontré de difficultés majeures pour rattraper le programme dans ces matières. La compréhension des signaux, des calculs de fréquences et des modélisations mathématiques a été un point fort pour moi durant ce semestre.</p>
                     </div>
                     <div class="reflexive-box improvement">
                         <h5>Ce que j'ai moins réussi</h5>
-                        <p>[ Insérer le contenu ici ]</p>
+                        <p>N'ayant jamais fait d'électronique pure avant mon arrivée, j'ai eu plus de mal à appréhender les principes de certains systèmes de transmission physique. L'utilisation de logiciels comme <strong>Tinkercad</strong> pour la simulation de circuits ou la familiarisation avec le fonctionnement de microcontrôleurs comme l'<strong>ESP32 (Arduino)</strong> a demandé un investissement personnel important pour combler mes lacunes.</p>
                     </div>
                 </div>
             </div>
@@ -232,53 +184,30 @@
 
         <article class="ue-card ue-3">
             <div class="ue-header">
-                <div class="grade-container">
-                    <span class="grade-badge">Moyenne S2 : --/20</span>
-                </div>
+                <div class="grade-container"><span class="grade-badge">Moyenne S2 : --/20</span></div>
                 <span class="ue-badge">UE3 - Programmer</span>
                 <h2 class="ue-title">Créer des outils et applications informatiques</h2>
-                <p class="ue-summary">Conception, déploiement et maintenance du système d’information d’une entreprise et développement d’outils informatiques.</p>
-            </div>
-            <div class="ue-body">
-                <div class="ue-col">
-                    <h4>Composantes Essentielles</h4>
-                    <ul class="ue-list">
-                        <li><span class="code">CE3.01</span> Être à l’écoute des besoins du client.</li>
-                        <li><span class="code">CE3.02</span> Documenter le travail réalisé.</li>
-                        <li><span class="code">CE3.03</span> Utiliser les outils numériques à bon escient.</li>
-                        <li><span class="code">CE3.04</span> Choisir les outils de développement adaptés.</li>
-                        <li><span class="code">CE3.05</span> Intégrer les problématiques de sécurité.</li>
-                    </ul>
-                </div>
-                <div class="ue-col">
-                    <h4>Apprentissages Critiques (BUT1)</h4>
-                    <ul class="ue-list">
-                        <li><span class="code">AC13.01</span> Utiliser un système informatique et ses outils.</li>
-                        <li><span class="code">AC13.02</span> Lire, exécuter, corriger et modifier un programme.</li>
-                        <li><span class="code">AC13.03</span> Traduire un algorithme dans un langage donné.</li>
-                        <li><span class="code">AC13.04</span> Connaître l’architecture et les technologies d’un site Web.</li>
-                        <li><span class="code">AC13.05</span> Choisir les mécanismes de gestion de données adaptés.</li>
-                        <li><span class="code">AC13.06</span> S’intégrer dans un environnement collaboratif.</li>
-                    </ul>
-                </div>
+                <p class="ue-summary">
+                    Cette UE porte sur la conception, le déploiement et la maintenance du système d’information et le développement d’outils informatiques. L'enseignement est principalement centré sur le langage <strong>Python</strong>, explorant la <strong>Programmation Orientée Objet (POO)</strong> ainsi que le développement de sites web dynamiques via le framework <strong>Django</strong>.
+                </p>
             </div>
             <div class="ue-reflexive">
                 <h4>Analyse Réflexive</h4>
                 <div class="reflexive-grid">
                     <div class="reflexive-box success">
                         <h5>Ce que j'ai réussi</h5>
-                        <p>[ Insérer le contenu ici ]</p>
+                        <p>Étant déjà familier avec le développement en Python avant d'intégrer le BUT, j'ai rapidement assimilé les notions de première année. J'ai notamment bien réussi à mettre en pratique les concepts de classes et d'objets, ce qui m'a permis de structurer mes scripts de manière plus professionnelle et modulaire pour répondre aux besoins des SAE.</p>
                     </div>
                     <div class="reflexive-box improvement">
                         <h5>Ce que j'ai moins réussi</h5>
-                        <p>[ Insérer le contenu ici ]</p>
+                        <p>Le passage au développement web avec Django a été plus complexe. Si la logique Python est acquise, la gestion des templates, la liaison avec les bases de données via l'ORM et l'intégration du CSS pour le rendu final du site web ont été des étapes plus ardues. J'ai encore besoin de pratique pour maîtriser parfaitement l'architecture Modèle-Vue-Template (MVT).</p>
                     </div>
                 </div>
             </div>
         </article>
 
         <div class="action-container">
-            <a href="projets-but1.html" class="btn-large">Preuves d'acquisition des compétences (Projets S2)</a>
+            <a href="projets-but1.html" class="btn-large">Consulter les Projets & Preuves du S2</a>
         </div>
 
     </main>
