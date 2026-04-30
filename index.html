@@ -82,6 +82,7 @@
             padding: 100px 0;
         }
 
+        /* Titres soulignés */
         .section-title {
             font-size: 3.2rem;
             color: var(--accent);
@@ -151,6 +152,7 @@
             text-shadow: 0 0 10px var(--accent);
         }
 
+        /* NAV LINKS - Pilule compacte */
         .nav-links {
             display: inline-flex;
             width: max-content;
@@ -367,6 +369,7 @@
         .formation-spe { color: #ff2a2a; font-size: 1.5rem; font-family: var(--font-title); letter-spacing: 2px; text-shadow: 0 0 15px rgba(255, 42, 42, 0.6); text-align: center; }
 
         .hero-info { display: flex; flex-wrap: wrap; gap: 30px; justify-content: center; margin-bottom: 30px; background-color: rgba(22, 20, 32, 0.7); backdrop-filter: blur(10px); padding: 15px 40px; border-radius: var(--radius-lg); border: 1px solid var(--border-color); box-shadow: 0 10px 30px rgba(0,0,0,0.3); transition: all 0.3s ease; }
+        .hero-info:hover { border-color: rgba(157, 78, 221, 0.4); box-shadow: 0 5px 35px var(--accent-glow); }
         .hero-info p { margin-bottom: 0; font-size: 1.1rem; }
         .hero-info strong { color: var(--accent-cyan); text-shadow: none; }
         
@@ -395,19 +398,19 @@
         .timeline-item.left { left: 0; text-align: right; }
         .timeline-item.right { left: 50%; text-align: left; }
 
-        /* LE LOSANGE : MASQUE LA BARRE AVEC UN FOND SOLIDE ET UNE MICRO-OMBRE */
+        /* LE LOSANGE : MASQUE LA BARRE GRACE AU FOND SOLIDE + OMBRE SECURE */
         .timeline-item::after {
             content: '';
             position: absolute;
             width: 20px;
             height: 20px;
             background-color: var(--bg-card); 
-            border: 3px solid rgba(79, 172, 254, 0.7);
+            border: 3px solid rgba(79, 172, 254, 0.7); 
             top: 45px; 
             transform: translateY(-50%) rotate(45deg);
             z-index: 3; 
             transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            box-shadow: 0 0 0 3px var(--bg-card); /* Astuce pour couper le trait proprement */
+            box-shadow: 0 0 0 3px var(--bg-card); /* Coupe physiquement le trait */
         }
         
         .timeline-item.left::after { right: -10px; }
@@ -490,9 +493,8 @@
         .close-btn:hover { color: var(--accent-cyan); text-shadow: 0 0 10px var(--accent-cyan); }
         #cv-iframe { width: 100%; height: 100%; border-radius: 8px; background-color: #ffffff; border: none; }
 
-        footer { text-align: center; padding: 40px 0; color: var(--text-muted); font-size: 0.95rem; border-top: 1px solid var(--border-color); margin-top: 50px; }
+        footer { text-align: center; padding: 40px 0; color: var(--text-muted); font-size: 0.95rem; border-top: 1px solid var(--border-color); width: 100%; margin-top: 50px; }
 
-        /* RESPONSIVE */
         @media (max-width: 992px) {
             .hero-text h1 { font-size: 4rem; }
             .timeline::before { left: 30px; }
@@ -523,7 +525,7 @@
                 <ul class="nav-links">
                     <li><a href="#hero">Accueil</a></li>
                     <li><a href="#parcours">Parcours</a></li>
-                    <li><a href="#competences">Compétences</a></li>
+                    <li><a href="competences.html">Compétences</a></li>
                     <li><a href="#cv">CV</a></li>
                     <li><a href="projets.html">Projets</a></li> 
                     <li><a href="contact.html" class="nav-contact-btn">Contact</a></li>
@@ -575,28 +577,40 @@
         <div class="container">
             <h2 class="section-title">Mon Parcours</h2>
             <div class="timeline">
+
                 <div class="timeline-item left">
+                    <div class="content">
+                        <span class="date">À venir</span>
+                        <h3>Poursuite d'études</h3>
+                        <p>Finalisation du <strong>BUT3 R&T</strong>, puis évolution vers un <strong>Master ou un diplôme d'Ingénieur en Cybersécurité</strong>.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item right">
                     <div class="content">
                         <span class="date">2025 - Aujourd'hui</span>
                         <h3>BUT R&T - 2ème Année</h3>
                         <p><strong>IUT Colmar</strong>. Spécialisation dans le parcours <strong>Cybersécurité</strong>.</p>
                     </div>
                 </div>
-                <div class="timeline-item right">
+                
+                <div class="timeline-item left">
                     <div class="content">
                         <span class="date">Début 2025</span>
                         <h3>Réorientation & Validation BUT1</h3>
                         <p>Intégration du <strong>BUT R&T Colmar</strong> au 2ème semestre. Validation de la première année.</p>
                     </div>
                 </div>
-                <div class="timeline-item left">
+                
+                <div class="timeline-item right">
                     <div class="content">
                         <span class="date">Fin 2024</span>
                         <h3>INSA Rennes</h3>
                         <p>Classe préparatoire intégrée <strong>STPI</strong>. J'ai fait le choix de me réorienter dès le deuxième semestre vers le BUT R&T, recherchant une approche plus concrète.</p>
                     </div>
                 </div>
-                <div class="timeline-item right">
+                
+                <div class="timeline-item left">
                     <div class="content">
                         <span class="date">2024</span>
                         <h3>Baccalauréat</h3>
@@ -604,6 +618,7 @@
                         <a href="files/ReleveNotes-HENRYDELANGLE-Camille.pdf" target="_blank" class="info-link">Aperçu de mes résultats du bac</a>
                     </div>
                 </div>
+
             </div>
         </div>
     </section>
