@@ -22,12 +22,14 @@
             --font-title: 'Saira Stencil One', sans-serif; 
             --font-mono: 'Courier New', Courier, monospace;
             --radius-md: 16px; 
-            --radius-lg: 30px; 
+            --radius-lg: 30px;
+            --success: #2ecc71;
+            --improvement: #f39c12; 
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { background-color: var(--bg-color); color: var(--text-main); font-family: var(--font-main); line-height: 1.7; overflow-x: hidden; display: flex; flex-direction: column; min-height: 100vh; }
-        h1, h2, h3, h4 { font-family: var(--font-title); font-weight: normal; }
+        h1, h2, h3, h4, h5 { font-family: var(--font-title); font-weight: normal; }
         a { text-decoration: none; color: inherit; transition: all 0.3s ease; }
         ul { list-style: none; }
         strong { color: var(--accent-hover); font-weight: 600; }
@@ -39,7 +41,7 @@
         .section-title::before { content: ">"; margin-right: 15px; color: var(--accent-cyan); font-weight: bold; text-shadow: 0 0 10px var(--accent-cyan); font-family: var(--font-main); }
         .section-title::after { content: ""; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 150px; height: 3px; background: linear-gradient(90deg, transparent, var(--accent-hover), var(--accent-cyan), transparent); border-radius: 2px; }
 
-        .page-subtitle { color: var(--text-muted); font-size: 1.15rem; max-width: 700px; margin: 0 auto; opacity: 0; animation: fadeIn 1s ease forwards 0.2s; line-height: 1.8; }
+        .page-subtitle { color: var(--text-muted); font-size: 1.15rem; max-width: 900px; margin: 0 auto; opacity: 0; animation: fadeIn 1s ease forwards 0.2s; line-height: 1.8; }
 
         @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
 
@@ -52,6 +54,8 @@
         .nav-links li a:not(.nav-contact-btn):hover, .nav-links li a.active { background-color: rgba(157, 78, 221, 0.15); color: var(--accent-hover); text-shadow: 0 0 5px var(--accent-hover); }
         .nav-contact-btn { background-color: transparent; border: 2px solid var(--accent); color: var(--accent); font-weight: 600; text-transform: uppercase; letter-spacing: 1px; font-size: 0.85rem; transition: all 0.3s ease; }
         .nav-contact-btn:hover { background-color: var(--accent); color: #ffffff; box-shadow: 0 0 15px var(--accent-glow); border-color: var(--accent-hover); }
+
+        .status-box { background-color: rgba(157, 78, 221, 0.05); border: 1px solid var(--accent); padding: 15px 25px; margin: -20px auto 50px auto; max-width: 850px; text-align: center; font-size: 1.05rem; color: var(--text-main); border-radius: var(--radius-md); box-shadow: 0 0 15px var(--accent-glow); opacity: 0; animation: fadeIn 1s ease forwards 0.3s; }
 
         .ue-container { display: flex; flex-direction: column; gap: 60px; padding-bottom: 80px; }
 
@@ -83,7 +87,13 @@
 
         .ue-reflexive { margin: 0 40px 40px 40px; padding: 30px; background-color: rgba(0,0,0,0.2); border-radius: 8px; border-left: 4px solid var(--accent-hover); }
         .ue-reflexive h4 { color: var(--accent-hover); margin-bottom: 15px; font-size: 1.2rem; display: flex; align-items: center; gap: 10px; }
-        .ue-reflexive p { color: var(--text-muted); font-style: italic; }
+        
+        .reflexive-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin-top: 15px; }
+        .reflexive-box { padding: 20px; border-radius: 8px; background: rgba(0,0,0,0.2); border: 1px solid rgba(255,255,255,0.05); }
+        .reflexive-box h5 { font-size: 1rem; margin-bottom: 10px; letter-spacing: 1px; text-transform: uppercase; }
+        .reflexive-box p { color: var(--text-muted); font-size: 0.95rem; line-height: 1.6; font-style: normal; }
+        .success h5 { color: var(--success); }
+        .improvement h5 { color: var(--improvement); }
 
         .ue-1 { --ue-color: #4facfe; } 
         .ue-2 { --ue-color: #c77dff; } 
@@ -97,7 +107,7 @@
 
         footer { text-align: center; padding: 40px 0; color: var(--text-muted); font-size: 0.95rem; border-top: 1px solid var(--border-color); width: 100%; margin-top: auto; }
 
-        @media (max-width: 900px) { .ue-body { grid-template-columns: 1fr; gap: 30px; } .grade-container { position: relative; top: 0; right: 0; flex-direction: row; flex-wrap: wrap; justify-content: flex-start; margin-bottom: 20px; } .ue-title { padding-right: 0; } }
+        @media (max-width: 900px) { .ue-body, .reflexive-grid { grid-template-columns: 1fr; gap: 30px; } .grade-container { position: relative; top: 0; right: 0; flex-direction: row; flex-wrap: wrap; justify-content: flex-start; margin-bottom: 20px; } .ue-title { padding-right: 0; } }
         @media (max-width: 768px) { .nav-links { display: none; } .section-title { font-size: 2.2rem; } .page-header { padding-top: 120px; } .ue-header, .ue-body, .ue-reflexive, .path-intro { padding: 20px; } .ue-reflexive { margin: 0 20px 20px 20px; } }
     </style>
 </head>
@@ -126,6 +136,10 @@
         </p>
     </div>
 
+    <div class="status-box container">
+         <strong>Note :</strong> Cette deuxième année est actuellement en cours. Les résultats et analyses réflexives seront complétés à la fin du semestre 4.
+    </div>
+
     <main class="container ue-container">
 
         <article class="ue-card ue-1">
@@ -137,7 +151,7 @@
                 <span class="ue-badge">UE1 - Administrer</span>
                 <h2 class="ue-title">Administrer les réseaux et l'Internet</h2>
                 <p class="ue-summary">
-                    Conception et administration de l’infrastructure du réseau informatique d’une entreprise, installation et administration des services réseau.
+                    Dans la continuité de l'UE1 de première année, cette UE se concentre sur la gestion d'infrastructure réseau et l'administration système, notamment avec les bases sur Active Directory. Elle ajoute une dimension de cybersécurité, essentielle dans le cadre de l'administration système et réseau.
                 </p>
             </div>
             <div class="ue-body">
@@ -164,8 +178,17 @@
                 </div>
             </div>
             <div class="ue-reflexive">
-                <h4>Mon Analyse Réflexive</h4>
-                <p>[ Insérer l'analyse réflexive ici ]</p>
+                <h4>Analyse Réflexive</h4>
+                <div class="reflexive-grid">
+                    <div class="reflexive-box success">
+                        <h5>Ce que j'ai bien réussi</h5>
+                        <p>Au cours du semestre 3, je suis parvenu à comprendre et appliquer les nouvelles notions en <strong>routage dynamique (MPLS, BGP)</strong> au cours de la SAE Multisite ainsi qu'en <strong>Active Directory</strong> (essentiel en entreprise).</p>
+                    </div>
+                    <div class="reflexive-box improvement">
+                        <h5>Ce que j'ai moins réussi</h5>
+                        <p>Certains TP m'ont posés problèmes, notamment au niveau de la mise en place de <strong>Windows Server</strong> par exemple, mais je suis parvenu à comprendre les notions essentielles.</p>
+                    </div>
+                </div>
             </div>
         </article>
 
@@ -178,7 +201,7 @@
                 <span class="ue-badge">UE2 - Connecter</span>
                 <h2 class="ue-title">Connecter les entreprises et les usagers</h2>
                 <p class="ue-summary">
-                    Déploiement des supports et systèmes de transmission, mise en service et administration des équipements d’accès pour l'entreprise.
+                    Toujours dans la continuité de l'UE2 de première année, cette UE regroupe les technologies de télécommunications (Fibres, antennes, réseaux mobiles...) ainsi qu'une partie théorique en électronique et en mathématiques (analyse de Fourier).
                 </p>
             </div>
             <div class="ue-body">
@@ -203,8 +226,13 @@
                 </div>
             </div>
             <div class="ue-reflexive">
-                <h4>Mon Analyse Réflexive</h4>
-                <p>[ Insérer l'analyse réflexive ici ]</p>
+                <h4>Analyse Réflexive</h4>
+                <div class="reflexive-grid">
+                    <div class="reflexive-box success" style="grid-column: 1 / -1;">
+                        <h5>Mise en pratique</h5>
+                        <p>Au cours de la deuxième année, j'ai pu comprendre aussi bien l'aspect théorique que l'aspect pratique au cours des différents TP. De plus, j'ai pu m'investir efficacement sur la SAE principale de l'UE : <strong>Mettre en oeuvre un système de transmissions</strong>.</p>
+                    </div>
+                </div>
             </div>
         </article>
 
@@ -215,9 +243,9 @@
                     <span class="grade-badge">Moyenne S4 : --/20</span>
                 </div>
                 <span class="ue-badge">UE3 - Programmer</span>
-                <h2 class="ue-title">Créer des outils et applications informatiques</h2>
+                <h2 class="ue-title">Créer des outils et applications informatiques Pour les R&T</h2>
                 <p class="ue-summary">
-                    Automatisation du déploiement et de la maintenance des outils logiciels, et développement d’outils informatiques à usage interne d'une équipe.
+                    Cette UE aborde la partie programmation pour les R&T, et comprend l'automatisation du déploiement et de la maintenance des outils logiciels ainsi que le développement d’outils informatiques à usage interne d'une équipe R&T (Bash, Powershell).
                 </p>
             </div>
             <div class="ue-body">
@@ -243,8 +271,13 @@
                 </div>
             </div>
             <div class="ue-reflexive">
-                <h4>Mon Analyse Réflexive</h4>
-                <p>[ Insérer l'analyse réflexive ici ]</p>
+                <h4>Analyse Réflexive</h4>
+                <div class="reflexive-grid">
+                    <div class="reflexive-box success" style="grid-column: 1 / -1;">
+                        <h5>Automatisation et Développement</h5>
+                        <p>Ayant déjà des notions en <strong>Python</strong> et en gestion de base de données <strong>SQL</strong>, j'ai pu les mettre en oeuvre au cours des différents TP. J'ai aussi pu découvrir l'utilisation de <strong>Powershell et Bash</strong> dans un cadre d'administration système.</p>
+                    </div>
+                </div>
             </div>
         </article>
 
@@ -267,7 +300,7 @@
                     Évolution et mise en conformité du système d’information d’une entreprise. Mise en œuvre d'outils de sécurisation et analyse des besoins en sécurité.
                 </p>
             </div>
-            <div class="ue-body">
+            <div class="ue-body" style="border-bottom: none;">
                 <div class="ue-col">
                     <h4>Composantes Essentielles</h4>
                     <ul class="ue-list">
@@ -290,10 +323,6 @@
                     </ul>
                 </div>
             </div>
-            <div class="ue-reflexive">
-                <h4>Mon Analyse Réflexive</h4>
-                <p>[ Insérer l'analyse réflexive ici ]</p>
-            </div>
         </article>
 
         <article class="ue-card ue-5">
@@ -308,7 +337,7 @@
                     Surveillance et analyse du système d’information, audit de sécurité et gestion des incidents pour garantir la disponibilité et la fiabilité des réseaux.
                 </p>
             </div>
-            <div class="ue-body">
+            <div class="ue-body" style="border-bottom: none;">
                 <div class="ue-col">
                     <h4>Composantes Essentielles</h4>
                     <ul class="ue-list">
@@ -328,9 +357,18 @@
                     </ul>
                 </div>
             </div>
-            <div class="ue-reflexive">
-                <h4>Mon Analyse Réflexive</h4>
-                <p>[ Insérer l'analyse réflexive ici ]</p>
+        </article>
+
+        <!-- Analyse Réflexive Commune UE4 & UE5 -->
+        <article class="ue-card ue-4" style="margin-top: -20px;">
+            <div class="ue-reflexive" style="margin: 40px; border-left-color: var(--ue-color);">
+                <h4 style="color: var(--ue-color);">Analyse Réflexive Commune (UE4 & UE5)</h4>
+                <div class="reflexive-grid">
+                    <div class="reflexive-box success" style="grid-column: 1 / -1;">
+                        <h5>Bilan du parcours Cyber</h5>
+                        <p>Au cours des différentes ressources du parcours cyber, j'ai pu apprendre les bases en <strong>cybersécurité défensive et offensive</strong>, notamment la mise en place et la remédiation à des attaques simples, ainsi que la gestion d'infrastructures de sécurité type <strong>VPN</strong>. J'ai aussi pu approfondir mes bases en <strong>cryptographie</strong>. Ces cours m'ont permis de commencer à m'orienter vers la spécialité qui me passionne.</p>
+                    </div>
+                </div>
             </div>
         </article>
 
