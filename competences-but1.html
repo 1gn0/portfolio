@@ -36,31 +36,49 @@
         ul { list-style: none; }
         strong { color: var(--accent-hover); font-weight: 600; }
 
+        /* --- ANIMATIONS DE CHARGEMENT --- */
+        @keyframes fadeIn { 
+            from { opacity: 0; transform: translateY(20px); } 
+            to { opacity: 1; transform: translateY(0); } 
+        }
+
         /* --- STYLES GENERAUX --- */
         .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; width: 100%; }
         .page-header { padding: 160px 20px 40px 20px; text-align: center; }
 
-        .section-title { font-size: 3.2rem; color: var(--accent); margin-bottom: 30px; display: flex; align-items: center; justify-content: center; text-align: center; position: relative; padding-bottom: 25px; }
-        .section-title::before { content: ">"; margin-right: 15px; color: var(--accent-cyan); font-weight: bold; text-shadow: 0 0 10px var(--accent-cyan); }
+        .section-title { font-size: 3.2rem; color: var(--accent); margin-bottom: 30px; display: flex; align-items: center; justify-content: center; text-align: center; position: relative; padding-bottom: 25px; opacity: 0; animation: fadeIn 1s ease forwards; }
+        .section-title::before { content: ">"; margin-right: 15px; color: var(--accent-cyan); font-weight: bold; text-shadow: 0 0 10px var(--accent-cyan); font-family: var(--font-main); }
         .section-title::after { content: ""; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 150px; height: 3px; background: linear-gradient(90deg, transparent, var(--accent-hover), var(--accent-cyan), transparent); border-radius: 2px; }
 
-        .page-subtitle { color: var(--text-muted); font-size: 1.15rem; max-width: 700px; margin: 0 auto; line-height: 1.8; }
+        .page-subtitle { color: var(--text-muted); font-size: 1.15rem; max-width: 700px; margin: 0 auto; line-height: 1.8; opacity: 0; animation: fadeIn 1s ease forwards 0.2s; }
         
-        .alert-box { background-color: rgba(79, 172, 254, 0.05); border-left: 3px solid var(--accent-cyan); padding: 15px 25px; margin: 30px auto 0 auto; max-width: 800px; text-align: center; font-size: 1.05rem; color: var(--text-main); border-radius: 4px; }
+        .alert-box { background-color: rgba(79, 172, 254, 0.05); border-left: 3px solid var(--accent-cyan); padding: 15px 25px; margin: 30px auto 0 auto; max-width: 800px; text-align: center; font-size: 1.05rem; color: var(--text-main); border-radius: 4px; opacity: 0; animation: fadeIn 1s ease forwards 0.3s; }
 
-        /* --- HEADER & NAV --- */
-        header { background-color: rgba(13, 11, 20, 0.95); padding: 10px 0; position: fixed; width: 100%; top: 0; z-index: 1000; backdrop-filter: blur(10px); border-bottom: 1px solid var(--border-color); }
+        /* --- HEADER & NAV (FIXÉ) --- */
+        header { background-color: rgba(13, 11, 20, 0.95); padding: 10px 0; position: fixed; width: 100%; top: 0; z-index: 1000; backdrop-filter: blur(10px); border-bottom: 1px solid var(--border-color); box-shadow: 0 2px 20px rgba(0,0,0,0.4); }
         nav { display: flex; justify-content: space-between; align-items: center; }
         .logo { font-size: 1.8rem; color: var(--accent); font-family: var(--font-title); text-shadow: 0 0 10px var(--accent); }
-        .nav-links { display: inline-flex; width: max-content; gap: 5px; align-items: center; justify-content: center; background-color: var(--bg-card); padding: 6px 8px; border-radius: var(--radius-lg); border: 1px solid var(--border-color); margin-left: auto; }
-        .nav-links li a { font-weight: 500; font-size: 0.95rem; padding: 8px 18px; border-radius: var(--radius-lg); }
-        .nav-links li a:not(.nav-contact-btn):hover { background-color: rgba(157, 78, 221, 0.15); color: var(--accent-hover); }
-        .nav-contact-btn { background-color: transparent; border: 2px solid var(--accent); color: var(--accent); font-weight: 600; text-transform: uppercase; font-size: 0.85rem; }
+        
+        .nav-links { 
+            display: flex; 
+            gap: 10px; 
+            align-items: center; 
+            background-color: var(--bg-card); 
+            padding: 5px 8px; 
+            border-radius: var(--radius-lg); 
+            border: 1px solid var(--border-color); 
+        }
+        
+        .nav-links li a { font-weight: 500; font-size: 0.95rem; padding: 8px 18px; border-radius: var(--radius-lg); position: relative; }
+        .nav-links li a:not(.nav-contact-btn):hover, .nav-links li a.active { background-color: rgba(157, 78, 221, 0.15); color: var(--accent-hover); }
+        
+        .nav-contact-btn { background-color: transparent; border: 2px solid var(--accent); color: var(--accent); font-weight: 600; text-transform: uppercase; font-size: 0.85rem; letter-spacing: 1px; }
         .nav-contact-btn:hover { background-color: var(--accent); color: #ffffff; box-shadow: 0 0 15px var(--accent-glow); }
 
         /* --- BLOCS UE --- */
         .ue-container { display: flex; flex-direction: column; gap: 60px; padding-bottom: 40px; }
-        .ue-card { background-color: var(--bg-card); border-radius: var(--radius-md); border: 1px solid var(--border-color); overflow: hidden; position: relative; }
+        .ue-card { background-color: var(--bg-card); border-radius: var(--radius-md); border: 1px solid var(--border-color); overflow: hidden; position: relative; opacity: 0; animation: fadeIn 1s ease forwards 0.4s; box-shadow: 0 10px 30px rgba(0,0,0,0.3); transition: all 0.3s ease; }
+        .ue-card:hover { transform: translateY(-5px); border-color: rgba(255,255,255,0.1); }
         .ue-card::before { content: ""; position: absolute; top: 0; left: 0; width: 4px; height: 100%; background: linear-gradient(to bottom, var(--ue-color), transparent); }
 
         .ue-header { padding: 40px 40px 10px 40px; position: relative;}
@@ -79,7 +97,7 @@
         .ue-list li::before { content: '>'; position: absolute; left: 0; color: var(--ue-color); font-family: var(--font-mono); font-weight: bold; }
         .ue-list li span.code { color: var(--ue-color); font-weight: bold; margin-right: 5px; }
 
-        /* --- ANALYSE REFLEXIVE SCINDÉE --- */
+        /* --- ANALYSE REFLEXIVE --- */
         .ue-reflexive { padding: 30px 40px; }
         .ue-reflexive h4 { color: #ffffff; margin-bottom: 20px; font-size: 1.4rem; text-align: center; }
         .reflexive-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
@@ -95,20 +113,20 @@
         .ue-3 { --ue-color: #00f2fe; } 
 
         /* --- BILAN STYLE (ROUGE) --- */
-        .bilan-section { margin: 60px auto 40px auto; max-width: 1200px; padding: 0 20px; }
+        .bilan-section { margin: 60px auto 40px auto; max-width: 1200px; padding: 0 20px; opacity: 0; animation: fadeIn 1s ease forwards 0.6s; }
         .bilan-card { background-color: var(--bg-card); border: 1px solid rgba(231, 76, 60, 0.3); border-radius: var(--radius-md); padding: 40px; position: relative; overflow: hidden; box-shadow: 0 10px 40px rgba(231, 76, 60, 0.1); }
         .bilan-card::before { content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 4px; background: linear-gradient(90deg, var(--danger), #ff7675); }
         .bilan-card h3 { font-size: 2rem; color: var(--danger); margin-bottom: 20px; text-shadow: 0 0 10px rgba(231, 76, 60, 0.2); }
         .bilan-card p { font-size: 1.1rem; color: var(--text-main); line-height: 1.8; }
         .bilan-card strong { color: #ff7675; }
 
-        .action-container { text-align: center; margin-top: 20px; margin-bottom: 80px; }
+        .action-container { text-align: center; margin-top: 20px; margin-bottom: 80px; opacity: 0; animation: fadeIn 1s ease forwards 0.8s; }
         .btn-large { display: inline-flex; justify-content: center; align-items: center; padding: 18px 40px; background-color: rgba(157, 78, 221, 0.1); border: 2px solid var(--accent); color: #ffffff; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; cursor: pointer; border-radius: var(--radius-lg); transition: all 0.4s ease; font-size: 1.1rem; box-shadow: 0 0 15px var(--accent-glow); }
         .btn-large:hover { background-color: var(--accent); transform: translateY(-3px); box-shadow: 0 10px 30px var(--accent-glow); }
 
         footer { text-align: center; padding: 40px 0; color: var(--text-muted); border-top: 1px solid var(--border-color); margin-top: auto; }
 
-        @media (max-width: 900px) { .ue-body, .reflexive-grid { grid-template-columns: 1fr; } .ue-title { padding-right: 0; } }
+        @media (max-width: 900px) { .ue-body, .reflexive-grid { grid-template-columns: 1fr; } .ue-title { padding-right: 0; } .nav-links { display: none; } }
     </style>
 </head>
 <body>
