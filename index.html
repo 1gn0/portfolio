@@ -160,6 +160,7 @@
             background-color: var(--accent);
             color: #ffffff;
             box-shadow: 0 0 15px var(--accent-glow);
+            border-color: var(--accent-hover);
         }
 
         /* --- SECTION HERO --- */
@@ -262,33 +263,38 @@
         .content:hover { border-color: var(--accent-cyan); }
         .content .date { display: inline-block; padding: 6px 18px; background: rgba(79, 172, 254, 0.1); color: var(--accent-cyan); border-radius: 20px; font-family: var(--font-mono); font-size: 0.9rem; margin-bottom: 15px; }
 
-        /* --- SECTION EXPERIENCES --- */
+        /* --- SECTION EXPERIENCES MODIFIÉE --- */
         .experiences-intro { color: var(--text-main); text-align: center; max-width: 800px; margin: 0 auto 50px auto; font-size: 1.15rem; }
         .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; }
         
-        /* Style Stage Featured */
-        .card-featured { grid-column: 1 / -1; border: 1px solid var(--accent) !important; background: linear-gradient(145deg, var(--bg-card), rgba(157, 78, 221, 0.05)) !important; }
+        /* Style spécial pour la carte stage en haut */
+        .card-stage-featured { grid-column: 1 / -1; border-color: rgba(157, 78, 221, 0.5) !important; background: linear-gradient(145deg, var(--bg-card), rgba(157, 78, 221, 0.05)) !important; }
+        .stage-layout { display: flex; align-items: center; gap: 40px; }
         
+        /* Logo OCI Propre */
+        .logo-oci-badge {
+            background: white;
+            padding: 10px;
+            border-radius: 12px;
+            width: 110px;
+            height: 110px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            box-shadow: 0 0 15px rgba(255,255,255,0.1);
+        }
+        .logo-oci-badge img { max-width: 100%; height: auto; }
+
         .card { background-color: var(--bg-card); padding: 40px; border-radius: var(--radius-md); border: 1px solid var(--border-color); transition: all 0.4s ease; display: flex; flex-direction: column; }
         .card:hover { transform: translateY(-8px); box-shadow: 0 15px 40px rgba(0,0,0,0.4); }
-
-        .featured-header-layout { display: flex; gap: 35px; align-items: center; flex-wrap: wrap; }
-        
-        .oci-logo-wrapper {
-            background: white; width: 100px; height: 100px; padding: 12px; border-radius: 15px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; box-shadow: 0 0 20px rgba(255,255,255,0.1);
-        }
-        .oci-logo-wrapper img { max-width: 100%; height: auto; display: block; }
-
         .card h3 { color: #ffffff; font-size: 1.6rem; margin-bottom: 12px; }
         .company-date { color: var(--accent-cyan); font-family: var(--font-mono); font-size: 0.9rem; margin-bottom: 15px; }
         .badge { display: inline-block; background: rgba(157, 78, 221, 0.2); color: var(--accent-hover); padding: 4px 12px; border-radius: 20px; font-size: 0.8rem; border: 1px solid var(--accent); margin-left: 10px; }
-        .btn-card { min-width: 180px; padding: 10px 20px; font-size: 0.8rem; margin-top: 15px; align-self: flex-start; }
 
         /* --- COMPETENCES --- */
         .card.sys { --card-accent: #4facfe; } .card.net { --card-accent: #a18cd1; } .card.sec { --card-accent: #f5576c; } .card.dev { --card-accent: #00f2fe; } .card.tel { --card-accent: #f093fb; } .card.srv { --card-accent: #f6d365; }
-        .card h3 { transition: color 0.3s ease; }
         .card-summary { color: var(--text-main); font-size: 0.95rem; margin-bottom: 25px; padding-bottom: 20px; border-bottom: 1px solid var(--border-color); line-height: 1.5; }
-        
         .skill-list { margin-top: auto; }
         .skill-list li { position: relative; padding-left: 25px; margin-bottom: 12px; color: var(--text-muted); font-size: 0.95rem; transition: color 0.3s ease; }
         .skill-list li::before { content: '>'; position: absolute; left: 0; color: var(--accent-cyan); font-weight: bold; }
@@ -316,11 +322,7 @@
             .timeline::before { left: 30px; }
             .timeline-item { width: 100%; padding-left: 70px; text-align: left !important; }
             .timeline-item::after { left: 20px !important; right: auto !important; }
-        }
-        @media (max-width: 768px) {
-            .nav-links { display: none; }
-            .hero-text h1 { font-size: 3rem; }
-            .featured-header-layout { flex-direction: column; align-items: flex-start; }
+            .stage-layout { flex-direction: column; text-align: center; }
         }
     </style>
 </head>
@@ -429,16 +431,16 @@
             <p class="experiences-intro">En dehors de mon parcours scolaire, j'ai pu acquérir une expérience professionnelle au cours de stages et d'emplois saisonniers.</p>
             <div class="grid">
                 
-                <div class="card card-featured">
-                    <div class="featured-header-layout">
-                        <div class="oci-logo-wrapper">
+                <div class="card card-stage-featured">
+                    <div class="stage-layout">
+                        <div class="logo-oci-badge">
                             <img src="files/logo/oci.jpg" alt="Logo OCI Informatique">
                         </div>
-                        <div style="flex: 1;">
+                        <div style="flex:1;">
                             <h3>Stage d'application <span class="badge">Prévu en 2026</span></h3>
                             <p class="company-date"><strong>OCI Mulhouse</strong> | 8 Semaines</p>
                             <p>Immersion prévue au sein d'un prestataire informatique spécialisé en infrastructure et digital. L'objectif sera de consolider mes acquis en environnement professionnel.</p>
-                            <a href="stage-oci.html" class="btn btn-secondary btn-card">Détails du projet de stage</a>
+                            <a href="stage-oci.html" class="btn btn-secondary" style="min-width: auto; padding: 10px 25px; margin-top: 15px; font-size: 0.9rem;">Détails du projet de stage</a>
                         </div>
                     </div>
                 </div>
@@ -536,7 +538,7 @@
                     <div class="cv-icon-large">FR</div>
                     <h3>Version Française</h3>
                     <div class="cv-actions">
-                        <button class="btn btn-secondary" style="width: 100%;" onclick="openCvModal('files/CV-HENRYDELANGLE-Camille-FR.pdf')">Visualiser</button>
+                        <button class="btn btn-secondary" style="width:100%" onclick="openCvModal('files/CV-HENRYDELANGLE-Camille-FR.pdf')">Visualiser</button>
                         <a href="files/CV-HENRYDELANGLE-Camille-FR.pdf" class="btn" style="width: 100%; margin-top: 10px;" download>Télécharger</a>
                     </div>
                 </div>
@@ -544,7 +546,7 @@
                     <div class="cv-icon-large">EN</div>
                     <h3>English Version</h3>
                     <div class="cv-actions">
-                        <button class="btn btn-secondary" style="width: 100%;" onclick="openCvModal('files/CV-HENRYDELANGLE-Camille-EN.pdf')">View</button>
+                        <button class="btn btn-secondary" style="width:100%" onclick="openCvModal('files/CV-HENRYDELANGLE-Camille-EN.pdf')">View</button>
                         <a href="files/CV-HENRYDELANGLE-Camille-EN.pdf" class="btn" style="width: 100%; margin-top: 10px;" download>Download</a>
                     </div>
                 </div>
