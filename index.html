@@ -15,17 +15,14 @@
             --bg-card: #161420;  
             --text-main: #e0e6ed;
             --text-muted: #a1aabf;
-            
             --accent: #9d4edd;          
             --accent-hover: #c77dff;    
             --accent-cyan: #4facfe;
             --accent-glow: rgba(157, 78, 221, 0.25); 
-            
             --border-color: #2d2a3a;
             --font-main: 'Inter', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
             --font-title: 'Saira Stencil One', sans-serif; 
             --font-mono: 'Courier New', Courier, monospace;
-            
             --radius-md: 16px; 
             --radius-lg: 30px; 
         }
@@ -122,13 +119,16 @@
         }
 
         .nav-links {
-            display: flex; 
-            gap: 10px; 
-            align-items: center; 
-            background-color: var(--bg-card); 
-            padding: 5px 8px; 
-            border-radius: var(--radius-lg); 
-            border: 1px solid var(--border-color); 
+            display: inline-flex;
+            width: max-content;
+            gap: 5px;
+            align-items: center;
+            justify-content: center;
+            background-color: var(--bg-card);
+            padding: 6px 8px; 
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--border-color);
+            margin-left: auto; 
         }
 
         .nav-links li a {
@@ -136,10 +136,9 @@
             font-size: 0.95rem;
             padding: 8px 18px;
             border-radius: var(--radius-lg);
-            position: relative;
         }
 
-        .nav-links li a:not(.nav-contact-btn):hover, .nav-links li a.active {
+        .nav-links li a:not(.nav-contact-btn):hover {
             background-color: rgba(157, 78, 221, 0.15);
             color: var(--accent-hover);
         }
@@ -160,7 +159,69 @@
             box-shadow: 0 0 15px var(--accent-glow);
         }
 
-        /* --- BOUTONS --- */
+        /* --- SECTION HERO --- */
+        #hero {
+            padding-top: 130px; 
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        #hero::before {
+            content: '';
+            position: absolute;
+            top: 45%; left: 50%;
+            width: 80vw; height: 80vw;
+            transform: translate(-50%, -50%);
+            background: radial-gradient(circle, rgba(157, 78, 221, 0.12) 0%, transparent 70%);
+            z-index: 1;
+            pointer-events: none;
+            animation: pulseGlow 6s infinite alternate ease-in-out;
+        }
+
+        @keyframes pulseGlow {
+            0% { transform: translate(-50%, -50%) scale(0.9); opacity: 0.6; }
+            100% { transform: translate(-50%, -50%) scale(1.1); opacity: 1; }
+        }
+
+        .hero-text h1 { font-size: 4.8rem; line-height: 1.1; margin-bottom: 35px; text-align: center; z-index: 2; position: relative; }
+        .name-first { display: block; }
+        .name-last { display: block; white-space: nowrap; }
+        .name {
+            background: linear-gradient(135deg, #ffffff 0%, var(--accent-hover) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        @keyframes ribbonGlow {
+            0% { box-shadow: 0 0 30px rgba(79, 172, 254, 0.1); }
+            100% { box-shadow: 0 0 60px rgba(79, 172, 254, 0.25); }
+        }
+
+        .hero-formation-badge {
+            background: linear-gradient(90deg, transparent 0%, rgba(157, 78, 221, 0.15) 20%, rgba(79, 172, 254, 0.2) 50%, rgba(157, 78, 221, 0.15) 80%, transparent 100%);
+            padding: 30px 0; 
+            margin-bottom: 45px; 
+            width: 100%; 
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            z-index: 2;
+            opacity: 0;
+            animation: fadeIn 1s ease forwards 0.3s, ribbonGlow 3s infinite alternate ease-in-out;
+        }
+        
+        .formation-title { color: var(--text-muted); font-size: 1.2rem; font-family: var(--font-mono); text-transform: uppercase; letter-spacing: 4px; margin-bottom: 8px; }
+        .formation-highlight { font-size: 2.5rem; font-family: var(--font-title); color: var(--accent-cyan); text-transform: uppercase; text-shadow: 0 0 20px rgba(79, 172, 254, 0.4); }
+        .formation-spe { color: #ff2a2a; font-size: 1.5rem; font-family: var(--font-title); letter-spacing: 2px; text-shadow: 0 0 15px rgba(255, 42, 42, 0.6); }
+
+        .hero-info { display: flex; gap: 30px; justify-content: center; margin-bottom: 30px; background-color: rgba(22, 20, 32, 0.7); backdrop-filter: blur(10px); padding: 15px 40px; border-radius: var(--radius-lg); border: 1px solid var(--border-color); z-index: 2; }
+        .hero-desc { color: var(--text-main); margin-bottom: 40px; max-width: 1000px; font-size: 1.15rem; text-align: center; z-index: 2; }
+
         .btn {
             display: inline-flex;
             justify-content: center;
@@ -177,133 +238,78 @@
             border-radius: var(--radius-lg);
             transition: all 0.4s ease;
         }
-
-        .btn:hover {
-            background-color: var(--accent);
-            color: #ffffff;
-            box-shadow: 0 5px 25px var(--accent-glow);
-            transform: translateY(-3px);
-        }
-
+        .btn:hover { background-color: var(--accent); color: #ffffff; transform: translateY(-3px); box-shadow: 0 5px 25px var(--accent-glow); }
         .btn-secondary { background-color: rgba(157, 78, 221, 0.1); }
 
-        /* --- SECTION HERO --- */
-        #hero {
-            padding-top: 130px; 
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero-text h1 { font-size: 4.8rem; line-height: 1.1; margin-bottom: 35px; text-align: center; }
-
-        .name {
-            background: linear-gradient(135deg, #ffffff 0%, var(--accent-hover) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-        
-        .hero-formation-badge {
-            background: linear-gradient(90deg, transparent 0%, rgba(157, 78, 221, 0.15) 20%, rgba(79, 172, 254, 0.2) 50%, rgba(157, 78, 221, 0.15) 80%, transparent 100%);
-            padding: 30px 0; 
-            margin-bottom: 45px; 
-            width: 100%; 
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            opacity: 0;
-            animation: fadeIn 1s ease forwards 0.3s;
-        }
-        
-        .formation-highlight { font-size: 2.5rem; font-family: var(--font-title); color: var(--accent-cyan); text-transform: uppercase; }
-
-        .hero-info { display: flex; gap: 30px; justify-content: center; margin-bottom: 30px; background-color: rgba(22, 20, 32, 0.7); padding: 15px 40px; border-radius: var(--radius-lg); border: 1px solid var(--border-color); }
-
-        .hero-desc { color: var(--text-main); margin-bottom: 40px; max-width: 1000px; font-size: 1.15rem; text-align: center; }
+        .scroll-indicator { margin-top: 50px; animation: bounce 2s infinite; z-index: 2; }
+        .scroll-indicator i { font-size: 2.5rem; color: var(--accent-cyan); text-shadow: 0 0 10px var(--accent-cyan); }
+        @keyframes bounce { 0%, 20%, 50%, 80%, 100% {transform: translateY(0);} 40% {transform: translateY(-15px);} }
 
         /* --- SECTION PARCOURS --- */
         #parcours { background-color: var(--bg-card); border-radius: 40px; margin: 20px auto; border: 1px solid var(--border-color); max-width: 1160px; }
-
         .timeline { position: relative; max-width: 1000px; margin: 0 auto; padding: 40px 0; }
-        .timeline::before { content: ''; position: absolute; width: 2px; background: var(--accent); top: 0; bottom: 0; left: 50%; transform: translateX(-50%); }
+        .timeline::before { content: ''; position: absolute; width: 2px; background: linear-gradient(to bottom, transparent, var(--accent), transparent); top: 0; bottom: 0; left: 50%; transform: translateX(-50%); }
 
-        .timeline-item { padding: 0 50px; position: relative; width: 50%; margin-bottom: 50px; }
+        .timeline-item { padding: 0 50px; position: relative; width: 50%; margin-bottom: 50px; opacity: 0; animation: fadeIn 1s ease forwards 0.2s; }
         .timeline-item.left { left: 0; text-align: right; }
         .timeline-item.right { left: 50%; text-align: left; }
+        
+        .timeline-item::after {
+            content: ''; position: absolute; width: 20px; height: 20px; background-color: var(--bg-card); border: 3px solid var(--accent-cyan); top: 45px; transform: translateY(-50%) rotate(45deg); z-index: 3;
+        }
+        .timeline-item.left::after { right: -10px; }
+        .timeline-item.right::after { left: -10px; }
 
-        .content { padding: 35px 40px; background: rgba(22, 20, 32, 0.6); border-radius: var(--radius-md); border: 1px solid var(--border-color); }
-        .content .date { color: var(--accent-cyan); font-family: var(--font-mono); font-weight: bold; margin-bottom: 10px; display: block; }
+        .content { padding: 35px 40px; background: rgba(22, 20, 32, 0.6); border-radius: var(--radius-md); border: 1px solid rgba(255,255,255,0.05); text-align: left; transition: 0.3s; }
+        .content:hover { border-color: var(--accent-cyan); }
+        .content .date { display: inline-block; padding: 6px 18px; background: rgba(79, 172, 254, 0.1); color: var(--accent-cyan); border-radius: 20px; font-family: var(--font-mono); font-size: 0.9rem; margin-bottom: 15px; }
 
         /* --- EXPERIENCES SECTION MODIFIÉE --- */
         .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; }
-        
         .card-featured { grid-column: 1 / -1; border: 1px solid var(--accent) !important; background: linear-gradient(145deg, var(--bg-card), rgba(157, 78, 221, 0.05)) !important; }
-
         .card { background-color: var(--bg-card); padding: 40px; border-radius: var(--radius-md); border: 1px solid var(--border-color); transition: all 0.4s ease; display: flex; flex-direction: column; }
         .card:hover { transform: translateY(-8px); box-shadow: 0 15px 40px rgba(0,0,0,0.4); }
 
-        /* Logo OCI Propre */
+        .featured-header-layout { display: flex; gap: 35px; align-items: center; flex-wrap: wrap; }
         .oci-logo-wrapper {
-            background: white;
-            width: 100px;
-            height: 100px;
-            padding: 10px;
-            border-radius: 15px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 0 20px rgba(255,255,255,0.1);
-            flex-shrink: 0;
-            margin-bottom: 20px;
+            background: white; width: 100px; height: 100px; padding: 12px; border-radius: 15px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; box-shadow: 0 0 20px rgba(255,255,255,0.1);
         }
-        .oci-logo-wrapper img {
-            max-width: 100%;
-            height: auto;
-            display: block;
-        }
+        .oci-logo-wrapper img { max-width: 100%; height: auto; }
 
-        .featured-header-layout {
-            display: flex;
-            gap: 35px;
-            align-items: center;
-            flex-wrap: wrap;
-        }
-
-        .card h3 { color: #ffffff; font-size: 1.6rem; margin-bottom: 10px; }
-        .company-date { color: var(--accent-cyan); font-family: var(--font-mono); margin-bottom: 15px; }
-        .badge { background: rgba(157, 78, 221, 0.2); color: var(--accent-hover); padding: 4px 12px; border-radius: 20px; font-size: 0.8rem; border: 1px solid var(--accent); margin-left: 10px; }
-
-        .btn-card { min-width: 180px; padding: 10px 20px; font-size: 0.8rem; margin-top: 20px; }
+        .card h3 { color: #ffffff; font-size: 1.6rem; margin-bottom: 12px; }
+        .company-date { color: var(--accent-cyan); font-family: var(--font-mono); font-size: 0.9rem; margin-bottom: 15px; }
+        .badge { display: inline-block; background: rgba(157, 78, 221, 0.2); color: var(--accent-hover); padding: 4px 12px; border-radius: 20px; font-size: 0.8rem; border: 1px solid var(--accent); margin-left: 10px; }
+        .btn-card { min-width: 180px; padding: 10px 20px; font-size: 0.8rem; margin-top: 15px; align-self: flex-start; }
 
         /* --- COMPETENCES --- */
-        .skill-list li { position: relative; padding-left: 25px; margin-bottom: 12px; color: var(--text-muted); }
+        .skill-list li { position: relative; padding-left: 25px; margin-bottom: 12px; color: var(--text-muted); font-size: 0.95rem; }
         .skill-list li::before { content: '>'; position: absolute; left: 0; color: var(--accent-cyan); font-weight: bold; }
-
-        .soft-skill-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin-top: 40px; }
-        .soft-skill-item { background: rgba(157, 78, 221, 0.05); border: 1px solid var(--border-color); padding: 20px; text-align: center; border-radius: var(--radius-lg); color: var(--accent-hover); }
+        .soft-skill-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin-top: 40px; }
+        .soft-skill-item { background: rgba(157, 78, 221, 0.05); border: 1px solid var(--border-color); padding: 22px; text-align: center; border-radius: var(--radius-lg); color: var(--accent-hover); transition: 0.3s; }
+        .soft-skill-item:hover { border-color: var(--accent-cyan); color: white; }
 
         /* --- CV --- */
+        #cv { background-color: var(--bg-card); border-radius: 40px; margin: 20px auto; border: 1px solid var(--border-color); max-width: 1160px; }
         .cv-container { display: flex; gap: 40px; justify-content: center; flex-wrap: wrap; margin-top: 50px; }
-        .cv-box { flex: 1; max-width: 400px; background: rgba(255,255,255,0.02); padding: 50px; border-radius: var(--radius-md); text-align: center; border: 1px solid var(--border-color); }
+        .cv-box { flex: 1; max-width: 450px; min-width: 300px; background: rgba(255,255,255,0.02); padding: 50px; border-radius: var(--radius-md); text-align: center; border: 1px solid var(--border-color); transition: 0.3s; }
+        .cv-box:hover { border-color: var(--accent); transform: translateY(-5px); }
         .cv-icon-large { font-size: 3rem; color: var(--accent); font-family: var(--font-title); margin-bottom: 20px; }
 
-        .cv-modal { display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); backdrop-filter: blur(8px); align-items: center; justify-content: center; }
-        .cv-modal-content { position: relative; width: 90%; max-width: 1000px; height: 80vh; background: var(--bg-card); border-radius: var(--radius-md); padding: 40px; }
+        .cv-modal { display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); backdrop-filter: blur(8px); align-items: center; justify-content: center; }
+        .cv-modal-content { position: relative; width: 90%; max-width: 1000px; height: 85vh; background: var(--bg-card); border-radius: var(--radius-md); padding: 50px 20px 20px 20px; border: 1px solid var(--accent); }
         .close-btn { position: absolute; top: 10px; right: 20px; font-size: 2rem; color: white; cursor: pointer; }
-        iframe { width: 100%; height: 100%; border: none; }
+        iframe { width: 100%; height: 100%; border: none; background: white; border-radius: 8px; }
 
-        footer { text-align: center; padding: 60px 0; border-top: 1px solid var(--border-color); margin-top: 50px; color: var(--text-muted); }
+        footer { text-align: center; padding: 40px 0; border-top: 1px solid var(--border-color); margin-top: 50px; color: var(--text-muted); }
 
+        @media (max-width: 992px) {
+            .timeline::before { left: 30px; }
+            .timeline-item { width: 100%; padding-left: 70px; text-align: left !important; }
+            .timeline-item::after { left: 20px !important; }
+        }
         @media (max-width: 768px) {
             .nav-links { display: none; }
-            .hero-text h1 { font-size: 2.5rem; }
-            .timeline::before { left: 20px; }
-            .timeline-item { width: 100%; padding-left: 50px; text-align: left !important; }
-            .timeline-item::after { left: 10px !important; }
+            .hero-text h1 { font-size: 3rem; }
             .featured-header-layout { flex-direction: column; align-items: flex-start; }
         }
     </style>
@@ -330,29 +336,35 @@
         <div class="container hero-container">
             <div class="hero-text">
                 <h1>
-                    <span class="name">Camille HENRY--DELANGLE</span>
+                    <span class="name name-first">Camille</span>
+                    <span class="name name-last">HENRY--DELANGLE</span>
                 </h1>
             </div>
         </div>
         
         <div class="hero-formation-badge">
+            <p class="formation-title">2ème Année de BUT</p>
             <p class="formation-highlight">Réseaux & Télécommunications</p>
             <p class="formation-spe">Parcours Cybersécurité</p>
         </div>
         
         <div class="container">
             <div class="hero-info">
-                <p>📍 Colmar (IUT)</p>
-                <p>🎯 Pentester</p>
+                <p>📍 Localisation : <strong>FR, Colmar (IUT)</strong></p>
+                <p>🎯 Objectif : <strong>Pentester</strong></p>
             </div>
             
             <p class="hero-desc">
-                Actuellement en BUT Réseaux et Télécommunications, j'affine mon expertise en administration système, en réseaux et en cybersécurité. Curieux et déterminé, mon objectif est de devenir pentester.
+                Bienvenue sur mon portfolio. Vous y découvrirez en détail mon parcours, mes projets ainsi que les compétences techniques que je développe au quotidien. Actuellement en BUT Réseaux et Télécommunications, j'affine mon expertise en administration système, en réseaux et en cybersécurité.
             </p>
 
             <div style="display: flex; justify-content: center; gap: 20px; flex-wrap: wrap;">
                 <a href="#cv" class="btn">Consulter mon CV</a>
                 <a href="contact.html" class="btn btn-secondary">Me contacter</a>
+            </div>
+
+            <div class="scroll-indicator">
+                <a href="#parcours"><i class="fa-solid fa-chevron-down"></i></a>
             </div>
         </div>
     </section>
@@ -361,6 +373,13 @@
         <div class="container">
             <h2 class="section-title">Mon Parcours</h2>
             <div class="timeline">
+                <div class="timeline-item left">
+                    <div class="content">
+                        <span class="date">À venir</span>
+                        <h3>Poursuite d'études</h3>
+                        <p>BUT3 R&T, puis Master ou Ingénieur en Cybersécurité.</p>
+                    </div>
+                </div>
                 <div class="timeline-item right">
                     <div class="content">
                         <span class="date">2025 - Présent</span>
@@ -371,15 +390,22 @@
                 <div class="timeline-item left">
                     <div class="content">
                         <span class="date">Début 2025</span>
-                        <h3>Validation BUT1</h3>
-                        <p>Réorientation réussie au 2ème semestre.</p>
+                        <h3>Réorientation & Validation BUT1</h3>
+                        <p>Intégration du BUT R&T Colmar au 2ème semestre.</p>
                     </div>
                 </div>
                 <div class="timeline-item right">
                     <div class="content">
-                        <span class="date">2024</span>
+                        <span class="date">Fin 2024</span>
                         <h3>INSA Rennes</h3>
-                        <p>Prépa intégrée STPI.</p>
+                        <p>Classe préparatoire intégrée STPI.</p>
+                    </div>
+                </div>
+                <div class="timeline-item left">
+                    <div class="content">
+                        <span class="date">2024</span>
+                        <h3>Baccalauréat</h3>
+                        <p>Mention Très Bien. Spécialités NSI et Mathématiques.</p>
                     </div>
                 </div>
             </div>
@@ -394,13 +420,13 @@
                 <div class="card card-featured">
                     <div class="featured-header-layout">
                         <div class="oci-logo-wrapper">
-                            <img src="https://lh3.googleusercontent.com/proxy/mXmR7D_6zC2P_5wV796_Esh7p7X5kO0p42yvR0y1W-G_pE6YfE4N-M_o-XvV7-X-X_pE-y-y-y-y-y-y-y-y-y" alt="Logo OCI Informatique">
+                            <img src="https://lh3.googleusercontent.com/proxy/mXmR7D_6zC2P_5wV796_Esh7p7X5kO0p42yvR0y1W-G_pE6YfE4N-M_o-XvV7-X-X_pE-y-y-y-y-y-y-y-y-y" alt="Logo OCI">
                         </div>
                         <div style="flex: 1;">
                             <h3>Stage d'application <span class="badge">Prévu en 2026</span></h3>
                             <p class="company-date"><strong>OCI Mulhouse</strong> | 8 Semaines</p>
                             <p>Immersion prévue au sein d'un prestataire informatique spécialisé en infrastructure et digital. L'objectif sera de consolider mes acquis en environnement professionnel.</p>
-                            <a href="stage-oci.html" class="btn btn-secondary btn-card">Détails du projet de stage</a>
+                            <a href="stage-oci.html" class="btn btn-secondary btn-card">Détails du stage</a>
                         </div>
                     </div>
                 </div>
@@ -408,18 +434,55 @@
                 <div class="card">
                     <h3>Auxiliaire de banque</h3>
                     <p class="company-date">CIC Héricourt | 2025</p>
-                    <p>Accueil et gestion administrative.</p>
+                    <p>Accueil clientèle et gestion administrative des opérations courantes.</p>
                 </div>
                 <div class="card">
                     <h3>Manutentionnaire</h3>
                     <p class="company-date">Intermarché | 2024</p>
-                    <p>Gestion logistique (Job d'été).</p>
+                    <p>Gestion logistique des stocks et mise en rayon (Job d'été).</p>
                 </div>
                 <div class="card">
                     <h3>Stage d'observation</h3>
                     <p class="company-date">Oreka Ingénierie</p>
-                    <p>Découverte de la réalité virtuelle en bureau d'étude.</p>
+                    <p>Découverte de la réalité virtuelle et de l'ingénierie numérique.</p>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="competences">
+        <div class="container">
+            <h2 class="section-title">Compétences Techniques</h2>
+            <div style="text-align: center; margin-bottom: 60px;"><a href="competences.html" class="btn btn-secondary">Voir le détail complet</a></div>
+            <div class="grid">
+                <div class="card srv">
+                    <h3>Administration Système</h3>
+                    <ul class="skill-list">
+                        <li><strong>Windows Server :</strong> AD, GPO, DNS/DHCP.</li>
+                        <li><strong>Linux :</strong> Administration Debian, Kali Linux.</li>
+                    </ul>
+                </div>
+                <div class="card net">
+                    <h3>Réseau & Routage</h3>
+                    <ul class="skill-list">
+                        <li><strong>Simulation :</strong> Eve-NG, Packet Tracer, GNS3.</li>
+                        <li><strong>Équipements :</strong> Switchs/Routeurs (VLAN, OSPF).</li>
+                    </ul>
+                </div>
+                <div class="card sec">
+                    <h3>Cybersécurité</h3>
+                    <ul class="skill-list">
+                        <li><strong>Offensif :</strong> Introduction au pentest.</li>
+                        <li><strong>Sécurité :</strong> PKI, Tunnels VPN.</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <h3 style="margin-top: 80px; color: var(--accent-hover); font-family: var(--font-title); text-align: center; font-size: 1.8rem;">Compétences Humaines</h3>
+            <div class="soft-skill-grid">
+                <div class="soft-skill-item">Anglais (Niveau B2)</div>
+                <div class="soft-skill-item">Travail en équipe</div>
+                <div class="soft-skill-item">Curiosité technique</div>
             </div>
         </div>
     </section>
@@ -431,12 +494,16 @@
                 <div class="cv-box">
                     <div class="cv-icon-large">FR</div>
                     <h3>Français</h3>
-                    <button class="btn" onclick="openCvModal('files/CV-HENRYDELANGLE-Camille-FR.pdf')">Voir le CV</button>
+                    <div class="cv-actions">
+                        <button class="btn btn-secondary" style="width: 100%;" onclick="openCvModal('files/CV-HENRYDELANGLE-Camille-FR.pdf')">Visualiser</button>
+                    </div>
                 </div>
                 <div class="cv-box">
                     <div class="cv-icon-large">EN</div>
                     <h3>English</h3>
-                    <button class="btn" onclick="openCvModal('files/CV-HENRYDELANGLE-Camille-EN.pdf')">View Resume</button>
+                    <div class="cv-actions">
+                        <button class="btn btn-secondary" style="width: 100%;" onclick="openCvModal('files/CV-HENRYDELANGLE-Camille-EN.pdf')">View</button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -451,18 +518,27 @@
 
     <footer>
         <div class="container">
-            <p>&copy; 2026 Camille HENRY--DELANGLE</p>
-            <p style="opacity: 0.5; margin-top: 10px; font-family: var(--font-mono);">Root@Portfolio:~# exit</p>
+            <p>&copy; 2026 <strong>Camille HENRY--DELANGLE</strong>.</p>
+            <p style="opacity: 0.5; margin-top: 20px; font-family: var(--font-mono);">Root@Portfolio:~# exit</p>
         </div>
     </footer>
 
     <script>
-        function openCvModal(src) {
-            document.getElementById('cv-iframe').src = src;
-            document.getElementById('cv-modal').style.display = 'flex';
+        function openCvModal(pdfSrc) {
+            const modal = document.getElementById('cv-modal');
+            const iframe = document.getElementById('cv-iframe');
+            iframe.src = pdfSrc;
+            modal.style.display = 'flex';
+            document.body.style.overflow = 'hidden'; 
         }
         function closeCvModal() {
-            document.getElementById('cv-modal').style.display = 'none';
+            const modal = document.getElementById('cv-modal');
+            modal.style.display = 'none';
+            document.body.style.overflow = 'auto'; 
+        }
+        window.onclick = function(event) {
+            const modal = document.getElementById('cv-modal');
+            if (event.target == modal) { closeCvModal(); }
         }
     </script>
 </body>
