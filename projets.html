@@ -7,6 +7,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Saira+Stencil+One&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
         /* --- VARIABLES ET RESET --- */
         :root {
@@ -23,6 +24,7 @@
             --border-color: #2d2a3a;
             --font-main: 'Inter', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
             --font-title: 'Saira Stencil One', sans-serif; 
+            --font-mono: 'Courier New', Courier, monospace;
             
             --radius-md: 16px; 
             --radius-lg: 30px; 
@@ -49,16 +51,28 @@
 
         @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
 
-        /* --- HEADER & NAV --- */
+        /* --- HEADER & NAV (SYNCHRONISÉ) --- */
         header { background-color: rgba(13, 11, 20, 0.95); padding: 10px 0; position: fixed; width: 100%; top: 0; z-index: 1000; backdrop-filter: blur(10px); box-shadow: 0 2px 20px rgba(0,0,0,0.4); border-bottom: 1px solid var(--border-color); }
         nav { display: flex; justify-content: space-between; align-items: center; }
         .logo { font-size: 1.8rem; color: var(--accent); font-family: var(--font-title); text-shadow: 0 0 10px var(--accent); }
-        .nav-links { display: inline-flex; width: max-content; gap: 5px; align-items: center; justify-content: center; background-color: var(--bg-card); padding: 6px 8px; border-radius: var(--radius-lg); border: 1px solid var(--border-color); margin-left: auto; }
-        .nav-links li a { font-weight: 500; font-size: 0.95rem; padding: 8px 18px; border-radius: var(--radius-lg); }
-        .nav-links li a:not(.nav-contact-btn):hover { background-color: rgba(157, 78, 221, 0.15); color: var(--accent-hover); }
-        .nav-links li a.active { background-color: var(--accent); color: #fff; }
-        .nav-contact-btn { background-color: transparent; border: 2px solid var(--accent); color: var(--accent); font-weight: 600; text-transform: uppercase; font-size: 0.85rem; transition: all 0.3s ease; }
-        .nav-contact-btn:hover { background-color: var(--accent); color: #ffffff; box-shadow: 0 0 15px var(--accent-glow); }
+        
+        .nav-links { 
+            display: flex; 
+            gap: 10px; 
+            align-items: center; 
+            background-color: var(--bg-card); 
+            padding: 5px 8px; 
+            border-radius: var(--radius-lg); 
+            border: 1px solid var(--border-color); 
+            margin-left: auto;
+        }
+        
+        .nav-links li { margin: 0 5px; }
+        .nav-links li a { font-weight: 500; font-size: 0.95rem; padding: 8px 18px; border-radius: var(--radius-lg); position: relative; }
+        .nav-links li a:not(.nav-contact-btn):hover, .nav-links li a.active { background-color: rgba(157, 78, 221, 0.15); color: var(--accent-hover); text-shadow: 0 0 5px var(--accent-hover); }
+        
+        .nav-contact-btn { background-color: transparent; border: 2px solid var(--accent); color: var(--accent); font-weight: 600; text-transform: uppercase; font-size: 0.85rem; letter-spacing: 1px; transition: all 0.3s ease; }
+        .nav-contact-btn:hover { background-color: var(--accent); color: #ffffff; box-shadow: 0 0 15px var(--accent-glow); border-color: var(--accent-hover); }
 
         /* --- PROJETS GRID --- */
         .projets-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin: 40px auto 100px auto; opacity: 0; animation: fadeIn 1s ease forwards 0.4s; }
@@ -74,9 +88,9 @@
 
         /* --- BOUTONS --- */
         .btn-view { display: inline-flex; justify-content: center; align-items: center; padding: 14px 35px; background-color: transparent; border: 2px solid var(--accent); color: #ffffff; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; cursor: pointer; border-radius: var(--radius-lg); transition: all 0.4s ease; font-size: 0.9rem; }
-        .projet-year-card:hover .btn-view { background-color: var(--accent); box-shadow: 0 0 20px var(--accent-glow); }
+        .projet-year-card:hover .btn-view { background-color: var(--accent); color: #ffffff; box-shadow: 0 0 20px var(--accent-glow); }
 
-        footer { text-align: center; padding: 60px 0; color: var(--text-muted); font-size: 0.95rem; border-top: 1px solid var(--border-color); width: 100%; margin-top: auto; }
+        footer { text-align: center; padding: 40px 0; color: var(--text-muted); font-size: 0.95rem; border-top: 1px solid var(--border-color); width: 100%; margin-top: auto; }
 
         @media (max-width: 900px) { .projets-grid { grid-template-columns: 1fr; } .section-title { font-size: 2.5rem; } }
         @media (max-width: 768px) { .nav-links { display: none; } .page-header { padding-top: 120px; } }
