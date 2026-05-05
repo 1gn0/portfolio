@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Projets BUT1 | Camille HENRY--DELANGLE</title>
+    <title>SAE S2 | Camille HENRY--DELANGLE</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Saira+Stencil+One&display=swap" rel="stylesheet">
@@ -34,18 +34,11 @@
         ul { list-style: none; }
         strong { color: var(--accent-hover); font-weight: 600; }
 
-        /* --- STYLES GENERAUX --- */
-        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; width: 100%; }
-        
-        .section-title { font-size: 3.2rem; color: var(--accent); margin-bottom: 30px; display: flex; align-items: center; justify-content: center; text-align: center; opacity: 0; animation: fadeIn 1s ease forwards; position: relative; padding-bottom: 25px; }
-        .section-title::before { content: ">"; margin-right: 15px; color: var(--accent-cyan); font-weight: bold; text-shadow: 0 0 10px var(--accent-cyan); font-family: var(--font-main); }
-        .section-title::after { content: ""; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 150px; height: 3px; background: linear-gradient(90deg, transparent, var(--accent-hover), var(--accent-cyan), transparent); border-radius: 2px; }
-
         @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
 
         /* --- HEADER & NAV --- */
         header { background-color: rgba(13, 11, 20, 0.95); padding: 10px 0; position: fixed; width: 100%; top: 0; z-index: 1000; backdrop-filter: blur(10px); box-shadow: 0 2px 20px rgba(0,0,0,0.4); border-bottom: 1px solid var(--border-color); }
-        nav { display: flex; justify-content: space-between; align-items: center; }
+        nav { display: flex; justify-content: space-between; align-items: center; padding: 0 20px; max-width: 1200px; margin: 0 auto; width: 100%; }
         .logo { font-size: 1.8rem; color: var(--accent); font-family: var(--font-title); text-shadow: 0 0 10px var(--accent); }
         .nav-links { display: flex; gap: 10px; align-items: center; background-color: var(--bg-card); padding: 5px 8px; border-radius: var(--radius-lg); border: 1px solid var(--border-color); margin-left: auto;}
         .nav-links li { margin: 0 5px; }
@@ -55,54 +48,62 @@
         .nav-contact-btn:hover { background-color: var(--accent); color: #ffffff; box-shadow: 0 0 15px var(--accent-glow); border-color: var(--accent-hover); }
 
         /* --- HUB SAE --- */
-        .sae-container { flex-grow: 1; padding: 160px 20px 80px 20px; display: flex; flex-direction: column; align-items: center; }
+        .sae-page { flex-grow: 1; padding: 110px 20px 80px 20px; display: flex; flex-direction: column; align-items: center; }
+        .section-title { font-size: 3.2rem; color: var(--accent); margin-bottom: 25px; display: flex; align-items: center; justify-content: center; text-align: center; opacity: 0; animation: fadeIn 1s ease forwards; position: relative; padding-bottom: 20px; }
+        .section-title::before { content: ">"; margin-right: 15px; color: var(--accent-cyan); font-weight: bold; text-shadow: 0 0 10px var(--accent-cyan); font-family: var(--font-main); }
+        .section-title::after { content: ""; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 120px; height: 3px; background: linear-gradient(90deg, transparent, var(--accent-hover), var(--accent-cyan), transparent); border-radius: 2px; }
+
+        .alert-box { background-color: rgba(79, 172, 254, 0.05); border-left: 3px solid var(--accent-cyan); padding: 15px 25px; margin-bottom: 40px; width: 100%; max-width: 1100px; font-size: 1.05rem; color: var(--text-main); border-radius: 4px; opacity: 0; animation: fadeIn 1s ease forwards 0.2s; }
         
-        .alert-box { background-color: rgba(79, 172, 254, 0.05); border-left: 3px solid var(--accent-cyan); padding: 15px 25px; margin-bottom: 50px; width: 100%; max-width: 1000px; font-size: 1.05rem; color: var(--text-main); border-radius: 4px; opacity: 0; animation: fadeIn 1s ease forwards 0.2s; }
+        .sae-list { display: flex; flex-direction: column; gap: 25px; width: 100%; max-width: 1100px; opacity: 0; animation: fadeIn 1s ease forwards 0.4s; }
 
-        .sae-list { display: flex; flex-direction: column; gap: 30px; width: 100%; max-width: 1100px; opacity: 0; animation: fadeIn 1s ease forwards 0.4s; }
-
-        .sae-card { background-color: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 30px 40px; display: flex; gap: 40px; align-items: center; transition: all 0.4s ease; position: relative; overflow: hidden; }
+        .sae-card { background-color: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 30px 40px; display: flex; gap: 45px; align-items: center; transition: all 0.4s ease; position: relative; overflow: hidden; }
         .sae-card:hover { transform: translateY(-5px); border-color: var(--accent-cyan); box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
         .sae-card::before { content: ""; position: absolute; left: 0; top: 0; height: 100%; width: 4px; background: var(--accent); }
 
-        .sae-img { width: 130px; height: 130px; background: #fff; border-radius: 12px; padding: 10px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; overflow: hidden; box-shadow: 0 0 15px rgba(255,255,255,0.05); }
-        .sae-img img { max-width: 100%; max-height: 100%; object-fit: contain; }
-        .sae-img svg { width: 85%; height: 85%; }
-        .sae-img.placeholder { background: rgba(255,255,255,0.05); color: var(--text-muted); font-size: 2.5rem; border: 1px dashed var(--border-color); }
-
-        .sae-content { flex-grow: 1; }
-        .sae-title { font-size: 1.7rem; color: #ffffff; margin-bottom: 12px; }
-        .sae-desc { color: var(--text-muted); font-size: 1rem; margin-bottom: 20px; line-height: 1.6; }
-
-        .tag-container { display: flex; flex-wrap: wrap; gap: 10px; }
-        .tag { background: rgba(157, 78, 221, 0.1); color: var(--accent-hover); padding: 5px 14px; border-radius: 20px; font-size: 0.8rem; font-family: var(--font-mono); border: 1px solid rgba(157, 78, 221, 0.3); }
-
-        /* --- ACTION / BOUTON À DROITE --- */
-        .sae-action { flex-shrink: 0; margin-left: 20px; }
-        .btn-sae { 
-            display: inline-flex; 
-            align-items: center; 
-            gap: 12px;
-            padding: 14px 28px; 
-            background-color: transparent; 
-            border: 2px solid var(--accent); 
-            color: #ffffff; 
-            font-weight: 600; 
-            font-size: 0.85rem; 
-            text-transform: uppercase; 
-            letter-spacing: 1px; 
-            border-radius: var(--radius-lg); 
+        /* Images / Logos - Dimension fixe pour alignement */
+        .sae-img-container { width: 130px; height: 130px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+        
+        .sae-img { width: 100%; height: 100%; background: #fff; border-radius: 12px; display: flex; align-items: center; justify-content: center; overflow: hidden; box-shadow: 0 0 15px rgba(255,255,255,0.05); }
+        .sae-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s ease; }
+        .sae-img.zoom img { transform: scale(1.3); } 
+        
+        /* LOGO PYTHON AVEC DROP-SHADOW PROPRE */
+        .sae-img.logo-style { background: transparent; box-shadow: none; border-radius: 0; overflow: visible; }
+        .python-glow-icon { 
+            font-size: 6rem; /* Agrandi pour correspondre aux images de 130px */
+            color: #7ab8ff; 
+            /* On utilise drop-shadow sur l'élément lui-même pour suivre les contours */
+            filter: drop-shadow(0 0 15px rgba(122, 184, 255, 0.7)); 
             transition: all 0.3s ease; 
         }
-        .btn-sae i { transition: transform 0.3s ease; font-size: 1rem; }
+        .sae-card:hover .python-glow-icon { 
+            transform: scale(1.1); 
+            filter: drop-shadow(0 0 25px rgba(122, 184, 255, 1)); 
+            color: #9eccff;
+        }
+
+        .sae-img.placeholder { background: rgba(255,255,255,0.05); color: var(--text-muted); font-size: 3.5rem; border: 1px dashed var(--border-color); }
+
+        .sae-content { flex-grow: 1; display: flex; flex-direction: column; justify-content: center; }
+        .sae-title { font-size: 1.7rem; color: #ffffff; margin-bottom: 10px; line-height: 1.2; }
+        .sae-desc { color: var(--text-muted); font-size: 1rem; margin-bottom: 18px; line-height: 1.5; }
+        
+        .tag-container { display: flex; flex-wrap: wrap; gap: 8px; }
+        .tag { background: rgba(157, 78, 221, 0.1); color: var(--accent-hover); padding: 4px 12px; border-radius: 20px; font-size: 0.75rem; font-family: var(--font-mono); border: 1px solid rgba(157, 78, 221, 0.3); }
+
+        /* Bouton à droite */
+        .sae-action { flex-shrink: 0; }
+        .btn-sae { display: inline-flex; align-items: center; gap: 12px; padding: 14px 28px; border: 2px solid var(--accent); color: #ffffff; font-weight: 600; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; border-radius: var(--radius-lg); transition: all 0.3s ease; }
+        .btn-sae i { transition: transform 0.3s ease; }
         .sae-card:hover .btn-sae { background-color: var(--accent); box-shadow: 0 0 20px var(--accent-glow); }
         .sae-card:hover .btn-sae i { transform: translateX(5px); }
 
         footer { text-align: center; padding: 40px 0; color: var(--text-muted); font-size: 0.95rem; border-top: 1px solid var(--border-color); width: 100%; margin-top: auto; }
 
         @media (max-width: 992px) {
-            .sae-card { flex-direction: column; text-align: center; padding: 40px 30px; }
-            .sae-action { margin-left: 0; margin-top: 10px; width: 100%; }
+            .sae-card { flex-direction: column; text-align: center; padding: 40px 25px; gap: 25px; }
+            .sae-action { width: 100%; }
             .btn-sae { width: 100%; justify-content: center; }
             .tag-container { justify-content: center; }
         }
@@ -126,7 +127,7 @@
         </div>
     </header>
 
-    <main class="sae-container container">
+    <main class="sae-page container">
         <h1 class="section-title">SAE Première Année</h1>
         
         <div class="alert-box">
@@ -135,84 +136,79 @@
 
         <div class="sae-list">
             
+            <!-- SAE 2.01 -->
             <article class="sae-card">
-                <div class="sae-img">
-                    <img src="files/s2/schema_sae_gns3.png" alt="Architecture GNS3">
+                <div class="sae-img-container">
+                    <div class="sae-img zoom">
+                        <img src="files/s2/schema_sae_gns3.png" alt="Architecture GNS3">
+                    </div>
                 </div>
                 <div class="sae-content">
                     <h2 class="sae-title">SAE 2.01 : Créer un réseau pour une petite entreprise</h2>
                     <p class="sae-desc">Mise en place d'une architecture réseau sous GNS3 à l'échelle d'une PME.</p>
                     <div class="tag-container">
-                        <span class="tag">Réseau</span>
-                        <span class="tag">GNS3</span>
-                        <span class="tag">VLAN</span>
-                        <span class="tag">ACL</span>
-                        <span class="tag">Serveurs</span>
+                        <span class="tag">Réseau</span><span class="tag">GNS3</span><span class="tag">VLAN</span><span class="tag">ACL</span><span class="tag">Serveurs</span>
                     </div>
                 </div>
                 <div class="sae-action">
-                    <a href="sae201.html" class="btn-sae">Consulter le projet <i class="fa-solid fa-arrow-right"></i></a>
+                    <a href="sae201.html" class="btn-sae">Consulter <i class="fa-solid fa-arrow-right"></i></a>
                 </div>
             </article>
 
+            <!-- SAE 2.02 -->
             <article class="sae-card">
-                <div class="sae-img">
-                    <img src="files/s2/image_webradio.png" alt="ESP32 Radio">
+                <div class="sae-img-container">
+                    <div class="sae-img">
+                        <img src="files/s2/photo_web_radio.jpg" alt="Web Radio ESP32">
+                    </div>
                 </div>
                 <div class="sae-content">
                     <h2 class="sae-title">SAE 2.02 : Web Radio</h2>
                     <p class="sae-desc">Création d'une radio connectée à l'aide d'une carte arduino ESP32.</p>
                     <div class="tag-container">
-                        <span class="tag">Télécom</span>
-                        <span class="tag">ESP32</span>
-                        <span class="tag">Arduino IDE</span>
-                        <span class="tag">C++</span>
+                        <span class="tag">Télécom</span><span class="tag">ESP32</span><span class="tag">Arduino IDE</span><span class="tag">C++</span>
                     </div>
                 </div>
                 <div class="sae-action">
-                    <a href="sae202.html" class="btn-sae">Consulter le projet <i class="fa-solid fa-arrow-right"></i></a>
+                    <a href="sae202.html" class="btn-sae">Consulter <i class="fa-solid fa-arrow-right"></i></a>
                 </div>
             </article>
 
+            <!-- SAE 2.03 -->
             <article class="sae-card">
-                <div class="sae-img">
-                    <svg viewBox="0 0 448 512" xmlns="http://www.w3.org/2000/svg"><path d="M439.8 200.5c-7.7-30.9-22.3-54.2-53.4-54.2h-40.1v47.4c0 36.8-31.2 67.8-66.8 67.8H172.7c-29.2 0-53.4 25-53.4 54.3v101.7c0 29 25.2 46 53.4 54.3 33.8 9.9 66.3 11.7 106.8 0 26.9-7.8 53.4-23.5 53.4-54.3v-40.7H226.2v-54.2h160.3c31.1 0 53.4-25.2 53.4-54.2V200.5zm-285-.1c7.7 30.9 22.3 54.2 53.4 54.2h40.1v-47.4c0-36.8 31.2-67.8 66.8-67.8h106.8c29.2 0 53.4-25 53.4-54.3V83.8c0-29-25.2-46-53.4-54.3-33.8-9.9-66.3-11.7-106.8 0-26.9 7.8-53.4 23.5-53.4 54.3v40.7H221.8v54.2H61.5c-31.1 0-53.4 25.2-53.4 54.2v101.7c7.7 30.9 22.3 54.2 53.4 54.2h40.1v-47.4c0-36.8 31.2-67.8 66.8-67.8h40.1v-54.2H8.1V200.4c0-29 25.2-46 53.4-54.3 33.8-9.9 66.3-11.7 106.8 0 26.9 7.8 53.4 23.5 53.4 54.3v40.7h-13.4c-29.2 0-53.4 25-53.4 54.3v101.7z" fill="#3776ab"/></svg>
+                <div class="sae-img-container">
+                    <div class="sae-img logo-style">
+                        <i class="fa-brands fa-python python-glow-icon"></i>
+                    </div>
                 </div>
                 <div class="sae-content">
                     <h2 class="sae-title">SAE 2.03 : Application Web</h2>
                     <p class="sae-desc">Création d'un site web dynamique</p>
                     <div class="tag-container">
-                        <span class="tag">Programmation</span>
-                        <span class="tag">Web</span>
-                        <span class="tag">Django</span>
-                        <span class="tag">CRUD</span>
-                        <span class="tag">SQL</span>
-                        <span class="tag">VMs</span>
+                        <span class="tag">Programmation</span><span class="tag">Web</span><span class="tag">Django</span><span class="tag">CRUD</span><span class="tag">SQL</span><span class="tag">VMs</span>
                     </div>
                 </div>
                 <div class="sae-action">
-                    <a href="sae203.html" class="btn-sae">Consulter le projet <i class="fa-solid fa-arrow-right"></i></a>
+                    <a href="sae203.html" class="btn-sae">Consulter <i class="fa-solid fa-arrow-right"></i></a>
                 </div>
             </article>
 
+            <!-- SAE 2.04 -->
             <article class="sae-card">
-                <div class="sae-img placeholder">
-                    <i class="fa-solid fa-boxes-stacked"></i>
+                <div class="sae-img-container">
+                    <div class="sae-img placeholder">
+                        <i class="fa-solid fa-diagram-project"></i>
+                    </div>
                 </div>
                 <div class="sae-content">
                     <h2 class="sae-title">SAE 2.04 : Projet Intégratif</h2>
                     <p class="sae-desc">Regroupement des notions de première année en réseau, téléphonie, collecte et affichage de données</p>
                     <div class="tag-container">
-                        <span class="tag">Réseau</span>
-                        <span class="tag">Télécoms</span>
-                        <span class="tag">Web</span>
-                        <span class="tag">MQTT</span>
-                        <span class="tag">SQL</span>
-                        <span class="tag">Téléphonie IP</span>
+                        <span class="tag">Réseau</span><span class="tag">Télécoms</span><span class="tag">Web</span><span class="tag">MQTT</span><span class="tag">SQL</span><span class="tag">VoIP</span>
                     </div>
                 </div>
                 <div class="sae-action">
-                    <a href="sae204.html" class="btn-sae">Consulter le projet <i class="fa-solid fa-arrow-right"></i></a>
+                    <a href="sae204.html" class="btn-sae">Consulter <i class="fa-solid fa-arrow-right"></i></a>
                 </div>
             </article>
 
