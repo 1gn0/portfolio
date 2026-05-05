@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projets BUT1 | Camille HENRY--DELANGLE</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Saira+Stencil+One&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        /* --- VARIABLES ET RESET --- */
+        :root {
+            --bg-color: #0d0b14; 
+            --bg-card: #161420;  
+            --text-main: #e0e6ed;
+            --text-muted: #a1aabf;
+            --accent: #9d4edd;          
+            --accent-hover: #c77dff;    
+            --accent-cyan: #4facfe;
+            --accent-glow: rgba(157, 78, 221, 0.25); 
+            --border-color: #2d2a3a;
+            --font-main: 'Inter', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            --font-title: 'Saira Stencil One', sans-serif; 
+            --font-mono: 'Courier New', Courier, monospace;
+            --radius-md: 16px; 
+            --radius-lg: 30px; 
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background-color: var(--bg-color); color: var(--text-main); font-family: var(--font-main); line-height: 1.7; overflow-x: hidden; display: flex; flex-direction: column; min-height: 100vh; }
+        h1, h2, h3, h4 { font-family: var(--font-title); font-weight: normal; }
+        a { text-decoration: none; color: inherit; transition: all 0.3s ease; }
+        ul { list-style: none; }
+        strong { color: var(--accent-hover); font-weight: 600; }
+
+        /* --- STYLES GENERAUX --- */
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; width: 100%; }
+        
+        .section-title { font-size: 3.2rem; color: var(--accent); margin-bottom: 30px; display: flex; align-items: center; justify-content: center; text-align: center; opacity: 0; animation: fadeIn 1s ease forwards; position: relative; padding-bottom: 25px; }
+        .section-title::before { content: ">"; margin-right: 15px; color: var(--accent-cyan); font-weight: bold; text-shadow: 0 0 10px var(--accent-cyan); font-family: var(--font-main); }
+        .section-title::after { content: ""; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 150px; height: 3px; background: linear-gradient(90deg, transparent, var(--accent-hover), var(--accent-cyan), transparent); border-radius: 2px; }
+
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* --- HEADER & NAV --- */
+        header { background-color: rgba(13, 11, 20, 0.95); padding: 10px 0; position: fixed; width: 100%; top: 0; z-index: 1000; backdrop-filter: blur(10px); box-shadow: 0 2px 20px rgba(0,0,0,0.4); border-bottom: 1px solid var(--border-color); }
+        nav { display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-size: 1.8rem; color: var(--accent); font-family: var(--font-title); text-shadow: 0 0 10px var(--accent); }
+        .nav-links { display: flex; gap: 10px; align-items: center; background-color: var(--bg-card); padding: 5px 8px; border-radius: var(--radius-lg); border: 1px solid var(--border-color); margin-left: auto;}
+        .nav-links li { margin: 0 5px; }
+        .nav-links li a { font-weight: 500; font-size: 0.95rem; padding: 8px 18px; border-radius: var(--radius-lg); position: relative; }
+        .nav-links li a:not(.nav-contact-btn):hover, .nav-links li a.active { background-color: rgba(157, 78, 221, 0.15); color: var(--accent-hover); text-shadow: 0 0 5px var(--accent-hover); }
+        .nav-contact-btn { background-color: transparent; border: 2px solid var(--accent); color: var(--accent); font-weight: 600; text-transform: uppercase; letter-spacing: 1px; font-size: 0.85rem; transition: all 0.3s ease; }
+        .nav-contact-btn:hover { background-color: var(--accent); color: #ffffff; box-shadow: 0 0 15px var(--accent-glow); border-color: var(--accent-hover); }
+
+        /* --- HUB SAE --- */
+        .sae-container { flex-grow: 1; padding: 160px 20px 80px 20px; display: flex; flex-direction: column; align-items: center; }
+        
+        .alert-box { background-color: rgba(79, 172, 254, 0.05); border-left: 3px solid var(--accent-cyan); padding: 15px 25px; margin-bottom: 50px; width: 100%; max-width: 900px; font-size: 1.05rem; color: var(--text-main); border-radius: 4px; opacity: 0; animation: fadeIn 1s ease forwards 0.2s; }
+
+        .sae-list { display: flex; flex-direction: column; gap: 30px; width: 100%; max-width: 1000px; opacity: 0; animation: fadeIn 1s ease forwards 0.4s; }
+
+        .sae-card { background-color: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 30px; display: flex; gap: 30px; align-items: center; transition: all 0.4s ease; position: relative; overflow: hidden; }
+        .sae-card:hover { transform: translateY(-5px); border-color: var(--accent-cyan); box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+        .sae-card::before { content: ""; position: absolute; left: 0; top: 0; height: 100%; width: 4px; background: var(--accent); }
+
+        .sae-img { width: 120px; height: 120px; background: #fff; border-radius: 12px; padding: 10px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; overflow: hidden; }
+        .sae-img img { max-width: 100%; max-height: 100%; object-fit: contain; }
+        /* Pour la SAE sans image encore définie */
+        .sae-img.placeholder { background: rgba(255,255,255,0.05); color: var(--text-muted); font-size: 2rem; border: 1px dashed var(--border-color); }
+
+        .sae-content { flex-grow: 1; }
+        .sae-title { font-size: 1.6rem; color: #ffffff; margin-bottom: 10px; }
+        .sae-desc { color: var(--text-muted); font-size: 0.95rem; margin-bottom: 15px; line-height: 1.6; }
+
+        .tag-container { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 20px; }
+        .tag { background: rgba(157, 78, 221, 0.1); color: var(--accent-hover); padding: 4px 12px; border-radius: 20px; font-size: 0.75rem; font-family: var(--font-mono); border: 1px solid rgba(157, 78, 221, 0.3); }
+
+        .btn-sae { display: inline-block; padding: 10px 25px; background-color: transparent; border: 2px solid var(--accent); color: #ffffff; font-weight: 600; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; border-radius: var(--radius-lg); transition: all 0.3s ease; }
+        .sae-card:hover .btn-sae { background-color: var(--accent); box-shadow: 0 0 15px var(--accent-glow); }
+
+        footer { text-align: center; padding: 40px 0; color: var(--text-muted); font-size: 0.95rem; border-top: 1px solid var(--border-color); width: 100%; margin-top: auto; }
+
+        @media (max-width: 768px) { 
+            .nav-links { display: none; } 
+            .section-title { font-size: 2.2rem; } 
+            .sae-card { flex-direction: column; text-align: center; text-align: -webkit-center; }
+            .sae-img { width: 100px; height: 100px; }
+            .tag-container { justify-content: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">C.H.D</div>
+                <ul class="nav-links">
+                    <li><a href="index.html#hero">Accueil</a></li>
+                    <li><a href="index.html#parcours">Parcours</a></li>
+                    <li><a href="competences.html">Compétences</a></li>
+                    <li><a href="index.html#cv">CV</a></li>
+                    <li><a href="projets.html" class="active">Projets</a></li> 
+                    <li><a href="contact.html" class="nav-contact-btn">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="sae-container container">
+        <h1 class="section-title">SAE Première Année</h1>
+        
+        <div class="alert-box">
+            <i class="fa-solid fa-circle-info"></i> &nbsp; Etant arrivé en cours d'année, j'ai pu participer aux projets du <strong>second semestre</strong> uniquement.
+        </div>
+
+        <div class="sae-list">
+            
+            <!-- SAE 2.01 -->
+            <article class="sae-card">
+                <div class="sae-img">
+                    <img src="schema_sae_gns3.png" alt="Architecture GNS3">
+                </div>
+                <div class="sae-content">
+                    <h2 class="sae-title">SAE 2.01 : Créer un réseau pour une petite entreprise</h2>
+                    <p class="sae-desc">Mise en place d'une architecture réseau complète et sécurisée sous GNS3 répondant aux besoins d'une PME.</p>
+                    <div class="tag-container">
+                        <span class="tag">Réseau</span>
+                        <span class="tag">GNS3</span>
+                        <span class="tag">VLAN</span>
+                        <span class="tag">ACL</span>
+                        <span class="tag">Serveurs</span>
+                    </div>
+                    <a href="sae201.html" class="btn-sae">Consulter le projet</a>
+                </div>
+            </article>
+
+            <!-- SAE 2.02 -->
+            <article class="sae-card">
+                <div class="sae-img">
+                    <!-- Utilisation d'une icône FontAwesome en attendant une image -->
+                    <i class="fa-solid fa-microchip" style="font-size: 3rem; color: #333;"></i>
+                </div>
+                <div class="sae-content">
+                    <h2 class="sae-title">SAE 2.02 : Web Radio</h2>
+                    <p class="sae-desc">Développement d'une radio connectée autonome utilisant une carte ESP32 et programmée via l'IDE Arduino.</p>
+                    <div class="tag-container">
+                        <span class="tag">Télécom</span>
+                        <span class="tag">ESP32</span>
+                        <span class="tag">Arduino (C++)</span>
+                    </div>
+                    <a href="sae202.html" class="btn-sae">Consulter le projet</a>
+                </div>
+            </article>
+
+            <!-- SAE 2.03 -->
+            <article class="sae-card">
+                <div class="sae-img">
+                    <img src="files/logo/python.jpg" alt="Logo Python / Django">
+                </div>
+                <div class="sae-content">
+                    <h2 class="sae-title">SAE 2.03 : Application Web</h2>
+                    <p class="sae-desc">Conception et déploiement d'un site web dynamique avec gestion de base de données (CRUD) sur des machines virtuelles.</p>
+                    <div class="tag-container">
+                        <span class="tag">Programmation</span>
+                        <span class="tag">Web</span>
+                        <span class="tag">Django</span>
+                        <span class="tag">CRUD</span>
+                        <span class="tag">SQL</span>
+                        <span class="tag">VMs</span>
+                    </div>
+                    <a href="sae203.html" class="btn-sae">Consulter le projet</a>
+                </div>
+            </article>
+
+            <!-- SAE 2.04 -->
+            <article class="sae-card">
+                <div class="sae-img placeholder">
+                    <i class="fa-solid fa-layer-group"></i>
+                </div>
+                <div class="sae-content">
+                    <h2 class="sae-title">SAE 2.04 : Projet Intégratif</h2>
+                    <p class="sae-desc">Synthèse des compétences de l'année : interconnexion réseaux, téléphonie IP, collecte de données via MQTT et affichage web.</p>
+                    <div class="tag-container">
+                        <span class="tag">Réseau</span>
+                        <span class="tag">Télécoms</span>
+                        <span class="tag">Web</span>
+                        <span class="tag">MQTT</span>
+                        <span class="tag">SQL</span>
+                        <span class="tag">Téléphonie IP</span>
+                    </div>
+                    <a href="sae204.html" class="btn-sae">Consulter le projet</a>
+                </div>
+            </article>
+
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 <strong>Camille HENRY--DELANGLE</strong>.</p>
+            <p style="font-size: 0.85rem; font-family: var(--font-mono); opacity: 0.5; margin-top: 15px;">Root@Portfolio:~# ls -la /projets/BUT1</p>
+        </div>
+    </footer>
+
+</body>
+</html>
