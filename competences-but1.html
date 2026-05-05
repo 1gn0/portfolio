@@ -37,24 +37,27 @@
         ul { list-style: none; }
         strong { color: var(--accent-hover); font-weight: 600; }
 
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        /* --- ANIMATIONS DE CHARGEMENT --- */
+        @keyframes fadeIn { 
+            from { opacity: 0; transform: translateY(20px); } 
+            to { opacity: 1; transform: translateY(0); } 
+        }
 
         /* --- STYLES GENERAUX --- */
         .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; width: 100%; }
-        .page-header { padding: 160px 20px 20px 20px; text-align: center; }
+        .page-header { padding: 160px 20px 40px 20px; text-align: center; }
 
         .section-title { font-size: 3.2rem; color: var(--accent); margin-bottom: 30px; display: flex; align-items: center; justify-content: center; text-align: center; position: relative; padding-bottom: 25px; opacity: 0; animation: fadeIn 1s ease forwards; }
         .section-title::before { content: ">"; margin-right: 15px; color: var(--accent-cyan); font-weight: bold; text-shadow: 0 0 10px var(--accent-cyan); font-family: var(--font-main); }
         .section-title::after { content: ""; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 150px; height: 3px; background: linear-gradient(90deg, transparent, var(--accent-hover), var(--accent-cyan), transparent); border-radius: 2px; }
 
-        .page-subtitle { color: var(--text-muted); font-size: 1.15rem; max-width: 900px; margin: 0 auto; line-height: 1.8; opacity: 0; animation: fadeIn 1s ease forwards 0.2s; }
-
-        /* --- BANDEAU INFO --- */
-        .alert-box { background-color: rgba(79, 172, 254, 0.05); border-left: 3px solid var(--accent-cyan); padding: 15px 25px; margin: 30px auto; max-width: 1000px; text-align: center; font-size: 1rem; color: var(--text-main); border-radius: 4px; opacity: 0; animation: fadeIn 1s ease forwards 0.3s; }
+        .page-subtitle { color: var(--text-muted); font-size: 1.15rem; max-width: 700px; margin: 0 auto; line-height: 1.8; opacity: 0; animation: fadeIn 1s ease forwards 0.2s; }
+        
+        .alert-box { background-color: rgba(79, 172, 254, 0.05); border-left: 3px solid var(--accent-cyan); padding: 15px 25px; margin: 30px auto; max-width: 1000px; text-align: center; font-size: 1.05rem; color: var(--text-main); border-radius: 4px; opacity: 0; animation: fadeIn 1s ease forwards 0.3s; }
 
         /* --- BOX RÉSULTATS (FINE ET LARGE) --- */
         .results-box-long { 
-            max-width: 1000px; margin: 0 auto 50px auto; background-color: rgba(255,255,255,0.02); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 15px 30px; 
+            max-width: 1000px; margin: 30px auto 50px auto; background-color: rgba(255,255,255,0.02); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 15px 30px; 
             display: flex; align-items: center; justify-content: space-between; transition: 0.3s; opacity: 0; animation: fadeIn 1s ease forwards 0.4s;
         }
         .results-box-long:hover { border-color: var(--accent-cyan); background-color: rgba(79, 172, 254, 0.03); }
@@ -63,9 +66,9 @@
         .results-box-long h3 { font-size: 1.2rem; color: #ffffff; margin: 0; }
         .results-actions-side { display: flex; gap: 10px; }
 
-        .btn { display: inline-flex; justify-content: center; align-items: center; padding: 8px 20px; border-radius: var(--radius-lg); font-weight: 600; text-transform: uppercase; letter-spacing: 1px; font-size: 0.75rem; transition: 0.4s; cursor: pointer; }
-        .btn-primary { border: 2px solid var(--accent); color: #fff; background: transparent; }
-        .btn-primary:hover { background: var(--accent); box-shadow: 0 0 15px var(--accent-glow); }
+        .btn { display: inline-flex; justify-content: center; align-items: center; padding: 10px 22px; border-radius: var(--radius-lg); font-weight: 600; text-transform: uppercase; letter-spacing: 1px; font-size: 0.8rem; transition: 0.4s; cursor: pointer; }
+        .btn-primary { border: 2px solid var(--accent); color: var(--accent-hover); background: transparent; }
+        .btn-primary:hover { background: var(--accent); color: #fff; box-shadow: 0 0 15px var(--accent-glow); }
         .btn-secondary { background-color: rgba(157, 78, 221, 0.1); border: 2px solid var(--accent); color: #fff; }
 
         /* --- HEADER & NAV --- */
@@ -81,7 +84,7 @@
 
         /* --- BLOCS UE --- */
         .ue-container { display: flex; flex-direction: column; gap: 60px; padding-bottom: 40px; }
-        .ue-card { background-color: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--radius-md); overflow: hidden; position: relative; opacity: 0; animation: fadeIn 1s ease forwards 0.5s; box-shadow: 0 10px 30px rgba(0,0,0,0.3); transition: all 0.3s ease; }
+        .ue-card { background-color: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--radius-md); overflow: hidden; position: relative; opacity: 0; animation: fadeIn 1s ease forwards 0.4s; box-shadow: 0 10px 30px rgba(0,0,0,0.3); transition: all 0.3s ease; }
         .ue-card:hover { transform: translateY(-5px); border-color: rgba(255,255,255,0.1); }
         .ue-card::before { content: ""; position: absolute; top: 0; left: 0; width: 4px; height: 100%; background: linear-gradient(to bottom, var(--ue-color), transparent); }
 
@@ -92,6 +95,7 @@
         .grade-badge { background-color: rgba(79, 172, 254, 0.05); border: 1px solid var(--accent-cyan); color: #ffffff; padding: 6px 15px; border-radius: var(--radius-lg); font-family: var(--font-mono); font-weight: bold; font-size: 0.95rem; }
 
         .ue-title { font-size: 2rem; color: #ffffff; margin-bottom: 15px; padding-right: 150px; }
+        
         .ue-user-desc { padding: 0 40px 20px 40px; color: var(--text-main); font-size: 1.05rem; line-height: 1.6; }
 
         .ue-body { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; padding: 20px 40px 30px 40px; border-top: 1px solid var(--border-color); border-bottom: 1px solid var(--border-color); background: rgba(255,255,255,0.01); }
@@ -100,6 +104,7 @@
         .ue-list li::before { content: '>'; position: absolute; left: 0; color: var(--ue-color); font-family: var(--font-mono); font-weight: bold; }
         .ue-list li span.code { color: var(--ue-color); font-weight: bold; margin-right: 5px; }
 
+        /* --- ANALYSE REFLEXIVE --- */
         .ue-reflexive { padding: 30px 40px; }
         .ue-reflexive h4 { color: #ffffff; margin-bottom: 20px; font-size: 1.4rem; text-align: center; }
         .reflexive-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
@@ -126,19 +131,21 @@
         .btn-large { display: inline-flex; justify-content: center; align-items: center; padding: 18px 40px; background-color: rgba(157, 78, 221, 0.1); border: 2px solid var(--accent); color: #ffffff; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; cursor: pointer; border-radius: var(--radius-lg); transition: all 0.4s ease; font-size: 1.1rem; box-shadow: 0 0 15px var(--accent-glow); }
         .btn-large:hover { background-color: var(--accent); transform: translateY(-3px); box-shadow: 0 10px 30px var(--accent-glow); }
 
-        /* --- MODAL --- */
+        /* --- MODAL VISIONNEUSE PDF --- */
         .modal { display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(13, 11, 20, 0.9); backdrop-filter: blur(8px); align-items: center; justify-content: center; }
         .modal-content { position: relative; width: 90%; max-width: 1000px; height: 85vh; background: var(--bg-card); border-radius: var(--radius-md); padding: 50px 20px 20px 20px; border: 1px solid var(--accent-cyan); }
-        .close-btn { position: absolute; top: 15px; right: 25px; font-size: 2rem; color: var(--text-muted); cursor: pointer; }
-        .modal-content img { width: 100%; height: 100%; object-fit: contain; background: #fff; border-radius: 8px; }
+        .close-btn { position: absolute; top: 15px; right: 25px; font-size: 2rem; color: var(--text-muted); cursor: pointer; transition: 0.3s; }
+        .close-btn:hover { color: var(--accent-cyan); }
+        #pdf-frame { width: 100%; height: 100%; border: none; background: #fff; border-radius: 8px; }
 
         footer { text-align: center; padding: 40px 0; color: var(--text-muted); border-top: 1px solid var(--border-color); margin-top: auto; }
 
         @media (max-width: 900px) { 
             .ue-body, .reflexive-grid { grid-template-columns: 1fr; } 
-            .results-box-long { flex-direction: column; padding: 25px; }
             .ue-title { padding-right: 0; } 
             .nav-links { display: none; } 
+            .results-box-long { flex-direction: column; padding: 25px; gap: 20px; }
+            .grade-badge { position: static; display: inline-block; margin-top: 10px; }
         }
     </style>
 </head>
@@ -175,8 +182,8 @@
                     <h3>Relevé de notes du Semestre 2</h3>
                 </div>
                 <div class="results-actions-side">
-                    <button class="btn btn-secondary" onclick="openModal('files/s2/releve_notes_s2.png')">Visualiser</button>
-                    <a href="files/s2/releve_notes_s2.png" class="btn btn-primary" download>Télécharger</a>
+                    <button class="btn btn-secondary" onclick="openModal('files/s2/releve_notes_s2.pdf')">Visualiser</button>
+                    <a href="files/s2/releve_notes_s2.pdf" class="btn btn-primary" download>Télécharger</a>
                 </div>
             </div>
         </div>
@@ -186,7 +193,7 @@
 
         <article class="ue-card ue-1">
             <div class="ue-header">
-                <div class="grade-container"><span class="grade-badge">Moyenne S2 : 14.67/20</span></div>
+                <div class="grade-container"><span class="grade-badge">Moyenne S2 : 12.33/20</span></div>
                 <span class="ue-badge">UE1 - Administrer</span>
                 <h2 class="ue-title">Administrer les réseaux et l'Internet</h2>
             </div>
@@ -234,7 +241,7 @@
 
         <article class="ue-card ue-2">
             <div class="ue-header">
-                <div class="grade-container"><span class="grade-badge">Moyenne S2 : 12.51/20</span></div>
+                <div class="grade-container"><span class="grade-badge">Moyenne S2 : 13.09/20</span></div>
                 <span class="ue-badge">UE2 - Connecter</span>
                 <h2 class="ue-title">Connecter les entreprises et les usagers</h2>
             </div>
@@ -281,7 +288,7 @@
 
         <article class="ue-card ue-3">
             <div class="ue-header">
-                <div class="grade-container"><span class="grade-badge">Moyenne S2 : 14.82/20</span></div>
+                <div class="grade-container"><span class="grade-badge">Moyenne S2 : 14.34/20</span></div>
                 <span class="ue-badge">UE3 - Programmer</span>
                 <h2 class="ue-title">Créer des outils et applications informatiques</h2>
             </div>
@@ -346,28 +353,30 @@
     <div id="results-modal" class="modal">
         <div class="modal-content">
             <span class="close-btn" onclick="closeModal()">&times;</span>
-            <img id="modal-img" src="" alt="Relevé de notes">
+            <iframe id="pdf-frame" src=""></iframe>
         </div>
     </div>
 
     <footer>
         <div class="container">
             <p>&copy; 2026 <strong>Camille HENRY--DELANGLE</strong>.</p>
-            <p style="font-size: 0.85rem; font-family: var(--font-mono); opacity: 0.5; margin-top: 15px;">Root@Portfolio:~# exit</p>
+            <p style="font-size: 0.85rem; font-family: var(--font-mono); opacity: 0.5; margin-top: 20px;">Root@Portfolio:~# exit</p>
         </div>
     </footer>
 
     <script>
-        function openModal(imgSrc) {
+        function openModal(pdfSrc) {
             const modal = document.getElementById('results-modal');
-            const img = document.getElementById('modal-img');
-            img.src = imgSrc;
+            const frame = document.getElementById('pdf-frame');
+            frame.src = pdfSrc;
             modal.style.display = 'flex';
             document.body.style.overflow = 'hidden'; 
         }
         function closeModal() {
             const modal = document.getElementById('results-modal');
+            const frame = document.getElementById('pdf-frame');
             modal.style.display = 'none';
+            frame.src = ""; 
             document.body.style.overflow = 'auto'; 
         }
         window.onclick = function(event) {
