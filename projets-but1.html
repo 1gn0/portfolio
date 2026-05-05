@@ -61,9 +61,8 @@
         .sae-card:hover { transform: translateY(-5px); border-color: var(--accent-cyan); box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
         .sae-card::before { content: ""; position: absolute; left: 0; top: 0; height: 100%; width: 4px; background: var(--accent); }
 
-        /* Images / Logos - Dimension fixe pour alignement */
+        /* Images / Logos */
         .sae-img-container { width: 130px; height: 130px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
-        
         .sae-img { width: 100%; height: 100%; background: #fff; border-radius: 12px; display: flex; align-items: center; justify-content: center; overflow: hidden; box-shadow: 0 0 15px rgba(255,255,255,0.05); }
         .sae-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s ease; }
         .sae-img.zoom img { transform: scale(1.3); } 
@@ -86,8 +85,26 @@
         .sae-title { font-size: 1.7rem; color: #ffffff; margin-bottom: 10px; line-height: 1.2; }
         .sae-desc { color: var(--text-muted); font-size: 1rem; margin-bottom: 18px; line-height: 1.5; }
         
+        /* --- TAGS REACTIFS --- */
         .tag-container { display: flex; flex-wrap: wrap; gap: 8px; }
-        .tag { background: rgba(157, 78, 221, 0.1); color: var(--accent-hover); padding: 4px 12px; border-radius: 20px; font-size: 0.75rem; font-family: var(--font-mono); border: 1px solid rgba(157, 78, 221, 0.3); }
+        .tag { 
+            background: rgba(157, 78, 221, 0.1); 
+            color: var(--accent-hover); 
+            padding: 4px 12px; 
+            border-radius: 20px; 
+            font-size: 0.75rem; 
+            font-family: var(--font-mono); 
+            border: 1px solid rgba(157, 78, 221, 0.3); 
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            cursor: default;
+        }
+        .tag:hover {
+            background: rgba(79, 172, 254, 0.15);
+            color: var(--accent-cyan);
+            border-color: var(--accent-cyan);
+            transform: translateY(-3px);
+            box-shadow: 0 4px 12px rgba(79, 172, 254, 0.2);
+        }
 
         /* Bouton à droite */
         .sae-action { flex-shrink: 0; }
@@ -133,7 +150,6 @@
 
         <div class="sae-list">
             
-            <!-- SAE 2.01 -->
             <article class="sae-card">
                 <div class="sae-img-container">
                     <div class="sae-img zoom">
@@ -152,7 +168,6 @@
                 </div>
             </article>
 
-            <!-- SAE 2.02 -->
             <article class="sae-card">
                 <div class="sae-img-container">
                     <div class="sae-img">
@@ -171,7 +186,6 @@
                 </div>
             </article>
 
-            <!-- SAE 2.03 -->
             <article class="sae-card">
                 <div class="sae-img-container">
                     <div class="sae-img logo-style">
@@ -190,7 +204,6 @@
                 </div>
             </article>
 
-            <!-- SAE 2.04 -->
             <article class="sae-card">
                 <div class="sae-img-container">
                     <div class="sae-img zoom">
@@ -215,7 +228,7 @@
     <footer>
         <div class="container">
             <p>&copy; 2026 <strong>Camille HENRY--DELANGLE</strong>.</p>
-            <p style="font-size: 0.85rem; font-family: var(--font-mono); opacity: 0.5; margin-top: 20px;">Root@Portfolio:~# ls -la /projets/BUT1</p>
+            <p style="font-size: 0.85rem; font-family: var(--font-mono); opacity: 0.5; margin-top: 15px;">Root@Portfolio:~# exit</p>
         </div>
     </footer>
 
