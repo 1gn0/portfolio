@@ -68,12 +68,11 @@
         .sae-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s ease; }
         .sae-img.zoom img { transform: scale(1.3); } 
         
-        /* LOGO PYTHON AVEC DROP-SHADOW PROPRE */
+        /* LOGO PYTHON AVEC DROP-SHADOW */
         .sae-img.logo-style { background: transparent; box-shadow: none; border-radius: 0; overflow: visible; }
         .python-glow-icon { 
-            font-size: 6rem; /* Agrandi pour correspondre aux images de 130px */
+            font-size: 6rem; 
             color: #7ab8ff; 
-            /* On utilise drop-shadow sur l'élément lui-même pour suivre les contours */
             filter: drop-shadow(0 0 15px rgba(122, 184, 255, 0.7)); 
             transition: all 0.3s ease; 
         }
@@ -82,8 +81,6 @@
             filter: drop-shadow(0 0 25px rgba(122, 184, 255, 1)); 
             color: #9eccff;
         }
-
-        .sae-img.placeholder { background: rgba(255,255,255,0.05); color: var(--text-muted); font-size: 3.5rem; border: 1px dashed var(--border-color); }
 
         .sae-content { flex-grow: 1; display: flex; flex-direction: column; justify-content: center; }
         .sae-title { font-size: 1.7rem; color: #ffffff; margin-bottom: 10px; line-height: 1.2; }
@@ -196,8 +193,8 @@
             <!-- SAE 2.04 -->
             <article class="sae-card">
                 <div class="sae-img-container">
-                    <div class="sae-img placeholder">
-                        <i class="fa-solid fa-diagram-project"></i>
+                    <div class="sae-img zoom">
+                        <img src="files/s2/site_sae_integrative.png" alt="Projet Intégratif">
                     </div>
                 </div>
                 <div class="sae-content">
