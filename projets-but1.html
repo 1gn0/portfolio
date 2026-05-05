@@ -61,32 +61,31 @@
 
         .sae-list { display: flex; flex-direction: column; gap: 30px; width: 100%; max-width: 1000px; opacity: 0; animation: fadeIn 1s ease forwards 0.4s; }
 
-        .sae-card { background-color: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 30px; display: flex; gap: 30px; align-items: center; transition: all 0.4s ease; position: relative; overflow: hidden; }
+        .sae-card { background-color: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 30px; display: flex; gap: 40px; align-items: center; transition: all 0.4s ease; position: relative; overflow: hidden; }
         .sae-card:hover { transform: translateY(-5px); border-color: var(--accent-cyan); box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
         .sae-card::before { content: ""; position: absolute; left: 0; top: 0; height: 100%; width: 4px; background: var(--accent); }
 
-        .sae-img { width: 120px; height: 120px; background: #fff; border-radius: 12px; padding: 10px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; overflow: hidden; }
+        .sae-img { width: 140px; height: 140px; background: #fff; border-radius: 12px; padding: 12px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; overflow: hidden; box-shadow: 0 0 15px rgba(255,255,255,0.05); }
         .sae-img img { max-width: 100%; max-height: 100%; object-fit: contain; }
-        /* Pour la SAE sans image encore définie */
-        .sae-img.placeholder { background: rgba(255,255,255,0.05); color: var(--text-muted); font-size: 2rem; border: 1px dashed var(--border-color); }
+        .sae-img svg { width: 80%; height: 80%; }
+        
+        .sae-img.placeholder { background: rgba(255,255,255,0.05); color: var(--text-muted); font-size: 2.5rem; border: 1px dashed var(--border-color); }
 
         .sae-content { flex-grow: 1; }
-        .sae-title { font-size: 1.6rem; color: #ffffff; margin-bottom: 10px; }
-        .sae-desc { color: var(--text-muted); font-size: 0.95rem; margin-bottom: 15px; line-height: 1.6; }
+        .sae-title { font-size: 1.65rem; color: #ffffff; margin-bottom: 10px; }
+        .sae-desc { color: var(--text-muted); font-size: 0.95rem; margin-bottom: 18px; line-height: 1.6; }
 
-        .tag-container { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 20px; }
-        .tag { background: rgba(157, 78, 221, 0.1); color: var(--accent-hover); padding: 4px 12px; border-radius: 20px; font-size: 0.75rem; font-family: var(--font-mono); border: 1px solid rgba(157, 78, 221, 0.3); }
+        .tag-container { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 22px; }
+        .tag { background: rgba(157, 78, 221, 0.1); color: var(--accent-hover); padding: 4px 14px; border-radius: 20px; font-size: 0.75rem; font-family: var(--font-mono); border: 1px solid rgba(157, 78, 221, 0.3); }
 
-        .btn-sae { display: inline-block; padding: 10px 25px; background-color: transparent; border: 2px solid var(--accent); color: #ffffff; font-weight: 600; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; border-radius: var(--radius-lg); transition: all 0.3s ease; }
+        .btn-sae { display: inline-block; padding: 10px 28px; background-color: transparent; border: 2px solid var(--accent); color: #ffffff; font-weight: 600; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; border-radius: var(--radius-lg); transition: all 0.3s ease; }
         .sae-card:hover .btn-sae { background-color: var(--accent); box-shadow: 0 0 15px var(--accent-glow); }
 
         footer { text-align: center; padding: 40px 0; color: var(--text-muted); font-size: 0.95rem; border-top: 1px solid var(--border-color); width: 100%; margin-top: auto; }
 
-        @media (max-width: 768px) { 
-            .nav-links { display: none; } 
-            .section-title { font-size: 2.2rem; } 
-            .sae-card { flex-direction: column; text-align: center; text-align: -webkit-center; }
-            .sae-img { width: 100px; height: 100px; }
+        @media (max-width: 850px) { 
+            .sae-card { flex-direction: column; text-align: center; padding: 40px 20px; }
+            .sae-img { width: 120px; height: 120px; }
             .tag-container { justify-content: center; }
         }
     </style>
@@ -118,56 +117,54 @@
 
         <div class="sae-list">
             
-            <!-- SAE 2.01 -->
             <article class="sae-card">
                 <div class="sae-img">
-                    <img src="schema_sae_gns3.png" alt="Architecture GNS3">
+                    <img src="files/s2/schema_sae_gns3.png" alt="Architecture PME GNS3">
                 </div>
                 <div class="sae-content">
                     <h2 class="sae-title">SAE 2.01 : Créer un réseau pour une petite entreprise</h2>
-                    <p class="sae-desc">Mise en place d'une architecture réseau complète et sécurisée sous GNS3 répondant aux besoins d'une PME.</p>
+                    <p class="sae-desc">Mise en place d'une architecture réseau complète sous GNS3 à l'échelle d'une PME : segmentation par VLANs, routage et sécurisation via ACLs.</p>
                     <div class="tag-container">
                         <span class="tag">Réseau</span>
                         <span class="tag">GNS3</span>
                         <span class="tag">VLAN</span>
                         <span class="tag">ACL</span>
-                        <span class="tag">Serveurs</span>
+                        <span class="tag">Services</span>
                     </div>
                     <a href="sae201.html" class="btn-sae">Consulter le projet</a>
                 </div>
             </article>
 
-            <!-- SAE 2.02 -->
             <article class="sae-card">
                 <div class="sae-img">
-                    <!-- Utilisation d'une icône FontAwesome en attendant une image -->
-                    <i class="fa-solid fa-microchip" style="font-size: 3rem; color: #333;"></i>
+                    <img src="files/s2/image_webradio.png" alt="Web Radio ESP32">
                 </div>
                 <div class="sae-content">
                     <h2 class="sae-title">SAE 2.02 : Web Radio</h2>
-                    <p class="sae-desc">Développement d'une radio connectée autonome utilisant une carte ESP32 et programmée via l'IDE Arduino.</p>
+                    <p class="sae-desc">Conception d'une radio connectée utilisant un microcontrôleur ESP32, permettant la lecture de flux audio via le réseau Wi-Fi.</p>
                     <div class="tag-container">
                         <span class="tag">Télécom</span>
                         <span class="tag">ESP32</span>
-                        <span class="tag">Arduino (C++)</span>
+                        <span class="tag">Arduino IDE</span>
+                        <span class="tag">C++</span>
+                        <span class="tag">Wi-Fi</span>
                     </div>
                     <a href="sae202.html" class="btn-sae">Consulter le projet</a>
                 </div>
             </article>
 
-            <!-- SAE 2.03 -->
             <article class="sae-card">
                 <div class="sae-img">
-                    <img src="files/logo/python.jpg" alt="Logo Python / Django">
+                    <svg viewBox="0 0 448 512" xmlns="http://www.w3.org/2000/svg"><path d="M439.8 200.5c-7.7-30.9-22.3-54.2-53.4-54.2h-40.1v47.4c0 36.8-31.2 67.8-66.8 67.8H172.7c-29.2 0-53.4 25-53.4 54.3v101.7c0 29 25.2 46 53.4 54.3 33.8 9.9 66.3 11.7 106.8 0 26.9-7.8 53.4-23.5 53.4-54.3v-40.7H226.2v-54.2h160.3c31.1 0 53.4-25.2 53.4-54.2V200.5zm-285-.1c7.7 30.9 22.3 54.2 53.4 54.2h40.1v-47.4c0-36.8 31.2-67.8 66.8-67.8h106.8c29.2 0 53.4-25 53.4-54.3V83.8c0-29-25.2-46-53.4-54.3-33.8-9.9-66.3-11.7-106.8 0-26.9 7.8-53.4 23.5-53.4 54.3v40.7H221.8v54.2H61.5c-31.1 0-53.4 25.2-53.4 54.2v101.7c7.7 30.9 22.3 54.2 53.4 54.2h40.1v-47.4c0-36.8 31.2-67.8 66.8-67.8h40.1v-54.2H8.1V200.4c0-29 25.2-46 53.4-54.3 33.8-9.9 66.3-11.7 106.8 0 26.9 7.8 53.4 23.5 53.4 54.3v40.7h-13.4c-29.2 0-53.4 25-53.4 54.3v101.7z" fill="#3776ab"/></svg>
                 </div>
                 <div class="sae-content">
                     <h2 class="sae-title">SAE 2.03 : Application Web</h2>
-                    <p class="sae-desc">Conception et déploiement d'un site web dynamique avec gestion de base de données (CRUD) sur des machines virtuelles.</p>
+                    <p class="sae-desc">Création d'un site web dynamique avec le framework Django, intégrant une base de données SQL et les opérations CRUD.</p>
                     <div class="tag-container">
                         <span class="tag">Programmation</span>
                         <span class="tag">Web</span>
                         <span class="tag">Django</span>
-                        <span class="tag">CRUD</span>
+                        <span class="tag">Python</span>
                         <span class="tag">SQL</span>
                         <span class="tag">VMs</span>
                     </div>
@@ -175,21 +172,19 @@
                 </div>
             </article>
 
-            <!-- SAE 2.04 -->
             <article class="sae-card">
                 <div class="sae-img placeholder">
-                    <i class="fa-solid fa-layer-group"></i>
+                    <i class="fa-solid fa-diagram-project"></i>
                 </div>
                 <div class="sae-content">
                     <h2 class="sae-title">SAE 2.04 : Projet Intégratif</h2>
-                    <p class="sae-desc">Synthèse des compétences de l'année : interconnexion réseaux, téléphonie IP, collecte de données via MQTT et affichage web.</p>
+                    <p class="sae-desc">Projet majeur regroupant les notions de réseau, téléphonie IP (Asterisk), collecte de données (MQTT) et monitoring web.</p>
                     <div class="tag-container">
                         <span class="tag">Réseau</span>
-                        <span class="tag">Télécoms</span>
-                        <span class="tag">Web</span>
+                        <span class="tag">ToIP</span>
                         <span class="tag">MQTT</span>
                         <span class="tag">SQL</span>
-                        <span class="tag">Téléphonie IP</span>
+                        <span class="tag">Monitoring</span>
                     </div>
                     <a href="sae204.html" class="btn-sae">Consulter le projet</a>
                 </div>
@@ -201,7 +196,7 @@
     <footer>
         <div class="container">
             <p>&copy; 2026 <strong>Camille HENRY--DELANGLE</strong>.</p>
-            <p style="font-size: 0.85rem; font-family: var(--font-mono); opacity: 0.5; margin-top: 15px;">Root@Portfolio:~# ls -la /projets/BUT1</p>
+            <p style="font-size: 0.85rem; font-family: var(--font-mono); opacity: 0.5; margin-top: 20px;">Root@Portfolio:~# ls -la /projets/BUT1</p>
         </div>
     </footer>
 
