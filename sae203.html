@@ -88,11 +88,12 @@
 
         /* Outils */
         .tools-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; margin-top: 30px; }
-        .tool-card { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 25px; display: flex; align-items: center; gap: 20px; transition: all 0.3s ease; box-shadow: 0 5px 20px rgba(0,0,0,0.2); }
+        .tool-card { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 25px; display: flex; align-items: flex-start; gap: 20px; transition: all 0.3s ease; box-shadow: 0 5px 20px rgba(0,0,0,0.2); height: 100%; }
         .tool-card:hover { border-color: var(--django-light); transform: translateY(-5px); box-shadow: 0 10px 30px var(--django-glow); }
-        .tool-img { width: 60px; height: 60px; flex-shrink: 0; background: rgba(255,255,255,0.05); border-radius: 12px; padding: 10px; display: flex; align-items: center; justify-content: center; overflow: hidden; border: 1px solid rgba(255,255,255,0.1);}
-        .tool-img img { max-width: 100%; max-height: 100%; object-fit: contain; }
-        .tool-img i { font-size: 2.5rem; color: var(--django-light); }
+        .tool-img { width: 60px; height: 60px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; }
+        .tool-img img { max-width: 100%; max-height: 100%; object-fit: contain; border-radius: 8px; }
+        .tool-img i { font-size: 3.5rem; color: var(--django-light); }
+        .tool-info h3 { margin-top: 0; }
         .tool-info h3 a { color: #fff; font-size: 1.2rem; margin-bottom: 5px; display: inline-flex; align-items: center; gap: 8px; transition: color 0.3s; }
         .tool-info h3 a:hover { color: var(--django-light); }
         .tool-info h3 i { font-size: 0.85rem; opacity: 0.7; }
@@ -194,7 +195,7 @@
             <h2 class="project-heading">Environnement et Outils</h2>
             <div class="tools-grid">
                 <div class="tool-card">
-                    <div class="tool-img" style="background: transparent; border: none;">
+                    <div class="tool-img">
                         <i class="fa-brands fa-python"></i>
                     </div>
                     <div class="tool-info">
@@ -203,7 +204,7 @@
                     </div>
                 </div>
                 <div class="tool-card">
-                    <div class="tool-img" style="background: transparent; border: none;">
+                    <div class="tool-img">
                         <i class="fa-brands fa-python"></i>
                     </div>
                     <div class="tool-info">
