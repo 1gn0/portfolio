@@ -40,7 +40,13 @@
 
         /* --- STYLES GENERAUX --- */
         .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; width: 100%; }
-        .page-header { padding: 140px 20px 40px 20px; text-align: center; }
+        
+        /* Bouton Retour */
+        .back-btn-container { text-align: left; margin-bottom: 40px; }
+        .back-btn { display: inline-flex; align-items: center; gap: 8px; color: var(--text-muted); font-size: 0.95rem; font-weight: 500; transition: color 0.3s ease; }
+        .back-btn:hover { color: var(--accent-cyan); }
+        
+        .page-header { padding: 120px 20px 40px 20px; text-align: center; }
 
         .section-title { font-size: 3.2rem; color: var(--accent); margin-bottom: 25px; display: flex; align-items: center; justify-content: center; text-align: center; position: relative; padding-bottom: 25px; opacity: 0; animation: fadeIn 1s ease forwards; }
         .section-title::before { content: ">"; margin-right: 15px; color: var(--accent-cyan); font-weight: bold; text-shadow: 0 0 10px var(--accent-cyan); font-family: var(--font-main); }
@@ -75,8 +81,10 @@
         .tool-card:hover { border-color: var(--accent); transform: translateY(-5px); box-shadow: 0 10px 30px var(--accent-glow); }
         .tool-img { width: 80px; height: 80px; flex-shrink: 0; background: #fff; border-radius: 12px; padding: 10px; display: flex; align-items: center; justify-content: center; }
         .tool-img img { max-width: 100%; max-height: 100%; object-fit: contain; }
-        .tool-info h3 { color: #fff; font-size: 1.3rem; margin-bottom: 5px; }
-        .tool-info p { color: var(--text-muted); font-size: 0.9rem; line-height: 1.5; }
+        .tool-info h3 a { color: #fff; font-size: 1.3rem; margin-bottom: 5px; display: inline-flex; align-items: center; gap: 8px; transition: color 0.3s; }
+        .tool-info h3 a:hover { color: var(--accent-cyan); }
+        .tool-info h3 i { font-size: 0.9rem; opacity: 0.7; }
+        .tool-info p { color: var(--text-muted); font-size: 0.9rem; line-height: 1.5; margin-top: 5px; }
 
         /* Schéma avec figure et figcaption */
         .architecture-box { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 40px; text-align: center; margin-top: 40px; box-shadow: 0 10px 40px rgba(0,0,0,0.3); display: block; }
@@ -131,6 +139,9 @@
     </header>
 
     <div class="page-header container">
+        <div class="back-btn-container">
+            <a href="projets-but1.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i> Revenir aux projets</a>
+        </div>
         <h1 class="section-title">SAE 2.01</h1>
         <p class="page-subtitle">Créer un réseau pour une petite entreprise : mise en place d'une architecture réseau fonctionnelle et sécurisée via virtualisation.</p>
     </div>
@@ -155,7 +166,7 @@
                         <img src="files/logo/gns3.png" alt="Logo GNS3">
                     </div>
                     <div class="tool-info">
-                        <h3>GNS3</h3>
+                        <h3><a href="https://www.gns3.com/" target="_blank">GNS3 <i class="fa-solid fa-arrow-up-right-from-square"></i></a></h3>
                         <p>Logiciel d'émulation de réseaux complexes. Il a permis de virtualiser l'ensemble de l'architecture (routeurs, commutateurs et serveurs) pour reproduire fidèlement l'environnement de la PME.</p>
                     </div>
                 </div>
@@ -164,7 +175,7 @@
                         <img src="files/logo/cisco.png" alt="Logo Cisco">
                     </div>
                     <div class="tool-info">
-                        <h3>Cisco</h3>
+                        <h3><a href="https://www.cisco.com/" target="_blank">Cisco <i class="fa-solid fa-arrow-up-right-from-square"></i></a></h3>
                         <p>Équipements réseau professionnels (routeurs et commutateurs) émulés sous GNS3. L'ensemble de l'architecture repose sur la configuration de l'IOS Cisco pour le routage et la commutation.</p>
                     </div>
                 </div>
@@ -173,7 +184,7 @@
                         <img src="files/logo/debian.png" alt="Logo Debian">
                     </div>
                     <div class="tool-info">
-                        <h3>Debian</h3>
+                        <h3><a href="https://www.debian.org/" target="_blank">Debian <i class="fa-solid fa-arrow-up-right-from-square"></i></a></h3>
                         <p>Distribution GNU/Linux utilisée pour simuler les serveurs de la topologie. Choisie pour sa stabilité, elle a permis de faire tourner efficacement les services réseaux au sein de GNS3 de manière plus simple.</p>
                     </div>
                 </div>
