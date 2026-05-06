@@ -69,8 +69,8 @@
         .resume-box p { color: var(--text-main); font-size: 1.05rem; line-height: 1.7; margin-bottom: 10px; }
         .resume-box strong { color: #ff7675; }
 
-        /* Outils */
-        .tools-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-top: 30px; }
+        /* Outils - 2 Colonnes pour un affichage plus propre */
+        .tools-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 30px; margin-top: 30px; }
         .tool-card { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 30px; display: flex; align-items: center; gap: 20px; transition: all 0.3s ease; box-shadow: 0 5px 20px rgba(0,0,0,0.2); }
         .tool-card:hover { border-color: var(--accent); transform: translateY(-5px); box-shadow: 0 10px 30px var(--accent-glow); }
         .tool-img { width: 80px; height: 80px; flex-shrink: 0; background: #fff; border-radius: 12px; padding: 10px; display: flex; align-items: center; justify-content: center; }
@@ -106,7 +106,10 @@
 
         footer { text-align: center; padding: 40px 0; color: var(--text-muted); border-top: 1px solid var(--border-color); margin-top: auto; }
 
-        @media (max-width: 900px) { .nav-links { display: none; } }
+        @media (max-width: 900px) { 
+            .nav-links { display: none; } 
+            .tools-grid { grid-template-columns: 1fr; }
+        }
     </style>
 </head>
 <body>
@@ -139,7 +142,7 @@
             <div class="resume-box">
                 <h3>Résumé de la SAE</h3>
                 <p><strong>Objectif :</strong> Mettre en place un réseau informatique pour une petite entreprise, en utilisant le logiciel GNS3, permettant la virtualisation des appareils.</p>
-                <p>Au cours de ce projet, j'ai pu acquérir des compétences concrètes dans l'administration réseau, notamment la gestion des VLANs, la sécurité réseau via la mise en place d'ACL (listes d'accès), ainsi que la gestion de serveurs (DHCP, DNS...). J'ai aussi découvert l'utilisation du logiciel GNS3.</p>
+                <p>Au cours de ce projet, j'ai pu acquérir des compétences concrètes dans l'administration réseau, notamment la gestion des <strong>VLANs</strong>, la sécurité réseau via la mise en place d'<strong>ACL (listes d'accès)</strong>, ainsi que la gestion de serveurs (<strong>DHCP, DNS...</strong>). J'ai aussi découvert l'utilisation du logiciel <strong>GNS3</strong>.</p>
             </div>
         </section>
 
@@ -154,6 +157,15 @@
                     <div class="tool-info">
                         <h3>GNS3</h3>
                         <p>Logiciel d'émulation de réseaux complexes. Il a permis de virtualiser l'ensemble de l'architecture (routeurs, commutateurs et serveurs) pour reproduire fidèlement l'environnement de la PME.</p>
+                    </div>
+                </div>
+                <div class="tool-card">
+                    <div class="tool-img">
+                        <img src="files/logo/cisco.png" alt="Logo Cisco">
+                    </div>
+                    <div class="tool-info">
+                        <h3>Cisco</h3>
+                        <p>Équipements réseau professionnels (routeurs et commutateurs) émulés sous GNS3. L'ensemble de l'architecture repose sur la configuration de l'IOS Cisco pour le routage et la commutation.</p>
                     </div>
                 </div>
                 <div class="tool-card">
@@ -183,27 +195,27 @@
             <div class="steps-grid">
                 <div class="step-card">
                     <h3>1. Segmentation et VLANs</h3>
-                    <p>Création de VLANs dédiés pour séparer logiquement les flux (Administration, Développeur, Administrateur). Configuration de liens "Trunk" (802.1Q) et sécurisation en modifiant le VLAN natif par défaut (VLAN 999).</p>
+                    <p>Création de VLANs dédiés pour séparer logiquement les flux (Administration, Développeur, Administrateur). Configuration de liens <strong>"Trunk" (802.1Q)</strong> et sécurisation en modifiant le <strong>VLAN natif</strong> par défaut (VLAN 999).</p>
                 </div>
                 <div class="step-card">
                     <h3>2. Adressage et Routage</h3>
-                    <p>Mise en place de l'adressage IP sur les interfaces physiques et virtuelles (SVI). Configuration du protocole de routage dynamique RIPv2 pour assurer la connectivité entre les différents routeurs de la topologie.</p>
+                    <p>Mise en place de l'adressage IP sur les interfaces physiques et virtuelles (<strong>SVI</strong>). Configuration du protocole de routage dynamique <strong>RIPv2</strong> pour assurer la connectivité entre les différents routeurs de la topologie.</p>
                 </div>
                 <div class="step-card">
                     <h3>3. Redondance avec STP</h3>
-                    <p>Déploiement du protocole Spanning Tree (STP) pour éviter les boucles réseau. Configuration stratégique des priorités (Root Primary / Secondary) pour équilibrer la charge entre les commutateurs.</p>
+                    <p>Déploiement du protocole <strong>Spanning Tree (STP)</strong> pour éviter les boucles réseau. Configuration stratégique des priorités (<strong>Root Primary / Secondary</strong>) pour équilibrer la charge entre les commutateurs.</p>
                 </div>
                 <div class="step-card">
                     <h3>4. Déploiement des Serveurs</h3>
-                    <p>Installation et configuration de serveurs sous Debian : mise en place d'un serveur DHCP (isc-dhcp-server) avec relais (ip helper-address), de serveurs Web (Apache2) et de transferts de fichiers synchronisés via Rsync.</p>
+                    <p>Installation et configuration de serveurs sous Debian : mise en place d'un serveur DHCP (<strong>isc-dhcp-server</strong>) avec relais (<strong>ip helper-address</strong>), de serveurs Web (<strong>Apache2</strong>) et de transferts de fichiers synchronisés via <strong>Rsync</strong>.</p>
                 </div>
                 <div class="step-card">
                     <h3>5. Sécurisation (Port-Security & ACL)</h3>
-                    <p>Activation du Port-Security ("mac-address sticky" et mode "restrict") sur les commutateurs pour empêcher les connexions physiques non autorisées. Création d'ACL (Listes de Contrôle d'Accès) pour filtrer les flux HTTP, SSH et ICMP.</p>
+                    <p>Activation du <strong>Port-Security</strong> (<strong>"mac-address sticky"</strong> et mode <strong>"restrict"</strong>) sur les commutateurs pour empêcher les connexions physiques non autorisées. Création d'<strong>ACL (Listes de Contrôle d'Accès)</strong> pour filtrer les flux <strong>HTTP, SSH et ICMP</strong>.</p>
                 </div>
                 <div class="step-card">
                     <h3>6. Accès Externe (NAT/PAT)</h3>
-                    <p>Configuration de la traduction d'adresses (NAT dynamique avec surcharge / PAT) sur le routeur de bordure pour permettre aux équipements du réseau privé d'accéder à Internet de façon sécurisée.</p>
+                    <p>Configuration de la traduction d'adresses (<strong>NAT dynamique avec surcharge / PAT</strong>) sur le routeur de bordure pour permettre aux équipements du réseau privé d'accéder à Internet de façon sécurisée.</p>
                 </div>
             </div>
         </section>
