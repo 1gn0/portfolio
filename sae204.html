@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SAE 2.04 | Camille HENRY--DELANGLE</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Saira+Stencil+One&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        /* --- VARIABLES ET RESET --- */
+        :root {
+            --bg-color: #0d0b14; 
+            --bg-card: #161420;  
+            --text-main: #e0e6ed;
+            --text-muted: #a1aabf;
+            --accent: #9d4edd;          
+            --accent-hover: #c77dff;    
+            --accent-cyan: #4facfe;
+            --accent-glow: rgba(157, 78, 221, 0.25); 
+            --border-color: #2d2a3a;
+            --font-main: 'Inter', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            --font-title: 'Saira Stencil One', sans-serif; 
+            --font-mono: 'Courier New', Courier, monospace;
+            --radius-md: 16px; 
+            --radius-lg: 30px; 
+            
+            /* Thème SAE 2.04 - Indigo Synthèse */
+            --indigo-accent: #6366f1;
+            --indigo-light: #818cf8;
+            --indigo-glow: rgba(99, 102, 241, 0.2);
+            
+            --success: #2ecc71;
+            --success-glow: rgba(46, 204, 113, 0.1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background-color: var(--bg-color); color: var(--text-main); font-family: var(--font-main); line-height: 1.7; overflow-x: hidden; display: flex; flex-direction: column; min-height: 100vh; }
+        h1, h2, h3, h4, h5 { font-family: var(--font-title); font-weight: normal; }
+        a { text-decoration: none; color: inherit; transition: all 0.3s ease; }
+        ul { list-style: none; }
+        strong { color: var(--accent-hover); font-weight: 600; }
+
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* --- STYLES GENERAUX --- */
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; width: 100%; }
+        
+        .back-btn-container { text-align: left; margin-bottom: 40px; }
+        .back-btn { display: inline-flex; align-items: center; gap: 8px; color: var(--text-muted); font-size: 0.95rem; font-weight: 500; transition: color 0.3s ease; }
+        .back-btn:hover { color: var(--indigo-light); }
+        
+        .page-header { padding: 120px 20px 40px 20px; text-align: center; }
+
+        .section-title { font-size: 3.2rem; color: var(--accent); margin-bottom: 25px; display: flex; align-items: center; justify-content: center; text-align: center; position: relative; padding-bottom: 25px; opacity: 0; animation: fadeIn 1s ease forwards; }
+        .section-title::before { content: ">"; margin-right: 15px; color: var(--indigo-light); font-weight: bold; text-shadow: 0 0 10px var(--indigo-light); font-family: var(--font-main); }
+        .section-title::after { content: ""; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 150px; height: 3px; background: linear-gradient(90deg, transparent, var(--accent-hover), var(--indigo-light), transparent); border-radius: 2px; }
+
+        .page-subtitle { color: var(--text-muted); font-size: 1.15rem; max-width: 800px; margin: 0 auto; line-height: 1.8; opacity: 0; animation: fadeIn 1s ease forwards 0.2s; }
+
+        /* --- HEADER & NAV --- */
+        header { background-color: rgba(13, 11, 20, 0.95); padding: 10px 0; position: fixed; width: 100%; top: 0; z-index: 1000; backdrop-filter: blur(10px); border-bottom: 1px solid var(--border-color); box-shadow: 0 2px 20px rgba(0,0,0,0.4); }
+        nav { display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-size: 1.8rem; color: var(--accent); font-family: var(--font-title); text-shadow: 0 0 10px var(--accent); }
+        .nav-links { display: flex; gap: 10px; align-items: center; background-color: var(--bg-card); padding: 5px 8px; border-radius: var(--radius-lg); border: 1px solid var(--border-color); margin-left: auto; }
+        .nav-links li { margin: 0 5px; }
+        .nav-links li a { font-weight: 500; font-size: 0.95rem; padding: 8px 18px; border-radius: var(--radius-lg); position: relative; }
+        .nav-links li a:not(.nav-contact-btn):hover, .nav-links li a.active { background-color: rgba(157, 78, 221, 0.15); color: var(--accent-hover); text-shadow: 0 0 5px var(--accent-hover); }
+        .nav-contact-btn { background-color: transparent; border: 2px solid var(--accent); color: var(--accent); font-weight: 600; text-transform: uppercase; font-size: 0.85rem; letter-spacing: 1px; }
+        .nav-contact-btn:hover { background-color: var(--accent); color: #ffffff; box-shadow: 0 0 15px var(--accent-glow); border-color: var(--accent-hover); }
+
+        /* --- CONTENU PROJET --- */
+        .project-section { margin-bottom: 80px; opacity: 0; animation: fadeIn 1s ease forwards 0.3s; }
+        .project-heading { font-size: 2rem; color: #ffffff; margin-bottom: 20px; border-left: 4px solid var(--indigo-light); padding-left: 15px; }
+        
+        /* Résumé - THEME INDIGO */
+        .resume-box { background: linear-gradient(145deg, rgba(99, 102, 241, 0.05), rgba(22, 20, 32, 0.1)); border-left: 4px solid var(--indigo-accent); padding: 30px 40px; border-radius: 0 var(--radius-md) var(--radius-md) 0; border-top: 1px solid rgba(99, 102, 241, 0.2); border-right: 1px solid rgba(99, 102, 241, 0.2); border-bottom: 1px solid rgba(99, 102, 241, 0.2); margin-bottom: 50px; box-shadow: 0 5px 20px var(--indigo-glow); }
+        .resume-box h3 { color: var(--indigo-light); margin-bottom: 15px; font-size: 1.6rem; text-shadow: 0 0 10px rgba(99, 102, 241, 0.2); }
+        .resume-box p { color: var(--text-main); font-size: 1.05rem; line-height: 1.7; margin-bottom: 15px; }
+        
+        .github-btn { display: inline-flex; align-items: center; gap: 10px; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); color: #fff; padding: 10px 20px; border-radius: var(--radius-lg); font-size: 0.9rem; font-weight: 600; transition: all 0.3s; }
+        .github-btn:hover { background: #fff; color: #000; }
+
+        /* Outils */
+        .tools-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; margin-top: 30px; }
+        .tool-card { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 25px; display: flex; align-items: flex-start; gap: 20px; transition: all 0.3s ease; box-shadow: 0 5px 20px rgba(0,0,0,0.2); height: 100%; }
+        .tool-card:hover { border-color: var(--indigo-light); transform: translateY(-5px); box-shadow: 0 10px 30px var(--indigo-glow); }
+        .tool-img { width: 60px; height: 60px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+        .tool-img img { max-width: 100%; max-height: 100%; object-fit: contain; border-radius: 8px; }
+        .tool-img i { font-size: 3.5rem; color: var(--indigo-light); }
+        .tool-info h3 a { color: #fff; font-size: 1.2rem; margin-bottom: 5px; display: inline-flex; align-items: center; gap: 8px; transition: color 0.3s; }
+        .tool-info h3 a:hover { color: var(--indigo-light); }
+        .tool-info h3 i { font-size: 0.85rem; opacity: 0.7; }
+        .tool-info p { color: var(--text-muted); font-size: 0.85rem; line-height: 1.5; margin-top: 5px; }
+
+        /* Architecture */
+        .architecture-box { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 40px; text-align: center; margin-top: 40px; box-shadow: 0 10px 40px rgba(0,0,0,0.3); display: block; }
+        .architecture-box img { max-width: 100%; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 0 20px rgba(0,0,0,0.5); }
+        .architecture-info { margin-top: 20px; color: var(--text-muted); font-style: italic; font-size: 1rem; display: block; }
+
+        /* Mon Rôle Section */
+        .role-container { background: rgba(157, 78, 221, 0.05); border: 2px dashed var(--accent); border-radius: var(--radius-md); padding: 40px; margin-top: 30px; position: relative; }
+        .role-container::before { content: "MON RÔLE ET CONTRIBUTIONS"; position: absolute; top: -15px; left: 30px; background: var(--accent); color: #fff; padding: 2px 15px; border-radius: 4px; font-family: var(--font-title); font-size: 0.9rem; }
+        .role-intro { font-size: 1.1rem; line-height: 1.8; color: var(--text-main); margin-bottom: 40px; }
+        .role-container h4 { color: var(--indigo-light); font-size: 1.8rem; margin-bottom: 20px; font-family: var(--font-title); border-bottom: 1px solid rgba(157, 78, 221, 0.2); padding-bottom: 10px; }
+
+        /* Grid BDD */
+        .bdd-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin: 25px 0 50px 0; }
+        .bdd-card { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 15px; text-align: center; }
+        .bdd-card img { max-width: 100%; border-radius: 4px; border: 1px solid rgba(255,255,255,0.1); }
+        .bdd-card figcaption { margin-top: 10px; font-size: 0.85rem; color: var(--text-muted); font-style: italic; }
+
+        /* Site Web Section (Full Width Dashboard) */
+        .site-showcase { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 30px; display: flex; flex-direction: column; gap: 30px; margin-top: 25px; }
+        .site-img { width: 100%; text-align: center; }
+        .site-img img { width: 100%; max-width: 100%; border-radius: 8px; border: 1px solid var(--border-color); box-shadow: 0 10px 30px rgba(0,0,0,0.4); }
+        .site-details { width: 100%; }
+        .site-details ul { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 15px; }
+        .site-details ul li { position: relative; padding-left: 25px; color: var(--text-muted); font-size: 1rem; }
+        .site-details ul li::before { content: "→"; position: absolute; left: 0; color: var(--indigo-light); font-weight: bold; }
+
+        /* Grandes étapes */
+        .steps-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 30px; margin-top: 30px; }
+        .step-card { background: rgba(255,255,255,0.02); border: 1px solid var(--border-color); border-top: 3px solid var(--indigo-accent); border-radius: var(--radius-md); padding: 30px; transition: all 0.3s ease; }
+        .step-card h3 { color: var(--indigo-light); font-size: 1.3rem; margin-bottom: 15px; }
+        .step-card p { color: var(--text-main); font-size: 0.95rem; line-height: 1.6; }
+
+        /* Compétences List */
+        .ac-box { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 40px; margin-top: 40px; }
+        .ue-list li { position: relative; padding-left: 25px; margin-bottom: 15px; color: var(--text-muted); font-size: 1rem; }
+        .ue-list li::before { content: '>'; position: absolute; left: 0; color: var(--accent-hover); font-family: var(--font-mono); font-weight: bold; }
+        .ue-list li span.code { color: var(--indigo-light); font-weight: bold; margin-right: 10px; font-family: var(--font-mono); }
+
+        /* Bilan */
+        .bilan-card.success-theme { background: linear-gradient(145deg, var(--bg-card), rgba(46, 204, 113, 0.05)); border: 1px solid rgba(46, 204, 113, 0.3); border-radius: var(--radius-md); padding: 40px; margin-top: 60px; box-shadow: 0 10px 40px var(--success-glow); position: relative; overflow: hidden; }
+        .bilan-card.success-theme::before { content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 4px; background: linear-gradient(90deg, var(--success), var(--accent-cyan)); }
+        .bilan-card.success-theme h3 { font-size: 2rem; color: var(--success); margin-bottom: 20px; text-shadow: 0 0 10px rgba(46, 204, 113, 0.2); }
+        .bilan-card.success-theme p { font-size: 1.05rem; color: var(--text-main); line-height: 1.8; margin-bottom: 0; }
+
+        footer { text-align: center; padding: 40px 0; color: var(--text-muted); border-top: 1px solid var(--border-color); margin-top: auto; }
+
+        @media (max-width: 900px) { 
+            .nav-links { display: none; } 
+            .site-details ul { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">C.H.D</div>
+                <ul class="nav-links">
+                    <li><a href="index.html#hero">Accueil</a></li>
+                    <li><a href="index.html#parcours">Parcours</a></li>
+                    <li><a href="competences.html">Compétences</a></li>
+                    <li><a href="index.html#cv">CV</a></li>
+                    <li><a href="projets.html" class="active">Projets</a></li> 
+                    <li><a href="contact.html" class="nav-contact-btn">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="page-header container">
+        <div class="back-btn-container">
+            <a href="projets-but1.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i> Revenir aux projets</a>
+        </div>
+        <h1 class="section-title">SAE 2.04</h1>
+        <p class="page-subtitle">Projet Intégratif de BUT1 : synthèse complète des compétences en Réseau, Téléphonie, IoT et Développement Web.</p>
+    </div>
+
+    <main class="container">
+
+        <section class="project-section">
+            <div class="resume-box">
+                <h3>Résumé de la SAE</h3>
+                <p><strong>Objectif :</strong> Ce projet intégratif a pour but de regrouper les connaissances et projets de la première année au sein d'une même infrastructure. Il s'agit de mettre en place une solution informatique complète pour une entreprise, couvrant le réseau local, la téléphonie IP, la collecte de données via capteurs et leur restitution sur une interface web.</p>
+                <p>Le projet est divisé en quatre pôles majeurs : <strong>Réseau</strong>, <strong>Téléphonie</strong>, <strong>Collecte IoT</strong> et <strong>Web/BdD</strong>.</p>
+                <a href="https://github.com/AnonymousApexio/SAE-Projet-integrative" target="_blank" class="github-btn"><i class="fa-brands fa-github"></i> Consulter le code source sur GitHub</a>
+            </div>
+        </section>
+
+        <section class="project-section">
+            <h2 class="project-heading">Environnement et Outils</h2>
+            <div class="tools-grid">
+                <div class="tool-card">
+                    <div class="tool-img"><img src="files/logo/cisco.png" alt="Cisco"></div>
+                    <div class="tool-info">
+                        <h3><a href="https://www.cisco.com/" target="_blank">Infrastructure Cisco <i class="fa-solid fa-arrow-up-right-from-square"></i></a></h3>
+                        <p>Configuration de routeurs et commutateurs physiques pour le cœur de réseau (VLANs, Routage, NAT).</p>
+                    </div>
+                </div>
+                <div class="tool-card">
+                    <div class="tool-img"><i class="fa-brands fa-python"></i></div>
+                    <div class="tool-info">
+                        <h3><a href="https://www.python.org/" target="_blank">Python <i class="fa-solid fa-arrow-up-right-from-square"></i></a></h3>
+                        <p>Scripts d'acquisition MQTT et logique métier pour le traitement des données capteurs.</p>
+                    </div>
+                </div>
+                <div class="tool-card">
+                    <div class="tool-img"><i class="fa-brands fa-python"></i></div>
+                    <div class="tool-info">
+                        <h3><a href="https://www.djangoproject.com/" target="_blank">Django <i class="fa-solid fa-arrow-up-right-from-square"></i></a></h3>
+                        <p>Framework Web utilisé pour créer le dashboard dynamique et l'API de restitution des données.</p>
+                    </div>
+                </div>
+                <div class="tool-card">
+                    <div class="tool-img"><img src="files/logo/mariadb.png" alt="MariaDB"></div>
+                    <div class="tool-info">
+                        <h3><a href="https://mariadb.org/" target="_blank">MariaDB <i class="fa-solid fa-arrow-up-right-from-square"></i></a></h3>
+                        <p>Système de base de données relationnelle centralisant les relevés de température.</p>
+                    </div>
+                </div>
+                <div class="tool-card">
+                    <div class="tool-img"><img src="files/logo/debian.png" alt="Debian"></div>
+                    <div class="tool-info">
+                        <h3><a href="https://www.debian.org/" target="_blank">Debian <i class="fa-solid fa-arrow-up-right-from-square"></i></a></h3>
+                        <p>Système d'exploitation des serveurs virtualisés hébergeant les scripts et le site web.</p>
+                    </div>
+                </div>
+                <div class="tool-card">
+                    <div class="tool-img"><img src="files/logo/linphone.png" alt="Linphone"></div>
+                    <div class="tool-info">
+                        <h3><a href="https://www.linphone.org/" target="_blank">Linphone <i class="fa-solid fa-arrow-up-right-from-square"></i></a></h3>
+                        <p>Logiciel Softphone utilisé pour tester la connectivité SIP sur les différents VLANs.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="project-section">
+            <h2 class="project-heading">Architecture de l'Infrastructure</h2>
+            <figure class="architecture-box">
+                <img src="files/s2/schema_sae_integrative.png" alt="Schéma logique de l'infrastructure">
+                <figcaption class="architecture-info">Schéma réseau détaillé : interconnexion des VLANs et déploiement des services ToIP et Web.</figcaption>
+            </figure>
+            <figure class="architecture-box">
+                <img src="files/s2/photo_sae_24.png" alt="Installation physique">
+                <figcaption class="architecture-info">Mise en œuvre sur matériel physique : routeurs Cisco, switchs et bancs de test.</figcaption>
+            </figure>
+        </section>
+
+        <section class="project-section">
+            <h2 class="project-heading">Grandes étapes techniques</h2>
+            <div class="steps-grid">
+                <div class="step-card">
+                    <h3>1. Segmentation Réseau</h3>
+                    <p>Mise en place de <strong>4 VLANs</strong> (Voix, Utilisateurs, Serveur, Administrateur) et configuration du <strong>routage inter-VLAN</strong>.</p>
+                </div>
+                <div class="step-card">
+                    <h3>2. Sécurisation Infrasystème</h3>
+                    <p>Mise en place de filtrage <strong>ACL</strong> sur le routeur et de règles <strong>iptables</strong> strictes sur le serveur Debian.</p>
+                </div>
+                <div class="step-card">
+                    <h3>3. Communication VoIP</h3>
+                    <p>Inscription de softphones et téléphones physiques SIP, et configuration de la connectivité réseau pour les flux voix.</p>
+                </div>
+                <div class="step-card">
+                    <h3>4. Collecte MQTT (Python)</h3>
+                    <p>Développement du script d'écoute du broker <strong>MQTT</strong> et automatisation de l'insertion en base MariaDB.</p>
+                </div>
+                <div class="step-card">
+                    <h3>5. Développement Web (Django)</h3>
+                    <p>Conception du site dynamique gérant l'affichage temps réel des données collectées.</p>
+                </div>
+                <div class="step-card">
+                    <h3>6. Déploiement Services</h3>
+                    <p>Mise en production Apache2, synchronisation <strong>NTP</strong> et centralisation des logs via <strong>Rsyslog</strong>.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="project-section">
+            <h2 class="project-heading">Mon rôle dans le projet</h2>
+            <div class="role-container">
+                <p class="role-intro">
+                    Lors de cette SAE effectuée en groupe, mon rôle était la récupération des données de température via MQTT et l'affichage de celle-ci sur un site Web. Pour la collecte, j'ai utilisé un script python sur une VM Debian, qui tournait en permanence et était relié à une base de données MariaDB. Cette base de données était elle-même reliée à un site web dynamique créé à l'aide de Django dont le but était d'afficher l'ensemble des données.
+                </p>
+
+                <h4>Organisation de la Base de Données</h4>
+                <p style="color: var(--text-muted);">La base MariaDB structure les informations pour identifier les capteurs et historiser les relevés.</p>
+                <div class="bdd-grid">
+                    <figure class="bdd-card">
+                        <img src="files/s2/tables_bdd_sae24.png" alt="Tables MariaDB">
+                        <figcaption>Structure globale des tables.</figcaption>
+                    </figure>
+                    <figure class="bdd-card">
+                        <img src="files/s2/capteur_bdd_sae24.png" alt="Table Capteurs">
+                        <figcaption>Table des capteurs et localisations.</figcaption>
+                    </figure>
+                    <figure class="bdd-card">
+                        <img src="files/s2/donnee_bdd_sae24.png" alt="Table Données">
+                        <figcaption>Historique des températures relevées.</figcaption>
+                    </figure>
+                </div>
+
+                <h4>Dashboard Dynamique (Django)</h4>
+                <div class="site-showcase">
+                    <div class="site-img">
+                        <img src="files/s2/site_sae_integrative.png" alt="Aperçu du site web">
+                    </div>
+                    <div class="site-details">
+                        <ul>
+                            <li><strong>Actualisation AJAX :</strong> Requêtes asynchrones toutes les 5 secondes pour mettre à jour les données sans rechargement de page.</li>
+                            <li><strong>Visualisation Graphique :</strong> Intégration de <em>Chart.js</em> pour suivre l'évolution temporelle des capteurs.</li>
+                            <li><strong>Filtrage métier :</strong> Tri dynamique par ID capteur, nom ou plage de dates via les vues Django.</li>
+                            <li><strong>Export de données :</strong> Fonctionnalité permettant de télécharger les relevés filtrés au format CSV.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="project-section">
+            <h2 class="project-heading">Compétences validées</h2>
+            <div class="ac-box">
+                <ul class="ue-list">
+                    <li><span class="code">AC11.03</span> Configurer les fonctions de base du réseau local.</li>
+                    <li><span class="code">AC12.04</span> Connecter les systèmes de ToIP (Téléphonie sur IP).</li>
+                    <li><span class="code">AC13.01</span> Utiliser un système informatique et ses outils (Virtualisation, Linux).</li>
+                    <li><span class="code">AC13.05</span> Choisir les mécanismes de gestion de données adaptés (MariaDB).</li>
+                    <li><span class="code">AC13.06</span> S'intégrer dans un environnement propice au développement (Gantt).</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="project-section">
+            <div class="bilan-card success-theme">
+                <h3>Analyse réflexive</h3>
+                <p>
+                    Lors de ce projet, j'ai pu retravailler l'ensemble des notions vues en première année. Etant arrivé en cours d'année, ce projet m'a permis d'être confiant sur les acquis du second semestre. Je suis parvenu à m'organiser efficacement dans ce projet pour finir ma partie dans les temps et comprendre les autres sections du projet. De plus, j'ai apprécié travailler sur du matériel physique car cela renforce l'aspect réaliste du projet.
+                </p>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 <strong>Camille HENRY--DELANGLE</strong>.</p>
+            <p style="font-size: 0.85rem; font-family: var(--font-mono); opacity: 0.5; margin-top: 15px;">Root@Portfolio:~# exit</p>
+        </div>
+    </footer>
+
+</body>
+</html>
