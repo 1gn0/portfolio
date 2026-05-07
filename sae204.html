@@ -105,30 +105,27 @@
         .step-card h3 { color: var(--indigo-light); font-size: 1.3rem; margin-bottom: 15px; }
         .step-card p { color: var(--text-main); font-size: 0.95rem; line-height: 1.6; }
 
-        /* --- MON RÔLE (NOUVELLE DISPOSITION) --- */
-        .role-section-cohesive { background: var(--bg-card); border: 2px dashed var(--accent); border-radius: var(--radius-md); padding: 50px; margin-top: 30px; box-shadow: 0 10px 50px rgba(0,0,0,0.3); position: relative; }
-        .role-section-cohesive::before { content: "MON RÔLE SUR LE PROJET"; position: absolute; top: -15px; left: 30px; background: var(--accent); color: #fff; padding: 2px 15px; border-radius: 4px; font-family: var(--font-title); font-size: 0.9rem; letter-spacing: 1px; }
+        /* --- MON RÔLE (DISPOSITION GRILLE PROPRE) --- */
+        .role-container { background: rgba(157, 78, 221, 0.05); border: 2px dashed var(--accent); border-radius: var(--radius-md); padding: 40px; margin-top: 30px; position: relative; }
+        .role-container::before { content: "MON RÔLE ET CONTRIBUTIONS"; position: absolute; top: -15px; left: 30px; background: var(--accent); color: #fff; padding: 2px 15px; border-radius: 4px; font-family: var(--font-title); font-size: 0.9rem; }
         
-        .role-intro-text { font-size: 1.1rem; line-height: 1.8; color: var(--text-main); margin-bottom: 50px; text-align: left; }
-        
-        .role-subsection { margin-bottom: 60px; }
-        .role-subsection h4 { color: var(--indigo-light); font-size: 1.6rem; margin-bottom: 15px; text-shadow: 0 0 10px rgba(99, 102, 241, 0.3); }
-        .role-subsection-desc { color: var(--text-main); font-size: 1rem; line-height: 1.7; margin-bottom: 30px; }
+        .role-intro { font-size: 1.1rem; line-height: 1.8; color: var(--text-main); margin-bottom: 40px; }
+        .role-container h4 { color: var(--indigo-light); font-size: 1.8rem; margin-bottom: 20px; font-family: var(--font-title); border-bottom: 1px solid rgba(157, 78, 221, 0.2); padding-bottom: 10px; }
 
-        /* Galerie BDD */
-        .bdd-gallery-cohesive { display: flex; flex-wrap: wrap; gap: 20px; justify-content: flex-start; margin-top: 20px; }
-        .bdd-item { background: rgba(255,255,255,0.02); border: 1px solid var(--border-color); border-radius: 8px; flex: 1 1 300px; max-width: calc(33.333% - 20px); text-align: center; padding: 15px; }
-        .bdd-item img { width: 100%; height: auto; object-fit: contain; border-radius: 4px; border: 1px solid rgba(255,255,255,0.1); }
-        .bdd-item figcaption { margin-top: 10px; font-size: 0.85rem; color: var(--text-muted); font-style: italic; }
+        /* Grille BDD propre (3 colonnes) */
+        .bdd-grid-layout { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; margin: 25px 0 50px 0; }
+        .bdd-card { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 15px; text-align: center; }
+        .bdd-card img { max-width: 100%; height: auto; object-fit: contain; border-radius: 4px; border: 1px solid rgba(255,255,255,0.1); }
+        .bdd-card figcaption { margin-top: 10px; font-size: 0.85rem; color: var(--text-muted); font-style: italic; }
 
-        /* Showcase Dashboard (Stacked verticalement, plus grand) */
-        .dashboard-showcase-stacked { display: flex; flex-direction: column; gap: 30px; margin-top: 30px; align-items: flex-start; }
-        .dashboard-img-large { width: 100%; text-align: center; }
-        .dashboard-img-large img { max-width: 100%; border-radius: 8px; border: 1px solid var(--border-color); box-shadow: 0 10px 30px rgba(0,0,0,0.4); }
-        .dashboard-features-list { width: 100%; margin-top: 10px; }
-        .dashboard-features-list ul { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 15px; }
-        .dashboard-features-list ul li { position: relative; padding-left: 20px; color: var(--text-muted); font-size: 0.95rem; line-height: 1.6; }
-        .dashboard-features-list ul li::before { content: "→"; position: absolute; left: 0; color: var(--indigo-light); font-weight: bold; font-family: var(--font-mono); }
+        /* Site Web Section (Disposition Stacked/Full Width pour Dashboard) */
+        .site-showcase { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 30px; display: flex; flex-direction: column; gap: 30px; margin-top: 25px; }
+        .site-img { width: 100%; text-align: center; }
+        .site-img img { width: 100%; max-width: 100%; border-radius: 8px; border: 1px solid var(--border-color); box-shadow: 0 10px 30px rgba(0,0,0,0.4); }
+        .site-details { width: 100%; }
+        .site-details ul { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 15px; }
+        .site-details ul li { position: relative; padding-left: 25px; color: var(--text-muted); font-size: 1rem; }
+        .site-details ul li::before { content: "→"; position: absolute; left: 0; color: var(--indigo-light); font-weight: bold; }
 
         /* Compétences List */
         .ac-box { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 40px; margin-top: 40px; }
@@ -144,12 +141,9 @@
 
         footer { text-align: center; padding: 40px 0; color: var(--text-muted); border-top: 1px solid var(--border-color); margin-top: auto; }
 
-        @media (max-width: 1200px) {
-            .bdd-item { max-width: calc(50% - 20px); flex: 1 1 400px;}
-        }
         @media (max-width: 900px) { 
             .nav-links { display: none; } 
-            .bdd-item { max-width: 100%; }
+            .site-details ul { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -241,11 +235,11 @@
         <section class="project-section">
             <h2 class="project-heading">Architecture de l'Infrastructure</h2>
             <figure class="architecture-box">
-                <img src="files/s2/schema_sae_integrative.png" alt="Schéma logique de l'infrastructure">
+                <img src="files/s2/schema_reseau_sae_integrative.png" alt="Schéma logique de l'infrastructure">
                 <figcaption class="architecture-info">Schéma réseau détaillé : interconnexion des VLANs et déploiement des services ToIP et Web.</figcaption>
             </figure>
             <figure class="architecture-box">
-                <img src="files/s2/photo_sae_24.png" alt="Installation physique">
+                <img src="files/s2/photo_sae_24.jpg" alt="Installation physique">
                 <figcaption class="architecture-info">Mise en œuvre sur matériel physique : routeurs Cisco, switchs et bancs de test.</figcaption>
             </figure>
         </section>
@@ -280,47 +274,41 @@
             </div>
         </section>
 
-        <section class="project-section role-section-cohesive">
-            <p class="role-intro-text">
-                Lors de cette SAE effectuée en groupe, mon rôle était la récupération des données de température via MQTT et l'affichage de celle-ci sur un site Web. Pour la collecte, j'ai utilisé un script python sur une VM Debian, qui tournait en permanence et était relié à une base de données MariaDB. Cette base de données était elle-même reliée à un site web dynamique créé à l'aide de Django dont le but était d'afficher l'ensemble des données.
-            </p>
+        <section class="project-section">
+            <h2 class="project-heading">Mon rôle dans le projet</h2>
+            <div class="role-container">
+                <p class="role-intro">
+                    Lors de cette SAE effectuée en groupe, mon rôle était la récupération des données de température via MQTT et l'affichage de celle-ci sur un site Web. Pour la collecte, j'ai utilisé un script python sur une VM Debian, qui tournait en permanence et était relié à une base de données MariaDB. Cette base de données était elle-même reliée à un site web dynamique créé à l'aide de Django dont le but était d'afficher l'ensemble des données.
+                </p>
 
-            <div class="role-subsection">
                 <h4>Organisation de la Base de Données</h4>
-                <p class="role-subsection-desc">My primary focus was building the data pipeline. I developed a Python script, running continuously as a background service on a Debian VM, that recovers data from an MQTT broker and inserts it into a MariaDB database.</p>
-                
-                <div class="bdd-gallery-cohesive">
-                    <figure class="bdd-item">
+                <p style="color: var(--text-muted);">La base MariaDB structure les informations pour identifier les capteurs et historiser les relevés.</p>
+                <div class="bdd-grid-layout">
+                    <figure class="bdd-card">
                         <img src="files/s2/tables_bdd_sae24.png" alt="Tables MariaDB">
-                        <figcaption>Schéma logique de la base MariaDB.</figcaption>
+                        <figcaption>Structure globale des tables.</figcaption>
                     </figure>
-                    <figure class="bdd-item">
+                    <figure class="bdd-card">
                         <img src="files/s2/capteur_bdd_sae24.png" alt="Table Capteurs">
                         <figcaption>Table des capteurs et localisations.</figcaption>
                     </figure>
-                    <figure class="bdd-item">
+                    <figure class="bdd-card">
                         <img src="files/s2/donnee_bdd_sae24.png" alt="Table Données">
-                        <figcaption>Table de l'historique des relevés.</figcaption>
+                        <figcaption>Historique des températures relevées.</figcaption>
                     </figure>
                 </div>
-            </div>
 
-            <div class="role-subsection">
                 <h4>Dashboard Dynamique (Django)</h4>
-                <p class="role-subsection-desc">Following the database integration, I designed a dynamic website to present the collected data to users. My focus was creating a real-time dashboard that visually represents the environment metrics.</p>
-                
-                <div class="dashboard-showcase-stacked">
-                    <figure class="dashboard-img-large">
-                        <img src="files/s2/site_sae_integrative.png" alt="Aperçu du Dashboard">
-                        <figcaption style="color: var(--text-muted); font-style: italic; font-size: 0.9rem; margin-top: 10px;">Aperçu de l'interface du Dashboard de température.</figcaption>
-                    </figure>
-                    
-                    <div class="dashboard-features-list">
-                        <ul class="ue-list">
-                            <li><span>Actualisation automatique :</span> Le site interroge la base de données toutes les 5 secondes sans recharger la page via un script AJAX.</li>
-                            <li><span>Visualisation Graphique :</span> Intégration de graphiques (par exemple, <em>Chart.js</em>) pour suivre l'évolution temporelle des températures par capteur.</li>
-                            <li><span>Filtrage métier :</span> Possibilité de filtrer les données par ID capteur, nom ou plage de dates via les vues Django.</li>
-                            <li><span>Export de données :</span> Fonctionnalité pour télécharger les relevés filtrés au format CSV pour une analyse approfondie.</li>
+                <div class="site-showcase">
+                    <div class="site-img">
+                        <img src="files/s2/site_sae_integrative.png" alt="Aperçu du site web">
+                    </div>
+                    <div class="site-details">
+                        <ul>
+                            <li><strong>Actualisation AJAX :</strong> Requêtes asynchrones toutes les 5 secondes pour mettre à jour les données sans rechargement de page.</li>
+                            <li><strong>Visualisation Graphique :</strong> Intégration de graphiques temporels pour suivre l'évolution des capteurs.</li>
+                            <li><strong>Filtrage métier :</strong> Tri dynamique par ID capteur, nom ou plage de dates via les vues Django.</li>
+                            <li><strong>Export de données :</strong> Fonctionnalité permettant de télécharger les relevés filtrés au format CSV.</li>
                         </ul>
                     </div>
                 </div>
