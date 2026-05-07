@@ -171,7 +171,7 @@
 
         /* --- SCROLL INDICATOR --- */
         .scroll-indicator {
-            margin-top: 30px; /* Réduit de 50px pour gagner de la place */
+            margin-top: 30px; 
             display: flex;
             justify-content: center;
             align-items: center;
@@ -195,7 +195,7 @@
 
         /* --- SECTION HERO --- */
         #hero {
-            padding-top: 100px; /* Réduit de 130px pour remonter le contenu */
+            padding-top: 100px; 
             min-height: 100vh;
             display: flex;
             flex-direction: column;
@@ -250,7 +250,7 @@
         .hero-text h1 {
             font-size: 4.8rem;
             line-height: 1.1;
-            margin-bottom: 25px; /* Réduit de 35px */
+            margin-bottom: 25px; 
             letter-spacing: 2px;
         }
 
@@ -275,8 +275,8 @@
             border: none;
             border-top: 1px solid rgba(79, 172, 254, 0.4);
             border-bottom: 1px solid rgba(157, 78, 221, 0.4);
-            padding: 20px 0; /* Réduit de 30px */
-            margin-bottom: 30px; /* Réduit de 45px */
+            padding: 20px 0; 
+            margin-bottom: 30px; 
             width: 100%; 
             display: flex;
             flex-direction: column;
@@ -370,13 +370,12 @@
         .info-link { color: var(--accent-cyan); font-size: 0.95rem; display: inline-block; margin-top: 15px; border-bottom: 1px solid transparent; transition: all 0.3s ease; }
         .info-link:hover { color: #fff; border-bottom: 1px solid #fff; text-shadow: 0 0 8px var(--accent-cyan); }
 
-        /* --- EXPERIENCES SECTION MODIFIÉE --- */
+        /* --- EXPERIENCES SECTION --- */
         .experiences-intro { color: var(--text-main); text-align: center; max-width: 800px; margin: 0 auto 50px auto; font-size: 1.15rem; opacity: 0; animation: fadeIn 1s ease forwards 0.2s; }
         .badge { display: inline-block; background-color: rgba(157, 78, 221, 0.2); color: var(--accent-hover); padding: 4px 12px; border-radius: 20px; font-size: 0.8rem; font-family: var(--font-mono); margin-left: 10px; border: 1px solid var(--accent); vertical-align: middle; position: relative; }
         
         .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; opacity: 0; animation: fadeIn 1s ease forwards 0.2s; }
         
-        /* Style spécifique pour le stage qui prend toute la largeur */
         .card-featured { grid-column: 1 / -1; }
 
         .card { background-color: var(--bg-card); padding: 40px; border-radius: var(--radius-md); border: 1px solid transparent; box-shadow: 0 10px 30px rgba(0,0,0,0.2); transition: all 0.4s ease; position: relative; overflow: hidden; display: flex; flex-direction: column; }
@@ -389,7 +388,6 @@
         .card-summary { color: var(--text-main); font-size: 0.95rem; margin-bottom: 25px; padding-bottom: 20px; border-bottom: 1px solid var(--border-color); line-height: 1.5; }
         .company-date { color: var(--accent-cyan); font-family: var(--font-mono); font-size: 0.9rem; margin-bottom: 15px; }
         
-        /* Badge Logo OCI */
         .oci-logo-wrapper {
             background: white;
             width: 100px;
@@ -411,10 +409,22 @@
         .skill-list li { position: relative; padding-left: 25px; margin-bottom: 12px; color: var(--text-muted); font-size: 0.95rem; transition: color 0.3s ease; }
         .skill-list li::before { content: '>'; position: absolute; left: 0; color: var(--card-accent, var(--accent)); font-weight: bold; }
         
-        /* --- COMPETENCES SECTION --- */
-        .soft-skill-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin-top: 40px; opacity: 0; animation: fadeIn 1s ease forwards 0.2s; }
-        .soft-skill-item { background: rgba(157, 78, 221, 0.05); border: 1px solid var(--border-color); padding: 22px; text-align: center; border-radius: var(--radius-lg); color: var(--accent-hover); transition: all 0.3s ease; font-size: 1.05rem; font-family: var(--font-title); }
-        .soft-skill-item:hover { border-color: var(--accent-cyan); background: rgba(79, 172, 254, 0.1); color: #ffffff; transform: scale(1.03); }
+        /* --- COMPETENCES HUMAINES --- */
+        .soft-skills-container { margin-top: 80px; }
+        .soft-skills-intro { color: var(--text-main); text-align: center; max-width: 900px; margin: 0 auto 40px auto; font-size: 1.15rem; line-height: 1.8; opacity: 0; animation: fadeIn 1s ease forwards 0.2s; }
+        
+        .soft-skill-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; opacity: 0; animation: fadeIn 1s ease forwards 0.3s; }
+        
+        .soft-skill-featured { grid-column: 1 / -1; }
+        
+        .soft-skill-card { background: rgba(157, 78, 221, 0.03); border: 1px solid var(--border-color); padding: 35px; border-radius: var(--radius-md); transition: all 0.3s ease; display: flex; flex-direction: column; align-items: flex-start; }
+        .soft-skill-card:hover { border-color: var(--accent-cyan); background: rgba(79, 172, 254, 0.05); transform: translateY(-5px); box-shadow: 0 10px 30px rgba(0,0,0,0.3); }
+        .soft-skill-card h4 { color: var(--accent-hover); font-size: 1.4rem; margin-bottom: 15px; font-family: var(--font-title); display: flex; align-items: center; gap: 10px; }
+        .soft-skill-card:hover h4 { color: var(--accent-cyan); }
+        .soft-skill-card p { color: var(--text-muted); font-size: 1rem; line-height: 1.6; margin: 0; }
+        
+        .soft-skill-featured { border-left: 4px solid var(--accent); background: linear-gradient(145deg, rgba(157, 78, 221, 0.05), rgba(22, 20, 32, 0.3)); }
+        .soft-skill-featured:hover { border-left-color: var(--accent-cyan); }
 
         #cv { background-color: var(--bg-card); border-radius: 40px; margin: 20px auto; border: 1px solid var(--border-color); max-width: 1160px; transition: all 0.3s ease; }
         #cv:hover { border-color: rgba(157, 78, 221, 0.2); box-shadow: 0 10px 40px rgba(0,0,0,0.3); }
@@ -565,7 +575,6 @@
             <p class="experiences-intro">En dehors de mon parcours scolaire, j'ai pu acquérir une expérience professionnelle au cours de stages et d'emplois saisonniers.</p>
             <div class="grid">
                 
-                <!-- CASE STAGE MISE EN AVANT -->
                 <div class="card card-featured" style="border-color: rgba(157, 78, 221, 0.4);">
                     <div style="display: flex; align-items: center; flex-wrap: wrap;">
                         <div class="oci-logo-wrapper">
@@ -653,13 +662,39 @@
                     </ul>
                 </div>
             </div>
-            <h3 style="margin-top: 80px; color: var(--accent-hover); font-family: var(--font-title); text-align: center; font-size: 1.8rem; text-shadow: 0 0 10px rgba(199, 125, 255, 0.2);">Compétences Humaines</h3>
-            <div class="soft-skill-grid">
-                <div class="soft-skill-item">Communication en entreprise</div>
-                <div class="soft-skill-item">Anglais (Niveau B2)</div>
-                <div class="soft-skill-item">Travail en équipe</div>
-                <div class="soft-skill-item">Curiosité technique</div>
+
+            <div class="soft-skills-container">
+                <h3 style="color: var(--accent-hover); font-family: var(--font-title); text-align: center; font-size: 2rem; margin-bottom: 20px; text-shadow: 0 0 10px rgba(199, 125, 255, 0.2);">Compétences Humaines</h3>
+                
+                <p class="soft-skills-intro">
+                    Lors de ma formation ainsi que mes différentes expériences professionnelles, j'ai aussi pu développer des <strong>soft skills</strong>, notamment en <strong>gestion de projet</strong> et en <strong>communication</strong>. Ces notions sont tout aussi essentielles à mon parcours car elles me permettent de <strong>m'organiser en projet</strong> (SAE) et en <strong>environnement professionnel</strong>.
+                </p>
+
+                <div class="soft-skill-grid">
+                    
+                    <div class="soft-skill-card soft-skill-featured">
+                        <h4><i class="fa-solid fa-language"></i> Anglais</h4>
+                        <p>L'anglais étant <strong>essentiel en informatique</strong>, j'ai pu développer un bon niveau en <strong>communication écrite et orale</strong>, de part ma formation ainsi que mon <strong>expérience personnelle</strong> (lecture de documentations, youtube, jeux-vidéos, musique...)</p>
+                    </div>
+
+                    <div class="soft-skill-card">
+                        <h4><i class="fa-solid fa-comments"></i> Communication</h4>
+                        <p>Lors de mes différentes expériences professionnelles, j'ai pu m'intégrer dans des <strong>environnements variés</strong> qui m'ont permis de développer mes <strong>compétences en communication</strong>.</p>
+                    </div>
+
+                    <div class="soft-skill-card">
+                        <h4><i class="fa-solid fa-users"></i> Travail en équipe</h4>
+                        <p>Lors des projets auxquels j'ai pu participer, j'ai pu <strong>m'organiser</strong> et <strong>communiquer</strong> dans des environnement nécessitant une bonne <strong>gestion de projet</strong> (diagramme de Gantt, github, moyens de communications...).</p>
+                    </div>
+
+                    <div class="soft-skill-card">
+                        <h4><i class="fa-solid fa-lightbulb"></i> Curiosité technique</h4>
+                        <p>La curiosité est une <strong>qualité essentielle</strong> en informatique, c'est ce qui m'a permis d'<strong>apprendre de nombreuses notions par moi-même</strong> en consultant diverses documentations par exemple.</p>
+                    </div>
+
+                </div>
             </div>
+
         </div>
     </section>
 
@@ -733,7 +768,6 @@
                     }
                 });
 
-                // Lier la section experiences au bouton parcours dans la nav
                 if (current === "experiences") {
                     current = "parcours";
                 }
