@@ -105,16 +105,17 @@
         .step-card h3 { color: var(--indigo-light); font-size: 1.3rem; margin-bottom: 15px; }
         .step-card p { color: var(--text-main); font-size: 0.95rem; line-height: 1.6; }
 
-        /* --- MON RÔLE (DISPOSITION GRILLE PROPRE) --- */
+        /* --- MON RÔLE --- */
         .role-container { background: rgba(157, 78, 221, 0.05); border: 2px dashed var(--accent); border-radius: var(--radius-md); padding: 40px; margin-top: 30px; position: relative; }
         .role-container::before { content: "MON RÔLE ET CONTRIBUTIONS"; position: absolute; top: -15px; left: 30px; background: var(--accent); color: #fff; padding: 2px 15px; border-radius: 4px; font-family: var(--font-title); font-size: 0.9rem; }
         
         .role-intro { font-size: 1.1rem; line-height: 1.8; color: var(--text-main); margin-bottom: 40px; }
         .role-container h4 { color: var(--indigo-light); font-size: 1.8rem; margin-bottom: 20px; font-family: var(--font-title); border-bottom: 1px solid rgba(157, 78, 221, 0.2); padding-bottom: 10px; }
 
-        /* Grille BDD propre (3 colonnes) */
-        .bdd-grid-layout { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; margin: 25px 0 50px 0; }
-        .bdd-card { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 15px; text-align: center; }
+        /* Grille BDD propre (2 colonnes, avec les 2 dernières images empilées) */
+        .bdd-grid-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 25px; margin: 25px 0 50px 0; }
+        .bdd-col-stacked { display: flex; flex-direction: column; gap: 25px; }
+        .bdd-card { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 15px; text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%; }
         .bdd-card img { max-width: 100%; height: auto; object-fit: contain; border-radius: 4px; border: 1px solid rgba(255,255,255,0.1); }
         .bdd-card figcaption { margin-top: 10px; font-size: 0.85rem; color: var(--text-muted); font-style: italic; }
 
@@ -144,6 +145,7 @@
         @media (max-width: 900px) { 
             .nav-links { display: none; } 
             .site-details ul { grid-template-columns: 1fr; }
+            .bdd-grid-layout { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -283,19 +285,22 @@
 
                 <h4>Organisation de la Base de Données</h4>
                 <p style="color: var(--text-muted);">La base MariaDB structure les informations pour identifier les capteurs et historiser les relevés.</p>
+                
                 <div class="bdd-grid-layout">
                     <figure class="bdd-card">
                         <img src="files/s2/tables_bdd_sae24.png" alt="Tables MariaDB">
                         <figcaption>Structure globale des tables.</figcaption>
                     </figure>
-                    <figure class="bdd-card">
-                        <img src="files/s2/capteur_bdd_sae24.png" alt="Table Capteurs">
-                        <figcaption>Table des capteurs et localisations.</figcaption>
-                    </figure>
-                    <figure class="bdd-card">
-                        <img src="files/s2/donnee_bdd_sae24.png" alt="Table Données">
-                        <figcaption>Historique des températures relevées.</figcaption>
-                    </figure>
+                    <div class="bdd-col-stacked">
+                        <figure class="bdd-card">
+                            <img src="files/s2/capteur_bdd_sae24.png" alt="Table Capteurs">
+                            <figcaption>Table des capteurs et localisations.</figcaption>
+                        </figure>
+                        <figure class="bdd-card">
+                            <img src="files/s2/donnee_bdd_sae24.png" alt="Table Données">
+                            <figcaption>Historique des températures relevées.</figcaption>
+                        </figure>
+                    </div>
                 </div>
 
                 <h4>Dashboard Dynamique (Django)</h4>
@@ -306,7 +311,7 @@
                     <div class="site-details">
                         <ul>
                             <li><strong>Actualisation AJAX :</strong> Requêtes asynchrones toutes les 5 secondes pour mettre à jour les données sans rechargement de page.</li>
-                            <li><strong>Visualisation Graphique :</strong> Intégration de graphiques temporels pour suivre l'évolution des capteurs.</li>
+                            <li><strong>Visualisation Graphique :</strong> Intégration de <em>Chart.js</em> pour suivre l'évolution temporelle des capteurs.</li>
                             <li><strong>Filtrage métier :</strong> Tri dynamique par ID capteur, nom ou plage de dates via les vues Django.</li>
                             <li><strong>Export de données :</strong> Fonctionnalité permettant de télécharger les relevés filtrés au format CSV.</li>
                         </ul>
