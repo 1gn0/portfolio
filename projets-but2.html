@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SAE S3 | Camille HENRY--DELANGLE</title>
+    <title>SAE Deuxième Année | Camille HENRY--DELANGLE</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Saira+Stencil+One&display=swap" rel="stylesheet">
@@ -79,6 +79,12 @@
         .iot-glow-icon { font-size: 5.5rem; color: #f39c12; filter: drop-shadow(0 0 15px rgba(243, 156, 18, 0.5)); transition: all 0.3s ease; }
         .sae-card:hover .iot-glow-icon { transform: scale(1.1); filter: drop-shadow(0 0 25px rgba(243, 156, 18, 0.8)); color: #f1c40f; }
 
+        .portfolio-glow-icon { font-size: 5.5rem; color: #a18cd1; filter: drop-shadow(0 0 15px rgba(161, 140, 209, 0.5)); transition: all 0.3s ease; }
+        .sae-card:hover .portfolio-glow-icon { transform: scale(1.1); filter: drop-shadow(0 0 25px rgba(161, 140, 209, 0.8)); color: #fbc2eb; }
+
+        .stage-glow-icon { font-size: 5.5rem; color: #1abc9c; filter: drop-shadow(0 0 15px rgba(26, 188, 156, 0.5)); transition: all 0.3s ease; }
+        .sae-card:hover .stage-glow-icon { transform: scale(1.1); filter: drop-shadow(0 0 25px rgba(26, 188, 156, 0.8)); color: #2ecc71; }
+
         .sae-content { flex-grow: 1; display: flex; flex-direction: column; justify-content: center; }
         .sae-title { font-size: 1.7rem; color: #ffffff; margin-bottom: 10px; line-height: 1.2; transition: color 0.3s ease; }
         .sae-desc { color: var(--text-muted); font-size: 1rem; margin-bottom: 18px; line-height: 1.5; }
@@ -121,6 +127,14 @@
         
         .cyber-glow-icon { font-size: 5rem; color: var(--danger); filter: drop-shadow(0 0 15px rgba(231, 76, 60, 0.5)); transition: all 0.3s ease; }
         .cyber-card:hover .cyber-glow-icon { transform: scale(1.1); filter: drop-shadow(0 0 25px rgba(231, 76, 60, 0.8)); color: var(--danger-hover); }
+
+        /* --- THEME PORTFOLIO / STAGE --- */
+        .portfolio-card::before { background: #a18cd1; }
+        .stage-card::before { background: #1abc9c; }
+        .stage-card:hover { border-color: #1abc9c; box-shadow: 0 10px 30px rgba(26, 188, 156, 0.15); }
+        .stage-card .tag { background: rgba(26, 188, 156, 0.1); color: #1abc9c; border-color: rgba(26, 188, 156, 0.3); }
+        .stage-card .btn-sae { border-color: #1abc9c; }
+        .stage-card:hover .btn-sae { background-color: #1abc9c; box-shadow: 0 0 20px rgba(26, 188, 156, 0.3); }
 
         footer { text-align: center; padding: 40px 0; color: var(--text-muted); font-size: 0.95rem; border-top: 1px solid var(--border-color); width: 100%; margin-top: auto; }
 
@@ -224,6 +238,42 @@
                 </div>
                 <div class="sae-action">
                     <a href="sae304.html" class="btn-sae">Consulter <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+            </article>
+
+            <article class="sae-card portfolio-card">
+                <div class="sae-img-container">
+                    <div class="sae-img logo-style">
+                        <i class="fa-solid fa-briefcase portfolio-glow-icon"></i>
+                    </div>
+                </div>
+                <div class="sae-content">
+                    <h2 class="sae-title">SAE 4.Portfolio : Démarche portfolio</h2>
+                    <p class="sae-desc">Analyse réflexive des compétences ciblées par la formation, auto-évaluation continue et valorisation des apprentissages à travers la conception de ce portfolio professionnel.</p>
+                    <div class="tag-container">
+                        <span class="tag">Analyse Réflexive</span><span class="tag">Compétences</span><span class="tag">Auto-évaluation</span><span class="tag">Professionnalisation</span>
+                    </div>
+                </div>
+                <div class="sae-action">
+                    <a href="sae4portfolio.html" class="btn-sae">Consulter <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+            </article>
+
+            <article class="sae-card stage-card">
+                <div class="sae-img-container">
+                    <div class="sae-img logo-style">
+                        <i class="fa-solid fa-building-user stage-glow-icon"></i>
+                    </div>
+                </div>
+                <div class="sae-content">
+                    <h2 class="sae-title">Stage en entreprise</h2>
+                    <p class="sae-desc">Stage d'application d'une durée de 8 semaines au sein de la structure OCI à Mulhouse afin de consolider mes compétences et de m'immerger dans un environnement professionnel réel.</p>
+                    <div class="tag-container">
+                        <span class="tag">Stage</span><span class="tag">Entreprise</span><span class="tag">OCI Mulhouse</span><span class="tag">Immersion</span><span class="tag">Réseaux & Télécoms</span>
+                    </div>
+                </div>
+                <div class="sae-action">
+                    <a href="stage-oci.html" class="btn-sae">Consulter <i class="fa-solid fa-arrow-right"></i></a>
                 </div>
             </article>
 
