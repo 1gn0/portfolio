@@ -34,7 +34,7 @@
         * { margin: 0; padding: 0; box-sizing: border-box; } 
         html { scroll-behavior: smooth; overflow-x: hidden; } 
 
-        body { background-color: var(--bg-color); color: var(--text-main); font-family: var(--font-main); line-height: 1.7; overflow-x: hidden; display: flex; flex-direction: column; min-height: 100vh; } 
+        body { background-color: var(--bg-color); color: var(--text-main); font-family: var(--font-main); line-height: 1.6; overflow-x: hidden; display: flex; flex-direction: column; min-height: 100vh; } 
         h1, h2, h3 { font-family: var(--font-title); font-weight: normal; } 
         a { text-decoration: none; color: inherit; transition: all 0.3s ease; } 
         ul { list-style: none; } 
@@ -43,17 +43,18 @@
         /* --- STYLES GENERAUX --- */ 
         .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; width: 100%; } 
          
-        .page-header { padding: 160px 20px 60px 20px; text-align: center; } 
+        /* Réduction des marges pour tout afficher sur l'écran */
+        .page-header { padding: 100px 20px 20px 20px; text-align: center; } 
 
 
-        .section-title { font-size: 3.2rem; color: var(--accent); margin-bottom: 30px; display: flex; align-items: center; justify-content: center; text-align: center; opacity: 0; animation: fadeIn 1s ease forwards; position: relative; padding-bottom: 25px; } 
+        .section-title { font-size: 3rem; color: var(--accent); margin-bottom: 20px; display: flex; align-items: center; justify-content: center; text-align: center; opacity: 0; animation: fadeIn 1s ease forwards; position: relative; padding-bottom: 15px; } 
 
         .section-title::before { content: ">"; margin-right: 15px; color: var(--accent-cyan); font-weight: bold; text-shadow: 0 0 10px var(--accent-cyan); font-family: var(--font-main); } 
 
         .section-title::after { content: ""; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 150px; height: 3px; background: linear-gradient(90deg, transparent, var(--accent-hover), var(--accent-cyan), transparent); border-radius: 2px; } 
 
 
-        .page-subtitle { color: var(--text-main); font-size: 1.2rem; max-width: 900px; margin: 0 auto; opacity: 0; animation: fadeIn 1s ease forwards 0.2s; line-height: 1.8; text-align: center; } 
+        .page-subtitle { color: var(--text-main); font-size: 1.1rem; max-width: 900px; margin: 0 auto; opacity: 0; animation: fadeIn 1s ease forwards 0.2s; line-height: 1.7; text-align: center; } 
 
         @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } } 
 
@@ -89,33 +90,31 @@
 
         /* --- PROJETS GRID --- */ 
 
-        .projets-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin: 40px auto 100px auto; opacity: 0; animation: fadeIn 1s ease forwards 0.4s; } 
+        /* Marges réduites ici aussi */
+        .projets-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin: 20px auto 40px auto; opacity: 0; animation: fadeIn 1s ease forwards 0.4s; } 
 
-
-        .projet-year-card { background-color: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 60px 40px; text-align: center; transition: all 0.4s ease; position: relative; overflow: hidden; display: flex; flex-direction: column; align-items: center; justify-content: center; } 
+        .projet-year-card { background-color: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 40px 30px; text-align: center; transition: all 0.4s ease; position: relative; overflow: hidden; display: flex; flex-direction: column; align-items: center; justify-content: center; } 
 
         .projet-year-card::before { content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 4px; background: linear-gradient(90deg, var(--accent-cyan), var(--accent)); transform: scaleX(0); transition: transform 0.4s ease; } 
 
         .projet-year-card:hover { transform: translateY(-10px); border-color: var(--accent-cyan); box-shadow: 0 15px 40px rgba(0,0,0,0.4), 0 0 20px var(--accent-glow); } 
         .projet-year-card:hover::before { transform: scaleX(1); } 
 
+        .year-icon { font-size: 3rem; color: var(--accent-cyan); margin-bottom: 15px; font-family: var(--font-title); text-shadow: 0 0 15px rgba(79, 172, 254, 0.3); } 
 
-        .year-icon { font-size: 3.5rem; color: var(--accent-cyan); margin-bottom: 25px; font-family: var(--font-title); text-shadow: 0 0 15px rgba(79, 172, 254, 0.3); } 
-
-        .projet-year-card h3 { font-size: 2.2rem; color: #ffffff; margin-bottom: 30px; } 
+        .projet-year-card h3 { font-size: 1.8rem; color: #ffffff; margin-bottom: 25px; } 
 
         /* --- BOUTONS --- */ 
 
-        .btn-view { display: inline-flex; justify-content: center; align-items: center; padding: 14px 35px; background-color: transparent; border: 2px solid var(--accent); color: #ffffff; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; cursor: pointer; border-radius: var(--radius-lg); transition: all 0.4s ease; font-size: 0.9rem; } 
+        .btn-view { display: inline-flex; justify-content: center; align-items: center; padding: 12px 30px; background-color: transparent; border: 2px solid var(--accent); color: #ffffff; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; cursor: pointer; border-radius: var(--radius-lg); transition: all 0.4s ease; font-size: 0.85rem; } 
 
         .projet-year-card:hover .btn-view { background-color: var(--accent); color: #ffffff; box-shadow: 0 0 20px var(--accent-glow); }
  
-
-
-        footer { text-align: center; padding: 40px 0; color: var(--text-muted); font-size: 0.95rem; border-top: 1px solid var(--border-color); width: 100%; margin-top: auto; } 
+        /* Réduction de la marge pour coller en bas */
+        footer { text-align: center; padding: 20px 0; color: var(--text-muted); font-size: 0.95rem; border-top: 1px solid var(--border-color); width: 100%; margin-top: auto; } 
 
         @media (max-width: 900px) { .projets-grid { grid-template-columns: 1fr; } .section-title { font-size: 2.5rem; } } 
-        @media (max-width: 768px) { .nav-links { display: none; } .page-header { padding-top: 120px; } } 
+        @media (max-width: 768px) { .nav-links { display: none; } .page-header { padding-top: 100px; } } 
     </style> 
 </head> 
 <body> 
@@ -140,7 +139,6 @@
         <div class="page-header"> 
             <h1 class="section-title">Mes Projets</h1> 
             <p class="page-subtitle"> 
-
                 Lors de ma formation, j'ai pu participer à divers <strong>SAE (Situations d'Apprentissage et d'Évaluation)</strong> regroupant les compétences acquises en première et en deuxième année. Ces projets permettent de mettre mes connaissances directement en application dans des environnements réalistes. La majorité étant réalisée en groupe, ces projets participent aussi à améliorer mes compétences en <strong>communication</strong>, en <strong>travail d'équipe</strong> et en <strong>gestion de projet</strong>. 
             </p> 
         </div> 
@@ -164,7 +162,7 @@
         <div class="container"> 
             <p>&copy; 2026 <strong>Camille HENRY--DELANGLE</strong>.</p> 
 
-            <p style="font-size: 0.85rem; font-family: var(--font-mono); opacity: 0.5; margin-top: 20px;">Root@Portfolio:~# ls -la /projets</p> 
+            <p style="font-size: 0.85rem; font-family: var(--font-mono); opacity: 0.5; margin-top: 10px;">Root@Portfolio:~# ls -la /projets</p> 
         </div> 
     </footer> 
 
