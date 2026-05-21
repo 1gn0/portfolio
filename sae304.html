@@ -81,12 +81,13 @@
         .tool-img { width: 80px; height: 80px; flex-shrink: 0; background: rgba(255,255,255,0.05); border-radius: 12px; padding: 10px; display: flex; align-items: center; justify-content: center; border: 1px solid rgba(255,255,255,0.1); }
         .tool-img img { max-width: 100%; max-height: 100%; object-fit: contain; }
         .tool-img i { font-size: 3rem; color: var(--danger); }
-        .tool-info h3 { color: #fff; font-size: 1.3rem; margin-bottom: 5px; display: inline-flex; align-items: center; gap: 8px; transition: color 0.3s; }
-        .tool-info h3:hover { color: var(--danger); }
+        .tool-info h3 a { color: #fff; font-size: 1.3rem; margin-bottom: 5px; display: inline-flex; align-items: center; gap: 8px; transition: color 0.3s; }
+        .tool-info h3 a:hover { color: var(--danger); }
+        .tool-info h3 i { font-size: 0.9rem; opacity: 0.7; }
         .tool-info p { color: var(--text-muted); font-size: 0.9rem; line-height: 1.5; margin-top: 5px; }
 
         /* Schéma avec figure et figcaption */
-        .architecture-box { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 40px; text-align: center; margin-top: 40px; box-shadow: 0 10px 40px rgba(0,0,0,0.3); display: block; }
+        .architecture-box { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 20px; text-align: center; margin-top: 40px; box-shadow: 0 10px 40px rgba(0,0,0,0.3); display: block; }
         .architecture-box img { max-width: 100%; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 0 20px rgba(0,0,0,0.5); }
         .architecture-info { margin-top: 20px; color: var(--text-muted); font-style: italic; font-size: 1rem; display: block; }
 
@@ -159,19 +160,19 @@
             <div class="tools-grid">
                 <div class="tool-card">
                     <div class="tool-img">
-                        <i class="fa-solid fa-skull-crossbones"></i>
+                        <img src="files/logo/rootme.png" alt="Logo Root-Me">
                     </div>
                     <div class="tool-info">
-                        <h3>Root-Me</h3>
+                        <h3><a href="https://www.root-me.org/" target="_blank">Root-Me <i class="fa-solid fa-arrow-up-right-from-square"></i></a></h3>
                         <p>Plateforme d'apprentissage dédiée au hacking et à la sécurité de l'information proposant des environnements vulnérables.</p>
                     </div>
                 </div>
                 <div class="tool-card">
                     <div class="tool-img">
-                        <i class="fa-brands fa-linux"></i>
+                        <img src="files/logo/kali.png" alt="Logo Kali Linux">
                     </div>
                     <div class="tool-info">
-                        <h3>Kali Linux</h3>
+                        <h3><a href="https://www.kali.org/" target="_blank">Kali Linux <i class="fa-solid fa-arrow-up-right-from-square"></i></a></h3>
                         <p>Distribution GNU/Linux orientée sécurité et pentest, utilisée pour exécuter les divers outils d'analyse et d'exploitation.</p>
                     </div>
                 </div>
@@ -180,34 +181,34 @@
                         <i class="fa-brands fa-python"></i>
                     </div>
                     <div class="tool-info">
-                        <h3>Python</h3>
+                        <h3><a href="https://www.python.org/" target="_blank">Python <i class="fa-solid fa-arrow-up-right-from-square"></i></a></h3>
                         <p>Langage de scripting utilisé pour automatiser des tâches complexes ou interagir avec des sockets TCP.</p>
                     </div>
                 </div>
                 <div class="tool-card">
                     <div class="tool-img">
-                        <i class="fa-solid fa-network-wired"></i>
+                        <img src="files/logo/wireshark.png" alt="Logo Wireshark">
                     </div>
                     <div class="tool-info">
-                        <h3>Wireshark</h3>
+                        <h3><a href="https://www.wireshark.org/" target="_blank">Wireshark <i class="fa-solid fa-arrow-up-right-from-square"></i></a></h3>
                         <p>Analyseur de paquets réseau utilisé pour disséquer des fichiers PCAP et récupérer des informations sensibles.</p>
                     </div>
                 </div>
                 <div class="tool-card">
                     <div class="tool-img">
-                        <i class="fa-solid fa-globe"></i>
+                        <img src="files/logo/web.png" alt="Logo Outils Web">
                     </div>
                     <div class="tool-info">
-                        <h3>Outils Web</h3>
+                        <h3><a href="#" target="_blank">Outils Web <i class="fa-solid fa-arrow-up-right-from-square"></i></a></h3>
                         <p>Compréhension des requêtes HTTP, manipulation des cookies, du code source et exploitation de failles type SQLi ou XSS.</p>
                     </div>
                 </div>
                 <div class="tool-card">
                     <div class="tool-img">
-                        <i class="fa-solid fa-terminal"></i>
+                        <img src="files/logo/bash.png" alt="Logo Bash">
                     </div>
                     <div class="tool-info">
-                        <h3>Système Linux (Bash)</h3>
+                        <h3><a href="#" target="_blank">Système Linux (Bash) <i class="fa-solid fa-arrow-up-right-from-square"></i></a></h3>
                         <p>Utilisation des commandes de base, gestion des permissions et élévation de privilèges en environnement Bash.</p>
                     </div>
                 </div>
