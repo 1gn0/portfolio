@@ -29,7 +29,10 @@
             --success-glow: rgba(46, 204, 113, 0.2);
             --danger: #e74c3c;
             --danger-glow: rgba(231, 76, 60, 0.2);
+            
+            /* Thème IoT (Orange) */
             --iot-color: #f39c12;
+            --iot-hover: #e67e22;
             --iot-glow: rgba(243, 156, 18, 0.2);
         }
 
@@ -38,7 +41,7 @@
         h1, h2, h3, h4, h5 { font-family: var(--font-title); font-weight: normal; }
         a { text-decoration: none; color: inherit; transition: all 0.3s ease; }
         ul { list-style: none; }
-        strong { color: var(--iot-color); font-weight: 600; }
+        strong { color: var(--iot-hover); font-weight: 600; }
 
         @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
 
@@ -59,8 +62,8 @@
         .page-subtitle { color: var(--text-muted); font-size: 1.15rem; max-width: 800px; margin: 0 auto; line-height: 1.8; opacity: 0; animation: fadeIn 1s ease forwards 0.2s; }
 
         /* --- HEADER & NAV --- */
-        header { background-color: rgba(13, 11, 20, 0.95); padding: 10px 0; position: fixed; width: 100%; top: 0; z-index: 1000; backdrop-filter: blur(10px); box-shadow: 0 2px 20px rgba(0,0,0,0.4); border-bottom: 1px solid var(--border-color); }
-        nav { display: flex; justify-content: space-between; align-items: center; }
+        header { background-color: rgba(13, 11, 20, 0.95); padding: 10px 0; position: fixed; width: 100%; top: 0; z-index: 1000; backdrop-filter: blur(10px); border-bottom: 1px solid var(--border-color); box-shadow: 0 2px 20px rgba(0,0,0,0.4); }
+        nav { display: flex; justify-content: space-between; align-items: center; padding: 0 20px; max-width: 1200px; margin: 0 auto; width: 100%; }
         .logo { font-size: 1.8rem; color: var(--accent); font-family: var(--font-title); text-shadow: 0 0 10px var(--accent); }
         .nav-links { display: flex; gap: 10px; align-items: center; background-color: var(--bg-card); padding: 5px 8px; border-radius: var(--radius-lg); border: 1px solid var(--border-color); margin-left: auto; }
         .nav-links li { margin: 0 5px; }
@@ -77,19 +80,30 @@
         .resume-box { background: linear-gradient(145deg, rgba(243, 156, 18, 0.05), rgba(243, 156, 18, 0.02)); border-left: 4px solid var(--iot-color); padding: 30px 40px; border-radius: 0 var(--radius-md) var(--radius-md) 0; border-top: 1px solid rgba(243, 156, 18, 0.2); border-right: 1px solid rgba(243, 156, 18, 0.2); border-bottom: 1px solid rgba(243, 156, 18, 0.2); margin-bottom: 50px; box-shadow: 0 5px 20px var(--iot-glow); }
         .resume-box h3 { color: var(--iot-color); margin-bottom: 15px; font-size: 1.6rem; text-shadow: 0 0 10px rgba(243, 156, 18, 0.2); }
         .resume-box p { color: var(--text-main); font-size: 1.05rem; line-height: 1.7; margin-bottom: 15px; }
-        
-        .github-btn { display: inline-flex; align-items: center; gap: 10px; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); color: #fff; padding: 10px 20px; border-radius: var(--radius-lg); font-size: 0.9rem; font-weight: 600; transition: all 0.3s; }
-        .github-btn:hover { background: #fff; color: #000; }
 
         /* Outils */
         .tools-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 30px; margin-top: 30px; }
         .tool-card { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 30px; display: flex; align-items: center; gap: 20px; transition: all 0.3s ease; box-shadow: 0 5px 20px rgba(0,0,0,0.2); }
         .tool-card:hover { border-color: var(--iot-color); transform: translateY(-5px); box-shadow: 0 10px 30px var(--iot-glow); }
         
-        .tool-img { width: 80px; height: 80px; flex-shrink: 0; background: rgba(255,255,255,0.05); border-radius: 12px; padding: 5px; display: flex; align-items: center; justify-content: center; border: 1px solid rgba(255,255,255,0.1); overflow: hidden; }
-        .tool-img img { width: 100%; height: 100%; object-fit: cover; border-radius: 12px; }
-        .tool-img i { font-size: 3.5rem; color: var(--iot-color); }
+        /* Logo Styles Spécial Glow */
+        .tool-img { width: 80px; height: 80px; flex-shrink: 0; border-radius: 12px; display: flex; align-items: center; justify-content: center; }
+        .tool-img.logo-style { background: transparent; overflow: visible; border: none; }
         
+        .tool-img img { width: 100%; height: 100%; object-fit: contain; }
+        
+        .iot-glow-icon { font-size: 4.5rem; color: #f39c12; filter: drop-shadow(0 0 15px rgba(243, 156, 18, 0.5)); transition: all 0.3s ease; }
+        .tool-card:hover .iot-glow-icon { transform: scale(1.1); filter: drop-shadow(0 0 25px rgba(243, 156, 18, 1)); color: #f1c40f; }
+        
+        .python-glow-icon { font-size: 4.5rem; color: #3498db; filter: drop-shadow(0 0 15px rgba(52, 152, 219, 0.5)); transition: all 0.3s ease; }
+        .tool-card:hover .python-glow-icon { transform: scale(1.1); filter: drop-shadow(0 0 25px rgba(52, 152, 219, 1)); color: #5dade2; }
+
+        .img-glow-mqtt { filter: drop-shadow(0 0 10px rgba(157, 78, 221, 0.5)); transition: all 0.3s ease; }
+        .tool-card:hover .img-glow-mqtt { transform: scale(1.1); filter: drop-shadow(0 0 20px rgba(157, 78, 221, 0.9)); }
+
+        .img-glow-android { filter: drop-shadow(0 0 10px rgba(46, 204, 113, 0.5)); transition: all 0.3s ease; }
+        .tool-card:hover .img-glow-android { transform: scale(1.1); filter: drop-shadow(0 0 20px rgba(46, 204, 113, 0.9)); }
+
         .tool-info h3 a { color: #fff; font-size: 1.3rem; margin-bottom: 5px; display: inline-flex; align-items: center; gap: 8px; transition: color 0.3s; }
         .tool-info h3 a:hover { color: var(--iot-color); }
         .tool-info p { color: var(--text-muted); font-size: 0.9rem; line-height: 1.5; margin-top: 5px; }
@@ -98,12 +112,14 @@
         .role-section-cohesive { background: var(--bg-card); border: 2px dashed var(--iot-color); border-radius: var(--radius-md); padding: 50px; margin-top: 30px; box-shadow: 0 10px 50px rgba(0,0,0,0.3); position: relative; }
         .role-section-cohesive::before { content: "MON RÔLE SUR LE PROJET"; position: absolute; top: -15px; left: 30px; background: var(--iot-color); color: #fff; padding: 2px 15px; border-radius: 4px; font-family: var(--font-title); font-size: 0.9rem; letter-spacing: 1px; }
         
-        .role-intro-text { font-size: 1.1rem; line-height: 1.8; color: var(--text-main); margin-bottom: 30px; text-align: left; }
+        .role-intro-text { font-size: 1.1rem; line-height: 1.8; color: var(--text-main); margin-bottom: 40px; text-align: left; }
         
-        /* Dashboard Section */
+        /* Dashboard Showcase */
+        .dashboard-showcase-stacked { display: flex; flex-direction: column; gap: 30px; align-items: flex-start; }
         .dashboard-img-large { width: 100%; text-align: center; background: rgba(0,0,0,0.2); padding: 20px; border-radius: 8px; border: 1px dashed var(--border-color); margin-bottom: 30px; }
         .dashboard-img-large img { max-width: 100%; border-radius: 8px; box-shadow: 0 10px 30px rgba(0,0,0,0.4); }
-        .dashboard-features-list h4 { color: var(--iot-color); font-size: 1.4rem; margin-bottom: 15px; font-family: var(--font-title); }
+        .dashboard-features-list { width: 100%; margin-top: 10px; }
+        .dashboard-features-list h4 { color: var(--iot-color); font-size: 1.4rem; margin-bottom: 15px; font-family: var(--font-title); border-bottom: 1px solid rgba(243, 156, 18, 0.2); padding-bottom: 10px; }
         .dashboard-features-list ul { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 15px; }
         .dashboard-features-list ul li { position: relative; padding-left: 20px; color: var(--text-muted); font-size: 0.95rem; line-height: 1.6; }
         .dashboard-features-list ul li::before { content: "→"; position: absolute; left: 0; color: var(--iot-color); font-weight: bold; font-family: var(--font-mono); }
@@ -128,7 +144,12 @@
         .bilan-card.success-theme h3 { font-size: 2rem; color: var(--success); margin-bottom: 20px; text-shadow: 0 0 10px rgba(46, 204, 113, 0.2); }
         .bilan-card.success-theme p { font-size: 1.05rem; color: var(--text-main); line-height: 1.8; margin-bottom: 0; }
 
-        footer { text-align: center; padding: 40px 0; color: var(--text-muted); border-top: 1px solid var(--border-color); width: 100%; margin-top: auto; }
+        footer { text-align: center; padding: 40px 0; color: var(--text-muted); font-size: 0.95rem; border-top: 1px solid var(--border-color); width: 100%; margin-top: auto; }
+
+        @media (max-width: 900px) { 
+            .nav-links { display: none; } 
+            .tools-grid { grid-template-columns: 1fr; }
+        }
     </style>
 </head>
 <body>
@@ -170,30 +191,38 @@
             <h2 class="project-heading">Environnement et Outils</h2>
             <div class="tools-grid">
                 <div class="tool-card">
-                    <div class="tool-img"><img src="files/logo/esp8266.png" alt="ESP8266"></div>
+                    <div class="tool-img logo-style">
+                        <i class="fa-solid fa-microchip iot-glow-icon"></i>
+                    </div>
                     <div class="tool-info">
                         <h3><a href="https://learn.adafruit.com/adafruit-feather-huzzah-esp8266" target="_blank">ESP8266 <i class="fa-solid fa-arrow-up-right-from-square"></i></a></h3>
                         <p>Microcontrôleur Wi-Fi utilisé pour piloter le relai de la prise et communiquer avec le broker MQTT.</p>
                     </div>
                 </div>
                 <div class="tool-card">
-                    <div class="tool-img"><img src="files/logo/python.png" alt="Python"></div>
+                    <div class="tool-img logo-style">
+                        <i class="fa-brands fa-python python-glow-icon"></i>
+                    </div>
                     <div class="tool-info">
                         <h3><a href="https://www.djangoproject.com/" target="_blank">Python / Django <i class="fa-solid fa-arrow-up-right-from-square"></i></a></h3>
                         <p>Framework utilisé pour la création du serveur web dynamique hébergé sur un Raspberry Pi.</p>
                     </div>
                 </div>
                 <div class="tool-card">
-                    <div class="tool-img"><img src="files/logo/mqtt.png" alt="MQTT"></div>
+                    <div class="tool-img logo-style">
+                        <img src="files/logo/mqtt.png" alt="MQTT" class="img-glow-mqtt">
+                    </div>
                     <div class="tool-info">
                         <h3><a href="https://mqtt.org/" target="_blank">MQTT <i class="fa-solid fa-arrow-up-right-from-square"></i></a></h3>
-                        <p>Protocole de messagerie léger (Pub/Sub) utilisé pour la communication en temps réel entre l'ESP8266, le site web et l'application.</p>
+                        <p>Protocole de messagerie léger (Pub/Sub) utilisé pour la communication en temps réel entre l'IoT et le web.</p>
                     </div>
                 </div>
                 <div class="tool-card">
-                    <div class="tool-img"><img src="files/logo/android.png" alt="Android"></div>
+                    <div class="tool-img logo-style">
+                        <img src="files/logo/android.png" alt="Android" class="img-glow-android">
+                    </div>
                     <div class="tool-info">
-                        <h3><a href="https://developer.android.com/" target="_blank">Application Android <i class="fa-solid fa-arrow-up-right-from-square"></i></a></h3>
+                        <h3><a href="https://play.google.com/store/apps/details?id=snr.lab.iotmqttpanel.prod" target="_blank">Application Android <i class="fa-solid fa-arrow-up-right-from-square"></i></a></h3>
                         <p>Développement et configuration d'une application mobile pour le contrôle déporté de la prise.</p>
                     </div>
                 </div>
@@ -201,22 +230,26 @@
         </section>
 
         <section class="project-section role-section-cohesive">
+            <h3 style="display:none;">Ma partie : réalisation du site web dynamique</h3>
             <p class="role-intro-text">
                 Au cours du projet, j'ai participé à la création du <strong>site web dynamique Django</strong>. Celui-ci devait permettre l'implémentation des différentes fonctionnalités de la prise :
             </p>
 
-            <div class="dashboard-img-large">
-                <img src="files/2A/sae_301_site.png" alt="Dashboard Prise Connectée">
-            </div>
-            
-            <div class="dashboard-features-list">
-                <h4>Fonctionnalités implémentées sur le site</h4>
-                <ul>
-                    <li>Allumer et éteindre la prise.</li>
-                    <li>Récupération de l'état de la prise en temps réel.</li>
-                    <li>Programmation de plages horaires d'allumage.</li>
-                    <li>Affichage de températures reçues depuis le capteur de la prise avec alerte.</li>
-                </ul>
+            <div class="dashboard-showcase-stacked">
+                <div class="dashboard-img-large">
+                    <img src="files/2A/sae_301_site.png" alt="Aperçu du site web Django (Dashboard IoT)">
+                </div>
+                
+                <div class="dashboard-features-list">
+                    <h4>Fonctionnalités implémentées sur le site</h4>
+                    <ul>
+                        <li>Allumer et éteindre la prise manuellement.</li>
+                        <li>Récupération de l'état de la prise en temps réel (retour d'état).</li>
+                        <li>Programmation de plages horaires journalières d'allumage.</li>
+                        <li>Affichage graphique des températures reçues depuis le capteur DS18B20.</li>
+                        <li>Alerte de dépassement de la température maximum configurée.</li>
+                    </ul>
+                </div>
             </div>
         </section>
 
@@ -224,20 +257,20 @@
             <h2 class="project-heading">Grandes étapes techniques</h2>
             <div class="steps-grid">
                 <div class="step-card">
-                    <h3>1. Conception Électronique</h3>
-                    <p>Réalisation du schéma sous EasyEDA, choix des composants (ESP8266, DS18B20, relai) en respectant les contraintes de taille, coût et consommation.</p>
+                    <h3>1. Conception Matérielle</h3>
+                    <p>Modélisation du circuit via EasyEDA et intégration des composants physiques (carte ESP8266, capteur de température Dallas DS18B20, relai) répondant aux critères de coût et de taille.</p>
                 </div>
                 <div class="step-card">
-                    <h3>2. Code Microcontrôleur</h3>
-                    <p>Développement sous Arduino IDE. Implémentation du Wi-Fi (WiFiManager) et du client MQTT (PubSubClient) pour gérer la LED et publier les données du capteur.</p>
+                    <h3>2. Développement Embarqué (C++)</h3>
+                    <p>Programmation du microcontrôleur via l'IDE Arduino. Gestion de la connexion Wi-Fi (AP puis STA via WiFiManager) et publication/souscription aux topics MQTT (PubSubClient).</p>
                 </div>
                 <div class="step-card">
-                    <h3>3. Infrastructure Serveur</h3>
-                    <p>Hébergement d'un serveur Web Django et d'un broker MQTT privé sur une architecture de type Raspberry Pi.</p>
+                    <h3>3. Infrastructure Back-End</h3>
+                    <p>Déploiement d'un broker MQTT privé et création d'une architecture MVC sous Django pour interagir avec la base de données relationnelle MySQL stockant les relevés de température et les créneaux.</p>
                 </div>
                 <div class="step-card">
-                    <h3>4. Télémétrie et Alertes</h3>
-                    <p>Mise en place de scripts pour déclencher des notifications en cas de changement d'état ou si un seuil critique de température est détecté.</p>
+                    <h3>4. Logique Serveur et Télémétrie</h3>
+                    <p>Création de scripts d'automatisation en Python exploitant la bibliothèque Paho-MQTT pour s'abonner aux requêtes de la prise, gérer les états (LedState) et déclencher des emails d'alerte.</p>
                 </div>
             </div>
         </section>
@@ -247,9 +280,10 @@
             <div class="ac-box">
                 <p style="color: var(--text-main); font-size: 1.05rem;">Détail des Apprentissages Critiques développés lors de cette SAE :</p>
                 <ul class="ue-list">
-                    <li><span class="code">AC22.01</span> Déployer et caractériser des systèmes de transmissions complexes (IoT, Wi-Fi).</li>
-                    <li><span class="code">AC23.02</span> Développer une application à partir d’un cahier des charges donné, pour le Web ou les périphériques mobiles.</li>
+                    <li><span class="code">AC22.01</span> Déployer et caractériser des systèmes de transmissions complexes (Wi-Fi, MQTT).</li>
+                    <li><span class="code">AC23.02</span> Développer une application Web dynamique à partir d’un cahier des charges donné.</li>
                     <li><span class="code">AC23.03</span> Utiliser un protocole réseau (MQTT) pour programmer une application client/serveur.</li>
+                    <li><span class="code">AC24.03Cyber</span> Sécuriser les services (mise en place d'un broker privé et gestion d'accès web).</li>
                 </ul>
             </div>
         </section>
@@ -258,7 +292,7 @@
             <div class="bilan-card success-theme">
                 <h3>Analyse réflexive</h3>
                 <p>
-                    Au cours de ce projet, j'ai pu m'organiser dans un travail d'équipe qui demandait beaucoup de communication. Même si je travaillais seul sur le site, je devais maintenir la cohésion avec les autres participants pour la logique des topics MQTT. Je suis satisfait car nous sommes parvenus à finaliser l'ensemble des points demandés.
+                    Au cours de ce projet, j'ai pu m'organiser dans un travail d'équipe qui demandait beaucoup de communication pour l'avancement des différentes étapes. En effet, même si je travaillais seul sur le site, je devais travailler avec les autres participants pour garder la cohésion du projet entre par exemple la logique des topics MQTT. Je suis particulièrement satisfait de ce projet car nous sommes parvenus à finaliser l'ensemble des points demandés dans le cahier des charges.
                 </p>
             </div>
         </section>
