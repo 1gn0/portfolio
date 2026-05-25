@@ -81,9 +81,10 @@
         .tool-card { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 30px; display: flex; align-items: center; gap: 20px; transition: all 0.3s ease; box-shadow: 0 5px 20px rgba(0,0,0,0.2); }
         .tool-card:hover { border-color: var(--danger); transform: translateY(-5px); box-shadow: 0 10px 30px var(--danger-glow); }
         
-        .tool-img { width: 80px; height: 80px; flex-shrink: 0; background: rgba(255,255,255,0.05); border-radius: 12px; display: flex; align-items: center; justify-content: center; border: 1px solid rgba(255,255,255,0.1); overflow: hidden; }
-        .tool-img i { font-size: 3.5rem; color: var(--danger); transition: all 0.3s; }
-        .tool-card:hover .tool-img i { transform: scale(1.1); filter: drop-shadow(0 0 15px var(--danger)); }
+        .tool-img { width: 80px; height: 80px; flex-shrink: 0; background: rgba(255,255,255,0.05); border-radius: 12px; display: flex; align-items: center; justify-content: center; border: 1px solid rgba(255,255,255,0.1); overflow: hidden; padding: 10px; }
+        .tool-img.logo-style { background: transparent; overflow: visible; border: none; padding: 0; }
+        .tool-img img { width: 100%; height: 100%; object-fit: contain; transition: all 0.3s ease; }
+        .tool-card:hover .tool-img img { transform: scale(1.1); filter: drop-shadow(0 0 15px rgba(231, 76, 60, 0.8)); }
         
         .tool-info h3 a { color: #fff; font-size: 1.3rem; margin-bottom: 5px; display: inline-flex; align-items: center; gap: 8px; transition: color 0.3s; }
         .tool-info h3 a:hover { color: var(--danger); }
@@ -198,8 +199,8 @@
             <h2 class="project-heading">Environnement et Outils</h2>
             <div class="tools-grid">
                 <div class="tool-card">
-                    <div class="tool-img">
-                        <i class="fa-solid fa-network-wired"></i>
+                    <div class="tool-img logo-style">
+                        <img src="files/logo/eveng.png" alt="EVE-NG">
                     </div>
                     <div class="tool-info">
                         <h3><a href="https://www.eve-ng.net/" target="_blank">EVE-NG <i class="fa-solid fa-arrow-up-right-from-square"></i></a></h3>
@@ -207,30 +208,30 @@
                     </div>
                 </div>
                 <div class="tool-card">
-                    <div class="tool-img">
-                        <i class="fa-solid fa-server"></i>
+                    <div class="tool-img logo-style">
+                        <img src="files/logo/cisco.png" alt="Cisco">
                     </div>
                     <div class="tool-info">
-                        <h3><a href="#" target="_blank">Équipements Cisco <i class="fa-solid fa-arrow-up-right-from-square"></i></a></h3>
-                        <p>Configuration avancée en ligne de commande de l'IOS Cisco sur les routeurs (CE, PE, P, ASBR) et commutateurs de la topologie.</p>
+                        <h3><a href="https://www.cisco.com/" target="_blank">Équipements Cisco <i class="fa-solid fa-arrow-up-right-from-square"></i></a></h3>
+                        <p>Configuration avancée en ligne de commande de l'IOS Cisco sur les routeurs (CE, PE, P, ASBR) pour le routage BGP/OSPF/RIP et MPLS.</p>
                     </div>
                 </div>
                 <div class="tool-card">
-                    <div class="tool-img">
-                        <i class="fa-solid fa-route"></i>
+                    <div class="tool-img logo-style">
+                        <img src="files/logo/debian.png" alt="Debian Linux">
                     </div>
                     <div class="tool-info">
-                        <h3><a href="#" target="_blank">Protocoles de Routage <i class="fa-solid fa-arrow-up-right-from-square"></i></a></h3>
-                        <p>Mise en place de protocoles IGP (OSPF, RIPv2) et EGP (BGP, MP-BGP) couplés à l'encapsulation MPLS pour le transit inter-sites.</p>
+                        <h3><a href="https://www.debian.org/" target="_blank">Debian Linux <i class="fa-solid fa-arrow-up-right-from-square"></i></a></h3>
+                        <p>Création et administration des VM pour la zone DMZ hébergeant les services d'entreprise (Apache, Bind9, Postfix/Dovecot).</p>
                     </div>
                 </div>
                 <div class="tool-card">
-                    <div class="tool-img">
-                        <i class="fa-brands fa-linux"></i>
+                    <div class="tool-img logo-style">
+                        <img src="files/logo/windows.png" alt="Windows Server">
                     </div>
                     <div class="tool-info">
-                        <h3><a href="#" target="_blank">Debian & Windows Server <i class="fa-solid fa-arrow-up-right-from-square"></i></a></h3>
-                        <p>Création et administration des VM pour la zone DMZ hébergeant les services d'entreprise (Apache, Bind9, Postfix/Dovecot, AD).</p>
+                        <h3><a href="https://www.microsoft.com/fr-fr/windows-server" target="_blank">Windows Server <i class="fa-solid fa-arrow-up-right-from-square"></i></a></h3>
+                        <p>Déploiement du serveur DNS primaire et mise en place du service d'annuaire Active Directory pour la gestion du domaine.</p>
                     </div>
                 </div>
             </div>
