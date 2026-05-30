@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skills | Camille HENRY--DELANGLE</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Saira+Stencil+One&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        :root {
+            --bg-color: #0d0b14; 
+            --bg-card: #161420;  
+            --text-main: #e0e6ed;
+            --text-muted: #a1aabf;
+            --accent: #9d4edd;          
+            --accent-hover: #c77dff;    
+            --accent-cyan: #4facfe;
+            --accent-glow: rgba(157, 78, 221, 0.25); 
+            --border-color: #2d2a3a;
+            --font-main: 'Inter', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            --font-title: 'Saira Stencil One', sans-serif; 
+            --font-mono: 'Courier New', Courier, monospace;
+            --radius-md: 16px; 
+            --radius-lg: 30px; 
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body { 
+            background-color: var(--bg-color); 
+            color: var(--text-main); 
+            font-family: var(--font-main); 
+            line-height: 1.7; 
+            overflow-x: hidden; 
+            display: flex; 
+            flex-direction: column; 
+            min-height: 100vh; 
+        }
+        
+        h1, h2, h3, h4 { font-family: var(--font-title); font-weight: normal; }
+        a { text-decoration: none; color: inherit; transition: all 0.3s ease; }
+        ul { list-style: none; }
+        strong { color: var(--accent-hover); font-weight: 600; }
+
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; width: 100%; }
+        
+        .section-title { 
+            font-size: 3.2rem; 
+            color: var(--accent); 
+            margin-bottom: 30px; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            text-align: center; 
+            opacity: 0; 
+            animation: fadeIn 1s ease forwards; 
+            position: relative; 
+            padding-bottom: 25px; 
+        }
+        
+        .section-title::before { 
+            content: ">"; 
+            margin-right: 15px; 
+            color: var(--accent-cyan); 
+            font-weight: bold; 
+            text-shadow: 0 0 10px var(--accent-cyan); 
+            font-family: var(--font-main); 
+        }
+        
+        .section-title::after { 
+            content: ""; 
+            position: absolute; 
+            bottom: 0; 
+            left: 50%; 
+            transform: translateX(-50%); 
+            width: 150px; 
+            height: 3px; 
+            background: linear-gradient(90deg, transparent, var(--accent-hover), var(--accent-cyan), transparent); 
+            border-radius: 2px; 
+        }
+
+        @keyframes fadeIn { 
+            from { opacity: 0; transform: translateY(20px); } 
+            to { opacity: 1; transform: translateY(0); } 
+        }
+
+        header { 
+            background-color: rgba(13, 11, 20, 0.95); 
+            padding: 10px 0; 
+            position: fixed; 
+            width: 100%; 
+            top: 0; 
+            z-index: 1000; 
+            backdrop-filter: blur(10px); 
+            box-shadow: 0 2px 20px rgba(0,0,0,0.4); 
+            border-bottom: 1px solid var(--border-color); 
+        }
+        
+        nav { 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            position: relative;
+        }
+        
+        .logo { 
+            font-size: 1.8rem; 
+            color: var(--accent); 
+            font-family: var(--font-title); 
+            text-shadow: 0 0 10px var(--accent); 
+        }
+
+        .menu-toggle { 
+            display: none; 
+            font-size: 1.8rem; 
+            color: var(--accent); 
+            cursor: pointer; 
+            transition: color 0.3s; 
+        }
+        
+        .menu-toggle:hover { 
+            color: var(--accent-cyan); 
+        }
+
+        .nav-links { 
+            display: flex; 
+            gap: 10px; 
+            align-items: center; 
+            background-color: var(--bg-card); 
+            padding: 5px 8px; 
+            border-radius: var(--radius-lg); 
+            border: 1px solid var(--border-color); 
+            margin-left: auto;
+        }
+        
+        .nav-links li { margin: 0 5px; }
+        
+        .nav-links li a { 
+            font-weight: 500; 
+            font-size: 0.95rem; 
+            padding: 8px 18px; 
+            border-radius: var(--radius-lg); 
+            position: relative; 
+            display: block;
+        }
+        
+        .nav-links li a:not(.nav-contact-btn):not(.lang-btn):hover, .nav-links li a.active { 
+            background-color: rgba(157, 78, 221, 0.15); 
+            color: var(--accent-hover); 
+            text-shadow: 0 0 5px var(--accent-hover); 
+        }
+        
+        .nav-contact-btn { 
+            background-color: transparent; 
+            border: 2px solid var(--accent); 
+            color: var(--accent); 
+            font-weight: 600; 
+            text-transform: uppercase; 
+            letter-spacing: 1px; 
+            font-size: 0.85rem; 
+            transition: all 0.3s ease; 
+            text-align: center;
+        }
+        
+        .nav-contact-btn:hover { 
+            background-color: var(--accent); 
+            color: #ffffff; 
+            box-shadow: 0 0 15px var(--accent-glow); 
+            border-color: var(--accent-hover); 
+        }
+
+        .lang-switch-container { 
+            display: flex; 
+            align-items: center; 
+            gap: 8px; 
+            margin-left: 15px; 
+        }
+        
+        .flag { 
+            font-size: 1.3rem; 
+            transition: opacity 0.3s; 
+            user-select: none; 
+        }
+        
+        .switch { 
+            position: relative; 
+            display: inline-block; 
+            width: 54px; 
+            height: 28px; 
+        }
+        
+        .switch input { 
+            opacity: 0; 
+            width: 0; 
+            height: 0; 
+        }
+        
+        .slider { 
+            position: absolute; 
+            cursor: pointer; 
+            top: 0; 
+            left: 0; 
+            right: 0; 
+            bottom: 0; 
+            background-color: rgba(157, 78, 221, 0.1); 
+            transition: .4s; 
+            border: 1px solid var(--accent); 
+        }
+        
+        .slider:before { 
+            position: absolute; 
+            content: ""; 
+            height: 20px; 
+            width: 20px; 
+            left: 3px; 
+            bottom: 3px; 
+            background-color: var(--accent-cyan); 
+            transition: .4s; 
+            box-shadow: 0 0 10px var(--accent-cyan); 
+        }
+        
+        input:checked + .slider { 
+            background-color: rgba(79, 172, 254, 0.1); 
+            border-color: var(--accent-cyan); 
+        }
+        
+        input:checked + .slider:before { 
+            transform: translateX(26px); 
+            background-color: var(--accent); 
+            box-shadow: 0 0 10px var(--accent); 
+        }
+        
+        .slider.round { 
+            border-radius: 34px; 
+        }
+        
+        .slider.round:before { 
+            border-radius: 50%; 
+        }
+
+        .hub-container { 
+            flex-grow: 1; 
+            padding: 160px 20px 80px 20px; 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+        }
+        
+        .hub-intro { 
+            color: var(--text-main); 
+            font-size: 1.15rem; 
+            text-align: center; 
+            max-width: 800px; 
+            margin-bottom: 60px; 
+            line-height: 1.8; 
+            opacity: 0; 
+            animation: fadeIn 1s ease forwards 0.2s; 
+        }
+        
+        .year-grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
+            gap: 40px; 
+            width: 100%; 
+            max-width: 900px; 
+            opacity: 0; 
+            animation: fadeIn 1s ease forwards 0.4s; 
+        }
+        
+        .year-card { 
+            background-color: var(--bg-card); 
+            padding: 50px 40px; 
+            border-radius: var(--radius-md); 
+            border: 1px solid var(--border-color); 
+            text-align: center; 
+            transition: all 0.4s ease; 
+            position: relative; 
+            overflow: hidden; 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+            justify-content: center; 
+        }
+        
+        .year-card::before { 
+            content: ""; 
+            position: absolute; 
+            top: 0; 
+            left: 0; 
+            width: 100%; 
+            height: 4px; 
+            background: linear-gradient(90deg, transparent, var(--accent), transparent); 
+            transform: scaleX(0); 
+            transition: transform 0.4s ease; 
+        }
+        
+        .year-card:hover { 
+            transform: translateY(-8px); 
+            border-color: var(--accent); 
+            box-shadow: 0 15px 40px rgba(0,0,0,0.4), 0 0 20px rgba(157, 78, 221, 0.15) inset; 
+        }
+        
+        .year-card:hover::before { 
+            transform: scaleX(1); 
+        }
+        
+        .year-title { 
+            font-size: 2.2rem; 
+            color: #ffffff; 
+            margin-bottom: 15px; 
+        }
+        
+        .year-desc { 
+            color: var(--text-muted); 
+            font-size: 1.05rem; 
+            margin-bottom: 30px; 
+        }
+        
+        .btn-year { 
+            display: inline-block; 
+            padding: 12px 30px; 
+            background-color: transparent; 
+            border: 2px solid var(--accent); 
+            color: var(--accent-hover); 
+            font-weight: 600; 
+            font-family: var(--font-main); 
+            text-transform: uppercase; 
+            letter-spacing: 1px; 
+            border-radius: var(--radius-lg); 
+            transition: all 0.4s ease; 
+            text-shadow: 0 0 5px rgba(199, 125, 255, 0.3); 
+        }
+        
+        .year-card:hover .btn-year { 
+            background-color: var(--accent); 
+            color: #ffffff; 
+            box-shadow: 0 5px 25px var(--accent-glow); 
+            border-color: var(--accent-hover); 
+        }
+
+        footer { 
+            text-align: center; 
+            padding: 40px 0; 
+            color: var(--text-muted); 
+            font-size: 0.95rem; 
+            border-top: 1px solid var(--border-color); 
+            width: 100%; 
+            margin-top: auto; 
+        }
+
+        @media (max-width: 900px) {
+            .menu-toggle { display: block; }
+            .nav-links {
+                position: absolute; top: 60px; left: 0; right: 0; background-color: rgba(22, 20, 32, 0.95);
+                flex-direction: column; gap: 0; padding: 20px 0; border-radius: 0 0 var(--radius-md) var(--radius-md);
+                border: 1px solid var(--border-color); border-top: none;
+                transform: translateY(-150%); opacity: 0; transition: all 0.4s ease; z-index: 999;
+                pointer-events: none;
+            }
+            .nav-links.active { transform: translateY(0); opacity: 1; pointer-events: auto; }
+            .nav-links li { margin: 15px 0; }
+            .lang-switch-container { margin: 15px 0 0 0; justify-content: center; }
+        }
+
+        @media (max-width: 768px) { 
+            .section-title { font-size: 2.2rem; } 
+            .hub-container { padding-top: 120px; } 
+            .year-grid { grid-template-columns: 1fr; } 
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">C.H.D</div>
+                <div class="menu-toggle" id="mobile-menu">
+                    <i class="fa-solid fa-bars"></i>
+                </div>
+                <ul class="nav-links" id="nav-links">
+                    <li><a href="index-en.html#hero">Home</a></li>
+                    <li><a href="index-en.html#parcours">Journey</a></li>
+                    <li><a href="competences-en.html" class="active">Skills</a></li>
+                    <li><a href="index-en.html#projets">Projects</a></li> 
+                    <li><a href="index-en.html#cv">Resume</a></li>
+                    <li><a href="contact-en.html" class="nav-contact-btn">Contact</a></li>
+                    <li class="lang-switch-container">
+                        <span class="flag" style="opacity: 0.5;">🇫🇷</span>
+                        <label class="switch">
+                            <input type="checkbox" id="langToggle" checked>
+                            <span class="slider round"></span>
+                        </label>
+                        <span class="flag">🇬🇧</span>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="hub-container container">
+        <h1 class="section-title">My Skills</h1>
+        
+        <p class="hub-intro">
+            Throughout my journey, I have developed diverse technical skills in several key areas: system administration, telecommunications networks, programming, and cybersecurity. Below you will find the details of the critical learning outcomes acquired during my education.
+        </p>
+
+        <div class="year-grid">
+            <div class="year-card">
+                <h2 class="year-title">First Year</h2>
+                <p class="year-desc">BUT R&T - Discovery and acquisition of fundamentals in networking, telecommunications, and IT.</p>
+                <a href="competences-but1-en.html" class="btn-year">View skills</a>
+            </div>
+
+            <div class="year-card">
+                <h2 class="year-title">Second Year</h2>
+                <p class="year-desc">BUT R&T - Cybersecurity specialization, advanced administration, and information systems monitoring.</p>
+                <a href="competences-but2-en.html" class="btn-year">View skills</a>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 <strong>Camille HENRY--DELANGLE</strong>.</p>
+            <p style="font-size: 0.85rem; font-family: var(--font-mono); opacity: 0.5; margin-top: 15px;">Root@Portfolio:~# exit</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const langToggle = document.getElementById('langToggle');
+            langToggle.addEventListener('change', function() {
+                if(!this.checked) {
+                    window.location.href = "competences.html";
+                }
+            });
+
+            const mobileMenu = document.getElementById('mobile-menu');
+            const navLinksList = document.getElementById('nav-links');
+            
+            mobileMenu.addEventListener('click', () => {
+                navLinksList.classList.toggle('active');
+            });
+        });
+    </script>
+</body>
+</html>
