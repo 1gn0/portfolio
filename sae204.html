@@ -9,7 +9,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Saira+Stencil+One&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
-        /* --- VARIABLES ET RESET --- */
         :root {
             --bg-color: #0d0b14; 
             --bg-card: #161420;  
@@ -26,7 +25,6 @@
             --radius-md: 16px; 
             --radius-lg: 30px; 
             
-            /* Thème SAE 2.04 - Indigo Synthèse */
             --indigo-accent: #6366f1;
             --indigo-light: #818cf8;
             --indigo-glow: rgba(99, 102, 241, 0.2);
@@ -44,7 +42,6 @@
 
         @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
 
-        /* --- STYLES GENERAUX --- */
         .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; width: 100%; }
         
         .back-btn-container { text-align: left; margin-bottom: 40px; }
@@ -59,22 +56,34 @@
 
         .page-subtitle { color: var(--text-muted); font-size: 1.15rem; max-width: 800px; margin: 0 auto; line-height: 1.8; opacity: 0; animation: fadeIn 1s ease forwards 0.2s; }
 
-        /* --- HEADER & NAV --- */
         header { background-color: rgba(13, 11, 20, 0.95); padding: 10px 0; position: fixed; width: 100%; top: 0; z-index: 1000; backdrop-filter: blur(10px); border-bottom: 1px solid var(--border-color); box-shadow: 0 2px 20px rgba(0,0,0,0.4); }
         nav { display: flex; justify-content: space-between; align-items: center; }
         .logo { font-size: 1.8rem; color: var(--accent); font-family: var(--font-title); text-shadow: 0 0 10px var(--accent); }
+        
+        .menu-toggle { display: none; font-size: 1.8rem; color: var(--accent); cursor: pointer; transition: color 0.3s; }
+        .menu-toggle:hover { color: var(--accent-cyan); }
+        
         .nav-links { display: flex; gap: 10px; align-items: center; background-color: var(--bg-card); padding: 5px 8px; border-radius: var(--radius-lg); border: 1px solid var(--border-color); margin-left: auto; }
         .nav-links li { margin: 0 5px; }
-        .nav-links li a { font-weight: 500; font-size: 0.95rem; padding: 8px 18px; border-radius: var(--radius-lg); position: relative; }
-        .nav-links li a:not(.nav-contact-btn):hover, .nav-links li a.active { background-color: rgba(157, 78, 221, 0.15); color: var(--accent-hover); text-shadow: 0 0 5px var(--accent-hover); }
-        .nav-contact-btn { background-color: transparent; border: 2px solid var(--accent); color: var(--accent); font-weight: 600; text-transform: uppercase; font-size: 0.85rem; letter-spacing: 1px; }
+        .nav-links li a { font-weight: 500; font-size: 0.95rem; padding: 8px 18px; border-radius: var(--radius-lg); position: relative; display: block; }
+        .nav-links li a:not(.nav-contact-btn):not(.lang-btn):hover, .nav-links li a.active { background-color: rgba(157, 78, 221, 0.15); color: var(--accent-hover); text-shadow: 0 0 5px var(--accent-hover); }
+        .nav-contact-btn { background-color: transparent; border: 2px solid var(--accent); color: var(--accent); font-weight: 600; text-transform: uppercase; font-size: 0.85rem; letter-spacing: 1px; transition: all 0.3s ease; text-align: center; }
         .nav-contact-btn:hover { background-color: var(--accent); color: #ffffff; box-shadow: 0 0 15px var(--accent-glow); border-color: var(--accent-hover); }
 
-        /* --- CONTENU PROJET --- */
+        .lang-switch-container { display: flex; align-items: center; gap: 8px; margin-left: 15px; }
+        .flag { font-size: 1.3rem; transition: opacity 0.3s; user-select: none; }
+        .switch { position: relative; display: inline-block; width: 54px; height: 28px; }
+        .switch input { opacity: 0; width: 0; height: 0; }
+        .slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: rgba(157, 78, 221, 0.1); transition: .4s; border: 1px solid var(--accent); }
+        .slider:before { position: absolute; content: ""; height: 20px; width: 20px; left: 3px; bottom: 3px; background-color: var(--accent-cyan); transition: .4s; box-shadow: 0 0 10px var(--accent-cyan); }
+        input:checked + .slider { background-color: rgba(79, 172, 254, 0.1); border-color: var(--accent-cyan); }
+        input:checked + .slider:before { transform: translateX(26px); background-color: var(--accent); box-shadow: 0 0 10px var(--accent); }
+        .slider.round { border-radius: 34px; }
+        .slider.round:before { border-radius: 50%; }
+
         .project-section { margin-bottom: 80px; opacity: 0; animation: fadeIn 1s ease forwards 0.3s; }
         .project-heading { font-size: 2rem; color: #ffffff; margin-bottom: 20px; border-left: 4px solid var(--indigo-light); padding-left: 15px; }
         
-        /* Résumé - THEME INDIGO */
         .resume-box { background: linear-gradient(145deg, rgba(99, 102, 241, 0.05), rgba(22, 20, 32, 0.1)); border-left: 4px solid var(--indigo-accent); padding: 30px 40px; border-radius: 0 var(--radius-md) var(--radius-md) 0; border-top: 1px solid rgba(99, 102, 241, 0.2); border-right: 1px solid rgba(99, 102, 241, 0.2); border-bottom: 1px solid rgba(99, 102, 241, 0.2); margin-bottom: 50px; box-shadow: 0 5px 20px var(--indigo-glow); }
         .resume-box h3 { color: var(--indigo-light); margin-bottom: 15px; font-size: 1.6rem; text-shadow: 0 0 10px rgba(99, 102, 241, 0.2); }
         .resume-box p { color: var(--text-main); font-size: 1.05rem; line-height: 1.7; margin-bottom: 15px; }
@@ -82,44 +91,39 @@
         .github-btn { display: inline-flex; align-items: center; gap: 10px; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); color: #fff; padding: 10px 20px; border-radius: var(--radius-lg); font-size: 0.9rem; font-weight: 600; transition: all 0.3s; }
         .github-btn:hover { background: #fff; color: #000; }
 
-        /* Outils */
         .tools-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; margin-top: 30px; }
         .tool-card { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 25px; display: flex; align-items: flex-start; gap: 20px; transition: all 0.3s ease; box-shadow: 0 5px 20px rgba(0,0,0,0.2); height: 100%; }
         .tool-card:hover { border-color: var(--indigo-light); transform: translateY(-5px); box-shadow: 0 10px 30px var(--indigo-glow); }
         .tool-img { width: 60px; height: 60px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; overflow: hidden; }
         .tool-img img { max-width: 100%; max-height: 100%; object-fit: contain; border-radius: 8px; }
         .tool-img i { font-size: 3.5rem; color: var(--indigo-light); }
+        .tool-info h3 { margin-top: 0; }
         .tool-info h3 a { color: #fff; font-size: 1.2rem; margin-bottom: 5px; display: inline-flex; align-items: center; gap: 8px; transition: color 0.3s; }
         .tool-info h3 a:hover { color: var(--indigo-light); }
         .tool-info h3 i { font-size: 0.85rem; opacity: 0.7; }
         .tool-info p { color: var(--text-muted); font-size: 0.85rem; line-height: 1.5; margin-top: 5px; }
 
-        /* Architecture */
         .architecture-box { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 40px; text-align: center; margin-top: 40px; box-shadow: 0 10px 40px rgba(0,0,0,0.3); display: block; }
         .architecture-box img { max-width: 100%; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 0 20px rgba(0,0,0,0.5); }
         .architecture-info { margin-top: 20px; color: var(--text-muted); font-style: italic; font-size: 1rem; display: block; }
 
-        /* Grandes étapes */
         .steps-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 30px; margin-top: 30px; }
         .step-card { background: rgba(255,255,255,0.02); border: 1px solid var(--border-color); border-top: 3px solid var(--indigo-accent); border-radius: var(--radius-md); padding: 30px; transition: all 0.3s ease; }
         .step-card h3 { color: var(--indigo-light); font-size: 1.3rem; margin-bottom: 15px; }
         .step-card p { color: var(--text-main); font-size: 0.95rem; line-height: 1.6; }
 
-        /* --- MON RÔLE --- */
         .role-container { background: rgba(157, 78, 221, 0.05); border: 2px dashed var(--accent); border-radius: var(--radius-md); padding: 40px; margin-top: 30px; position: relative; }
         .role-container::before { content: "MON RÔLE ET CONTRIBUTIONS"; position: absolute; top: -15px; left: 30px; background: var(--accent); color: #fff; padding: 2px 15px; border-radius: 4px; font-family: var(--font-title); font-size: 0.9rem; }
         
         .role-intro { font-size: 1.1rem; line-height: 1.8; color: var(--text-main); margin-bottom: 40px; }
         .role-container h4 { color: var(--indigo-light); font-size: 1.8rem; margin-bottom: 20px; font-family: var(--font-title); border-bottom: 1px solid rgba(157, 78, 221, 0.2); padding-bottom: 10px; }
 
-        /* Grille BDD propre (2 colonnes, avec les 2 dernières images empilées) */
         .bdd-grid-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 25px; margin: 25px 0 50px 0; }
         .bdd-col-stacked { display: flex; flex-direction: column; gap: 25px; }
         .bdd-card { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 15px; text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%; }
         .bdd-card img { max-width: 100%; height: auto; object-fit: contain; border-radius: 4px; border: 1px solid rgba(255,255,255,0.1); }
         .bdd-card figcaption { margin-top: 10px; font-size: 0.85rem; color: var(--text-muted); font-style: italic; }
 
-        /* Site Web Section (Disposition Stacked/Full Width pour Dashboard) */
         .site-showcase { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 30px; display: flex; flex-direction: column; gap: 30px; margin-top: 25px; }
         .site-img { width: 100%; text-align: center; }
         .site-img img { width: 100%; max-width: 100%; border-radius: 8px; border: 1px solid var(--border-color); box-shadow: 0 10px 30px rgba(0,0,0,0.4); }
@@ -128,13 +132,11 @@
         .site-details ul li { position: relative; padding-left: 25px; color: var(--text-muted); font-size: 1rem; }
         .site-details ul li::before { content: "→"; position: absolute; left: 0; color: var(--indigo-light); font-weight: bold; }
 
-        /* Compétences List */
         .ac-box { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 40px; margin-top: 40px; }
         .ue-list li { position: relative; padding-left: 25px; margin-bottom: 15px; color: var(--text-muted); font-size: 1rem; }
         .ue-list li::before { content: '>'; position: absolute; left: 0; color: var(--accent-hover); font-family: var(--font-mono); font-weight: bold; }
         .ue-list li span.code { color: var(--indigo-light); font-weight: bold; margin-right: 10px; font-family: var(--font-mono); }
 
-        /* Bilan */
         .bilan-card.success-theme { background: linear-gradient(145deg, var(--bg-card), rgba(46, 204, 113, 0.05)); border: 1px solid rgba(46, 204, 113, 0.3); border-radius: var(--radius-md); padding: 40px; margin-top: 60px; box-shadow: 0 10px 40px var(--success-glow); position: relative; overflow: hidden; }
         .bilan-card.success-theme::before { content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 4px; background: linear-gradient(90deg, var(--success), var(--accent-cyan)); }
         .bilan-card.success-theme h3 { font-size: 2rem; color: var(--success); margin-bottom: 20px; text-shadow: 0 0 10px rgba(46, 204, 113, 0.2); }
@@ -143,7 +145,18 @@
         footer { text-align: center; padding: 40px 0; color: var(--text-muted); border-top: 1px solid var(--border-color); margin-top: auto; }
 
         @media (max-width: 900px) { 
-            .nav-links { display: none; } 
+            .menu-toggle { display: block; }
+            .nav-links {
+                position: absolute; top: 60px; left: 0; right: 0; background-color: rgba(22, 20, 32, 0.95);
+                flex-direction: column; gap: 0; padding: 20px 0; border-radius: 0 0 var(--radius-md) var(--radius-md);
+                border: 1px solid var(--border-color); border-top: none;
+                transform: translateY(-150%); opacity: 0; transition: all 0.4s ease; z-index: 999;
+                pointer-events: none;
+            }
+            .nav-links.active { transform: translateY(0); opacity: 1; pointer-events: auto; }
+            .nav-links li { margin: 15px 0; }
+            .lang-switch-container { margin: 15px 0 0 0; justify-content: center; }
+            
             .site-details ul { grid-template-columns: 1fr; }
             .bdd-grid-layout { grid-template-columns: 1fr; }
         }
@@ -155,13 +168,24 @@
         <div class="container">
             <nav>
                 <div class="logo">C.H.D</div>
-                <ul class="nav-links">
+                <div class="menu-toggle" id="mobile-menu">
+                    <i class="fa-solid fa-bars"></i>
+                </div>
+                <ul class="nav-links" id="nav-links">
                     <li><a href="index.html#hero">Accueil</a></li>
                     <li><a href="index.html#parcours">Parcours</a></li>
                     <li><a href="competences.html">Compétences</a></li>
                     <li><a href="index.html#cv">CV</a></li>
                     <li><a href="projets.html" class="active">Projets</a></li> 
                     <li><a href="contact.html" class="nav-contact-btn">Contact</a></li>
+                    <li class="lang-switch-container">
+                        <span class="flag">🇫🇷</span>
+                        <label class="switch">
+                            <input type="checkbox" id="langToggle">
+                            <span class="slider round"></span>
+                        </label>
+                        <span class="flag" style="opacity: 0.5;">🇬🇧</span>
+                    </li>
                 </ul>
             </nav>
         </div>
@@ -351,5 +375,25 @@
         </div>
     </footer>
 
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const langToggle = document.getElementById('langToggle');
+            if(langToggle) {
+                langToggle.addEventListener('change', function() {
+                    if(this.checked) {
+                        window.location.href = "sae204-en.html";
+                    }
+                });
+            }
+
+            const mobileMenu = document.getElementById('mobile-menu');
+            const navLinksList = document.getElementById('nav-links');
+            if(mobileMenu && navLinksList) {
+                mobileMenu.addEventListener('click', () => {
+                    navLinksList.classList.toggle('active');
+                });
+            }
+        });
+    </script>
 </body>
 </html>
