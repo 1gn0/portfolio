@@ -9,7 +9,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Saira+Stencil+One&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
-        /* --- VARIABLES ET RESET --- */
         :root {
             --bg-color: #0d0b14; 
             --bg-card: #161420;  
@@ -62,7 +61,6 @@
             list-style: none;
         }
 
-        /* --- STYLES GENERAUX AVEC EFFETS --- */
         .container {
             max-width: 1200px;
             margin: 0 auto;
@@ -70,7 +68,6 @@
             width: 100%;
         }
 
-        /* Titre souligné */
         .section-title {
             font-size: 3.2rem;
             color: var(--accent);
@@ -111,7 +108,6 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* --- HEADER & NAV (SYNCHRONISÉ) --- */
         header {
             background-color: rgba(13, 11, 20, 0.95);
             padding: 10px 0;
@@ -128,6 +124,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            position: relative;
         }
 
         .logo {
@@ -135,6 +132,18 @@
             color: var(--accent);
             font-family: var(--font-title);
             text-shadow: 0 0 10px var(--accent);
+        }
+
+        .menu-toggle { 
+            display: none; 
+            font-size: 1.8rem; 
+            color: var(--accent); 
+            cursor: pointer; 
+            transition: color 0.3s; 
+        }
+        
+        .menu-toggle:hover { 
+            color: var(--accent-cyan); 
         }
 
         .nav-links {
@@ -158,9 +167,10 @@
             padding: 8px 18px;
             border-radius: var(--radius-lg);
             position: relative;
+            display: block;
         }
 
-        .nav-links li a:not(.nav-contact-btn):hover {
+        .nav-links li a:not(.nav-contact-btn):not(.lang-btn):hover, .nav-links li a.active {
             background-color: rgba(157, 78, 221, 0.15);
             color: var(--accent-hover);
             text-shadow: 0 0 5px var(--accent-hover);
@@ -169,16 +179,85 @@
         .nav-contact-btn {
             background-color: var(--accent); 
             border: 2px solid var(--accent);
-            color: #ffffff;
+            color: #ffffff !important;
             font-weight: 600;
             text-transform: uppercase;
             letter-spacing: 1px;
             font-size: 0.85rem;
             transition: all 0.3s ease;
             box-shadow: 0 0 15px var(--accent-glow);
+            text-align: center;
         }
 
-        /* --- PAGE CONTACT --- */
+        .lang-switch-container { 
+            display: flex; 
+            align-items: center; 
+            gap: 8px; 
+            margin-left: 15px; 
+        }
+        
+        .flag { 
+            font-size: 1.3rem; 
+            transition: opacity 0.3s; 
+            user-select: none; 
+        }
+        
+        .switch { 
+            position: relative; 
+            display: inline-block; 
+            width: 54px; 
+            height: 28px; 
+        }
+        
+        .switch input { 
+            opacity: 0; 
+            width: 0; 
+            height: 0; 
+        }
+        
+        .slider { 
+            position: absolute; 
+            cursor: pointer; 
+            top: 0; 
+            left: 0; 
+            right: 0; 
+            bottom: 0; 
+            background-color: rgba(157, 78, 221, 0.1); 
+            transition: .4s; 
+            border: 1px solid var(--accent); 
+        }
+        
+        .slider:before { 
+            position: absolute; 
+            content: ""; 
+            height: 20px; 
+            width: 20px; 
+            left: 3px; 
+            bottom: 3px; 
+            background-color: var(--accent-cyan); 
+            transition: .4s; 
+            box-shadow: 0 0 10px var(--accent-cyan); 
+        }
+        
+        input:checked + .slider { 
+            background-color: rgba(79, 172, 254, 0.1); 
+            border-color: var(--accent-cyan); 
+        }
+        
+        input:checked + .slider:before { 
+            transform: translateX(26px); 
+            background-color: var(--accent); 
+            box-shadow: 0 0 10px var(--accent); 
+        }
+        
+        .slider.round { 
+            border-radius: 34px; 
+        }
+        
+        .slider.round:before { 
+            border-radius: 50%; 
+        }
+
         #contact-page {
             flex-grow: 1; 
             display: flex;
@@ -311,7 +390,6 @@
             text-shadow: 0 0 8px var(--accent-cyan);
         }
 
-        /* --- FOOTER --- */
         footer {
             text-align: center;
             padding: 40px 0;
@@ -322,9 +400,22 @@
             margin-top: auto;
         }
 
-        /* --- RESPONSIVE --- */
+        @media (max-width: 900px) {
+            .menu-toggle { display: block; }
+            .nav-links {
+                position: absolute; top: 60px; left: 0; right: 0; background-color: rgba(22, 20, 32, 0.95);
+                flex-direction: column; gap: 0; padding: 20px 0; border-radius: 0 0 var(--radius-md) var(--radius-md);
+                border: 1px solid var(--border-color); border-top: none;
+                transform: translateY(-150%); opacity: 0; transition: all 0.4s ease; z-index: 999;
+                pointer-events: none;
+            }
+            .nav-links.active { transform: translateY(0); opacity: 1; pointer-events: auto; }
+            .nav-links li { margin: 15px 0; }
+            .lang-switch-container { margin: 15px 0 0 0; justify-content: center; }
+            .flag { opacity: 1 !important; }
+        }
+
         @media (max-width: 768px) {
-            .nav-links { display: none; }
             .section-title { font-size: 2.2rem; }
             #contact-page { padding-top: 120px; }
             .contact-grid { grid-template-columns: 1fr; }
@@ -337,13 +428,24 @@
         <div class="container">
             <nav>
                 <div class="logo">C.H.D</div>
-                <ul class="nav-links">
+                <div class="menu-toggle" id="mobile-menu">
+                    <i class="fa-solid fa-bars"></i>
+                </div>
+                <ul class="nav-links" id="nav-links">
                     <li><a href="index.html#hero">Accueil</a></li>
                     <li><a href="index.html#parcours">Parcours</a></li>
-                    <li><a href="competences.html">Compétences</a></li>
+                    <li><a href="index.html#competences">Compétences</a></li>
+                    <li><a href="index.html#projets">Projets</a></li> 
                     <li><a href="index.html#cv">CV</a></li>
-                    <li><a href="projets.html">Projets</a></li> 
-                    <li><a href="contact.html" class="nav-contact-btn">Contact</a></li>
+                    <li><a href="contact.html" class="nav-contact-btn active">Contact</a></li>
+                    <li class="lang-switch-container">
+                        <span class="flag">🇫🇷</span>
+                        <label class="switch">
+                            <input type="checkbox" id="langToggle">
+                            <span class="slider round"></span>
+                        </label>
+                        <span class="flag" style="opacity: 0.5;">🇬🇧</span>
+                    </li>
                 </ul>
             </nav>
         </div>
@@ -399,5 +501,22 @@
         </div>
     </footer>
 
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const langToggle = document.getElementById('langToggle');
+            langToggle.addEventListener('change', function() {
+                if(this.checked) {
+                    window.location.href = "contact-en.html";
+                }
+            });
+
+            const mobileMenu = document.getElementById('mobile-menu');
+            const navLinksList = document.getElementById('nav-links');
+            
+            mobileMenu.addEventListener('click', () => {
+                navLinksList.classList.toggle('active');
+            });
+        });
+    </script>
 </body>
 </html>
