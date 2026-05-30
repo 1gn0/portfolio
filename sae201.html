@@ -9,6 +9,319 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Saira+Stencil+One&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
+        :root {
+            --bg-color: #0d0b14; 
+            --bg-card: #161420;  
+            --text-main: #e0e6ed;
+            --text-muted: #a1aabf;
+            --accent: #9d4edd;          
+            --accent-hover: #c77dff;    
+            --accent-cyan: #4facfe;
+            --accent-glow: rgba(157, 78, 221, 0.25); 
+            --border-color: #2d2a3a;
+            --font-main: 'Inter', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            --font-title: 'Saira Stencil One', sans-serif; 
+            --font-mono: 'Courier New', Courier, monospace;
+            --radius-md: 16px; 
+            --radius-lg: 30px; 
+            --danger: #e74c3c;
+            --danger-glow: rgba(231, 76, 60, 0.2);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background-color: var(--bg-color); color: var(--text-main); font-family: var(--font-main); line-height: 1.7; overflow-x: hidden; display: flex; flex-direction: column; min-height: 100vh; }
+        h1, h2, h3, h4, h5 { font-family: var(--font-title); font-weight: normal; }
+        a { text-decoration: none; color: inherit; transition: all 0.3s ease; }
+        ul { list-style: none; }
+        strong { color: var(--accent-hover); font-weight: 600; }
+
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; width: 100%; }
+        
+        .back-btn-container { text-align: left; margin-bottom: 40px; }
+        .back-btn { display: inline-flex; align-items: center; gap: 8px; color: var(--text-muted); font-size: 0.95rem; font-weight: 500; transition: color 0.3s ease; }
+        .back-btn:hover { color: var(--accent-cyan); }
+        
+        .page-header { padding: 120px 20px 40px 20px; text-align: center; }
+
+        .section-title { font-size: 3.2rem; color: var(--accent); margin-bottom: 25px; display: flex; align-items: center; justify-content: center; text-align: center; position: relative; padding-bottom: 25px; opacity: 0; animation: fadeIn 1s ease forwards; }
+        .section-title::before { content: ">"; margin-right: 15px; color: var(--accent-cyan); font-weight: bold; text-shadow: 0 0 10px var(--accent-cyan); font-family: var(--font-main); }
+        .section-title::after { content: ""; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 150px; height: 3px; background: linear-gradient(90deg, transparent, var(--accent-hover), var(--accent-cyan), transparent); border-radius: 2px; }
+
+        .page-subtitle { color: var(--text-muted); font-size: 1.15rem; max-width: 800px; margin: 0 auto; line-height: 1.8; opacity: 0; animation: fadeIn 1s ease forwards 0.2s; }
+
+        header { background-color: rgba(13, 11, 20, 0.95); padding: 10px 0; position: fixed; width: 100%; top: 0; z-index: 1000; backdrop-filter: blur(10px); border-bottom: 1px solid var(--border-color); box-shadow: 0 2px 20px rgba(0,0,0,0.4); }
+        nav { display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-size: 1.8rem; color: var(--accent); font-family: var(--font-title); text-shadow: 0 0 10px var(--accent); }
+        
+        .menu-toggle { display: none; font-size: 1.8rem; color: var(--accent); cursor: pointer; transition: color 0.3s; }
+        .menu-toggle:hover { color: var(--accent-cyan); }
+        
+        .nav-links { display: flex; gap: 10px; align-items: center; background-color: var(--bg-card); padding: 5px 8px; border-radius: var(--radius-lg); border: 1px solid var(--border-color); margin-left: auto; }
+        .nav-links li { margin: 0 5px; }
+        .nav-links li a { font-weight: 500; font-size: 0.95rem; padding: 8px 18px; border-radius: var(--radius-lg); position: relative; display: block; }
+        .nav-links li a:not(.nav-contact-btn):not(.lang-btn):hover, .nav-links li a.active { background-color: rgba(157, 78, 221, 0.15); color: var(--accent-hover); text-shadow: 0 0 5px var(--accent-hover); }
+        .nav-contact-btn { background-color: transparent; border: 2px solid var(--accent); color: var(--accent); font-weight: 600; text-transform: uppercase; font-size: 0.85rem; letter-spacing: 1px; transition: all 0.3s ease; text-align: center; }
+        .nav-contact-btn:hover { background-color: var(--accent); color: #ffffff; box-shadow: 0 0 15px var(--accent-glow); border-color: var(--accent-hover); }
+
+        .lang-switch-container { display: flex; align-items: center; gap: 8px; margin-left: 15px; }
+        .flag { font-size: 1.3rem; transition: opacity 0.3s; user-select: none; }
+        .switch { position: relative; display: inline-block; width: 54px; height: 28px; }
+        .switch input { opacity: 0; width: 0; height: 0; }
+        .slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: rgba(157, 78, 221, 0.1); transition: .4s; border: 1px solid var(--accent); }
+        .slider:before { position: absolute; content: ""; height: 20px; width: 20px; left: 3px; bottom: 3px; background-color: var(--accent-cyan); transition: .4s; box-shadow: 0 0 10px var(--accent-cyan); }
+        input:checked + .slider { background-color: rgba(79, 172, 254, 0.1); border-color: var(--accent-cyan); }
+        input:checked + .slider:before { transform: translateX(26px); background-color: var(--accent); box-shadow: 0 0 10px var(--accent); }
+        .slider.round { border-radius: 34px; }
+        .slider.round:before { border-radius: 50%; }
+
+        .project-section { margin-bottom: 80px; opacity: 0; animation: fadeIn 1s ease forwards 0.3s; }
+        .project-heading { font-size: 2rem; color: #ffffff; margin-bottom: 20px; border-left: 4px solid var(--accent-cyan); padding-left: 15px; }
+        
+        .resume-box { background: linear-gradient(145deg, rgba(231, 76, 60, 0.05), rgba(157, 78, 221, 0.05)); border-left: 4px solid var(--danger); padding: 30px 40px; border-radius: 0 var(--radius-md) var(--radius-md) 0; border-top: 1px solid rgba(231, 76, 60, 0.2); border-right: 1px solid rgba(231, 76, 60, 0.2); border-bottom: 1px solid rgba(231, 76, 60, 0.2); margin-bottom: 50px; box-shadow: 0 5px 20px var(--danger-glow); }
+        .resume-box h3 { color: var(--danger); margin-bottom: 15px; font-size: 1.6rem; text-shadow: 0 0 10px rgba(231, 76, 60, 0.2); }
+        .resume-box p { color: var(--text-main); font-size: 1.05rem; line-height: 1.7; margin-bottom: 10px; }
+        .resume-box strong { color: #ff7675; }
+
+        .tools-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 30px; margin-top: 30px; }
+        .tool-card { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 30px; display: flex; align-items: center; gap: 20px; transition: all 0.3s ease; box-shadow: 0 5px 20px rgba(0,0,0,0.2); }
+        .tool-card:hover { border-color: var(--accent); transform: translateY(-5px); box-shadow: 0 10px 30px var(--accent-glow); }
+        .tool-img { width: 80px; height: 80px; flex-shrink: 0; background: #fff; border-radius: 12px; padding: 10px; display: flex; align-items: center; justify-content: center; }
+        .tool-img img { max-width: 100%; max-height: 100%; object-fit: contain; }
+        .tool-info h3 a { color: #fff; font-size: 1.3rem; margin-bottom: 5px; display: inline-flex; align-items: center; gap: 8px; transition: color 0.3s; }
+        .tool-info h3 a:hover { color: var(--accent-cyan); }
+        .tool-info h3 i { font-size: 0.9rem; opacity: 0.7; }
+        .tool-info p { color: var(--text-muted); font-size: 0.9rem; line-height: 1.5; margin-top: 5px; }
+
+        .architecture-box { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 40px; text-align: center; margin-top: 40px; box-shadow: 0 10px 40px rgba(0,0,0,0.3); display: block; }
+        .architecture-box img { max-width: 100%; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 0 20px rgba(0,0,0,0.5); }
+        .architecture-info { margin-top: 20px; color: var(--text-muted); font-style: italic; font-size: 1rem; display: block; }
+
+        .steps-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 30px; margin-top: 30px; }
+        .step-card { background: rgba(255,255,255,0.02); border: 1px solid var(--border-color); border-top: 3px solid var(--accent-cyan); border-radius: var(--radius-md); padding: 30px; transition: all 0.3s ease; }
+        .step-card:hover { background: rgba(79, 172, 254, 0.05); border-color: var(--accent-cyan); }
+        .step-card h3 { color: var(--accent-cyan); font-size: 1.4rem; margin-bottom: 15px; }
+        .step-card p { color: var(--text-main); font-size: 0.95rem; line-height: 1.6; }
+
+        .ac-box { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 40px; margin-top: 40px; }
+        .ue-list { margin-top: 20px; }
+        .ue-list li { position: relative; padding-left: 25px; margin-bottom: 15px; color: var(--text-muted); font-size: 1rem; }
+        .ue-list li::before { content: '>'; position: absolute; left: 0; color: var(--accent-hover); font-family: var(--font-mono); font-weight: bold; }
+        .ue-list li span.code { color: var(--accent-cyan); font-weight: bold; margin-right: 10px; font-family: var(--font-mono); }
+
+        .bilan-card.red-theme { background: linear-gradient(145deg, var(--bg-card), rgba(231, 76, 60, 0.05)); border: 1px solid rgba(231, 76, 60, 0.3); border-radius: var(--radius-md); padding: 40px; margin-top: 60px; box-shadow: 0 10px 40px var(--danger-glow); position: relative; overflow: hidden; }
+        .bilan-card.red-theme::before { content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 4px; background: linear-gradient(90deg, var(--danger), #ff7675); }
+        .bilan-card.red-theme h3 { font-size: 2rem; color: var(--danger); margin-bottom: 20px; text-shadow: 0 0 10px rgba(231, 76, 60, 0.2); }
+        .bilan-card.red-theme p { font-size: 1.05rem; color: var(--text-main); line-height: 1.8; margin-bottom: 0; }
+        .bilan-card.red-theme strong { color: #ff7675; }
+
+        footer { text-align: center; padding: 40px 0; color: var(--text-muted); border-top: 1px solid var(--border-color); margin-top: auto; }
+
+        @media (max-width: 900px) { 
+            .menu-toggle { display: block; }
+            .nav-links {
+                position: absolute; top: 60px; left: 0; right: 0; background-color: rgba(22, 20, 32, 0.95);
+                flex-direction: column; gap: 0; padding: 20px 0; border-radius: 0 0 var(--radius-md) var(--radius-md);
+                border: 1px solid var(--border-color); border-top: none;
+                transform: translateY(-150%); opacity: 0; transition: all 0.4s ease; z-index: 999;
+                pointer-events: none;
+            }
+            .nav-links.active { transform: translateY(0); opacity: 1; pointer-events: auto; }
+            .nav-links li { margin: 15px 0; }
+            .lang-switch-container { margin: 15px 0 0 0; justify-content: center; }
+            .tools-grid { grid-template-columns: 1fr; }
+        }
+        
+        @media (max-width: 768px) {
+            .section-title { font-size: 2.2rem; }
+            .page-header { padding-top: 120px; }
+            .architecture-box { padding: 20px; }
+            .steps-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">C.H.D</div>
+                <div class="menu-toggle" id="mobile-menu">
+                    <i class="fa-solid fa-bars"></i>
+                </div>
+                <ul class="nav-links" id="nav-links">
+                    <li><a href="index.html#hero">Accueil</a></li>
+                    <li><a href="index.html#parcours">Parcours</a></li>
+                    <li><a href="competences.html">Compétences</a></li>
+                    <li><a href="index.html#cv">CV</a></li>
+                    <li><a href="projets.html" class="active">Projets</a></li> 
+                    <li><a href="contact.html" class="nav-contact-btn">Contact</a></li>
+                    <li class="lang-switch-container">
+                        <span class="flag">🇫🇷</span>
+                        <label class="switch">
+                            <input type="checkbox" id="langToggle">
+                            <span class="slider round"></span>
+                        </label>
+                        <span class="flag" style="opacity: 0.5;">🇬🇧</span>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="page-header container">
+        <div class="back-btn-container">
+            <a href="projets-but1.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i> Revenir aux projets</a>
+        </div>
+        <h1 class="section-title">SAE 2.01</h1>
+        <p class="page-subtitle">Créer un réseau pour une petite entreprise : mise en place d'une architecture réseau fonctionnelle et sécurisée via virtualisation.</p>
+    </div>
+
+    <main class="container">
+
+        <section class="project-section">
+            <div class="resume-box">
+                <h3>Résumé de la SAE</h3>
+                <p><strong>Objectif :</strong> Mettre en place un réseau informatique pour une petite entreprise, en utilisant le logiciel GNS3, permettant la virtualisation des appareils.</p>
+                <p>Au cours de ce projet, j'ai pu acquérir des compétences concrètes dans l'administration réseau, notamment la gestion des <strong>VLANs</strong>, la sécurité réseau via la mise en place d'<strong>ACL (listes d'accès)</strong>, ainsi que la gestion de serveurs (<strong>DHCP, DNS...</strong>). J'ai aussi découvert l'utilisation du logiciel <strong>GNS3</strong>.</p>
+            </div>
+        </section>
+
+        <section class="project-section">
+            <h2 class="project-heading">Environnement et Outils</h2>
+            <div class="tools-grid">
+                <div class="tool-card">
+                    <div class="tool-img">
+                        <img src="files/logo/gns3.png" alt="Logo GNS3">
+                    </div>
+                    <div class="tool-info">
+                        <h3><a href="https://www.gns3.com/" target="_blank">GNS3 <i class="fa-solid fa-arrow-up-right-from-square"></i></a></h3>
+                        <p>Logiciel d'émulation de réseaux complexes. Il a permis de virtualiser l'ensemble de l'architecture (routeurs, commutateurs et serveurs) pour reproduire fidèlement l'environnement de la PME.</p>
+                    </div>
+                </div>
+                <div class="tool-card">
+                    <div class="tool-img">
+                        <img src="files/logo/cisco.png" alt="Logo Cisco">
+                    </div>
+                    <div class="tool-info">
+                        <h3><a href="https://www.cisco.com/" target="_blank">Cisco <i class="fa-solid fa-arrow-up-right-from-square"></i></a></h3>
+                        <p>Équipements réseau professionnels (routeurs et commutateurs) émulés sous GNS3. L'ensemble de l'architecture repose sur la configuration de l'IOS Cisco pour le routage et la commutation.</p>
+                    </div>
+                </div>
+                <div class="tool-card">
+                    <div class="tool-img">
+                        <img src="files/logo/debian.png" alt="Logo Debian">
+                    </div>
+                    <div class="tool-info">
+                        <h3><a href="https://www.debian.org/" target="_blank">Debian <i class="fa-solid fa-arrow-up-right-from-square"></i></a></h3>
+                        <p>Distribution GNU/Linux utilisée pour simuler les serveurs de la topologie. Choisie pour sa stabilité, elle a permis de faire tourner efficacement les services réseaux au sein de GNS3 de manière plus simple.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="project-section">
+            <h2 class="project-heading">Architecture Réseau</h2>
+            <figure class="architecture-box">
+                <img src="files/s2/schema_sae_gns3.png" alt="Schéma GNS3 de la SAE 2.01">
+                <figcaption class="architecture-info">Topologie globale du réseau de la petite entreprise implémentée sous GNS3.</figcaption>
+            </figure>
+        </section>
+
+        <section class="project-section">
+            <h2 class="project-heading">Grandes étapes techniques</h2>
+            <div class="steps-grid">
+                <div class="step-card">
+                    <h3>1. Segmentation et VLANs</h3>
+                    <p>Création de VLANs dédiés pour séparer logiquement les flux (Administration, Développeur, Administrateur). Configuration de liens <strong>"Trunk" (802.1Q)</strong> et sécurisation en modifiant le <strong>VLAN natif</strong> par défaut (VLAN 999).</p>
+                </div>
+                <div class="step-card">
+                    <h3>2. Adressage et Routage</h3>
+                    <p>Mise en place de l'adressage IP sur les interfaces physiques et virtuelles (<strong>SVI</strong>). Configuration du protocole de routage dynamique <strong>RIPv2</strong> pour assurer la connectivité entre les différents routeurs de la topologie.</p>
+                </div>
+                <div class="step-card">
+                    <h3>3. Redondance avec STP</h3>
+                    <p>Déploiement du protocole <strong>Spanning Tree (STP)</strong> pour éviter les boucles réseau. Configuration stratégique des priorités (<strong>Root Primary / Secondary</strong>) pour équilibrer la charge entre les commutateurs.</p>
+                </div>
+                <div class="step-card">
+                    <h3>4. Déploiement des Serveurs</h3>
+                    <p>Installation et configuration de serveurs sous Debian : mise en place d'un serveur DHCP (<strong>isc-dhcp-server</strong>) avec relais (<strong>ip helper-address</strong>), de serveurs Web (<strong>Apache2</strong>) et de transferts de fichiers synchronisés via <strong>Rsync</strong>.</p>
+                </div>
+                <div class="step-card">
+                    <h3>5. Sécurisation (Port-Security & ACL)</h3>
+                    <p>Activation du <strong>Port-Security</strong> (<strong>"mac-address sticky"</strong> et mode <strong>"restrict"</strong>) sur les commutateurs pour empêcher les connexions physiques non autorisées. Création d'<strong>ACL (Listes de Contrôle d'Accès)</strong> pour filtrer les flux <strong>HTTP, SSH et ICMP</strong>.</p>
+                </div>
+                <div class="step-card">
+                    <h3>6. Accès Externe (NAT/PAT)</h3>
+                    <p>Configuration de la traduction d'adresses (<strong>NAT dynamique avec surcharge / PAT</strong>) sur le routeur de bordure pour permettre aux équipements du réseau privé d'accéder à Internet de façon sécurisée.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="project-section">
+            <h2 class="project-heading">Compétences validées</h2>
+            <div class="ac-box">
+                <p style="color: var(--text-main); font-size: 1.05rem;">Détail des Apprentissages Critiques (BUT1) mis en pratique lors de ce projet :</p>
+                <ul class="ue-list">
+                    <li><span class="code">AC11.03</span> Configurer les fonctions de base du réseau local</li>
+                    <li><span class="code">AC11.04</span> Maîtriser les rôles et les principes fondamentaux des systèmes d'exploitation afin d'intéragir avec ceux-ci pour la configuration et l'administration des réseaux et services fournis</li>
+                    <li><span class="code">AC11.06</span> Installer un poste client, expliquer la procédure mise en place</li>
+                    <li><span class="code">AC13.01</span> Utiliser un système informatique et ses outils</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="project-section">
+            <div class="bilan-card red-theme">
+                <h3>Analyse réflexive</h3>
+                <p>
+                    Au cours de cette SAE, premier projet en réseau de l'année pour moi, j'ai pu apprendre de nombreuses connaissances en mettant en oeuvre les différentes notions vues en cours dans les domaines cités. Cependant, l'utilisation et notamment l'installation du logiciel <strong>GNS3</strong>, nouveau pour moi, m'a pénalisé et je n'ai pas pu avancer autant que je le souhaitais dans le projet.
+                </p>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 <strong>Camille HENRY--DELANGLE</strong>.</p>
+            <p style="font-size: 0.85rem; font-family: var(--font-mono); opacity: 0.5; margin-top: 15px;">Root@Portfolio:~# exit</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const langToggle = document.getElementById('langToggle');
+            if(langToggle) {
+                langToggle.addEventListener('change', function() {
+                    if(this.checked) {
+                        window.location.href = "sae201-en.html";
+                    }
+                });
+            }
+
+            const mobileMenu = document.getElementById('mobile-menu');
+            const navLinksList = document.getElementById('nav-links');
+            if(mobileMenu && navLinksList) {
+                mobileMenu.addEventListener('click', () => {
+                    navLinksList.classList.toggle('active');
+                });
+            }
+        });
+    </script>
+</body>
+</html><!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SAE 2.01 | Camille HENRY--DELANGLE</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Saira+Stencil+One&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
         /* --- VARIABLES ET RESET --- */
         :root {
             --bg-color: #0d0b14; 
