@@ -1,0 +1,926 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BUT1 Skills | Camille HENRY--DELANGLE</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Saira+Stencil+One&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        :root {
+            --bg-color: #0d0b14; 
+            --bg-card: #161420;  
+            --text-main: #e0e6ed;
+            --text-muted: #a1aabf;
+            --accent: #9d4edd;          
+            --accent-hover: #c77dff;    
+            --accent-cyan: #4facfe;
+            --accent-glow: rgba(157, 78, 221, 0.25); 
+            --border-color: #2d2a3a;
+            --font-main: 'Inter', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            --font-title: 'Saira Stencil One', sans-serif; 
+            --font-mono: 'Courier New', Courier, monospace;
+            --radius-md: 16px; 
+            --radius-lg: 30px; 
+            --success: #2ecc71;
+            --improvement: #f39c12;
+            --danger: #e74c3c; 
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body { 
+            background-color: var(--bg-color); 
+            color: var(--text-main); 
+            font-family: var(--font-main); 
+            line-height: 1.7; 
+            overflow-x: hidden; 
+            display: flex; 
+            flex-direction: column; 
+            min-height: 100vh; 
+        }
+        
+        h1, h2, h3, h4, h5 { font-family: var(--font-title); font-weight: normal; }
+        a { text-decoration: none; color: inherit; transition: all 0.3s ease; }
+        ul { list-style: none; }
+        strong { color: var(--accent-hover); font-weight: 600; }
+
+        @keyframes fadeIn { 
+            from { opacity: 0; transform: translateY(20px); } 
+            to { opacity: 1; transform: translateY(0); } 
+        }
+
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; width: 100%; }
+        .page-header { padding: 160px 20px 40px 20px; text-align: center; }
+
+        .section-title { 
+            font-size: 3.2rem; 
+            color: var(--accent); 
+            margin-bottom: 30px; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            text-align: center; 
+            position: relative; 
+            padding-bottom: 25px; 
+            opacity: 0; 
+            animation: fadeIn 1s ease forwards; 
+        }
+        
+        .section-title::before { 
+            content: ">"; 
+            margin-right: 15px; 
+            color: var(--accent-cyan); 
+            font-weight: bold; 
+            text-shadow: 0 0 10px var(--accent-cyan); 
+            font-family: var(--font-main); 
+        }
+        
+        .section-title::after { 
+            content: ""; 
+            position: absolute; 
+            bottom: 0; 
+            left: 50%; 
+            transform: translateX(-50%); 
+            width: 150px; 
+            height: 3px; 
+            background: linear-gradient(90deg, transparent, var(--accent-hover), var(--accent-cyan), transparent); 
+            border-radius: 2px; 
+        }
+
+        .page-subtitle { 
+            color: var(--text-muted); 
+            font-size: 1.15rem; 
+            max-width: 700px; 
+            margin: 0 auto; 
+            line-height: 1.8; 
+            opacity: 0; 
+            animation: fadeIn 1s ease forwards 0.2s; 
+        }
+        
+        .alert-box { 
+            background-color: rgba(79, 172, 254, 0.05); 
+            border-left: 3px solid var(--accent-cyan); 
+            padding: 15px 25px; 
+            margin: 30px auto; 
+            max-width: 1000px; 
+            text-align: center; 
+            font-size: 1.05rem; 
+            color: var(--text-main); 
+            border-radius: 4px; 
+            opacity: 0; 
+            animation: fadeIn 1s ease forwards 0.3s; 
+        }
+
+        .results-box-long { 
+            max-width: 1000px; 
+            margin: 30px auto 50px auto; 
+            background-color: rgba(255,255,255,0.02); 
+            border: 1px solid var(--border-color); 
+            border-radius: var(--radius-md); 
+            padding: 15px 30px; 
+            display: flex; 
+            align-items: center; 
+            justify-content: space-between; 
+            transition: 0.3s; 
+            opacity: 0; 
+            animation: fadeIn 1s ease forwards 0.4s;
+        }
+        
+        .results-box-long:hover { 
+            border-color: var(--accent-cyan); 
+            background-color: rgba(79, 172, 254, 0.03); 
+        }
+        
+        .results-info-side { 
+            display: flex; 
+            align-items: center; 
+            gap: 20px; 
+        }
+        
+        .results-icon-small { 
+            font-family: var(--font-title); 
+            font-size: 1.5rem; 
+            color: var(--accent-cyan); 
+            background: rgba(79, 172, 254, 0.1); 
+            padding: 5px 12px; 
+            border-radius: 8px; 
+        }
+        
+        .results-box-long h3 { 
+            font-size: 1.2rem; 
+            color: #ffffff; 
+            margin: 0; 
+        }
+        
+        .results-actions-side { 
+            display: flex; 
+            gap: 10px; 
+        }
+
+        .btn { 
+            display: inline-flex; 
+            justify-content: center; 
+            align-items: center; 
+            padding: 10px 22px; 
+            border-radius: var(--radius-lg); 
+            font-weight: 600; 
+            text-transform: uppercase; 
+            letter-spacing: 1px; 
+            font-size: 0.8rem; 
+            transition: 0.4s; 
+            cursor: pointer; 
+        }
+        
+        .btn-primary { 
+            border: 2px solid var(--accent); 
+            color: var(--accent-hover); 
+            background: transparent; 
+        }
+        
+        .btn-primary:hover { 
+            background: var(--accent); 
+            color: #fff; 
+            box-shadow: 0 0 15px var(--accent-glow); 
+        }
+        
+        .btn-secondary { 
+            background-color: rgba(157, 78, 221, 0.1); 
+            border: 2px solid var(--accent); 
+            color: #fff; 
+        }
+
+        header { 
+            background-color: rgba(13, 11, 20, 0.95); 
+            padding: 10px 0; 
+            position: fixed; 
+            width: 100%; 
+            top: 0; 
+            z-index: 1000; 
+            backdrop-filter: blur(10px); 
+            border-bottom: 1px solid var(--border-color); 
+            box-shadow: 0 2px 20px rgba(0,0,0,0.4); 
+        }
+        
+        nav { 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            position: relative;
+        }
+        
+        .logo { 
+            font-size: 1.8rem; 
+            color: var(--accent); 
+            font-family: var(--font-title); 
+            text-shadow: 0 0 10px var(--accent); 
+        }
+
+        .menu-toggle { 
+            display: none; 
+            font-size: 1.8rem; 
+            color: var(--accent); 
+            cursor: pointer; 
+            transition: color 0.3s; 
+        }
+        
+        .menu-toggle:hover { 
+            color: var(--accent-cyan); 
+        }
+
+        .nav-links { 
+            display: flex; 
+            gap: 10px; 
+            align-items: center; 
+            background-color: var(--bg-card); 
+            padding: 5px 8px; 
+            border-radius: var(--radius-lg); 
+            border: 1px solid var(--border-color); 
+            margin-left: auto; 
+        }
+        
+        .nav-links li { margin: 0 5px; }
+        
+        .nav-links li a { 
+            font-weight: 500; 
+            font-size: 0.95rem; 
+            padding: 8px 18px; 
+            border-radius: var(--radius-lg); 
+            position: relative; 
+            display: block;
+        }
+        
+        .nav-links li a:not(.nav-contact-btn):hover, .nav-links li a.active { 
+            background-color: rgba(157, 78, 221, 0.15); 
+            color: var(--accent-hover); 
+            text-shadow: 0 0 5px var(--accent-hover); 
+        }
+        
+        .nav-contact-btn { 
+            background-color: transparent; 
+            border: 2px solid var(--accent); 
+            color: var(--accent); 
+            font-weight: 600; 
+            text-transform: uppercase; 
+            font-size: 0.85rem; 
+            letter-spacing: 1px; 
+            transition: all 0.3s ease; 
+            text-align: center;
+        }
+        
+        .nav-contact-btn:hover { 
+            background-color: var(--accent); 
+            color: #ffffff; 
+            box-shadow: 0 0 15px var(--accent-glow); 
+            border-color: var(--accent-hover); 
+        }
+
+        .lang-switch-container { 
+            display: flex; 
+            align-items: center; 
+            gap: 8px; 
+            margin-left: 15px; 
+        }
+        
+        .flag { 
+            font-size: 1.3rem; 
+            transition: opacity 0.3s; 
+            user-select: none; 
+        }
+        
+        .switch { 
+            position: relative; 
+            display: inline-block; 
+            width: 54px; 
+            height: 28px; 
+        }
+        
+        .switch input { 
+            opacity: 0; 
+            width: 0; 
+            height: 0; 
+        }
+        
+        .slider { 
+            position: absolute; 
+            cursor: pointer; 
+            top: 0; 
+            left: 0; 
+            right: 0; 
+            bottom: 0; 
+            background-color: rgba(157, 78, 221, 0.1); 
+            transition: .4s; 
+            border: 1px solid var(--accent); 
+        }
+        
+        .slider:before { 
+            position: absolute; 
+            content: ""; 
+            height: 20px; 
+            width: 20px; 
+            left: 3px; 
+            bottom: 3px; 
+            background-color: var(--accent-cyan); 
+            transition: .4s; 
+            box-shadow: 0 0 10px var(--accent-cyan); 
+        }
+        
+        input:checked + .slider { 
+            background-color: rgba(79, 172, 254, 0.1); 
+            border-color: var(--accent-cyan); 
+        }
+        
+        input:checked + .slider:before { 
+            transform: translateX(26px); 
+            background-color: var(--accent); 
+            box-shadow: 0 0 10px var(--accent); 
+        }
+        
+        .slider.round { 
+            border-radius: 34px; 
+        }
+        
+        .slider.round:before { 
+            border-radius: 50%; 
+        }
+
+        .ue-container { 
+            display: flex; 
+            flex-direction: column; 
+            gap: 60px; 
+            padding-bottom: 40px; 
+        }
+        
+        .ue-card { 
+            background-color: var(--bg-card); 
+            border: 1px solid var(--border-color); 
+            border-radius: var(--radius-md); 
+            overflow: hidden; 
+            position: relative; 
+            opacity: 0; 
+            animation: fadeIn 1s ease forwards 0.4s; 
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3); 
+            transition: all 0.3s ease; 
+        }
+        
+        .ue-card:hover { 
+            transform: translateY(-5px); 
+            border-color: rgba(255,255,255,0.1); 
+        }
+        
+        .ue-card::before { 
+            content: ""; 
+            position: absolute; 
+            top: 0; 
+            left: 0; 
+            width: 4px; 
+            height: 100%; 
+            background: linear-gradient(to bottom, var(--ue-color), transparent); 
+        }
+
+        .ue-header { 
+            padding: 40px 40px 10px 40px; 
+            position: relative;
+        }
+        
+        .ue-badge { 
+            display: inline-block; 
+            background-color: rgba(255,255,255,0.05); 
+            color: var(--ue-color); 
+            padding: 5px 15px; 
+            border-radius: 20px; 
+            font-size: 0.85rem; 
+            font-family: var(--font-mono); 
+            border: 1px solid var(--ue-color); 
+            margin-bottom: 15px; 
+            text-transform: uppercase; 
+            letter-spacing: 1px; 
+        }
+        
+        .grade-container { 
+            position: absolute; 
+            top: 40px; 
+            right: 40px; 
+        }
+        
+        .grade-badge { 
+            background-color: rgba(79, 172, 254, 0.05); 
+            border: 1px solid var(--accent-cyan); 
+            color: #ffffff; 
+            padding: 6px 15px; 
+            border-radius: var(--radius-lg); 
+            font-family: var(--font-mono); 
+            font-weight: bold; 
+            font-size: 0.95rem; 
+        }
+
+        .ue-title { 
+            font-size: 2rem; 
+            color: #ffffff; 
+            margin-bottom: 15px; 
+            padding-right: 150px; 
+        }
+        
+        .ue-user-desc { 
+            padding: 0 40px 20px 40px; 
+            color: var(--text-main); 
+            font-size: 1.05rem; 
+            line-height: 1.6; 
+        }
+
+        .ue-body { 
+            display: grid; 
+            grid-template-columns: 1fr 1fr; 
+            gap: 40px; 
+            padding: 20px 40px 30px 40px; 
+            border-top: 1px solid var(--border-color); 
+            border-bottom: 1px solid var(--border-color); 
+            background: rgba(255,255,255,0.01); 
+        }
+        
+        .ue-col h4 { 
+            color: var(--ue-color); 
+            font-size: 1.1rem; 
+            margin-bottom: 20px; 
+            text-transform: uppercase; 
+            letter-spacing: 1px; 
+            border-bottom: 1px dashed var(--border-color); 
+            padding-bottom: 10px;
+        }
+        
+        .ue-list li { 
+            position: relative; 
+            padding-left: 25px; 
+            margin-bottom: 12px; 
+            color: var(--text-muted); 
+            font-size: 0.9rem; 
+        }
+        
+        .ue-list li::before { 
+            content: '>'; 
+            position: absolute; 
+            left: 0; 
+            color: var(--ue-color); 
+            font-family: var(--font-mono); 
+            font-weight: bold; 
+        }
+        
+        .ue-list li span.code { 
+            color: var(--ue-color); 
+            font-weight: bold; 
+            margin-right: 5px; 
+        }
+
+        .ue-reflexive { 
+            padding: 30px 40px; 
+        }
+        
+        .ue-reflexive h4 { 
+            color: #ffffff; 
+            margin-bottom: 20px; 
+            font-size: 1.4rem; 
+            text-align: center; 
+        }
+        
+        .reflexive-grid { 
+            display: grid; 
+            grid-template-columns: 1fr 1fr; 
+            gap: 30px; 
+        }
+        
+        .reflexive-box { 
+            padding: 20px; 
+            border-radius: 8px; 
+            background: rgba(0,0,0,0.2); 
+            border: 1px solid rgba(255,255,255,0.05); 
+        }
+        
+        .reflexive-box h5 { 
+            font-size: 1rem; 
+            margin-bottom: 10px; 
+            letter-spacing: 1px; 
+            text-transform: uppercase; 
+        }
+        
+        .reflexive-box p { 
+            color: var(--text-muted); 
+            font-size: 0.95rem; 
+            line-height: 1.6; 
+            font-style: italic;
+        }
+        
+        .success h5 { color: var(--success); }
+        .improvement h5 { color: var(--improvement); }
+
+        .ue-1 { --ue-color: #4facfe; } 
+        .ue-2 { --ue-color: #c77dff; } 
+        .ue-3 { --ue-color: #00f2fe; } 
+
+        .bilan-section { 
+            margin: 60px auto 40px auto; 
+            max-width: 1200px; 
+            padding: 0 20px; 
+            opacity: 0; 
+            animation: fadeIn 1s ease forwards 0.6s; 
+        }
+        
+        .bilan-card { 
+            background-color: var(--bg-card); 
+            border: 1px solid rgba(231, 76, 60, 0.3); 
+            border-radius: var(--radius-md); 
+            padding: 40px; 
+            position: relative; 
+            overflow: hidden; 
+            box-shadow: 0 10px 40px rgba(231, 76, 60, 0.1); 
+        }
+        
+        .bilan-card::before { 
+            content: ""; 
+            position: absolute; 
+            top: 0; 
+            left: 0; 
+            width: 100%; 
+            height: 4px; 
+            background: linear-gradient(90deg, var(--danger), #ff7675); 
+        }
+        
+        .bilan-card h3 { 
+            font-size: 2rem; 
+            color: var(--danger); 
+            margin-bottom: 20px; 
+            text-shadow: 0 0 10px rgba(231, 76, 60, 0.2); 
+        }
+        
+        .bilan-card p { 
+            font-size: 1.1rem; 
+            color: var(--text-main); 
+            line-height: 1.8; 
+        }
+        
+        .bilan-card strong { color: #ff7675; }
+
+        .action-container { 
+            text-align: center; 
+            margin-top: 20px; 
+            margin-bottom: 80px; 
+            opacity: 0; 
+            animation: fadeIn 1s ease forwards 0.8s; 
+        }
+        
+        .btn-large { 
+            display: inline-flex; 
+            justify-content: center; 
+            align-items: center; 
+            padding: 18px 40px; 
+            background-color: rgba(157, 78, 221, 0.1); 
+            border: 2px solid var(--accent); 
+            color: #ffffff; 
+            font-weight: 600; 
+            text-transform: uppercase; 
+            letter-spacing: 1px; 
+            cursor: pointer; 
+            border-radius: var(--radius-lg); 
+            transition: all 0.4s ease; 
+            font-size: 1.1rem; 
+            box-shadow: 0 0 15px var(--accent-glow); 
+        }
+        
+        .btn-large:hover { 
+            background-color: var(--accent); 
+            transform: translateY(-3px); 
+            box-shadow: 0 10px 30px var(--accent-glow); 
+        }
+
+        .modal { 
+            display: none; 
+            position: fixed; 
+            z-index: 2000; 
+            left: 0; 
+            top: 0; 
+            width: 100%; 
+            height: 100%; 
+            background: rgba(13, 11, 20, 0.9); 
+            backdrop-filter: blur(8px); 
+            align-items: center; 
+            justify-content: center; 
+        }
+        
+        .modal-content { 
+            position: relative; 
+            width: 90%; 
+            max-width: 1000px; 
+            height: 85vh; 
+            background: var(--bg-card); 
+            border-radius: var(--radius-md); 
+            padding: 50px 20px 20px 20px; 
+            border: 1px solid var(--accent-cyan); 
+        }
+        
+        .close-btn { 
+            position: absolute; 
+            top: 15px; 
+            right: 25px; 
+            font-size: 2rem; 
+            color: var(--text-muted); 
+            cursor: pointer; 
+            transition: 0.3s; 
+        }
+        
+        .close-btn:hover { color: var(--accent-cyan); }
+        #pdf-frame { width: 100%; height: 100%; border: none; background: #fff; border-radius: 8px; }
+
+        footer { 
+            text-align: center; 
+            padding: 40px 0; 
+            color: var(--text-muted); 
+            border-top: 1px solid var(--border-color); 
+            margin-top: auto; 
+        }
+
+        @media (max-width: 900px) { 
+            .menu-toggle { display: block; }
+            .nav-links {
+                position: absolute; top: 60px; left: 0; right: 0; background-color: rgba(22, 20, 32, 0.95);
+                flex-direction: column; gap: 0; padding: 20px 0; border-radius: 0 0 var(--radius-md) var(--radius-md);
+                border: 1px solid var(--border-color); border-top: none;
+                transform: translateY(-150%); opacity: 0; transition: all 0.4s ease; z-index: 999;
+                pointer-events: none;
+            }
+            .nav-links.active { transform: translateY(0); opacity: 1; pointer-events: auto; }
+            .nav-links li { margin: 15px 0; }
+            .lang-switch-container { margin: 15px 0 0 0; justify-content: center; }
+            
+            .ue-body, .reflexive-grid { grid-template-columns: 1fr; } 
+            .ue-title { padding-right: 0; } 
+            .results-box-long { flex-direction: column; padding: 25px; gap: 20px; }
+            .grade-badge { position: static; display: inline-block; margin-top: 10px; }
+            .grade-container { position: relative; top: 0; right: 0; margin-bottom: 15px; text-align: left; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">C.H.D</div>
+                <div class="menu-toggle" id="mobile-menu">
+                    <i class="fa-solid fa-bars"></i>
+                </div>
+                <ul class="nav-links" id="nav-links">
+                    <li><a href="index-en.html#hero">Home</a></li>
+                    <li><a href="index-en.html#parcours">Journey</a></li>
+                    <li><a href="competences-en.html" class="active">Skills</a></li>
+                    <li><a href="index-en.html#cv">Resume</a></li>
+                    <li><a href="projets-en.html">Projects</a></li> 
+                    <li><a href="contact-en.html" class="nav-contact-btn">Contact</a></li>
+                    <li class="lang-switch-container">
+                        <span class="flag" style="opacity: 0.5;">🇫🇷</span>
+                        <label class="switch">
+                            <input type="checkbox" id="langToggle" checked>
+                            <span class="slider round"></span>
+                        </label>
+                        <span class="flag">🇬🇧</span>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="page-header container">
+        <h1 class="section-title">First Year</h1>
+        <p class="page-subtitle">Details of the skills acquired during BUT1, along with my results and reflective analyses.</p>
+        
+        <div class="alert-box">
+            <i class="fa-solid fa-circle-info"></i> &nbsp; Following a change of major, I joined this program mid-year. Therefore, the results and skills presented here only reflect my work during the <strong>2nd semester</strong>.
+        </div>
+
+        <div class="results-section">
+            <div class="results-box-long">
+                <div class="results-info-side">
+                    <div class="results-icon-small">S2</div>
+                    <h3>Semester 2 Transcript</h3>
+                </div>
+                <div class="results-actions-side">
+                    <button class="btn btn-secondary" onclick="openModal('files/s2/releve_notes_s2.pdf')">View</button>
+                    <a href="files/s2/releve_notes_s2.pdf" class="btn btn-primary" download>Download</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <main class="container ue-container">
+
+        <article class="ue-card ue-1">
+            <div class="ue-header">
+                <div class="grade-container"><span class="grade-badge">S2 Average: 12.33/20</span></div>
+                <span class="ue-badge">UE1 - Administer</span>
+                <h2 class="ue-title">Administering Networks and the Internet</h2>
+            </div>
+            
+            <div class="ue-user-desc">
+                This unit focuses on the <strong>"Networking"</strong> part of the program, including the basics of setting up and managing simple information systems, including the <strong>administration of Windows and Linux (Debian) operating systems</strong>. During this unit, I discovered the use of simple network equipment such as <strong>routers</strong> or <strong>switches</strong> through practical work on <strong>Cisco Packet Tracer</strong>, <strong>GNS3</strong>, or on physical hardware, as well as <strong>VLAN</strong> configuration. I also learned to use various protocols like <strong>ARP, ICMP, DHCP, RIP</strong>, and <strong>static routing</strong>.
+            </div>
+
+            <div class="ue-body">
+                <div class="ue-col">
+                    <h4>Essential Components</h4>
+                    <ul class="ue-list">
+                        <li><span class="code">CE1.01</span> Choose the appropriate network solutions and technologies.</li>
+                        <li><span class="code">CE1.02</span> Comply with the fundamental principles of IT security.</li>
+                        <li><span class="code">CE1.03</span> Use a rigorous approach to troubleshoot malfunctions.</li>
+                    </ul>
+                </div>
+                <div class="ue-col">
+                    <h4>Critical Learnings (BUT1)</h4>
+                    <ul class="ue-list">
+                        <li><span class="code">AC11.01</span> Master the fundamental laws of electricity.</li>
+                        <li><span class="code">AC11.02</span> Understand the architecture and foundations of digital systems.</li>
+                        <li><span class="code">AC11.03</span> Configure the basic functions of the local network.</li>
+                        <li><span class="code">AC11.04</span> Master the fundamental principles of <strong>operating systems</strong>.</li>
+                        <li><span class="code">AC11.05</span> Identify local network malfunctions.</li>
+                        <li><span class="code">AC11.06</span> <strong>Install a client workstation</strong> and explain the procedure.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="ue-reflexive">
+                <h4>Reflective Analysis</h4>
+                <div class="reflexive-grid">
+                    <div class="reflexive-box success">
+                        <h5>What I did well</h5>
+                        <p>Having arrived mid-year, I was able to understand some concepts from the first semester on my own using <strong>practical exercises (TP)</strong> and gradually catch up with the curriculum. In particular, I familiarized myself with <strong>basic Linux administration (command lines)</strong> and <strong>Windows workstation</strong> configuration. I was able to catch up on certain concepts, especially through <strong>group work</strong>.</p>
+                    </div>
+                    <div class="reflexive-box improvement">
+                        <h5>What I need to improve</h5>
+                        <p>During practical sessions involving setting up a network, like in <strong>SAE2.01</strong>, I had more difficulty using software like <strong>Packet Tracer</strong> or <strong>GNS3</strong>. The sometimes temperamental nature of emulation and managing extended topologies required more adaptation time.</p>
+                    </div>
+                </div>
+            </div>
+        </article>
+
+        <article class="ue-card ue-2">
+            <div class="ue-header">
+                <div class="grade-container"><span class="grade-badge">S2 Average: 13.09/20</span></div>
+                <span class="ue-badge">UE2 - Connect</span>
+                <h2 class="ue-title">Connecting Businesses and Users</h2>
+            </div>
+
+            <div class="ue-user-desc">
+                This unit focuses on the <strong>"Telecommunications"</strong> part of the program, which means setting up transmission media and systems, provisioning access equipment and wireless access, such as <strong>IP telephony</strong> (using <strong>Linphone</strong>). It particularly relies on <strong>electronics</strong> and <strong>mathematics</strong>.
+            </div>
+
+            <div class="ue-body">
+                <div class="ue-col">
+                    <h4>Essential Components</h4>
+                    <ul class="ue-list">
+                        <li><span class="code">CE2.01</span> Communicate with the client and involved stakeholders.</li>
+                        <li><span class="code">CE2.02</span> Demonstrate a scientific approach.</li>
+                        <li><span class="code">CE2.03</span> Choose appropriate solutions and technologies.</li>
+                    </ul>
+                </div>
+                <div class="ue-col">
+                    <h4>Critical Learnings (BUT1)</h4>
+                    <ul class="ue-list">
+                        <li><span class="code">AC12.01</span> Measure, analyze, and comment on signals.</li>
+                        <li><span class="code">AC12.02</span> Characterize basic transmission systems.</li>
+                        <li><span class="code">AC12.03</span> Deploy transmission media.</li>
+                        <li><span class="code">AC12.04</span> Connect ToIP systems.</li>
+                        <li><span class="code">AC12.05</span> Communicate with a third party and adapt one's speech.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="ue-reflexive">
+                <h4>Reflective Analysis</h4>
+                <div class="reflexive-grid">
+                    <div class="reflexive-box success">
+                        <h5>What I did well</h5>
+                        <p>Coming from a background focused primarily on <strong>mathematics</strong> and <strong>physics</strong>, I didn't have much trouble catching up with the curriculum in these subjects. Understanding signals and mathematical modeling was a strong point.</p>
+                    </div>
+                    <div class="reflexive-box improvement">
+                        <h5>What I need to improve</h5>
+                        <p>Having no prior experience in electronics, I had a harder time understanding the principles of certain transmission systems and using software like <strong>Tinkercad</strong> during practicals and projects (SAE), or getting familiar with how <strong>Arduino (ESP32)</strong> boards work.</p>
+                    </div>
+                </div>
+            </div>
+        </article>
+
+        <article class="ue-card ue-3">
+            <div class="ue-header">
+                <div class="grade-container"><span class="grade-badge">S2 Average: 14.34/20</span></div>
+                <span class="ue-badge">UE3 - Program</span>
+                <h2 class="ue-title">Creating IT Tools and Applications</h2>
+            </div>
+
+            <div class="ue-user-desc">
+                This unit focuses on the design, deployment, and maintenance of a company's information system and the development of IT tools. It covers programming concepts with <strong>Python</strong> (<strong>object-oriented programming</strong> or developing dynamic websites using the <strong>Django</strong> framework).
+            </div>
+
+            <div class="ue-body">
+                <div class="ue-col">
+                    <h4>Essential Components</h4>
+                    <ul class="ue-list">
+                        <li><span class="code">CE3.01</span> Listen to the client's needs.</li>
+                        <li><span class="code">CE3.02</span> Document the work done.</li>
+                        <li><span class="code">CE3.03</span> Use digital tools wisely.</li>
+                        <li><span class="code">CE3.04</span> Choose appropriate development tools.</li>
+                    </ul>
+                </div>
+                <div class="ue-col">
+                    <h4>Critical Learnings (BUT1)</h4>
+                    <ul class="ue-list">
+                        <li><span class="code">AC13.01</span> Use an IT system and its tools.</li>
+                        <li><span class="code">AC13.02</span> Read, execute, debug, and modify a program.</li>
+                        <li><span class="code">AC13.03</span> Translate an algorithm into a given language.</li>
+                        <li><span class="code">AC13.04</span> Understand the architecture and technologies of a website.</li>
+                        <li><span class="code">AC13.05</span> Choose appropriate data management mechanisms.</li>
+                        <li><span class="code">AC13.06</span> Integrate into a collaborative environment.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="ue-reflexive">
+                <h4>Reflective Analysis</h4>
+                <div class="reflexive-grid">
+                    <div class="reflexive-box success">
+                        <h5>What I did well</h5>
+                        <p>Being already familiar with <strong>Python</strong> development, I was able to easily grasp the first-year concepts, especially regarding the implementation of <strong>object-oriented programming</strong> in my projects.</p>
+                    </div>
+                    <div class="reflexive-box improvement">
+                        <h5>What I need to improve</h5>
+                        <p>Some concepts in <strong>web development</strong>, particularly understanding the <strong>MVT architecture of Django</strong> and the link between views and templates.</p>
+                    </div>
+                </div>
+            </div>
+        </article>
+
+    </main>
+
+    <div class="bilan-section">
+        <div class="bilan-card">
+            <h3>First Year Summary</h3>
+            <p>
+                During my first year, I discovered various concepts in <strong>computer networks</strong> (Cisco hardware, switch and router configuration), in <strong>telecommunications</strong> (transmission systems and ToIP), as well as in <strong>software development</strong> (Python programming and the Django framework). Having arrived in the <strong>second semester</strong>, I managed to catch up on the essential knowledge to successfully complete my year. I enjoyed joining this program because it relies heavily on the <strong>practical application</strong> of knowledge during practical works and <strong>SAEs (Learning and Evaluation Situations)</strong>, which also fosters <strong>teamwork</strong>.
+            </p>
+        </div>
+    </div>
+
+    <div class="action-container">
+        <a href="projets-but1-en.html" class="btn-large">Proof of Skill Acquisition (S2 Projects)</a>
+    </div>
+
+    <div id="results-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal()">&times;</span>
+            <iframe id="pdf-frame" src=""></iframe>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 <strong>Camille HENRY--DELANGLE</strong>.</p>
+            <p style="font-size: 0.85rem; font-family: var(--font-mono); opacity: 0.5; margin-top: 20px;">Root@Portfolio:~# exit</p>
+        </div>
+    </footer>
+
+    <script>
+        function openModal(pdfSrc) {
+            const modal = document.getElementById('results-modal');
+            const frame = document.getElementById('pdf-frame');
+            frame.src = pdfSrc;
+            modal.style.display = 'flex';
+            document.body.style.overflow = 'hidden'; 
+        }
+        function closeModal() {
+            const modal = document.getElementById('results-modal');
+            const frame = document.getElementById('pdf-frame');
+            modal.style.display = 'none';
+            frame.src = ""; 
+            document.body.style.overflow = 'auto'; 
+        }
+        window.onclick = function(event) {
+            const modal = document.getElementById('results-modal');
+            if (event.target == modal) { closeModal(); }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const langToggle = document.getElementById('langToggle');
+            langToggle.addEventListener('change', function() {
+                if(!this.checked) {
+                    window.location.href = "competences-but1.html";
+                }
+            });
+
+            const mobileMenu = document.getElementById('mobile-menu');
+            const navLinksList = document.getElementById('nav-links');
+            
+            mobileMenu.addEventListener('click', () => {
+                navLinksList.classList.toggle('active');
+            });
+        });
+    </script>
+</body>
+</html>
