@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BUT2 Skills | Camille HENRY--DELANGLE</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Saira+Stencil+One&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        :root {
+            --bg-color: #0d0b14; 
+            --bg-card: #161420;  
+            --text-main: #e0e6ed;
+            --text-muted: #a1aabf;
+            --accent: #9d4edd;          
+            --accent-hover: #c77dff;    
+            --accent-cyan: #4facfe;
+            --accent-glow: rgba(157, 78, 221, 0.25); 
+            --border-color: #2d2a3a;
+            --font-main: 'Inter', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            --font-title: 'Saira Stencil One', sans-serif; 
+            --font-mono: 'Courier New', Courier, monospace;
+            --radius-md: 16px; 
+            --radius-lg: 30px;
+            --success: #2ecc71;
+            --improvement: #f39c12; 
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background-color: var(--bg-color); color: var(--text-main); font-family: var(--font-main); line-height: 1.7; overflow-x: hidden; display: flex; flex-direction: column; min-height: 100vh; }
+        h1, h2, h3, h4, h5 { font-family: var(--font-title); font-weight: normal; }
+        a { text-decoration: none; color: inherit; transition: all 0.3s ease; }
+        ul { list-style: none; }
+        strong { color: var(--accent-hover); font-weight: 600; }
+
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; width: 100%; }
+        
+        .back-btn-container { text-align: left; margin-bottom: 20px; padding-top: 100px; }
+        .back-btn { display: inline-flex; align-items: center; gap: 8px; color: var(--text-muted); font-size: 0.95rem; font-weight: 500; transition: color 0.3s ease; }
+        .back-btn:hover { color: var(--accent-cyan); }
+        
+        .page-header { padding: 40px 20px 60px 20px; text-align: center; }
+
+        .section-title { font-size: 3.2rem; color: var(--accent); margin-bottom: 30px; display: flex; align-items: center; justify-content: center; text-align: center; opacity: 0; animation: fadeIn 1s ease forwards; position: relative; padding-bottom: 25px; }
+        .section-title::before { content: ">"; margin-right: 15px; color: var(--accent-cyan); font-weight: bold; text-shadow: 0 0 10px var(--accent-cyan); font-family: var(--font-main); }
+        .section-title::after { content: ""; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 150px; height: 3px; background: linear-gradient(90deg, transparent, var(--accent-hover), var(--accent-cyan), transparent); border-radius: 2px; }
+
+        .page-subtitle { color: var(--text-muted); font-size: 1.15rem; max-width: 900px; margin: 0 auto; opacity: 0; animation: fadeIn 1s ease forwards 0.2s; line-height: 1.8; }
+
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+        header { background-color: rgba(13, 11, 20, 0.95); padding: 10px 0; position: fixed; width: 100%; top: 0; z-index: 1000; backdrop-filter: blur(10px); box-shadow: 0 2px 20px rgba(0,0,0,0.4); border-bottom: 1px solid var(--border-color); }
+        
+        nav { display: flex; justify-content: space-between; align-items: center; position: relative; }
+        .logo { font-size: 1.8rem; color: var(--accent); font-family: var(--font-title); text-shadow: 0 0 10px var(--accent); }
+        
+        .menu-toggle { display: none; font-size: 1.8rem; color: var(--accent); cursor: pointer; transition: color 0.3s; }
+        .menu-toggle:hover { color: var(--accent-cyan); }
+
+        .nav-links { display: flex; gap: 10px; align-items: center; background-color: var(--bg-card); padding: 5px 8px; border-radius: var(--radius-lg); border: 1px solid var(--border-color); margin-left: auto; }
+        .nav-links li { margin: 0 5px; }
+        .nav-links li a { font-weight: 500; font-size: 0.95rem; padding: 8px 18px; border-radius: var(--radius-lg); position: relative; display: block; }
+        .nav-links li a:not(.nav-contact-btn):not(.lang-btn):hover, .nav-links li a.active { background-color: rgba(157, 78, 221, 0.15); color: var(--accent-hover); text-shadow: 0 0 5px var(--accent-hover); }
+        
+        .nav-contact-btn { background-color: transparent; border: 2px solid var(--accent); color: var(--accent); font-weight: 600; text-transform: uppercase; font-size: 0.85rem; letter-spacing: 1px; transition: all 0.3s ease; text-align: center; }
+        .nav-contact-btn:hover { background-color: var(--accent); color: #ffffff; box-shadow: 0 0 15px var(--accent-glow); border-color: var(--accent-hover); }
+
+        .lang-switch-container { display: flex; align-items: center; gap: 8px; margin-left: 15px; }
+        .flag { font-size: 1.3rem; transition: opacity 0.3s; user-select: none; }
+        .switch { position: relative; display: inline-block; width: 54px; height: 28px; }
+        .switch input { opacity: 0; width: 0; height: 0; }
+        .slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: rgba(157, 78, 221, 0.1); transition: .4s; border: 1px solid var(--accent); }
+        .slider:before { position: absolute; content: ""; height: 20px; width: 20px; left: 3px; bottom: 3px; background-color: var(--accent-cyan); transition: .4s; box-shadow: 0 0 10px var(--accent-cyan); }
+        input:checked + .slider { background-color: rgba(79, 172, 254, 0.1); border-color: var(--accent-cyan); }
+        input:checked + .slider:before { transform: translateX(26px); background-color: var(--accent); box-shadow: 0 0 10px var(--accent); }
+        .slider.round { border-radius: 34px; }
+        .slider.round:before { border-radius: 50%; }
+
+        .status-box { background-color: rgba(157, 78, 221, 0.05); border: 1px solid var(--accent); padding: 15px 25px; margin: -20px auto 50px auto; max-width: 850px; text-align: center; font-size: 1.05rem; color: var(--text-main); border-radius: var(--radius-md); box-shadow: 0 0 15px var(--accent-glow); opacity: 0; animation: fadeIn 1s ease forwards 0.3s; }
+
+        .results-box-long { max-width: 1000px; margin: 30px auto 50px auto; background-color: rgba(255,255,255,0.02); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 15px 30px; display: flex; align-items: center; justify-content: space-between; transition: 0.3s; opacity: 0; animation: fadeIn 1s ease forwards 0.4s; }
+        .results-box-long:hover { border-color: var(--accent-cyan); background-color: rgba(79, 172, 254, 0.03); }
+        .results-info-side { display: flex; align-items: center; gap: 20px; }
+        .results-icon-small { font-family: var(--font-title); font-size: 1.5rem; color: var(--accent-cyan); background: rgba(79, 172, 254, 0.1); padding: 5px 12px; border-radius: 8px; }
+        .results-box-long h3 { font-size: 1.2rem; color: #ffffff; margin: 0; }
+        .results-actions-side { display: flex; gap: 10px; align-items: center; }
+
+        .btn { display: inline-flex; justify-content: center; align-items: center; padding: 10px 22px; border-radius: var(--radius-lg); font-weight: 600; text-transform: uppercase; letter-spacing: 1px; font-size: 0.8rem; transition: 0.4s; cursor: pointer; }
+        .btn-primary { border: 2px solid var(--accent); color: var(--accent-hover); background: transparent; }
+        .btn-primary:hover { background: var(--accent); color: #fff; box-shadow: 0 0 15px var(--accent-glow); }
+        .btn-secondary { background-color: rgba(157, 78, 221, 0.1); border: 2px solid var(--accent); color: #fff; }
+        
+        .status-text-muted { color: var(--text-muted); font-style: italic; font-size: 0.95rem; }
+
+        .ue-container { display: flex; flex-direction: column; gap: 60px; padding-bottom: 80px; }
+
+        .path-intro { background: linear-gradient(135deg, rgba(157, 78, 221, 0.1), rgba(79, 172, 254, 0.05)); border: 1px solid var(--accent); border-radius: var(--radius-md); padding: 40px; text-align: center; box-shadow: 0 10px 30px var(--accent-glow); opacity: 0; animation: fadeIn 1s ease forwards 0.3s; position: relative; overflow: hidden; }
+        .path-intro::before { content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 4px; background: linear-gradient(90deg, var(--accent-cyan), var(--accent-hover)); }
+        .path-intro h3 { color: #ffffff; font-size: 2rem; margin-bottom: 20px; text-shadow: 0 0 10px rgba(199, 125, 255, 0.3); }
+        .path-intro p { color: var(--text-main); font-size: 1.1rem; max-width: 900px; margin: 0 auto; line-height: 1.8; }
+
+        .ue-card { background-color: var(--bg-card); border-radius: var(--radius-md); border: 1px solid var(--border-color); overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.3); transition: all 0.4s ease; opacity: 0; animation: fadeIn 1s ease forwards 0.4s; position: relative; }
+        .ue-card::before { content: ""; position: absolute; top: 0; left: 0; width: 4px; height: 100%; background: linear-gradient(to bottom, var(--ue-color), transparent); box-shadow: 0 0 15px var(--ue-color); }
+        .ue-card:hover { border-color: rgba(255,255,255,0.1); transform: translateY(-5px); box-shadow: 0 15px 40px rgba(0,0,0,0.5), 0 0 20px rgba(255,255,255,0.02); }
+
+        .ue-header { padding: 40px 40px 20px 40px; border-bottom: 1px solid var(--border-color); position: relative;}
+        .ue-badge { display: inline-block; background-color: rgba(255,255,255,0.05); color: var(--ue-color); padding: 5px 15px; border-radius: 20px; font-size: 0.85rem; font-family: var(--font-mono); border: 1px solid var(--ue-color); margin-bottom: 15px; text-transform: uppercase; letter-spacing: 1px; box-shadow: 0 0 10px rgba(255,255,255,0.05); }
+        
+        .grade-container { position: absolute; top: 40px; right: 40px; display: flex; flex-direction: column; gap: 10px; align-items: flex-end; }
+        .grade-badge { background-color: rgba(79, 172, 254, 0.05); border: 1px solid var(--accent-cyan); color: #ffffff; padding: 6px 15px; border-radius: var(--radius-lg); font-family: var(--font-mono); font-weight: bold; font-size: 0.95rem; box-shadow: 0 0 10px rgba(79, 172, 254, 0.15); }
+
+        .ue-title { font-size: 2rem; color: #ffffff; margin-bottom: 5px; text-shadow: 0 0 10px rgba(255,255,255,0.1); padding-right: 150px; }
+        .ue-subtitle { font-size: 1.2rem; color: var(--ue-color); margin-bottom: 15px; font-family: var(--font-mono); text-transform: lowercase; }
+        .ue-summary { color: var(--text-muted); font-size: 1.05rem; }
+
+        .ue-body { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; padding: 40px; }
+        .ue-col h4 { color: var(--ue-color); font-size: 1.3rem; margin-bottom: 20px; border-bottom: 1px dashed var(--border-color); padding-bottom: 10px; }
+
+        .ue-list { margin-left: 10px; }
+        .ue-list li { position: relative; padding-left: 25px; margin-bottom: 15px; color: var(--text-main); font-size: 0.95rem; }
+        .ue-list li::before { content: '>'; position: absolute; left: 0; color: var(--ue-color); font-family: var(--font-mono); font-weight: bold; }
+        .ue-list li span.code { color: var(--ue-color); font-family: var(--font-mono); font-weight: bold; margin-right: 5px; }
+
+        .ue-reflexive { margin: 0 40px 40px 40px; padding: 30px; background-color: rgba(0,0,0,0.2); border-radius: 8px; border-left: 4px solid var(--accent-hover); }
+        .ue-reflexive h4 { color: var(--accent-hover); margin-bottom: 15px; font-size: 1.2rem; display: flex; align-items: center; gap: 10px; }
+        
+        .reflexive-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin-top: 15px; }
+        .reflexive-box { padding: 20px; border-radius: 8px; background: rgba(0,0,0,0.2); border: 1px solid rgba(255,255,255,0.05); }
+        .reflexive-box h5 { font-size: 1rem; margin-bottom: 10px; letter-spacing: 1px; text-transform: uppercase; }
+        .reflexive-box p { color: var(--text-muted); font-size: 0.95rem; line-height: 1.6; font-style: normal; }
+        .success h5 { color: var(--success); }
+        .improvement h5 { color: var(--improvement); }
+
+        .ue-1 { --ue-color: #4facfe; } 
+        .ue-2 { --ue-color: #c77dff; } 
+        .ue-3 { --ue-color: #00f2fe; } 
+        .ue-4 { --ue-color: #f5576c; } 
+        .ue-5 { --ue-color: #f6d365; } 
+
+        .action-container { text-align: center; margin-top: 40px; }
+        .btn-large { display: inline-flex; justify-content: center; align-items: center; padding: 18px 40px; background-color: rgba(157, 78, 221, 0.1); border: 2px solid var(--accent); color: #ffffff; font-weight: 600; font-family: var(--font-main); text-transform: uppercase; letter-spacing: 1px; cursor: pointer; border-radius: var(--radius-lg); transition: all 0.4s ease; font-size: 1.1rem; box-shadow: 0 0 15px var(--accent-glow); }
+        .btn-large:hover { background-color: var(--accent); transform: translateY(-3px); border-color: var(--accent-hover); box-shadow: 0 10px 30px var(--accent-glow); }
+
+        .modal { display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(13, 11, 20, 0.9); backdrop-filter: blur(8px); align-items: center; justify-content: center; }
+        .modal-content { position: relative; width: 90%; max-width: 1000px; height: 85vh; background: var(--bg-card); border-radius: var(--radius-md); padding: 50px 20px 20px 20px; border: 1px solid var(--accent-cyan); }
+        .close-btn { position: absolute; top: 15px; right: 25px; font-size: 2rem; color: var(--text-muted); cursor: pointer; transition: 0.3s; }
+        .close-btn:hover { color: var(--accent-cyan); }
+        #pdf-frame { width: 100%; height: 100%; border: none; background: #fff; border-radius: 8px; }
+
+        footer { text-align: center; padding: 40px 0; color: var(--text-muted); font-size: 0.95rem; border-top: 1px solid var(--border-color); width: 100%; margin-top: auto; }
+
+        @media (max-width: 900px) { 
+            .menu-toggle { display: block; }
+            .nav-links {
+                position: absolute; top: 60px; left: 0; right: 0; background-color: rgba(22, 20, 32, 0.95);
+                flex-direction: column; gap: 0; padding: 20px 0; border-radius: 0 0 var(--radius-md) var(--radius-md);
+                border: 1px solid var(--border-color); border-top: none;
+                transform: translateY(-150%); opacity: 0; transition: all 0.4s ease; z-index: 999;
+                pointer-events: none;
+            }
+            .nav-links.active { transform: translateY(0); opacity: 1; pointer-events: auto; }
+            .nav-links li { margin: 15px 0; }
+            .lang-switch-container { margin: 15px 0 0 0; justify-content: center; }
+            
+            .ue-body, .reflexive-grid { grid-template-columns: 1fr; gap: 30px; } 
+            .grade-container { position: relative; top: 0; right: 0; flex-direction: row; flex-wrap: wrap; justify-content: flex-start; margin-bottom: 20px; } 
+            .ue-title { padding-right: 0; } 
+            .results-box-long { flex-direction: column; padding: 25px; gap: 20px; text-align: center; }
+            .results-info-side { flex-direction: column; gap: 10px; }
+        }
+        
+        @media (max-width: 768px) { 
+            .section-title { font-size: 2.2rem; } 
+            .page-header { padding-top: 120px; } 
+            .ue-header, .ue-body, .ue-reflexive { padding: 20px; } 
+            .ue-reflexive { margin: 0 20px 20px 20px; } 
+            .results-actions-side { flex-direction: column; width: 100%; }
+            .results-actions-side .btn { width: 100%; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">C.H.D</div>
+                <div class="menu-toggle" id="mobile-menu">
+                    <i class="fa-solid fa-bars"></i>
+                </div>
+                <ul class="nav-links" id="nav-links">
+                    <li><a href="index-en.html#hero">Home</a></li>
+                    <li><a href="index-en.html#parcours">Journey</a></li>
+                    <li><a href="competences-en.html" class="active">Skills</a></li>
+                    <li><a href="index-en.html#cv">Resume</a></li>
+                    <li><a href="projets-en.html">Projects</a></li> 
+                    <li><a href="contact-en.html" class="nav-contact-btn">Contact</a></li>
+                    <li class="lang-switch-container">
+                        <span class="flag" style="opacity: 0.5;">🇫🇷</span>
+                        <label class="switch">
+                            <input type="checkbox" id="langToggle" checked>
+                            <span class="slider round"></span>
+                        </label>
+                        <span class="flag">🇬🇧</span>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="page-header container">
+        <div class="back-btn-container">
+            <a href="competences-en.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i> Back to skills</a>
+        </div>
+        <h1 class="section-title">Second Year</h1>
+        <p class="page-subtitle">
+            Details of my critical learnings and reflective analyses for the Networks and Telecommunications BUT, Cybersecurity track (Semesters 3 & 4).
+        </p>
+    </div>
+
+    <div class="status-box container">
+         This second year is currently in progress. Results and reflective analyses will be completed at the end of semester 4.
+    </div>
+
+    <div class="container">
+        <div class="results-box-long">
+            <div class="results-info-side">
+                <div class="results-icon-small">S3</div>
+                <h3>Semester 3 Transcript</h3>
+            </div>
+            <div class="results-actions-side">
+                <button class="btn btn-secondary" onclick="openModal('files/bulletin-s3.pdf')">View</button>
+                <a href="files/bulletin-s3.pdf" class="btn btn-primary" download>Download</a>
+            </div>
+        </div>
+
+        <div class="results-box-long">
+            <div class="results-info-side">
+                <div class="results-icon-small" style="color: var(--text-muted); border-color: var(--text-muted);">S4</div>
+                <h3 style="color: var(--text-muted);">Semester 4 Transcript</h3>
+            </div>
+            <div class="results-actions-side">
+                <span class="status-text-muted">Semester in progress...</span>
+            </div>
+        </div>
+    </div>
+
+    <main class="container ue-container">
+
+        <article class="ue-card ue-1">
+            <div class="ue-header">
+                <div class="grade-container">
+                    <span class="grade-badge">S3 Average: 11.95/20</span>
+                    <span class="grade-badge">S4 Average: --/20</span>
+                </div>
+                <span class="ue-badge">UE1 - Administer</span>
+                <h2 class="ue-title">Administering Networks and the Internet</h2>
+                <p class="ue-summary">
+                    Building on the first-year UE1, this unit focuses on network infrastructure management and system administration, particularly with the basics of Active Directory. It adds a cybersecurity dimension, essential in the context of system and network administration.
+                </p>
+            </div>
+            <div class="ue-body">
+                <div class="ue-col">
+                    <h4>Essential Components</h4>
+                    <ul class="ue-list">
+                        <li><span class="code">CE1.01</span> Choose the appropriate network solutions and technologies.</li>
+                        <li><span class="code">CE1.02</span> Comply with the fundamental principles of IT security.</li>
+                        <li><span class="code">CE1.03</span> Use a rigorous approach to troubleshoot malfunctions.</li>
+                        <li><span class="code">CE1.04</span> Respect business rules.</li>
+                        <li><span class="code">CE1.05</span> Maintain technological watch.</li>
+                    </ul>
+                </div>
+                <div class="ue-col">
+                    <h4>Critical Learnings</h4>
+                    <ul class="ue-list">
+                        <li><span class="code">AC21.01</span> Configure and troubleshoot dynamic routing in a network.</li>
+                        <li><span class="code">AC21.02</span> Configure and explain a simple QoS policy and basic network security functions.</li>
+                        <li><span class="code">AC21.03</span> Deploy client workstations and virtualized solutions adapted to a given situation.</li>
+                        <li><span class="code">AC21.04</span> Deploy advanced network services.</li>
+                        <li><span class="code">AC21.05</span> Identify carrier networks and Internet architecture.</li>
+                        <li><span class="code">AC21.06</span> Work in a team to develop professional skills.</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="ue-reflexive">
+                <h4>Reflective Analysis</h4>
+                <div class="reflexive-grid">
+                    <div class="reflexive-box success">
+                        <h5>What I did well</h5>
+                        <p>During semester 3, I managed to understand and apply the new concepts in <strong>dynamic routing (MPLS, BGP)</strong> during the Multisite SAE, as well as in <strong>Active Directory</strong> (essential in business).</p>
+                    </div>
+                    <div class="reflexive-box improvement">
+                        <h5>What I need to improve</h5>
+                        <p>Some practicals gave me trouble, particularly regarding the setup of <strong>Windows Server</strong> for example, but I managed to grasp the essential concepts.</p>
+                    </div>
+                </div>
+            </div>
+        </article>
+
+        <article class="ue-card ue-2">
+            <div class="ue-header">
+                <div class="grade-container">
+                    <span class="grade-badge">S3 Average: 15.70/20</span>
+                    <span class="grade-badge">S4 Average: --/20</span>
+                </div>
+                <span class="ue-badge">UE2 - Connect</span>
+                <h2 class="ue-title">Connecting Businesses and Users</h2>
+                <p class="ue-summary">
+                    Still building on the first-year UE2, this unit groups telecommunications technologies (Fiber, antennas, mobile networks...) as well as a theoretical part in electronics and mathematics (Fourier analysis).
+                </p>
+            </div>
+            <div class="ue-body">
+                <div class="ue-col">
+                    <h4>Essential Components</h4>
+                    <ul class="ue-list">
+                        <li><span class="code">CE2.01</span> Communicate with the client and the various stakeholders involved, sometimes in English.</li>
+                        <li><span class="code">CE2.02</span> Demonstrate a scientific approach.</li>
+                        <li><span class="code">CE2.03</span> Choose appropriate solutions and technologies.</li>
+                        <li><span class="code">CE2.04</span> Propose environmentally friendly solutions.</li>
+                    </ul>
+                </div>
+                <div class="ue-col">
+                    <h4>Critical Learnings</h4>
+                    <ul class="ue-list">
+                        <li><span class="code">AC22.01</span> Deploy and characterize complex transmission systems.</li>
+                        <li><span class="code">AC22.02</span> Set up secure remote access.</li>
+                        <li><span class="code">AC22.03</span> Set up a multi-site connection via a carrier network.</li>
+                        <li><span class="code">AC22.04</span> Deploy carrier access networks.</li>
+                        <li><span class="code">AC22.05</span> Ability to question an IT/Telecom specification.</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="ue-reflexive">
+                <h4>Reflective Analysis</h4>
+                <div class="reflexive-grid">
+                    <div class="reflexive-box success" style="grid-column: 1 / -1;">
+                        <h5>Practical Application</h5>
+                        <p>During the second year, I was able to understand both the theoretical and practical aspects during the various practicals. In addition, I effectively invested myself in the main SAE of the unit: <strong>Implementing a transmission system</strong>.</p>
+                    </div>
+                </div>
+            </div>
+        </article>
+
+        <article class="ue-card ue-3">
+            <div class="ue-header">
+                <div class="grade-container">
+                    <span class="grade-badge">S3 Average: 13.02/20</span>
+                    <span class="grade-badge">S4 Average: --/20</span>
+                </div>
+                <span class="ue-badge">UE3 - Program</span>
+                <h2 class="ue-title">Creating IT Tools and Applications</h2>
+                
+                <p class="ue-summary">
+                    This unit covers the programming part for IT/Telecom, and includes the automation of deployment and maintenance of software tools as well as the development of IT tools for internal use by a team (Bash, PowerShell).
+                </p>
+            </div>
+            <div class="ue-body">
+                <div class="ue-col">
+                    <h4>Essential Components</h4>
+                    <ul class="ue-list">
+                        <li><span class="code">CE3.01</span> Listen to the client's needs.</li>
+                        <li><span class="code">CE3.02</span> Document the work done.</li>
+                        <li><span class="code">CE3.03</span> Use digital tools wisely.</li>
+                        <li><span class="code">CE3.04</span> Choose appropriate development tools.</li>
+                        <li><span class="code">CE3.05</span> Integrate security issues.</li>
+                    </ul>
+                </div>
+                <div class="ue-col">
+                    <h4>Critical Learnings</h4>
+                    <ul class="ue-list">
+                        <li><span class="code">AC23.01</span> Automate system administration with scripts.</li>
+                        <li><span class="code">AC23.02</span> Develop an application from a given specification, for the Web or mobile devices.</li>
+                        <li><span class="code">AC23.03</span> Use a network protocol to program a client/server application.</li>
+                        <li><span class="code">AC23.04</span> Install, administer a data management system.</li>
+                        <li><span class="code">AC23.05</span> Access a dataset from an application and/or a website.</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="ue-reflexive">
+                <h4>Reflective Analysis</h4>
+                <div class="reflexive-grid">
+                    <div class="reflexive-box success" style="grid-column: 1 / -1;">
+                        <h5>Automation and Development</h5>
+                        <p>Already having knowledge of <strong>Python</strong> and <strong>SQL</strong> database management, I was able to implement them during the various practicals. I also discovered the use of <strong>PowerShell and Bash</strong> in a system administration context.</p>
+                    </div>
+                </div>
+            </div>
+        </article>
+
+        <div class="path-intro">
+            <h3>My Choice of Track: Cybersecurity</h3>
+            <p>
+                I chose to pursue the Cybersecurity track in order to specialize in the protection, monitoring, and auditing of information systems. Faced with growing digital threats, this specialization allows me to combine my solid network administration skills with an essential security dimension. The goal is to intervene both in securing infrastructures (defense) and analyzing vulnerabilities (penetration testing), thus guaranteeing the integrity and availability of data within organizations.
+            </p>
+        </div>
+
+        <article class="ue-card ue-4">
+            <div class="ue-header">
+                <div class="grade-container">
+                    <span class="grade-badge">S3 Average: 16.01/20</span>
+                    <span class="grade-badge">S4 Average: --/20</span>
+                </div>
+                <span class="ue-badge">UE4 - Secure</span>
+                <h2 class="ue-title">Administering a Secure Information System</h2>
+                <p class="ue-summary">
+                    Evolution and compliance of a company's information system. Implementation of security tools and analysis of security needs.
+                </p>
+            </div>
+            <div class="ue-body" style="border-bottom: none;">
+                <div class="ue-col">
+                    <h4>Essential Components</h4>
+                    <ul class="ue-list">
+                        <li><span class="code">CE4.01</span> Aim for a fair compromise between security requirements and usage constraints.</li>
+                        <li><span class="code">CE4.02</span> Comply with standards and the legal framework.</li>
+                        <li><span class="code">CE4.03</span> Integrate the latest technologies.</li>
+                        <li><span class="code">CE4.04</span> Work in a team.</li>
+                        <li><span class="code">CE4.05</span> Effectively raise user awareness.</li>
+                    </ul>
+                </div>
+                <div class="ue-col">
+                    <h4>Critical Learnings</h4>
+                    <ul class="ue-list">
+                        <li><span class="code">AC24.01</span> Know and use best practices and cybersecurity recommendations.</li>
+                        <li><span class="code">AC24.02</span> Implement the fundamental tools for securing a network infrastructure.</li>
+                        <li><span class="code">AC24.03</span> Secure services.</li>
+                        <li><span class="code">AC24.04</span> Choose cryptographic tools adapted to the functional needs of the information system.</li>
+                        <li><span class="code">AC24.05</span> Know the different types of attacks.</li>
+                        <li><span class="code">AC24.06</span> Understand technical documents in English.</li>
+                    </ul>
+                </div>
+            </div>
+        </article>
+
+        <article class="ue-card ue-5">
+            <div class="ue-header">
+                <div class="grade-container">
+                    <span class="grade-badge">S3 Average: 15.64/20</span>
+                    <span class="grade-badge">S4 Average: --/20</span>
+                </div>
+                <span class="ue-badge">UE5 - Monitor</span>
+                <h2 class="ue-title">Monitoring a Secure Information System</h2>
+                <p class="ue-summary">
+                    Monitoring and analysis of the information system, security auditing, and incident management to guarantee the availability and reliability of networks.
+                </p>
+            </div>
+            <div class="ue-body" style="border-bottom: none;">
+                <div class="ue-col">
+                    <h4>Essential Components</h4>
+                    <ul class="ue-list">
+                        <li><span class="code">CE5.01</span> Ensure continuous technological watch.</li>
+                        <li><span class="code">CE5.02</span> Perform critical updates.</li>
+                        <li><span class="code">CE5.03</span> Automate tasks.</li>
+                        <li><span class="code">CE5.04</span> Integrate into a team.</li>
+                        <li><span class="code">CE5.05</span> Monitor network behavior.</li>
+                        <li><span class="code">CE5.06</span> Ensure compliance with contracts and IT obligations.</li>
+                    </ul>
+                </div>
+                <div class="ue-col">
+                    <h4>Critical Learnings</h4>
+                    <ul class="ue-list">
+                        <li><span class="code">AC25.01</span> Administer protections against malware.</li>
+                        <li><span class="code">AC25.02</span> Learn to use network/system penetration testing tools.</li>
+                    </ul>
+                </div>
+            </div>
+        </article>
+
+        <article class="ue-card ue-4" style="margin-top: -20px;">
+            <div class="ue-reflexive" style="margin: 40px; border-left-color: var(--ue-color);">
+                <h4 style="color: var(--ue-color);">Common Reflective Analysis (UE4 & UE5)</h4>
+                <div class="reflexive-grid">
+                    <div class="reflexive-box success" style="grid-column: 1 / -1;">
+                        <h5>Cybersecurity Track Summary</h5>
+                        <p>Throughout the various resources of the cyber track, I learned the basics of <strong>defensive and offensive cybersecurity</strong>, in particular setting up and remediating simple attacks, as well as managing security infrastructures like <strong>VPNs</strong>. I also deepened my foundation in <strong>cryptography</strong>. These courses allowed me to start moving towards the specialty I am passionate about.</p>
+                    </div>
+                </div>
+            </div>
+        </article>
+
+        <div class="action-container">
+            <a href="projets-but2-en.html" class="btn-large">Proof of Skill Acquisition (S3 & S4 Projects)</a>
+        </div>
+
+    </main>
+
+    <div id="results-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal()">&times;</span>
+            <iframe id="pdf-frame" src=""></iframe>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 <strong>Camille HENRY--DELANGLE</strong>.</p>
+            <p style="font-size: 0.85rem; font-family: var(--font-mono); opacity: 0.5; margin-top: 15px;">Root@Portfolio:~# exit</p>
+        </div>
+    </footer>
+
+    <script>
+        function openModal(pdfSrc) {
+            const modal = document.getElementById('results-modal');
+            const frame = document.getElementById('pdf-frame');
+            frame.src = pdfSrc;
+            modal.style.display = 'flex';
+            document.body.style.overflow = 'hidden'; 
+        }
+        function closeModal() {
+            const modal = document.getElementById('results-modal');
+            const frame = document.getElementById('pdf-frame');
+            modal.style.display = 'none';
+            frame.src = ""; 
+            document.body.style.overflow = 'auto'; 
+        }
+        window.onclick = function(event) {
+            const modal = document.getElementById('results-modal');
+            if (event.target == modal) { closeModal(); }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const langToggle = document.getElementById('langToggle');
+            langToggle.addEventListener('change', function() {
+                if(!this.checked) {
+                    window.location.href = "competences-but2.html";
+                }
+            });
+
+            const mobileMenu = document.getElementById('mobile-menu');
+            const navLinksList = document.getElementById('nav-links');
+            
+            mobileMenu.addEventListener('click', () => {
+                navLinksList.classList.toggle('active');
+            });
+        });
+    </script>
+</body>
+</html>
