@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SAE 3.01 | Camille HENRY--DELANGLE</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Saira+Stencil+One&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        :root {
+            --bg-color: #0d0b14; 
+            --bg-card: #161420;  
+            --text-main: #e0e6ed;
+            --text-muted: #a1aabf;
+            --accent: #9d4edd;          
+            --accent-hover: #c77dff;    
+            --accent-cyan: #4facfe;
+            --accent-glow: rgba(157, 78, 221, 0.25); 
+            --border-color: #2d2a3a;
+            --font-main: 'Inter', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            --font-title: 'Saira Stencil One', sans-serif; 
+            --font-mono: 'Courier New', Courier, monospace;
+            --radius-md: 16px; 
+            --radius-lg: 30px; 
+            --success: #2ecc71;
+            --success-glow: rgba(46, 204, 113, 0.2);
+            --danger: #e74c3c;
+            --danger-glow: rgba(231, 76, 60, 0.2);
+            
+            --iot-color: #f39c12;
+            --iot-hover: #e67e22;
+            --iot-glow: rgba(243, 156, 18, 0.2);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background-color: var(--bg-color); color: var(--text-main); font-family: var(--font-main); line-height: 1.7; overflow-x: hidden; display: flex; flex-direction: column; min-height: 100vh; }
+        h1, h2, h3, h4, h5 { font-family: var(--font-title); font-weight: normal; }
+        a { text-decoration: none; color: inherit; transition: all 0.3s ease; }
+        ul { list-style: none; }
+        strong { color: var(--iot-hover); font-weight: 600; }
+
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; width: 100%; }
+        
+        .back-btn-container { text-align: left; margin-bottom: 40px; }
+        .back-btn { display: inline-flex; align-items: center; gap: 8px; color: var(--text-muted); font-size: 0.95rem; font-weight: 500; transition: color 0.3s ease; }
+        .back-btn:hover { color: var(--iot-color); }
+        
+        .page-header { padding: 120px 20px 40px 20px; text-align: center; }
+
+        .section-title { font-size: 3.2rem; color: var(--iot-color); margin-bottom: 25px; display: flex; align-items: center; justify-content: center; text-align: center; position: relative; padding-bottom: 25px; opacity: 0; animation: fadeIn 1s ease forwards; }
+        .section-title::before { content: ">"; margin-right: 15px; color: var(--iot-color); font-weight: bold; text-shadow: 0 0 10px var(--iot-color); font-family: var(--font-main); }
+        .section-title::after { content: ""; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 150px; height: 3px; background: linear-gradient(90deg, transparent, var(--iot-hover), var(--iot-color), transparent); border-radius: 2px; }
+
+        .page-subtitle { color: var(--text-muted); font-size: 1.15rem; max-width: 800px; margin: 0 auto; line-height: 1.8; opacity: 0; animation: fadeIn 1s ease forwards 0.2s; }
+
+        header { background-color: rgba(13, 11, 20, 0.95); padding: 10px 0; position: fixed; width: 100%; top: 0; z-index: 1000; backdrop-filter: blur(10px); border-bottom: 1px solid var(--border-color); box-shadow: 0 2px 20px rgba(0,0,0,0.4); }
+        nav { display: flex; justify-content: space-between; align-items: center; padding: 0 20px; max-width: 1200px; margin: 0 auto; width: 100%; }
+        .logo { font-size: 1.8rem; color: var(--accent); font-family: var(--font-title); text-shadow: 0 0 10px var(--accent); }
+        
+        .menu-toggle { display: none; font-size: 1.8rem; color: var(--accent); cursor: pointer; transition: color 0.3s; }
+        .menu-toggle:hover { color: var(--accent-cyan); }
+        
+        .nav-links { display: flex; gap: 10px; align-items: center; background-color: var(--bg-card); padding: 5px 8px; border-radius: var(--radius-lg); border: 1px solid var(--border-color); margin-left: auto; }
+        .nav-links li { margin: 0 5px; }
+        .nav-links li a { font-weight: 500; font-size: 0.95rem; padding: 8px 18px; border-radius: var(--radius-lg); position: relative; display: block; }
+        .nav-links li a:not(.nav-contact-btn):not(.lang-btn):hover, .nav-links li a.active { background-color: rgba(157, 78, 221, 0.15); color: var(--accent-hover); text-shadow: 0 0 5px var(--accent-hover); }
+        .nav-contact-btn { background-color: transparent; border: 2px solid var(--accent); color: var(--accent); font-weight: 600; text-transform: uppercase; font-size: 0.85rem; letter-spacing: 1px; transition: all 0.3s ease; text-align: center; }
+        .nav-contact-btn:hover { background-color: var(--accent); color: #ffffff; box-shadow: 0 0 15px var(--accent-glow); border-color: var(--accent-hover); }
+
+        .lang-switch-container { display: flex; align-items: center; gap: 8px; margin-left: 15px; }
+        .flag { font-size: 1.3rem; transition: opacity 0.3s; user-select: none; }
+        .switch { position: relative; display: inline-block; width: 54px; height: 28px; }
+        .switch input { opacity: 0; width: 0; height: 0; }
+        .slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: rgba(157, 78, 221, 0.1); transition: .4s; border: 1px solid var(--accent); }
+        .slider:before { position: absolute; content: ""; height: 20px; width: 20px; left: 3px; bottom: 3px; background-color: var(--accent-cyan); transition: .4s; box-shadow: 0 0 10px var(--accent-cyan); }
+        input:checked + .slider { background-color: rgba(79, 172, 254, 0.1); border-color: var(--accent-cyan); }
+        input:checked + .slider:before { transform: translateX(26px); background-color: var(--accent); box-shadow: 0 0 10px var(--accent); }
+        .slider.round { border-radius: 34px; }
+        .slider.round:before { border-radius: 50%; }
+
+        .project-section { margin-bottom: 80px; opacity: 0; animation: fadeIn 1s ease forwards 0.3s; }
+        .project-heading { font-size: 2rem; color: #ffffff; margin-bottom: 20px; border-left: 4px solid var(--iot-color); padding-left: 15px; }
+        
+        .resume-box { background: linear-gradient(145deg, rgba(243, 156, 18, 0.05), rgba(243, 156, 18, 0.02)); border-left: 4px solid var(--iot-color); padding: 30px 40px; border-radius: 0 var(--radius-md) var(--radius-md) 0; border-top: 1px solid rgba(243, 156, 18, 0.2); border-right: 1px solid rgba(243, 156, 18, 0.2); border-bottom: 1px solid rgba(243, 156, 18, 0.2); margin-bottom: 50px; box-shadow: 0 5px 20px var(--iot-glow); }
+        .resume-box h3 { color: var(--iot-color); margin-bottom: 15px; font-size: 1.6rem; text-shadow: 0 0 10px rgba(243, 156, 18, 0.2); }
+        .resume-box p { color: var(--text-main); font-size: 1.05rem; line-height: 1.7; margin-bottom: 15px; }
+
+        .tools-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 30px; margin-top: 30px; }
+        .tool-card { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 30px; display: flex; align-items: center; gap: 20px; transition: all 0.3s ease; box-shadow: 0 5px 20px rgba(0,0,0,0.2); }
+        .tool-card:hover { border-color: var(--iot-color); transform: translateY(-5px); box-shadow: 0 10px 30px var(--iot-glow); }
+        
+        .tool-img { width: 80px; height: 80px; flex-shrink: 0; border-radius: 12px; display: flex; align-items: center; justify-content: center; }
+        .tool-img.logo-style { background: transparent; overflow: visible; border: none; }
+        .tool-img img { width: 100%; height: 100%; object-fit: contain; }
+        
+        .iot-glow-icon { font-size: 4.5rem; color: #f39c12; filter: drop-shadow(0 0 15px rgba(243, 156, 18, 0.5)); transition: all 0.3s ease; }
+        .tool-card:hover .iot-glow-icon { transform: scale(1.1); filter: drop-shadow(0 0 25px rgba(243, 156, 18, 1)); color: #f1c40f; }
+        
+        .python-glow-icon { font-size: 4.5rem; color: #3498db; filter: drop-shadow(0 0 15px rgba(52, 152, 219, 0.5)); transition: all 0.3s ease; }
+        .tool-card:hover .python-glow-icon { transform: scale(1.1); filter: drop-shadow(0 0 25px rgba(52, 152, 219, 1)); color: #5dade2; }
+
+        .img-glow-mqtt { filter: drop-shadow(0 0 10px rgba(157, 78, 221, 0.5)); transition: all 0.3s ease; }
+        .tool-card:hover .img-glow-mqtt { transform: scale(1.1); filter: drop-shadow(0 0 20px rgba(157, 78, 221, 0.9)); }
+
+        .img-glow-android { filter: drop-shadow(0 0 10px rgba(46, 204, 113, 0.5)); transition: all 0.3s ease; }
+        .tool-card:hover .img-glow-android { transform: scale(1.1); filter: drop-shadow(0 0 20px rgba(46, 204, 113, 0.9)); }
+
+        .tool-info h3 a { color: #fff; font-size: 1.3rem; margin-bottom: 5px; display: inline-flex; align-items: center; gap: 8px; transition: color 0.3s; }
+        .tool-info h3 a:hover { color: var(--iot-color); }
+        .tool-info p { color: var(--text-muted); font-size: 0.9rem; line-height: 1.5; margin-top: 5px; }
+
+        .role-section-cohesive { background: var(--bg-card); border: 2px dashed var(--iot-color); border-radius: var(--radius-md); padding: 50px; margin-top: 30px; box-shadow: 0 10px 50px rgba(0,0,0,0.3); position: relative; }
+        .role-section-cohesive::before { content: "MY ROLE IN THE PROJECT"; position: absolute; top: -15px; left: 30px; background: var(--iot-color); color: #fff; padding: 2px 15px; border-radius: 4px; font-family: var(--font-title); font-size: 0.9rem; letter-spacing: 1px; }
+        
+        .role-intro-text { font-size: 1.1rem; line-height: 1.8; color: var(--text-main); margin-bottom: 40px; text-align: left; }
+        
+        .dashboard-showcase-stacked { display: flex; flex-direction: column; gap: 30px; align-items: flex-start; }
+        .dashboard-img-large { width: 100%; text-align: center; background: rgba(0,0,0,0.2); padding: 20px; border-radius: 8px; border: 1px dashed var(--border-color); margin-bottom: 30px; }
+        .dashboard-img-large img { max-width: 100%; border-radius: 8px; box-shadow: 0 10px 30px rgba(0,0,0,0.4); }
+        .dashboard-features-list { width: 100%; margin-top: 10px; }
+        .dashboard-features-list h4 { color: var(--iot-color); font-size: 1.4rem; margin-bottom: 15px; font-family: var(--font-title); border-bottom: 1px solid rgba(243, 156, 18, 0.2); padding-bottom: 10px; }
+        .dashboard-features-list ul { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 15px; }
+        .dashboard-features-list ul li { position: relative; padding-left: 20px; color: var(--text-muted); font-size: 0.95rem; line-height: 1.6; }
+        .dashboard-features-list ul li::before { content: "→"; position: absolute; left: 0; color: var(--iot-color); font-weight: bold; font-family: var(--font-mono); }
+
+        .steps-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 30px; margin-top: 30px; }
+        .step-card { background: rgba(255,255,255,0.02); border: 1px solid var(--border-color); border-top: 3px solid var(--iot-color); border-radius: var(--radius-md); padding: 30px; transition: all 0.3s ease; }
+        .step-card:hover { background: rgba(243, 156, 18, 0.05); border-color: var(--iot-color); }
+        .step-card h3 { color: var(--iot-color); font-size: 1.4rem; margin-bottom: 15px; }
+        .step-card p { color: var(--text-main); font-size: 0.95rem; line-height: 1.6; }
+
+        .ac-box { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 40px; margin-top: 40px; }
+        .ue-list { margin-top: 20px; }
+        .ue-list li { position: relative; padding-left: 25px; margin-bottom: 15px; color: var(--text-muted); font-size: 1rem; }
+        .ue-list li::before { content: '>'; position: absolute; left: 0; color: var(--iot-hover); font-family: var(--font-mono); font-weight: bold; }
+        .ue-list li span.code { color: var(--iot-hover); font-weight: bold; margin-right: 10px; font-family: var(--font-mono); }
+
+        .bilan-card.success-theme { background: linear-gradient(145deg, var(--bg-card), rgba(46, 204, 113, 0.05)); border: 1px solid rgba(46, 204, 113, 0.3); border-radius: var(--radius-md); padding: 40px; margin-top: 60px; box-shadow: 0 10px 40px var(--success-glow); position: relative; overflow: hidden; }
+        .bilan-card.success-theme::before { content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 4px; background: linear-gradient(90deg, var(--success), #27ae60); }
+        .bilan-card.success-theme h3 { font-size: 2rem; color: var(--success); margin-bottom: 20px; text-shadow: 0 0 10px rgba(46, 204, 113, 0.2); }
+        .bilan-card.success-theme p { font-size: 1.05rem; color: var(--text-main); line-height: 1.8; margin-bottom: 0; }
+
+        footer { text-align: center; padding: 40px 0; color: var(--text-muted); font-size: 0.95rem; border-top: 1px solid var(--border-color); width: 100%; margin-top: auto; }
+
+        @media (max-width: 900px) { 
+            .menu-toggle { display: block; }
+            .nav-links {
+                position: absolute; top: 60px; left: 0; right: 0; background-color: rgba(22, 20, 32, 0.95);
+                flex-direction: column; gap: 0; padding: 20px 0; border-radius: 0 0 var(--radius-md) var(--radius-md);
+                border: 1px solid var(--border-color); border-top: none;
+                transform: translateY(-150%); opacity: 0; transition: all 0.4s ease; z-index: 999;
+                pointer-events: none;
+            }
+            .nav-links.active { transform: translateY(0); opacity: 1; pointer-events: auto; }
+            .nav-links li { margin: 15px 0; }
+            .lang-switch-container { margin: 15px 0 0 0; justify-content: center; }
+            .tools-grid { grid-template-columns: 1fr; }
+        }
+        
+        @media (max-width: 768px) {
+            .section-title { font-size: 2.2rem; }
+            .page-header { padding-top: 120px; }
+            .steps-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">C.H.D</div>
+                <div class="menu-toggle" id="mobile-menu">
+                    <i class="fa-solid fa-bars"></i>
+                </div>
+                <ul class="nav-links" id="nav-links">
+                    <li><a href="index-en.html#hero">Home</a></li>
+                    <li><a href="index-en.html#parcours">Journey</a></li>
+                    <li><a href="competences-en.html">Skills</a></li>
+                    <li><a href="index-en.html#cv">Resume</a></li>
+                    <li><a href="projets-en.html" class="active">Projects</a></li> 
+                    <li><a href="contact-en.html" class="nav-contact-btn">Contact</a></li>
+                    <li class="lang-switch-container">
+                        <span class="flag" style="opacity: 0.5;">🇫🇷</span>
+                        <label class="switch">
+                            <input type="checkbox" id="langToggle" checked>
+                            <span class="slider round"></span>
+                        </label>
+                        <span class="flag">🇬🇧</span>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="page-header container">
+        <div class="back-btn-container">
+            <a href="projets-but2-en.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i> Back to projects</a>
+        </div>
+        <h1 class="section-title">SAE 3.01</h1>
+        <p class="page-subtitle">Implement a transmission system: design of a smart connected plug and development of remote control interfaces.</p>
+    </div>
+
+    <main class="container">
+
+        <section class="project-section">
+            <div class="resume-box">
+                <h3>SAE Summary</h3>
+                <p>During this SAE, we had to create a model of a connected electrical plug using an <strong>ESP8266</strong> board. This allows us to control our plug (an LED) via <strong>MQTT</strong> from a mobile application and a dynamic Django website.</p>
+            </div>
+        </section>
+
+        <section class="project-section">
+            <h2 class="project-heading">Environment and Tools</h2>
+            <div class="tools-grid">
+                <div class="tool-card">
+                    <div class="tool-img logo-style">
+                        <i class="fa-solid fa-microchip iot-glow-icon"></i>
+                    </div>
+                    <div class="tool-info">
+                        <h3><a href="https://learn.adafruit.com/adafruit-feather-huzzah-esp8266" target="_blank">ESP8266 <i class="fa-solid fa-arrow-up-right-from-square"></i></a></h3>
+                        <p>Wi-Fi microcontroller used to control the plug's relay and communicate with the MQTT broker.</p>
+                    </div>
+                </div>
+                <div class="tool-card">
+                    <div class="tool-img logo-style">
+                        <i class="fa-brands fa-python python-glow-icon"></i>
+                    </div>
+                    <div class="tool-info">
+                        <h3><a href="https://www.djangoproject.com/" target="_blank">Python / Django <i class="fa-solid fa-arrow-up-right-from-square"></i></a></h3>
+                        <p>Framework used for creating the dynamic web server hosted on a Raspberry Pi.</p>
+                    </div>
+                </div>
+                <div class="tool-card">
+                    <div class="tool-img logo-style">
+                        <img src="files/logo/mqtt.png" alt="MQTT" class="img-glow-mqtt">
+                    </div>
+                    <div class="tool-info">
+                        <h3><a href="https://mqtt.org/" target="_blank">MQTT <i class="fa-solid fa-arrow-up-right-from-square"></i></a></h3>
+                        <p>Lightweight messaging protocol (Pub/Sub) used for real-time communication between IoT and the web.</p>
+                    </div>
+                </div>
+                <div class="tool-card">
+                    <div class="tool-img logo-style">
+                        <img src="files/logo/android.png" alt="Android" class="img-glow-android">
+                    </div>
+                    <div class="tool-info">
+                        <h3><a href="https://play.google.com/store/apps/details?id=snr.lab.iotmqttpanel.prod" target="_blank">Android Application <i class="fa-solid fa-arrow-up-right-from-square"></i></a></h3>
+                        <p>Development and configuration of a mobile application for remote control of the plug.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="project-section role-section-cohesive">
+            <h3 style="display:none;">My part: creating the dynamic website</h3>
+            <p class="role-intro-text">
+                During the project, I participated in the creation of the <strong>dynamic Django website</strong>. This was meant to implement the various functionalities of the plug:
+            </p>
+
+            <div class="dashboard-showcase-stacked">
+                <div class="dashboard-img-large">
+                    <img src="files/2A/sae_301_site.png" alt="Preview of the Django website (IoT Dashboard)">
+                </div>
+                
+                <div class="dashboard-features-list">
+                    <h4>Features implemented on the site</h4>
+                    <ul>
+                        <li>Turn the plug on and off manually.</li>
+                        <li>Real-time retrieval of the plug's status (status feedback).</li>
+                        <li>Scheduling daily on/off time slots.</li>
+                        <li>Graphical display of temperatures received from the DS18B20 sensor.</li>
+                        <li>Alert for exceeding the configured maximum temperature.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section class="project-section">
+            <h2 class="project-heading">Main technical steps</h2>
+            <div class="steps-grid">
+                <div class="step-card">
+                    <h3>1. Hardware Design</h3>
+                    <p>Circuit modeling via EasyEDA and integration of physical components (ESP8266 board, Dallas DS18B20 temperature sensor, relay) meeting cost and size criteria.</p>
+                </div>
+                <div class="step-card">
+                    <h3>2. Embedded Development (C++)</h3>
+                    <p>Programming the microcontroller via the Arduino IDE. Wi-Fi connection management (AP then STA via WiFiManager) and publish/subscribe to MQTT topics (PubSubClient).</p>
+                </div>
+                <div class="step-card">
+                    <h3>3. Back-End Infrastructure</h3>
+                    <p>Deployment of a private MQTT broker and creation of an MVC architecture using Django to interact with the MySQL relational database storing temperature readings and time slots.</p>
+                </div>
+                <div class="step-card">
+                    <h3>4. Server Logic and Telemetry</h3>
+                    <p>Creation of Python automation scripts using the Paho-MQTT library to subscribe to plug requests, manage states (LedState), and trigger alert emails.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="project-section">
+            <h2 class="project-heading">Validated Skills</h2>
+            <div class="ac-box">
+                <p style="color: var(--text-main); font-size: 1.05rem;">Details of the Critical Learnings developed during this SAE:</p>
+                <ul class="ue-list">
+                    <li><span class="code">AC22.01</span> Deploy and characterize complex transmission systems (Wi-Fi, MQTT).</li>
+                    <li><span class="code">AC23.02</span> Develop a dynamic Web application based on a given specification.</li>
+                    <li><span class="code">AC23.03</span> Use a network protocol (MQTT) to program a client/server application.</li>
+                    <li><span class="code">AC24.03Cyber</span> Secure services (setup of a private broker and web access management).</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="project-section">
+            <div class="bilan-card success-theme">
+                <h3>Reflective Analysis</h3>
+                <p>
+                    During this project, I was able to organize myself in teamwork that required a lot of communication for the advancement of the different stages. Indeed, even though I worked alone on the site, I had to work with the other participants to maintain the project's cohesion, for example regarding the logic of MQTT topics. I am particularly satisfied with this project because we managed to finalize all the points requested in the specifications.
+                </p>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 <strong>Camille HENRY--DELANGLE</strong>.</p>
+            <p style="font-size: 0.85rem; font-family: var(--font-mono); opacity: 0.5; margin-top: 15px;">Root@Portfolio:~# exit</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const langToggle = document.getElementById('langToggle');
+            if(langToggle) {
+                langToggle.addEventListener('change', function() {
+                    if(!this.checked) {
+                        window.location.href = "sae301.html";
+                    }
+                });
+            }
+
+            const mobileMenu = document.getElementById('mobile-menu');
+            const navLinksList = document.getElementById('nav-links');
+            if(mobileMenu && navLinksList) {
+                mobileMenu.addEventListener('click', () => {
+                    navLinksList.classList.toggle('active');
+                });
+            }
+        });
+    </script>
+</body>
+</html>
