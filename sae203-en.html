@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SAE 2.03 | Camille HENRY--DELANGLE</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Saira+Stencil+One&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        :root {
+            --bg-color: #0d0b14; 
+            --bg-card: #161420;  
+            --text-main: #e0e6ed;
+            --text-muted: #a1aabf;
+            --accent: #9d4edd;          
+            --accent-hover: #c77dff;    
+            --accent-cyan: #4facfe;
+            --accent-glow: rgba(157, 78, 221, 0.25); 
+            --border-color: #2d2a3a;
+            --font-main: 'Inter', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            --font-title: 'Saira Stencil One', sans-serif; 
+            --font-mono: 'Courier New', Courier, monospace;
+            --radius-md: 16px; 
+            --radius-lg: 30px; 
+            
+            --django-color: #0c4b33; 
+            --django-accent: #092e20; 
+            --django-light: #44b78b; 
+            --django-glow: rgba(68, 183, 139, 0.2); 
+            
+            --warning: #f39c12;
+            --warning-glow: rgba(243, 156, 18, 0.2);
+            --danger: #e74c3c;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background-color: var(--bg-color); color: var(--text-main); font-family: var(--font-main); line-height: 1.7; overflow-x: hidden; display: flex; flex-direction: column; min-height: 100vh; }
+        h1, h2, h3, h4, h5 { font-family: var(--font-title); font-weight: normal; }
+        a { text-decoration: none; color: inherit; transition: all 0.3s ease; }
+        ul { list-style: none; }
+        strong { color: var(--accent-hover); font-weight: 600; }
+
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; width: 100%; }
+        
+        .back-btn-container { text-align: left; margin-bottom: 40px; }
+        .back-btn { display: inline-flex; align-items: center; gap: 8px; color: var(--text-muted); font-size: 0.95rem; font-weight: 500; transition: color 0.3s ease; }
+        .back-btn:hover { color: var(--django-light); }
+        
+        .page-header { padding: 120px 20px 40px 20px; text-align: center; }
+
+        .section-title { font-size: 3.2rem; color: var(--accent); margin-bottom: 25px; display: flex; align-items: center; justify-content: center; text-align: center; position: relative; padding-bottom: 25px; opacity: 0; animation: fadeIn 1s ease forwards; }
+        .section-title::before { content: ">"; margin-right: 15px; color: var(--django-light); font-weight: bold; text-shadow: 0 0 10px var(--django-light); font-family: var(--font-main); }
+        .section-title::after { content: ""; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 150px; height: 3px; background: linear-gradient(90deg, transparent, var(--accent-hover), var(--django-light), transparent); border-radius: 2px; }
+
+        .page-subtitle { color: var(--text-muted); font-size: 1.15rem; max-width: 800px; margin: 0 auto; line-height: 1.8; opacity: 0; animation: fadeIn 1s ease forwards 0.2s; }
+
+        header { background-color: rgba(13, 11, 20, 0.95); padding: 10px 0; position: fixed; width: 100%; top: 0; z-index: 1000; backdrop-filter: blur(10px); border-bottom: 1px solid var(--border-color); box-shadow: 0 2px 20px rgba(0,0,0,0.4); }
+        nav { display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-size: 1.8rem; color: var(--accent); font-family: var(--font-title); text-shadow: 0 0 10px var(--accent); }
+        
+        .menu-toggle { display: none; font-size: 1.8rem; color: var(--accent); cursor: pointer; transition: color 0.3s; }
+        .menu-toggle:hover { color: var(--accent-cyan); }
+
+        .nav-links { display: flex; gap: 10px; align-items: center; background-color: var(--bg-card); padding: 5px 8px; border-radius: var(--radius-lg); border: 1px solid var(--border-color); margin-left: auto; }
+        .nav-links li { margin: 0 5px; }
+        .nav-links li a { font-weight: 500; font-size: 0.95rem; padding: 8px 18px; border-radius: var(--radius-lg); position: relative; display: block; }
+        .nav-links li a:not(.nav-contact-btn):not(.lang-btn):hover, .nav-links li a.active { background-color: rgba(157, 78, 221, 0.15); color: var(--accent-hover); text-shadow: 0 0 5px var(--accent-hover); }
+        .nav-contact-btn { background-color: transparent; border: 2px solid var(--accent); color: var(--accent); font-weight: 600; text-transform: uppercase; font-size: 0.85rem; letter-spacing: 1px; transition: all 0.3s ease; text-align: center; }
+        .nav-contact-btn:hover { background-color: var(--accent); color: #ffffff; box-shadow: 0 0 15px var(--accent-glow); border-color: var(--accent-hover); }
+
+        .lang-switch-container { display: flex; align-items: center; gap: 8px; margin-left: 15px; }
+        .flag { font-size: 1.3rem; transition: opacity 0.3s; user-select: none; }
+        .switch { position: relative; display: inline-block; width: 54px; height: 28px; }
+        .switch input { opacity: 0; width: 0; height: 0; }
+        .slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: rgba(157, 78, 221, 0.1); transition: .4s; border: 1px solid var(--accent); }
+        .slider:before { position: absolute; content: ""; height: 20px; width: 20px; left: 3px; bottom: 3px; background-color: var(--accent-cyan); transition: .4s; box-shadow: 0 0 10px var(--accent-cyan); }
+        input:checked + .slider { background-color: rgba(79, 172, 254, 0.1); border-color: var(--accent-cyan); }
+        input:checked + .slider:before { transform: translateX(26px); background-color: var(--accent); box-shadow: 0 0 10px var(--accent); }
+        .slider.round { border-radius: 34px; }
+        .slider.round:before { border-radius: 50%; }
+
+        .project-section { margin-bottom: 80px; opacity: 0; animation: fadeIn 1s ease forwards 0.3s; }
+        .project-heading { font-size: 2rem; color: #ffffff; margin-bottom: 20px; border-left: 4px solid var(--django-light); padding-left: 15px; }
+        
+        .resume-box { background: linear-gradient(145deg, rgba(68, 183, 139, 0.05), rgba(12, 75, 51, 0.1)); border-left: 4px solid var(--django-light); padding: 30px 40px; border-radius: 0 var(--radius-md) var(--radius-md) 0; border-top: 1px solid rgba(68, 183, 139, 0.2); border-right: 1px solid rgba(68, 183, 139, 0.2); border-bottom: 1px solid rgba(68, 183, 139, 0.2); margin-bottom: 50px; box-shadow: 0 5px 20px var(--django-glow); }
+        .resume-box h3 { color: var(--django-light); margin-bottom: 15px; font-size: 1.6rem; text-shadow: 0 0 10px rgba(68, 183, 139, 0.2); }
+        .resume-box p { color: var(--text-main); font-size: 1.05rem; line-height: 1.7; margin-bottom: 15px; }
+        
+        .github-btn { display: inline-flex; align-items: center; gap: 10px; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); color: #fff; padding: 10px 20px; border-radius: var(--radius-lg); font-size: 0.9rem; font-weight: 600; transition: all 0.3s; }
+        .github-btn:hover { background: #fff; color: #000; }
+
+        .tools-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; margin-top: 30px; }
+        .tool-card { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 25px; display: flex; align-items: flex-start; gap: 20px; transition: all 0.3s ease; box-shadow: 0 5px 20px rgba(0,0,0,0.2); height: 100%; }
+        .tool-card:hover { border-color: var(--django-light); transform: translateY(-5px); box-shadow: 0 10px 30px var(--django-glow); }
+        .tool-img { width: 60px; height: 60px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; }
+        .tool-img img { max-width: 100%; max-height: 100%; object-fit: contain; border-radius: 8px; }
+        .tool-img i { font-size: 3.5rem; color: var(--django-light); }
+        .tool-info h3 { margin-top: 0; }
+        .tool-info h3 a { color: #fff; font-size: 1.2rem; margin-bottom: 5px; display: inline-flex; align-items: center; gap: 8px; transition: color 0.3s; }
+        .tool-info h3 a:hover { color: var(--django-light); }
+        .tool-info h3 i { font-size: 0.85rem; opacity: 0.7; }
+        .tool-info p { color: var(--text-muted); font-size: 0.85rem; line-height: 1.5; margin-top: 5px; }
+
+        .architecture-box { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 40px; text-align: center; margin-top: 40px; box-shadow: 0 10px 40px rgba(0,0,0,0.3); display: block; }
+        .architecture-box img { max-width: 100%; max-height: 600px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 0 20px rgba(0,0,0,0.5); object-fit: contain; }
+        .architecture-info { margin-top: 20px; color: var(--text-muted); font-style: italic; font-size: 1rem; display: block; }
+
+        .double-image-container { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin-top: 40px; }
+        .double-image-container figure { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 25px; text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,0.3); display: flex; flex-direction: column; justify-content: space-between;}
+        .double-image-container img { max-width: 100%; max-height: 350px; object-fit: contain; border-radius: 8px; margin-bottom: 15px; }
+        .double-image-container figcaption { color: var(--text-muted); font-style: italic; font-size: 0.95rem; display: block; }
+
+        .structure-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; margin-top: 30px; }
+        .structure-card { background: rgba(255,255,255,0.02); border: 1px solid var(--border-color); border-left: 3px solid var(--django-light); border-radius: var(--radius-md); padding: 25px; transition: all 0.3s ease; }
+        .structure-card:hover { background: rgba(68, 183, 139, 0.05); border-color: var(--django-light); }
+        .structure-card h3 { color: var(--django-light); font-size: 1.2rem; margin-bottom: 10px; font-family: var(--font-mono); }
+        .structure-card p { color: var(--text-muted); font-size: 0.9rem; line-height: 1.6; margin-bottom: 8px; }
+        .structure-card ul { margin-left: 20px; list-style-type: disc; color: var(--text-muted); font-size: 0.85rem; }
+        
+        .main-template-card { grid-column: 1 / -1; border-left-color: var(--accent); }
+        .main-template-card:hover { background: rgba(157, 78, 221, 0.05); border-color: var(--accent); }
+        .main-template-card h3 { color: var(--accent); }
+
+        .steps-container { margin-top: 30px; border-left: 2px dashed var(--border-color); padding-left: 25px; position: relative; }
+        .step-item { position: relative; margin-bottom: 30px; }
+        .step-item::before { content: ""; position: absolute; left: -34px; top: 5px; width: 16px; height: 16px; background: var(--django-light); border-radius: 50%; box-shadow: 0 0 10px var(--django-glow); border: 3px solid var(--bg-color); }
+        .step-item h3 { color: #fff; font-size: 1.3rem; margin-bottom: 10px; }
+        .step-item p { color: var(--text-muted); font-size: 0.95rem; line-height: 1.6; }
+
+        .ac-box { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 40px; margin-top: 40px; }
+        .ue-list { margin-top: 20px; }
+        .ue-list li { position: relative; padding-left: 25px; margin-bottom: 15px; color: var(--text-muted); font-size: 1rem; }
+        .ue-list li::before { content: '>'; position: absolute; left: 0; color: var(--accent-hover); font-family: var(--font-mono); font-weight: bold; }
+        .ue-list li span.code { color: var(--django-light); font-weight: bold; margin-right: 10px; font-family: var(--font-mono); }
+
+        .bilan-card.warning-theme { background: linear-gradient(145deg, var(--bg-card), rgba(243, 156, 18, 0.05)); border: 1px solid rgba(243, 156, 18, 0.3); border-radius: var(--radius-md); padding: 40px; margin-top: 60px; box-shadow: 0 10px 40px var(--warning-glow); position: relative; overflow: hidden; }
+        .bilan-card.warning-theme::before { content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 4px; background: linear-gradient(90deg, var(--warning), var(--danger)); }
+        .bilan-card.warning-theme h3 { font-size: 2rem; color: var(--warning); margin-bottom: 20px; text-shadow: 0 0 10px rgba(243, 156, 18, 0.2); }
+        .bilan-card.warning-theme p { font-size: 1.05rem; color: var(--text-main); line-height: 1.8; margin-bottom: 15px; }
+        .bilan-card.warning-theme ul { margin-left: 20px; list-style-type: disc; color: var(--text-main); margin-bottom: 15px; }
+        .bilan-card.warning-theme ul li { margin-bottom: 8px; }
+
+        footer { text-align: center; padding: 40px 0; color: var(--text-muted); border-top: 1px solid var(--border-color); margin-top: auto; }
+
+        @media (max-width: 900px) { 
+            .menu-toggle { display: block; }
+            .nav-links {
+                position: absolute; top: 60px; left: 0; right: 0; background-color: rgba(22, 20, 32, 0.95);
+                flex-direction: column; gap: 0; padding: 20px 0; border-radius: 0 0 var(--radius-md) var(--radius-md);
+                border: 1px solid var(--border-color); border-top: none;
+                transform: translateY(-150%); opacity: 0; transition: all 0.4s ease; z-index: 999;
+                pointer-events: none;
+            }
+            .nav-links.active { transform: translateY(0); opacity: 1; pointer-events: auto; }
+            .nav-links li { margin: 15px 0; }
+            .lang-switch-container { margin: 15px 0 0 0; justify-content: center; }
+            .double-image-container { grid-template-columns: 1fr; }
+        }
+        
+        @media (max-width: 768px) {
+            .section-title { font-size: 2.2rem; }
+            .page-header { padding-top: 120px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">C.H.D</div>
+                <div class="menu-toggle" id="mobile-menu">
+                    <i class="fa-solid fa-bars"></i>
+                </div>
+                <ul class="nav-links" id="nav-links">
+                    <li><a href="index-en.html#hero">Home</a></li>
+                    <li><a href="index-en.html#parcours">Journey</a></li>
+                    <li><a href="competences-en.html">Skills</a></li>
+                    <li><a href="index-en.html#cv">Resume</a></li>
+                    <li><a href="projets-en.html" class="active">Projects</a></li> 
+                    <li><a href="contact-en.html" class="nav-contact-btn">Contact</a></li>
+                    <li class="lang-switch-container">
+                        <span class="flag" style="opacity: 0.5;">🇫🇷</span>
+                        <label class="switch">
+                            <input type="checkbox" id="langToggle" checked>
+                            <span class="slider round"></span>
+                        </label>
+                        <span class="flag">🇬🇧</span>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="page-header container">
+        <div class="back-btn-container">
+            <a href="projets-but1-en.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i> Back to projects</a>
+        </div>
+        <h1 class="section-title">SAE 2.03</h1>
+        <p class="page-subtitle">Creation of a dynamic Web application: design and development of a movie database with CRUD architecture and the Django framework.</p>
+    </div>
+
+    <main class="container">
+
+        <section class="project-section">
+            <div class="resume-box">
+                <h3>SAE Summary</h3>
+                <p><strong>Objective:</strong> The goal of this project was to set up a dynamic website (in my case, a movie database) relying on a SQL database. For the website development, I used the <strong>CRUD</strong> (Create Read Update Delete) principle with the <strong>Django</strong> framework for Python.</p>
+                <p><strong>Acquired skills:</strong> Website development, use of Django, modeling and use of SQL queries, and setting up virtual machines for deployment.</p>
+                <a href="https://github.com/1gn0/SAE23" target="_blank" class="github-btn"><i class="fa-brands fa-github"></i> View source code on GitHub</a>
+            </div>
+        </section>
+
+        <section class="project-section">
+            <h2 class="project-heading">Environment and Tools</h2>
+            <div class="tools-grid">
+                <div class="tool-card">
+                    <div class="tool-img">
+                        <i class="fa-brands fa-python"></i>
+                    </div>
+                    <div class="tool-info">
+                        <h3><a href="https://www.python.org/" target="_blank">Python <i class="fa-solid fa-arrow-up-right-from-square"></i></a></h3>
+                        <p>Main programming language used for business logic and the project's backend.</p>
+                    </div>
+                </div>
+                <div class="tool-card">
+                    <div class="tool-img">
+                        <i class="fa-brands fa-python"></i>
+                    </div>
+                    <div class="tool-info">
+                        <h3><a href="https://www.djangoproject.com/" target="_blank">Django <i class="fa-solid fa-arrow-up-right-from-square"></i></a></h3>
+                        <p>High-level Python Web framework allowing rapid development and respecting the MVT (Model-View-Template) architecture.</p>
+                    </div>
+                </div>
+                <div class="tool-card">
+                    <div class="tool-img">
+                        <img src="files/logo/html5.png" alt="HTML5 Logo">
+                    </div>
+                    <div class="tool-info">
+                        <h3><a href="https://developer.mozilla.org/en-US/docs/Web/HTML" target="_blank">HTML5 <i class="fa-solid fa-arrow-up-right-from-square"></i></a></h3>
+                        <p>Markup language used to structure the views (templates) and user interface of the application.</p>
+                    </div>
+                </div>
+                <div class="tool-card">
+                    <div class="tool-img">
+                        <img src="files/logo/virtualbox.jpg" alt="VirtualBox Logo">
+                    </div>
+                    <div class="tool-info">
+                        <h3><a href="https://www.virtualbox.org/" target="_blank">VirtualBox <i class="fa-solid fa-arrow-up-right-from-square"></i></a></h3>
+                        <p>Virtualization tool used to create virtual machines (Linux VMs) to deploy and host the web server.</p>
+                    </div>
+                </div>
+                <div class="tool-card">
+                    <div class="tool-img">
+                        <img src="files/logo/mariadb.png" alt="MariaDB Logo">
+                    </div>
+                    <div class="tool-info">
+                        <h3><a href="https://mariadb.org/" target="_blank">MariaDB <i class="fa-solid fa-arrow-up-right-from-square"></i></a></h3>
+                        <p>Relational Database Management System (RDBMS) used for storing application tables in the final project.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="project-section">
+            <h2 class="project-heading">Database Modeling</h2>
+            <p style="color: var(--text-muted); font-size: 1.05rem; margin-bottom: 20px;">Before starting the implementation in Django, the first step was to model the data structure via a relational schema, corresponding to the needs of a movie database (referencing movies, categories, actors, and user comments management). The application ultimately relies on a MariaDB database.</p>
+            <figure class="architecture-box">
+                <img src="files/s2/schema_sae_django.png" alt="Relational schema of the Django database">
+                <figcaption class="architecture-info">Relational schema of the application: entity management (Movies, Actors, Categories, People) and their relationships (Comments, Movie-actor links).</figcaption>
+            </figure>
+        </section>
+
+        <section class="project-section">
+            <h2 class="project-heading">User Interface and Forms</h2>
+            <p style="color: var(--text-muted); font-size: 1.05rem; margin-bottom: 20px;">The site interface was designed to allow users to interact with the movie database. The site integrates multiple forms offering the ability to add categories, movies, users, actors, and of course comments.</p>
+            <div class="double-image-container">
+                <figure>
+                    <img src="files/s2/sae_django_categories.png" alt="Category list page">
+                    <figcaption>Main display grouping the different categories of the movie database.</figcaption>
+                </figure>
+                <figure>
+                    <img src="files/s2/sae_django_films.png" alt="Movie list page">
+                    <figcaption>Dynamic display of filtered movies for a specific category.</figcaption>
+                </figure>
+            </div>
+        </section>
+
+        <section class="project-section">
+            <h2 class="project-heading">Template Organization (MVT Architecture)</h2>
+            <p style="color: var(--text-muted); font-size: 1.05rem; margin-bottom: 20px;">To respect Django's <em>Model-View-Template</em> architecture, I organized the project around reusable HTML templates. The <code>templates</code> folder contains 5 subfolders corresponding to the entities, each implementing <strong>CRUD</strong> operations.</p>
+            
+            <div class="structure-grid">
+                <div class="structure-card main-template-card">
+                    <h3>index.html</h3>
+                    <p>Root file serving as the main skeleton for the application.</p>
+                    <ul>
+                        <li>Project home page.</li>
+                        <li>Contains the navigation menu common to all pages.</li>
+                        <li>Contains an access link to the movie list page.</li>
+                        <li>Serves as a <em>parent template</em> (via Django block tags) for the other views.</li>
+                    </ul>
+                </div>
+
+                <div class="structure-card">
+                    <h3>affiche.html</h3>
+                    <p>Displays detailed information of a specific entity (e.g., movie details). <em>(Not necessary for all entities).</em></p>
+                </div>
+                <div class="structure-card">
+                    <h3>ajout.html</h3>
+                    <p>Contains the form allowing the <strong>Creation (Create)</strong> of a new entity. Necessary for all CRUDs.</p>
+                </div>
+                <div class="structure-card">
+                    <h3>modifier.html</h3>
+                    <p>Allows <strong>Updating (Update)</strong> the information of an existing entity. Based on the add form structure.</p>
+                </div>
+                <div class="structure-card">
+                    <h3>supprimer.html</h3>
+                    <p>Confirmation view allowing the <strong>Deletion (Delete)</strong> of an entity. Necessary for all CRUDs.</p>
+                </div>
+                <div class="structure-card">
+                    <h3>afficher_all.html</h3>
+                    <p>Allows <strong>Reading (Read)</strong> all entities of a table.</p>
+                    <p style="margin-top: 10px;">Can use an identifier (<code>id</code>) to filter the display (e.g., all movies of a genre, all comments of a movie...).</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="project-section">
+            <h2 class="project-heading">Project Management & Deployment</h2>
+            <div class="steps-container">
+                <div class="step-item">
+                    <h3>Planning with Gantt</h3>
+                    <p>The realization of the project began with a phase of structuring and task distribution, materialized by the <strong>creation of a Gantt chart</strong>. We had several study sessions and had to divide the work, which is why this planning method proved particularly useful for tracking progress.</p>
+                </div>
+                <div class="step-item">
+                    <h3>User Management</h3>
+                    <p>A basic management method (without advanced security) was implemented: whenever a user wants to add, modify or delete a comment, they have the choice between creating their account or logging in, then accessing the comment form.</p>
+                </div>
+                <div class="step-item">
+                    <h3>Deployment in Virtual Machines</h3>
+                    <p>Beyond local development, the project required <strong>setting up virtual machines (Linux VMs)</strong>. The deployed architecture separates the services: an Apache server hosting the Web server (linked to Nginx and Gunicorn for Django) and a MariaDB server to host the database.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="project-section">
+            <h2 class="project-heading">Targeted Critical Learnings</h2>
+            <div class="ac-box">
+                <ul class="ue-list">
+                    <li><span class="code">AC13.01</span> Use an IT system and its tools (deployment of virtual machines).</li>
+                    <li><span class="code">AC13.02</span> Read, execute, debug, and modify a Python/Django program.</li>
+                    <li><span class="code">AC13.04</span> Understand the architecture and technologies of a website (HTML, CSS, HTTP requests, MVT architecture).</li>
+                    <li><span class="code">AC13.05</span> Choose appropriate data management mechanisms (Relational SQL database and Django ORM queries).</li>
+                    <li><span class="code">AC13.06</span> Integrate into an environment conducive to development (tracking via Gantt chart and versioning).</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="project-section">
+            <div class="bilan-card warning-theme">
+                <h3>Reflective Analysis and Difficulties</h3>
+                <p>I found this SAE particularly interesting because it makes us use techniques ranging from project management to production deployment.</p>
+                <p>However, we faced several difficulties that impacted the project:</p>
+                <ul>
+                    <li><strong>Organizational delay:</strong> Unforeseen difficulties led to a shift from the initial planning established in the Gantt chart.</li>
+                    <li><strong>Media management:</strong> Image management with Django (requiring modification of <code>settings.py</code> and <code>urls.py</code>) proved complex and ultimately did not work for displaying actor photos.</li>
+                    <li><strong>Implementation and deployment issues:</strong> After deploying the application on virtual machines, some internal links no longer worked, requiring last-minute corrections.</li>
+                </ul>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 <strong>Camille HENRY--DELANGLE</strong>.</p>
+            <p style="font-size: 0.85rem; font-family: var(--font-mono); opacity: 0.5; margin-top: 15px;">Root@Portfolio:~# exit</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const langToggle = document.getElementById('langToggle');
+            if(langToggle) {
+                langToggle.addEventListener('change', function() {
+                    if(!this.checked) {
+                        window.location.href = "sae203.html";
+                    }
+                });
+            }
+
+            const mobileMenu = document.getElementById('mobile-menu');
+            const navLinksList = document.getElementById('nav-links');
+            if(mobileMenu && navLinksList) {
+                mobileMenu.addEventListener('click', () => {
+                    navLinksList.classList.toggle('active');
+                });
+            }
+        });
+    </script>
+</body>
+</html>
