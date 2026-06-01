@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -54,7 +54,7 @@
         .page-subtitle { color: var(--text-muted); font-size: 1.15rem; max-width: 800px; margin: 0 auto; line-height: 1.8; opacity: 0; animation: fadeIn 1s ease forwards 0.2s; }
 
         header { background-color: rgba(13, 11, 20, 0.95); padding: 10px 0; position: fixed; width: 100%; top: 0; z-index: 1000; backdrop-filter: blur(10px); border-bottom: 1px solid var(--border-color); box-shadow: 0 2px 20px rgba(0,0,0,0.4); }
-        nav { display: flex; justify-content: space-between; align-items: center; padding: 0 20px; max-width: 1200px; margin: 0 auto; width: 100%; }
+        nav { display: flex; justify-content: space-between; align-items: center; padding: 0 20px; max-width: 1200px; margin: 0 auto; width: 100%; position: relative; }
         .logo { font-size: 1.8rem; color: var(--accent); font-family: var(--font-title); text-shadow: 0 0 10px var(--accent); }
         
         .menu-toggle { display: none; font-size: 1.8rem; color: var(--accent); cursor: pointer; transition: color 0.3s; }
@@ -168,19 +168,19 @@
                     <i class="fa-solid fa-bars"></i>
                 </div>
                 <ul class="nav-links" id="nav-links">
-                    <li><a href="index-en.html#hero">Home</a></li>
-                    <li><a href="index-en.html#parcours">Journey</a></li>
-                    <li><a href="competences-en.html">Skills</a></li>
-                    <li><a href="index-en.html#cv">Resume</a></li>
-                    <li><a href="projets-en.html" class="active">Projects</a></li> 
-                    <li><a href="contact-en.html" class="nav-contact-btn">Contact</a></li>
+                    <li><a href="index.html#hero">Accueil</a></li>
+                    <li><a href="index.html#parcours">Parcours</a></li>
+                    <li><a href="competences.html">Compétences</a></li>
+                    <li><a href="index.html#cv">CV</a></li>
+                    <li><a href="projets.html" class="active">Projets</a></li> 
+                    <li><a href="contact.html" class="nav-contact-btn">Contact</a></li>
                     <li class="lang-switch-container">
-                        <span class="flag" style="opacity: 0.5;">🇫🇷</span>
+                        <span class="flag">🇫🇷</span>
                         <label class="switch">
-                            <input type="checkbox" id="langToggle" checked>
+                            <input type="checkbox" id="langToggle">
                             <span class="slider round"></span>
                         </label>
-                        <span class="flag">🇬🇧</span>
+                        <span class="flag" style="opacity: 0.5;">🇬🇧</span>
                     </li>
                 </ul>
             </nav>
@@ -189,24 +189,24 @@
 
     <div class="page-header container">
         <div class="back-btn-container">
-            <a href="projets-but2-en.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i> Back to projects</a>
+            <a href="projets-but2.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i> Revenir aux projets</a>
         </div>
         <h1 class="section-title">SAE 3.02</h1>
-        <p class="page-subtitle">Develop communicating applications: design of a distributed infrastructure with onion routing and end-to-end encrypted messaging in Python.</p>
+        <p class="page-subtitle">Développer des applications communicantes : conception d'une infrastructure distribuée avec routage en oignon et messagerie chiffrée de bout en bout en Python.</p>
     </div>
 
     <main class="container">
 
         <section class="project-section">
             <div class="resume-box">
-                <h3>SAE Summary</h3>
-                <p>During this SAE, we had to create an encrypted messaging system in <strong>Python</strong>, as well as create an "onion" routing infrastructure with a master server, routers, and clients. The goal was for the message to be encapsulated layer by layer using a "homemade" asymmetric encryption algorithm of the <strong>RSA</strong> type. We also produced extensive documentation to support this project.</p>
-                <a href="https://github.com/1gn0/SAE302-les2macaques" target="_blank" class="github-btn"><i class="fa-brands fa-github"></i> View the project and its documentation on GitHub</a>
+                <h3>Résumé de la SAE</h3>
+                <p>Au cours de cette SAE, nous devions réaliser une messagerie chiffrée en <strong>Python</strong>, ainsi que créer une infrastructure de routage "en oignon" avec un serveur master, des routeurs et des clients. Le but était que le message soit encapsulé couche par couche grâce à un algorithme de chiffrement asymétrique de type <strong>RSA</strong> "fait maison". Nous avons également réalisé de nombreuses documentations pour encadrer ce projet.</p>
+                <a href="https://github.com/1gn0/SAE302-les2macaques" target="_blank" class="github-btn"><i class="fa-brands fa-github"></i> Consulter le projet et sa documentation sur GitHub</a>
             </div>
         </section>
 
         <section class="project-section">
-            <h2 class="project-heading">Environment and Tools</h2>
+            <h2 class="project-heading">Environnement et Outils</h2>
             <div class="tools-grid">
                 <div class="tool-card">
                     <div class="tool-img logo-style">
@@ -214,7 +214,7 @@
                     </div>
                     <div class="tool-info">
                         <h3><a href="https://docs.python.org/3/library/socket.html" target="_blank">Python (Sockets & Threads) <i class="fa-solid fa-arrow-up-right-from-square"></i></a></h3>
-                        <p>Development of the distributed architecture using object-oriented programming, management of network connections (Sockets), and parallelism (Threading).</p>
+                        <p>Développement de l'architecture distribuée en programmation orientée objet, gestion des connexions réseau (Sockets) et du parallélisme (Threading).</p>
                     </div>
                 </div>
                 <div class="tool-card">
@@ -223,7 +223,7 @@
                     </div>
                     <div class="tool-info">
                         <h3><a href="https://riverbankcomputing.com/software/pyqt/" target="_blank">PyQt6 <i class="fa-solid fa-arrow-up-right-from-square"></i></a></h3>
-                        <p>Library used to develop the graphical user interfaces (GUI) for the various clients and the master's monitoring dashboard.</p>
+                        <p>Bibliothèque utilisée pour développer les interfaces graphiques (GUI) des différents clients et du tableau de bord de supervision du Master.</p>
                     </div>
                 </div>
                 <div class="tool-card">
@@ -232,7 +232,7 @@
                     </div>
                     <div class="tool-info">
                         <h3><a href="https://mariadb.org/" target="_blank">MariaDB <i class="fa-solid fa-arrow-up-right-from-square"></i></a></h3>
-                        <p>Relational database management system used by the Master to store public keys, IPs, and monitor machine status.</p>
+                        <p>Système de gestion de base de données relationnelle utilisé par le Master pour stocker les clés publiques, les IP et surveiller l'état des machines.</p>
                     </div>
                 </div>
                 <div class="tool-card">
@@ -241,46 +241,46 @@
                     </div>
                     <div class="tool-info">
                         <h3><a href="https://www.sympy.org/" target="_blank">Maths & SymPy <i class="fa-solid fa-arrow-up-right-from-square"></i></a></h3>
-                        <p>Creation of a custom RSA algorithm with prime number generation (SymPy), gcd, and extended Euclidean algorithm (modular inverse).</p>
+                        <p>Création d'un algorithme RSA personnalisé avec génération de nombres premiers (SymPy), pgcd et algorithme d'Euclide étendu (inverse modulaire).</p>
                     </div>
                 </div>
             </div>
         </section>
 
         <section class="project-section">
-            <h2 class="project-heading">System and Interface Overview</h2>
+            <h2 class="project-heading">Aperçu du système et des interfaces</h2>
             <div class="gallery-grid">
                 <figure class="gallery-box large">
-                    <img src="files/2A/schema_sae_302.png" alt="Encapsulation and routing diagram">
-                    <figcaption class="gallery-info">Conceptual network diagram: transmission of a message from Client A to Client B through a random path (onion routing).</figcaption>
+                    <img src="files/2A/schema_sae_302.png" alt="Schéma d'encapsulation et de routage">
+                    <figcaption class="gallery-info">Schéma conceptuel du réseau : transmission du message d'un Client A vers un Client B en passant par un chemin aléatoire (routage en oignon).</figcaption>
                 </figure>
                 <div class="gallery-row">
                     <figure class="gallery-box">
-                        <img src="files/2A/liste_machine_sae302.png" alt="Master Interface">
-                        <figcaption class="gallery-info">Master monitoring interface: live tracking of connected routers and management of the public key database.</figcaption>
+                        <img src="files/2A/liste_machine_sae302.png" alt="Interface du Master">
+                        <figcaption class="gallery-info">Interface de monitoring du Master : suivi en direct des routeurs connectés et gestion de la base de données de clés publiques.</figcaption>
                     </figure>
                     <figure class="gallery-box">
-                        <img src="files/2A/envoi_sae_302.png" alt="Client Interface">
-                        <figcaption class="gallery-info">Client graphical interface developed with PyQt6: choice of recipient and number of hops for anonymization.</figcaption>
+                        <img src="files/2A/envoi_sae_302.png" alt="Interface Client">
+                        <figcaption class="gallery-info">Interface graphique du Client développé sous PyQt6 : choix du destinataire et du nombre de sauts pour l'anonymisation.</figcaption>
                     </figure>
                 </div>
             </div>
         </section>
 
         <section class="project-section">
-            <h2 class="project-heading">"Onion" Encapsulation Logic</h2>
+            <h2 class="project-heading">Logique d'encapsulation "en oignon"</h2>
             <p style="color: var(--text-main); font-size: 1.05rem; line-height: 1.8; margin-bottom: 20px;">
-                Here is an excerpt of our asymmetric encryption implementation (based on RSA). Since in this type of algorithm, the data size must not exceed that of the key (N), long multi-layer encapsulated messages posed a problem. I therefore implemented a <code>chunk_message</code> function to split the string into fixed-size blocks (based on the bytes of N) before encrypting them individually and concatenating them with separators.
+                Voici un extrait de notre implémentation du chiffrement asymétrique (basé sur RSA). Étant donné que dans ce type d'algorithme, la taille de la donnée ne doit pas dépasser celle de la clé (N), les longs messages encapsulés multicouches posaient un problème. J'ai donc implémenté une fonction <code>chunk_message</code> pour découper la chaîne en blocs de taille fixe (selon les octets de N) avant de les chiffrer individuellement et de les concaténer avec des séparateurs.
             </p>
             
             <div class="code-snippet-box">
 <pre><code><span class="keyword">def</span> <span class="function">chunk_message</span>(message, block_size):
-    <span class="string">"""Split the message into blocks of the maximum key size (N)"""</span>
+    <span class="string">"""Découpe le message en blocs de la taille maximale de la clé (N)"""</span>
     data = message.<span class="function">encode</span>(<span class="string">"utf-8"</span>)
     <span class="keyword">return</span> [data[i:i+block_size] <span class="keyword">for</span> i <span class="keyword">in</span> <span class="builtin">range</span>(0, <span class="builtin">len</span>(data), block_size)]
 
 <span class="keyword">def</span> <span class="function">chiffrement</span>(message, pubkey):
-    <span class="string">"""Encrypts a long message by cutting it first"""</span>
+    <span class="string">"""Chiffre un message long en l'ayant découpé au préalable"""</span>
     SEP_BLOCK = <span class="string">'$$$'</span> 
     SEP_PART = <span class="string">'$#$'</span>
 
@@ -294,7 +294,7 @@
         cipher_blocks.append(c)
         lengths.append(l)
         
-    <span class="comment"># Reconstitution of the final encrypted payload with preserved lengths</span>
+    <span class="comment"># Reconstitution du payload chiffré final avec longueurs préservées</span>
     message_chiffre_parts = []
     <span class="keyword">for</span> i <span class="keyword">in</span> <span class="builtin">range</span>(<span class="builtin">len</span>(cipher_blocks)):
         message_chiffre_parts.append(<span class="string">f"{</span>cipher_blocks[i]<span class="string">}{</span>SEP_BLOCK<span class="string">}{</span>lengths[i]<span class="string">}"</span>)
@@ -304,47 +304,47 @@
         </section>
 
         <section class="project-section">
-            <h2 class="project-heading">Main Steps and Project Management</h2>
+            <h2 class="project-heading">Grandes étapes et Gestion de Projet</h2>
             <div class="steps-grid">
                 <div class="step-card">
-                    <h3>1. Management and Planning</h3>
-                    <p>Setup of a Gantt chart to plan tasks, use of Git/GitHub for collaborative code versioning, and strict definition of specifications upfront.</p>
+                    <h3>1. Gestion et Planification</h3>
+                    <p>Mise en place d'un diagramme de Gantt pour planifier les tâches, utilisation de Git/GitHub pour le versionnage collaboratif du code, et définition stricte du cahier des charges en amont.</p>
                 </div>
                 <div class="step-card">
-                    <h3>2. Encryption and Math</h3>
-                    <p>Development of the "homemade" asymmetric algorithm. Creation of a prime number generation module, calculation of the modular inverse, and management of block size limits.</p>
+                    <h3>2. Chiffrement et Maths</h3>
+                    <p>Développement de l'algorithme asymétrique "maison". Création d'un module de génération de nombres premiers, calcul de l'inverse modulaire, et gestion des limites de taille de blocs.</p>
                 </div>
                 <div class="step-card">
-                    <h3>3. Architecture and Sockets</h3>
-                    <p>Object-Oriented Programming to create the <code>Routeur</code> and <code>Client</code> (which inherits from Routeur) classes. Management of TCP connections via Sockets and implementation of multithreading to listen and relay simultaneously.</p>
+                    <h3>3. Architecture et Sockets</h3>
+                    <p>Programmation Orientée Objet pour créer les classes <code>Routeur</code> et <code>Client</code> (qui hérite de Routeur). Gestion des connexions TCP via Sockets et mise en place du multithreading pour écouter et relayer simultanément.</p>
                 </div>
                 <div class="step-card">
                     <h3>4. Documentation</h3>
-                    <p>Writing comprehensive documentation: step-by-step installation manual (Python dependencies, MariaDB), user manual with console execution examples, and technical response document.</p>
+                    <p>Rédaction d'une documentation complète : manuel d'installation pas-à-pas (dépendances Python, MariaDB), manuel d'utilisation avec exemples d'exécution en console, et dossier de réponse technique.</p>
                 </div>
             </div>
         </section>
 
         <section class="project-section">
-            <h2 class="project-heading">Validated Skills</h2>
+            <h2 class="project-heading">Compétences validées</h2>
             <div class="ac-box">
-                <p style="color: var(--text-main); font-size: 1.05rem;">This SAE was very comprehensive and mobilized many Critical Learnings:</p>
+                <p style="color: var(--text-main); font-size: 1.05rem;">Cette SAE était très complète et a mobilisé de nombreux Apprentissages Critiques :</p>
                 <ul class="ue-list">
-                    <li><span class="code">AC23.01</span> Automate system administration with scripts (installation scripts, virtual environment).</li>
-                    <li><span class="code">AC23.02</span> Develop an application from a given specification, integrating a clean GUI.</li>
-                    <li><span class="code">AC23.03</span> Use a network protocol (TCP Sockets) to program a client/server application.</li>
-                    <li><span class="code">AC23.04</span> Install, administer a data management system (MariaDB for the Master).</li>
-                    <li><span class="code">CE3.01</span> Listen to needs: rigorous implementation of the features requested in the specifications.</li>
-                    <li><span class="code">CE3.02</span> Document the work done: strong investment in installation and usage deliverables.</li>
+                    <li><span class="code">AC23.01</span> Automatiser l’administration système avec des scripts (scripts d'installation, environnement virtuel).</li>
+                    <li><span class="code">AC23.02</span> Développer une application à partir d’un cahier des charges donné, intégrant une GUI propre.</li>
+                    <li><span class="code">AC23.03</span> Utiliser un protocole réseau (Sockets TCP) pour programmer une application client/serveur.</li>
+                    <li><span class="code">AC23.04</span> Installer, administrer un système de gestion de données (MariaDB pour le Master).</li>
+                    <li><span class="code">CE3.01</span> Être à l’écoute des besoins : implémentation rigoureuse des fonctionnalités demandées au cahier des charges.</li>
+                    <li><span class="code">CE3.02</span> Documenter le travail réalisé : fort investissement sur les livrables d'installation et d'utilisation.</li>
                 </ul>
             </div>
         </section>
 
         <section class="project-section">
             <div class="bilan-card">
-                <h3>Reflective Analysis</h3>
+                <h3>Analyse réflexive</h3>
                 <p>
-                    During this SAE, I was able to reflect on the various implementation difficulties of the project, especially regarding the encapsulation logic (the encrypted message growing very quickly at each hop). At least 50% of the time for this project was also dedicated to <strong>documentation</strong>, which allowed us to think about the clearest and most pedagogical way to explain the installation and use of the application to someone completely outside the project, thereby consolidating my professional communication skills.
+                    Au cours de cette SAE, j'ai pu réfléchir aux différentes difficultés d'implémentation du projet, notamment concernant la logique d'encapsulation (le message chiffré grossissant très vite à chaque saut). Au moins 50% du temps de ce projet a aussi été dédié à la <strong>documentation</strong>, ce qui nous a permis de réfléchir à la façon la plus claire et pédagogique d'expliquer l'installation et l'utilisation de l'application pour une personne complètement extérieure au projet, consolidant ainsi mes compétences en communication professionnelle.
                 </p>
             </div>
         </section>
@@ -363,8 +363,8 @@
             const langToggle = document.getElementById('langToggle');
             if(langToggle) {
                 langToggle.addEventListener('change', function() {
-                    if(!this.checked) {
-                        window.location.href = "sae302.html";
+                    if(this.checked) {
+                        window.location.href = "sae302-en.html";
                     }
                 });
             }
