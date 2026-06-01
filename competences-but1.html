@@ -9,6 +9,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Saira+Stencil+One&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
+        /* --- VARIABLES ET RESET --- */
         :root {
             --bg-color: #0d0b14; 
             --bg-card: #161420;  
@@ -53,7 +54,12 @@
         }
 
         .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; width: 100%; }
-        .page-header { padding: 160px 20px 40px 20px; text-align: center; }
+        
+        .back-btn-container { text-align: left; margin-bottom: 40px; }
+        .back-btn { display: inline-flex; align-items: center; gap: 8px; color: var(--text-muted); font-size: 0.95rem; font-weight: 500; transition: color 0.3s ease; }
+        .back-btn:hover { color: var(--accent-cyan); }
+        
+        .page-header { padding: 120px 20px 40px 20px; text-align: center; } /* Adjusted padding-top to match other pages */
 
         .section-title { 
             font-size: 3.2rem; 
@@ -690,6 +696,9 @@
     </header>
 
     <div class="page-header container">
+        <div class="back-btn-container">
+            <a href="competences.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i> Revenir aux compétences</a>
+        </div>
         <h1 class="section-title">Première Année</h1>
         <p class="page-subtitle">Détail des compétences acquises en BUT1 ainsi que mes résultats et mes analyses réflexives.</p>
         
