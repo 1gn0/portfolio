@@ -68,6 +68,10 @@
         .section-title::before { content: ">"; margin-right: 15px; color: var(--accent-cyan); font-weight: bold; text-shadow: 0 0 10px var(--accent-cyan); font-family: var(--font-main); }
         .section-title::after { content: ""; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 120px; height: 3px; background: linear-gradient(90deg, transparent, var(--accent-hover), var(--accent-cyan), transparent); border-radius: 2px; }
 
+        .back-btn-container { text-align: left; margin-bottom: 20px; width: 100%; max-width: 1100px; align-self: flex-start;}
+        .back-btn { display: inline-flex; align-items: center; gap: 8px; color: var(--text-muted); font-size: 0.95rem; font-weight: 500; transition: color 0.3s ease; }
+        .back-btn:hover { color: var(--accent-cyan); }
+
         .alert-box { background-color: rgba(79, 172, 254, 0.05); border-left: 3px solid var(--accent-cyan); padding: 15px 25px; margin-bottom: 40px; width: 100%; max-width: 1100px; font-size: 1.05rem; color: var(--text-main); border-radius: 4px; opacity: 0; animation: fadeIn 1s ease forwards 0.2s; }
         
         .sae-list { display: flex; flex-direction: column; gap: 25px; width: 100%; max-width: 1100px; opacity: 0; animation: fadeIn 1s ease forwards 0.4s; }
@@ -149,6 +153,7 @@
         
         @media (max-width: 768px) {
             .section-title { font-size: 2.2rem; }
+            .sae-page { padding-top: 120px; }
         }
     </style>
 </head>
@@ -182,6 +187,11 @@
     </header>
 
     <main class="sae-page container">
+        
+        <div class="back-btn-container">
+            <a href="projets.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i> Revenir aux projets</a>
+        </div>
+        
         <h1 class="section-title">SAE Première Année</h1>
         
         <div class="alert-box">
