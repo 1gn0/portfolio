@@ -27,7 +27,9 @@
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        html { scroll-behavior: smooth; overflow-x: hidden; }
+        
+        /* overflow-y: scroll force la présence de la barre de défilement pour éviter le décalage de la navbar */
+        html { scroll-behavior: smooth; overflow-x: hidden; overflow-y: scroll; }
 
         body { 
             background-color: var(--bg-color); 
@@ -100,7 +102,7 @@
             to { opacity: 1; transform: translateY(0); } 
         }
 
-        /* --- CSS EXACT DE LA NAVBAR (INDEX FR) --- */
+        /* --- NAVBAR DE L'INDEX FR --- */
         header { background-color: rgba(13, 11, 20, 0.95); padding: 10px 0; position: fixed; width: 100%; top: 0; z-index: 1000; backdrop-filter: blur(10px); box-shadow: 0 2px 20px rgba(0,0,0,0.4); border-bottom: 1px solid var(--border-color); }
         nav { display: flex; justify-content: space-between; align-items: center; position: relative; }
         .logo { font-size: 1.8rem; color: var(--accent); font-family: var(--font-title); text-shadow: 0 0 10px var(--accent); }
@@ -116,7 +118,7 @@
             padding: 5px 8px; 
             border-radius: var(--radius-lg); 
             border: 1px solid var(--border-color); 
-            margin-left: auto; 
+            margin-left: auto;
         }
         
         .nav-links li { margin: 0 5px; }
@@ -136,7 +138,6 @@
         input:checked + .slider:before { transform: translateX(26px); background-color: var(--accent); box-shadow: 0 0 10px var(--accent); }
         .slider.round { border-radius: 34px; }
         .slider.round:before { border-radius: 50%; }
-        /* -------------------------------------- */
 
         .projets-grid { 
             display: grid; 
@@ -241,6 +242,7 @@
             .nav-links.active { transform: translateY(0); opacity: 1; pointer-events: auto; }
             .nav-links li { margin: 15px 0; }
             .lang-switch-container { margin: 15px 0 0 0; justify-content: center; }
+            .flag { opacity: 1 !important; }
             
             .projets-grid { grid-template-columns: 1fr; } 
             .section-title { font-size: 2.5rem; } 
@@ -313,18 +315,22 @@
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const langToggle = document.getElementById('langToggle');
-            langToggle.addEventListener('change', function() {
-                if(this.checked) {
-                    window.location.href = "projets-en.html";
-                }
-            });
+            if(langToggle) {
+                langToggle.addEventListener('change', function() {
+                    if(this.checked) {
+                        window.location.href = "projets-en.html";
+                    }
+                });
+            }
 
             const mobileMenu = document.getElementById('mobile-menu');
             const navLinksList = document.getElementById('nav-links');
             
-            mobileMenu.addEventListener('click', () => {
-                navLinksList.classList.toggle('active');
-            });
+            if(mobileMenu && navLinksList) {
+                mobileMenu.addEventListener('click', () => {
+                    navLinksList.classList.toggle('active');
+                });
+            }
         });
     </script>
 </body>
