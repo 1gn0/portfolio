@@ -100,25 +100,14 @@
             to { opacity: 1; transform: translateY(0); } 
         }
 
-        header { 
-            background-color: rgba(13, 11, 20, 0.95); 
-            padding: 10px 0; 
-            position: fixed; 
-            width: 100%; 
-            top: 0; 
-            z-index: 1000; 
-            backdrop-filter: blur(10px); 
-            box-shadow: 0 2px 20px rgba(0,0,0,0.4); 
-            border-bottom: 1px solid var(--border-color); 
-        }
-        
+        /* --- CSS EXACT DE LA NAVBAR (INDEX FR) --- */
+        header { background-color: rgba(13, 11, 20, 0.95); padding: 10px 0; position: fixed; width: 100%; top: 0; z-index: 1000; backdrop-filter: blur(10px); box-shadow: 0 2px 20px rgba(0,0,0,0.4); border-bottom: 1px solid var(--border-color); }
         nav { display: flex; justify-content: space-between; align-items: center; position: relative; }
-        
         .logo { font-size: 1.8rem; color: var(--accent); font-family: var(--font-title); text-shadow: 0 0 10px var(--accent); }
-
+        
         .menu-toggle { display: none; font-size: 1.8rem; color: var(--accent); cursor: pointer; transition: color 0.3s; }
         .menu-toggle:hover { color: var(--accent-cyan); }
-        
+
         .nav-links { 
             display: flex; 
             gap: 10px; 
@@ -131,40 +120,11 @@
         }
         
         .nav-links li { margin: 0 5px; }
-
-        .nav-links li a { 
-            font-weight: 500; 
-            font-size: 0.95rem; 
-            padding: 8px 18px; 
-            border-radius: var(--radius-lg); 
-            position: relative; 
-            display: block;
-        }
-
-        .nav-links li a:not(.nav-contact-btn):not(.lang-btn):hover, .nav-links li a.active { 
-            background-color: rgba(157, 78, 221, 0.15); 
-            color: var(--accent-hover); 
-            text-shadow: 0 0 5px var(--accent-hover); 
-        }
-
-        .nav-contact-btn { 
-            background-color: transparent; 
-            border: 2px solid var(--accent); 
-            color: var(--accent); 
-            font-weight: 600; 
-            text-transform: uppercase; 
-            font-size: 0.85rem; 
-            letter-spacing: 1px; 
-            transition: all 0.3s ease; 
-            text-align: center;
-        }
-
-        .nav-contact-btn:hover { 
-            background-color: var(--accent); 
-            color: #ffffff; 
-            box-shadow: 0 0 15px var(--accent-glow); 
-            border-color: var(--accent-hover); 
-        }
+        .nav-links li a { font-weight: 500; font-size: 0.95rem; padding: 8px 18px; border-radius: var(--radius-lg); position: relative; display: block; }
+        .nav-links li a:not(.nav-contact-btn):not(.lang-btn):hover, .nav-links li a.active { background-color: rgba(157, 78, 221, 0.15); color: var(--accent-hover); text-shadow: 0 0 5px var(--accent-hover); }
+        
+        .nav-contact-btn { background-color: transparent; border: 2px solid var(--accent); color: var(--accent); font-weight: 600; text-transform: uppercase; font-size: 0.85rem; letter-spacing: 1px; transition: all 0.3s ease; text-align: center; }
+        .nav-contact-btn:hover { background-color: var(--accent); color: #ffffff; box-shadow: 0 0 15px var(--accent-glow); border-color: var(--accent-hover); }
 
         .lang-switch-container { display: flex; align-items: center; gap: 8px; margin-left: 15px; }
         .flag { font-size: 1.3rem; transition: opacity 0.3s; user-select: none; }
@@ -176,6 +136,7 @@
         input:checked + .slider:before { transform: translateX(26px); background-color: var(--accent); box-shadow: 0 0 10px var(--accent); }
         .slider.round { border-radius: 34px; }
         .slider.round:before { border-radius: 50%; }
+        /* -------------------------------------- */
 
         .projets-grid { 
             display: grid; 
@@ -280,7 +241,6 @@
             .nav-links.active { transform: translateY(0); opacity: 1; pointer-events: auto; }
             .nav-links li { margin: 15px 0; }
             .lang-switch-container { margin: 15px 0 0 0; justify-content: center; }
-            .flag { opacity: 1 !important; }
             
             .projets-grid { grid-template-columns: 1fr; } 
             .section-title { font-size: 2.5rem; } 
