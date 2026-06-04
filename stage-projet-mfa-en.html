@@ -23,17 +23,20 @@
             --font-mono: 'Courier New', Courier, monospace;
             --radius-md: 16px; 
             --radius-lg: 30px; 
+            
             --stage-color: #e67e22;
             --stage-hover: #f39c12;
             --stage-glow: rgba(230, 126, 34, 0.25);
+            
             --danger: #e74c3c;
             --danger-glow: rgba(231, 76, 60, 0.2);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        html { scroll-behavior: smooth; overflow-x: hidden; scrollbar-gutter: stable; }
-        body { background-color: var(--bg-color); color: var(--text-main); font-family: var(--font-main); line-height: 1.7; overflow-x: hidden; display: flex; flex-direction: column; min-height: 100vh; }
         
+        html { scroll-behavior: smooth; overflow-x: hidden; scrollbar-gutter: stable; }
+        
+        body { background-color: var(--bg-color); color: var(--text-main); font-family: var(--font-main); line-height: 1.7; overflow-x: hidden; display: flex; flex-direction: column; min-height: 100vh; }
         h1, h2, h3, h4, h5 { font-family: var(--font-title); font-weight: normal; }
         a { text-decoration: none; color: inherit; transition: all 0.3s ease; }
         ul { list-style: none; }
@@ -42,16 +45,20 @@
         @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
 
         .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; width: 100%; }
+        
         .back-btn-container { text-align: left; margin-bottom: 40px; }
         .back-btn { display: inline-flex; align-items: center; gap: 8px; color: var(--text-muted); font-size: 0.95rem; font-weight: 500; transition: color 0.3s ease; }
         .back-btn:hover { color: var(--stage-color); }
         
         .page-header { padding: 120px 20px 40px 20px; text-align: center; }
+
         .section-title { font-size: 3.2rem; color: var(--stage-color); margin-bottom: 25px; display: flex; align-items: center; justify-content: center; text-align: center; position: relative; padding-bottom: 25px; opacity: 0; animation: fadeIn 1s ease forwards; }
         .section-title::before { content: ">"; margin-right: 15px; color: var(--stage-color); font-weight: bold; text-shadow: 0 0 10px var(--stage-color); font-family: var(--font-main); }
         .section-title::after { content: ""; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 150px; height: 3px; background: linear-gradient(90deg, transparent, var(--stage-hover), var(--stage-color), transparent); border-radius: 2px; }
+
         .page-subtitle { color: var(--text-muted); font-size: 1.15rem; max-width: 800px; margin: 0 auto; line-height: 1.8; opacity: 0; animation: fadeIn 1s ease forwards 0.2s; }
 
+        /* --- NAVBAR --- */
         header { background-color: rgba(13, 11, 20, 0.95); padding: 10px 0; position: fixed; width: 100%; top: 0; z-index: 1000; backdrop-filter: blur(10px); box-shadow: 0 2px 20px rgba(0,0,0,0.4); border-bottom: 1px solid var(--border-color); }
         nav { display: flex; justify-content: space-between; align-items: center; position: relative; }
         .logo { font-size: 1.8rem; color: var(--accent); font-family: var(--font-title); text-shadow: 0 0 10px var(--accent); }
@@ -75,6 +82,7 @@
         .slider.round { border-radius: 34px; }
         .slider.round:before { border-radius: 50%; }
 
+        /* SUITE CSS SPECIFIQUE */
         .project-section { margin-bottom: 80px; opacity: 0; animation: fadeIn 1s ease forwards 0.3s; }
         .project-heading { font-size: 2rem; color: #ffffff; margin-bottom: 30px; border-left: 4px solid var(--stage-color); padding-left: 15px; }
         
@@ -105,17 +113,20 @@
         .flex-image img:hover { transform: scale(1.02); border-color: var(--stage-color); }
         .flex-image figcaption { margin-top: 15px; font-size: 0.9rem; color: var(--text-muted); font-style: italic; }
 
+        /* Classe pour les images horizontales sous le texte */
         .horizontal-img-box { text-align: center; margin-top: 30px; }
         .horizontal-img-box img { max-width: 100%; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 10px 30px rgba(0,0,0,0.4); cursor: pointer; transition: transform 0.3s; }
         .horizontal-img-box img:hover { transform: scale(1.02); border-color: var(--stage-color); }
         .horizontal-img-box figcaption { margin-top: 15px; font-size: 0.9rem; color: var(--text-muted); font-style: italic; }
 
+        /* Images côte à côte plus petites */
         .side-by-side-images { display: flex; justify-content: center; gap: 30px; margin-top: 30px; }
         .side-by-side-images figure { flex: 0 1 45%; text-align: center; }
         .side-by-side-images img { max-width: 100%; max-height: 250px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 10px 30px rgba(0,0,0,0.4); cursor: pointer; transition: transform 0.3s; object-fit: contain; }
         .side-by-side-images img:hover { transform: scale(1.02); border-color: var(--stage-color); }
         .side-by-side-images figcaption { margin-top: 15px; font-size: 0.9rem; color: var(--text-muted); font-style: italic; }
 
+        /* Stack vertical pour les stratégies */
         .stacked-img-box { display: flex; flex-direction: column; align-items: center; gap: 20px; }
         .stacked-img-box figure { margin: 0; text-align: center; }
         .stacked-img-box img { max-width: 100%; max-height: 350px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 10px 30px rgba(0,0,0,0.4); cursor: pointer; transition: transform 0.3s; }
@@ -128,6 +139,7 @@
         .logic-card img { max-width: 100%; border-radius: 4px; cursor: pointer; transition: transform 0.3s; box-shadow: 0 5px 15px rgba(0,0,0,0.3); }
         .logic-card img:hover { transform: scale(1.03); }
 
+        /* Grille pour les autres tâches - Forcée à 2 par ligne */
         .steps-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin-top: 30px; }
         .step-card { background: rgba(255,255,255,0.02); border: 1px solid var(--border-color); border-top: 3px solid var(--stage-color); border-radius: var(--radius-md); padding: 30px; transition: all 0.3s ease; }
         .step-card:hover { background: rgba(230, 126, 34, 0.05); border-color: var(--stage-color); }
@@ -276,24 +288,24 @@
             <h2 class="project-heading">Authentication Methods</h2>
             <div class="content-block">
                 <p>MFA (Multi-Factor Authentication) is a method that adds an extra layer of security in the connection. It is useful when a user has had their password stolen, for example. This method materializes by sending a notification to the user after entering their password.</p>
-                <p style="margin-bottom: 30px;">During this project, we will set up two means of two-factor authentication:</p>
+                <p style="margin-bottom: 30px;">During this project, we set up two means of two-factor authentication:</p>
                 
                 <div class="flex-container">
                     <div class="flex-text">
                         <h3>Microsoft Authenticator:</h3>
-                        <p>Authenticator is an application created by Microsoft that allows, in particular, connection to the Office 365 suite. When entering the password, a <strong>pop-up appears with a two-digit number</strong>. The user can then enter this code on their phone to connect.</p>
+                        <p>Authenticator is an application created by Microsoft that allows, in particular, connection to the Office 365 suite. When entering the password, a <strong>pop-up appears on the PC with a two-digit number</strong>. The user can then enter this code on their phone to connect.</p>
                     </div>
                     <div class="flex-image">
                         <figure>
                             <img src="files/stage/msauth_page.png" alt="Microsoft Authenticator Interface" onclick="openModal('files/stage/msauth_page.png')">
-                            <figcaption>Code validation interface on a smartphone.</figcaption>
+                            <figcaption>Code validation pop-up displayed on the PC.</figcaption>
                         </figure>
                     </div>
                 </div>
 
                 <div class="flex-container" style="margin-top: 30px;">
                     <div class="flex-text">
-                        <h3>Physical token:</h3>
+                        <h3>Physical Token (TOTP):</h3>
                         <p>Token C202 from token2. This time, upon connection, a <strong>6-digit code</strong> is requested. This is generated by the token using the SHA1 hash of its seed (unique secret key) and a time factor.</p>
                     </div>
                     <div class="flex-image">
@@ -347,7 +359,7 @@
 
             <div class="content-block">
                 <h3>2 - Creation of Authentication Strengths</h3>
-                <p>We want here to define the different connection means for the users. If we take the categories, we configured 4 methods:</p>
+                <p>We define here the different connection means for the users. If we take the categories, we configured 4 methods:</p>
                 <ul class="ue-list">
                     <li><strong>Password only</strong></li>
                     <li><strong>Password and third-party software token</strong></li>
@@ -367,8 +379,8 @@
                 <p>So that the connection conditions apply based on location, we created named locations, defining areas to which the policies will then be applied.</p>
                 <p>We were able to define these points in two ways:</p>
                 <ul class="ue-list">
-                    <li>For countries, we can select country by country.</li>
-                    <li>For locations like the agency and the two local sites, we can specify a list of IPs.</li>
+                    <li>For countries, we chose country by country.</li>
+                    <li>For locations like the agency and the two local sites, we specified a precise list of public IPs.</li>
                 </ul>
                 <div class="horizontal-img-box">
                     <figure>
@@ -528,6 +540,15 @@
             if (event.target == modal) { closeModal(); }
         }
         document.addEventListener('DOMContentLoaded', () => {
+            const langToggle = document.getElementById('langToggle');
+            if(langToggle) {
+                langToggle.addEventListener('change', function() {
+                    if(!this.checked) {
+                        window.location.href = "stage-projet-mfa.html";
+                    }
+                });
+            }
+
             const mobileMenu = document.getElementById('mobile-menu');
             const navLinksList = document.getElementById('nav-links');
             if(mobileMenu && navLinksList) {
