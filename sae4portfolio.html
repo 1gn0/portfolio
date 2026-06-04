@@ -27,6 +27,10 @@
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        /* Correction du décalage avec la barre de défilement */
+        html { scroll-behavior: smooth; overflow-x: hidden; scrollbar-gutter: stable; }
+
         body { background-color: var(--bg-color); color: var(--text-main); font-family: var(--font-main); line-height: 1.7; overflow-x: hidden; display: flex; flex-direction: column; min-height: 100vh; }
         h1, h2, h3, h4, h5 { font-family: var(--font-title); font-weight: normal; }
         a { text-decoration: none; color: inherit; transition: all 0.3s ease; }
@@ -49,8 +53,9 @@
 
         .page-subtitle { color: var(--text-muted); font-size: 1.15rem; max-width: 800px; margin: 0 auto; line-height: 1.8; opacity: 0; animation: fadeIn 1s ease forwards 0.2s; }
 
-        header { background-color: rgba(13, 11, 20, 0.95); padding: 10px 0; position: fixed; width: 100%; top: 0; z-index: 1000; backdrop-filter: blur(10px); border-bottom: 1px solid var(--border-color); box-shadow: 0 2px 20px rgba(0,0,0,0.4); }
-        nav { display: flex; justify-content: space-between; align-items: center; padding: 0 20px; max-width: 1200px; margin: 0 auto; width: 100%; position: relative; }
+        /* --- NAVBAR EXACTEMENT COMME SUR L'INDEX FR --- */
+        header { background-color: rgba(13, 11, 20, 0.95); padding: 10px 0; position: fixed; width: 100%; top: 0; z-index: 1000; backdrop-filter: blur(10px); box-shadow: 0 2px 20px rgba(0,0,0,0.4); border-bottom: 1px solid var(--border-color); }
+        nav { display: flex; justify-content: space-between; align-items: center; position: relative; }
         .logo { font-size: 1.8rem; color: var(--accent); font-family: var(--font-title); text-shadow: 0 0 10px var(--accent); }
         
         .menu-toggle { display: none; font-size: 1.8rem; color: var(--accent); cursor: pointer; transition: color 0.3s; }
@@ -167,7 +172,7 @@
 
     <div class="page-header container">
         <div class="back-btn-container">
-            <a href="projets.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i> Revenir aux projets</a>
+            <a href="projets-but2.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i> Revenir aux projets</a>
         </div>
         <h1 class="section-title">SAE 4.PORTFOLIO</h1>
         <p class="page-subtitle">Démarche portfolio : analyse réflexive, mise en valeur des compétences et conception web d'une identité professionnelle.</p>
