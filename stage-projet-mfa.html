@@ -117,6 +117,21 @@
         .horizontal-img-box { text-align: center; margin-top: 30px; }
         .horizontal-img-box img { max-width: 100%; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 10px 30px rgba(0,0,0,0.4); cursor: pointer; transition: transform 0.3s; }
         .horizontal-img-box img:hover { transform: scale(1.02); border-color: var(--stage-color); }
+        .horizontal-img-box figcaption { margin-top: 15px; font-size: 0.9rem; color: var(--text-muted); font-style: italic; }
+
+        /* Images côte à côte plus petites */
+        .side-by-side-images { display: flex; justify-content: center; gap: 30px; margin-top: 30px; }
+        .side-by-side-images figure { flex: 0 1 45%; text-align: center; }
+        .side-by-side-images img { max-width: 100%; max-height: 250px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 10px 30px rgba(0,0,0,0.4); cursor: pointer; transition: transform 0.3s; object-fit: contain; }
+        .side-by-side-images img:hover { transform: scale(1.02); border-color: var(--stage-color); }
+        .side-by-side-images figcaption { margin-top: 15px; font-size: 0.9rem; color: var(--text-muted); font-style: italic; }
+
+        /* Stack vertical pour les stratégies */
+        .stacked-img-box { display: flex; flex-direction: column; align-items: center; gap: 20px; }
+        .stacked-img-box figure { margin: 0; text-align: center; }
+        .stacked-img-box img { max-width: 100%; max-height: 350px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 10px 30px rgba(0,0,0,0.4); cursor: pointer; transition: transform 0.3s; }
+        .stacked-img-box img:hover { transform: scale(1.02); border-color: var(--stage-color); }
+        .stacked-img-box figcaption { margin-top: 10px; font-size: 0.9rem; color: var(--text-muted); font-style: italic; }
 
         .logic-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; margin-top: 30px; }
         .logic-card { background: var(--bg-color); border: 1px dashed var(--border-color); border-radius: 8px; padding: 15px; text-align: center; transition: all 0.3s; }
@@ -124,7 +139,8 @@
         .logic-card img { max-width: 100%; border-radius: 4px; cursor: pointer; transition: transform 0.3s; box-shadow: 0 5px 15px rgba(0,0,0,0.3); }
         .logic-card img:hover { transform: scale(1.03); }
 
-        .steps-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 30px; margin-top: 30px; }
+        /* Grille pour les autres tâches - Forcée à 2 par ligne */
+        .steps-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin-top: 30px; }
         .step-card { background: rgba(255,255,255,0.02); border: 1px solid var(--border-color); border-top: 3px solid var(--stage-color); border-radius: var(--radius-md); padding: 30px; transition: all 0.3s ease; }
         .step-card:hover { background: rgba(230, 126, 34, 0.05); border-color: var(--stage-color); }
         .step-card h3 { color: var(--stage-color); font-size: 1.4rem; margin-bottom: 15px; }
@@ -162,6 +178,7 @@
             .nav-links li { margin: 15px 0; }
             .lang-switch-container { margin: 15px 0 0 0; justify-content: center; }
             .tools-grid { grid-template-columns: 1fr; }
+            .steps-grid { grid-template-columns: 1fr; }
             .flex-container { flex-direction: column; }
             .flex-image { width: 100%; }
         }
@@ -281,6 +298,7 @@
                     <div class="flex-image">
                         <figure>
                             <img src="files/stage/msauth_page.png" alt="Interface Microsoft Authenticator" onclick="openModal('files/stage/msauth_page.png')">
+                            <figcaption>Interface de validation par code sur smartphone.</figcaption>
                         </figure>
                     </div>
                 </div>
@@ -293,6 +311,7 @@
                     <div class="flex-image">
                         <figure>
                             <img src="files/stage/photo_token.png" alt="Token Physique C202" onclick="openModal('files/stage/photo_token.png')">
+                            <figcaption>Token matériel Token2 C202.</figcaption>
                         </figure>
                     </div>
                 </div>
@@ -307,10 +326,12 @@
                 <div class="logic-grid">
                     <div class="logic-card"><img src="files/stage/no_group_tableau.png" alt="Tableau Logique" onclick="openModal('files/stage/no_group_tableau.png')"></div>
                     <div class="logic-card"><img src="files/stage/mdp_only_tableau.png" alt="Tableau Logique" onclick="openModal('files/stage/mdp_only_tableau.png')"></div>
-                    <div class="logic-card"><img src="files/stage/mdp_msauth_fr_tableau.png" alt="Tableau Logique" onclick="openModal('files/stage/mdp_msauth_fr_tableau.png')"></div>
-                    <div class="logic-card"><img src="files/stage/mdp_msauth_monde_tableau.png" alt="Tableau Logique" onclick="openModal('files/stage/mdp_msauth_monde_tableau.png')"></div>
+                    
                     <div class="logic-card"><img src="files/stage/mdp_jeton_physique_tableau.png" alt="Tableau Logique" onclick="openModal('files/stage/mdp_jeton_physique_tableau.png')"></div>
                     <div class="logic-card"><img src="files/stage/mdp_jeton_logiciel_tableau.png" alt="Tableau Logique" onclick="openModal('files/stage/mdp_jeton_logiciel_tableau.png')"></div>
+
+                    <div class="logic-card"><img src="files/stage/mdp_msauth_fr_tableau.png" alt="Tableau Logique" onclick="openModal('files/stage/mdp_msauth_fr_tableau.png')"></div>
+                    <div class="logic-card"><img src="files/stage/mdp_msauth_monde_tableau.png" alt="Tableau Logique" onclick="openModal('files/stage/mdp_msauth_monde_tableau.png')"></div>
                 </div>
             </div>
         </section>
@@ -320,16 +341,19 @@
             
             <div class="content-block">
                 <h3>1 - Création des groupes sur l’AD et Entra</h3>
-                <div class="flex-container">
-                    <div class="flex-text">
-                        <p>Pour chacune des possibilités définies précédemment, nous avons créé dans l’AD un groupe de sécurité <code>GS_..._AD</code> qui regroupe les utilisateurs auxquels s’appliquent ces stratégies.</p>
-                        <p>En parallèle, nous avons créé leur équivalent dans Microsoft Entra pour les comptes “cloud only” (qui ne sont pas définis dans l’AD), comme certains comptes d’administrateurs ou encore des comptes génériques tels que les boîtes aux lettres partagées.</p>
-                        <p><strong>Note :</strong> Une personne ne peut être que dans un seul de ces groupes à la fois.</p>
-                    </div>
-                    <div class="flex-image" style="display: flex; flex-direction: column; gap: 15px;">
+                <p>Pour chacune des possibilités définies précédemment, nous avons créé dans l’AD un groupe de sécurité <code>GS_..._AD</code> qui regroupe les utilisateurs auxquels s’appliquent ces stratégies.</p>
+                <p>En parallèle, nous avons créé leur équivalent dans Microsoft Entra pour les comptes “cloud only” (qui ne sont pas définis dans l’AD), comme certains comptes d’administrateurs ou encore des comptes génériques tels que les boîtes aux lettres partagées.</p>
+                <p><strong>Note :</strong> Une personne ne peut être que dans un seul de ces groupes à la fois.</p>
+                
+                <div class="side-by-side-images">
+                    <figure>
                         <img src="files/stage/groupes_ad.png" alt="Groupes AD" onclick="openModal('files/stage/groupes_ad.png')">
+                        <figcaption>Groupes créés sur l'AD local.</figcaption>
+                    </figure>
+                    <figure>
                         <img src="files/stage/groupes_365.png" alt="Groupes Entra" onclick="openModal('files/stage/groupes_365.png')">
-                    </div>
+                        <figcaption>Groupes équivalents créés sur Microsoft Entra.</figcaption>
+                    </figure>
                 </div>
             </div>
 
@@ -337,13 +361,16 @@
                 <h3>2 - Création des points forts d’authentification</h3>
                 <p>Nous définissons ici les différents moyens de connexion pour les utilisateurs. Si l'on reprend les catégories, nous avons configuré 4 méthodes :</p>
                 <ul class="ue-list">
-                    <li>Mot de passe uniquement</li>
-                    <li>Mot de passe et jeton logiciel tiers</li>
-                    <li>Mot de passe et jeton physique</li>
-                    <li>Mot de passe et Microsoft Authenticator</li>
+                    <li><strong>Mot de passe uniquement</strong></li>
+                    <li><strong>Mot de passe et jeton logiciel tiers</strong></li>
+                    <li><strong>Mot de passe et jeton physique</strong></li>
+                    <li><strong>Mot de passe et Microsoft Authenticator</strong></li>
                 </ul>
                 <div class="horizontal-img-box">
-                    <img src="files/stage/forces_auth.png" alt="Forces auth" onclick="openModal('files/stage/forces_auth.png')">
+                    <figure>
+                        <img src="files/stage/forces_auth.png" alt="Forces auth" onclick="openModal('files/stage/forces_auth.png')">
+                        <figcaption>Configuration des forces d'authentification dans Entra ID.</figcaption>
+                    </figure>
                 </div>
             </div>
 
@@ -356,16 +383,19 @@
                     <li>Pour les lieux comme l’agence et les deux sites locaux, en indiquant une liste précise d’IP publiques.</li>
                 </ul>
                 <div class="horizontal-img-box">
-                    <img src="files/stage/emplacements_nommes.png" alt="Emplacements nommés" onclick="openModal('files/stage/emplacements_nommes.png')">
+                    <figure>
+                        <img src="files/stage/emplacements_nommes.png" alt="Emplacements nommés" onclick="openModal('files/stage/emplacements_nommes.png')">
+                        <figcaption>Liste des adresses IP et pays déclarés comme emplacements de confiance.</figcaption>
+                    </figure>
                 </div>
             </div>
 
             <div class="content-block">
                 <h3>4 - Création des stratégies</h3>
-                <p>Nous allons attribuer aux différents groupes créés des méthodes d’authentifications, ainsi que des temps avant ré-authentification (par exemple, quelqu’un travaillant sur site devra se reconnecter via Authenticator tous les 3 mois, alors que quelqu’un travaillant en dehors de la France devra se reconnecter tous les 7 jours).</p>
+                <p>Nous avons attribué aux différents groupes créés des méthodes d’authentifications, ainsi que des temps avant ré-authentification (par exemple, quelqu’un travaillant sur site devra se reconnecter via Authenticator tous les 3 mois, alors que quelqu’un travaillant en dehors de la France devra se reconnecter tous les 7 jours).</p>
                 
                 <h4 style="margin-top: 30px;">Logique de création des stratégies :</h4>
-                <p>Si un utilisateur est concerné par deux stratégies à la fois, c’est la plus restrictive qui s’applique. Sachant cela, nous avons d’abord créé les stratégies qui bloquent la connexion :</p>
+                <p>Si un utilisateur est concerné par deux stratégies à la fois, <strong>c’est la plus restrictive qui s’applique</strong>. Sachant cela, nous avons d’abord créé les stratégies qui bloquent la connexion :</p>
                 <ul class="ue-list">
                     <li><strong>BLOQUER_NO_GROUP :</strong> si l’utilisateur n’est dans aucun des groupes, son authentification est forcément bloquée.</li>
                     <li><strong>BLOQUER_MDP_UNIQUEMENT_EXT :</strong> si l’utilisateur n’a qu’un mot de passe sans MFA, il est bloqué partout sauf sur site.</li>
@@ -389,9 +419,15 @@
                         <p>Par exemple, si un utilisateur du groupe <code>GS_MDP_PLUS_MSAUTH_MONDE</code> se connecte depuis l’Allemagne, pays autorisé, une réauthentification périodique de 7 jours lui est appliquée et la connexion via Authenticator est forcée.</p>
                         <p style="margin-top: 15px;">Une fois que nos stratégies sont définies et appliquées, nous pouvons faire installer l’application aux utilisateurs.</p>
                     </div>
-                    <div class="flex-image" style="display: flex; flex-direction: column; gap: 15px;">
-                        <img src="files/stage/octroyer_acces_force.png" alt="Octroyer accès" onclick="openModal('files/stage/octroyer_acces_force.png')" style="max-height: 250px; object-fit: contain;">
-                        <img src="files/stage/freq_co.png" alt="Fréquence connexion" onclick="openModal('files/stage/freq_co.png')" style="max-height: 250px; object-fit: contain;">
+                    <div class="flex-image stacked-img-box">
+                        <figure>
+                            <img src="files/stage/octroyer_acces_force.png" alt="Octroyer accès" onclick="openModal('files/stage/octroyer_acces_force.png')">
+                            <figcaption>Paramétrage de la force d'authentification requise.</figcaption>
+                        </figure>
+                        <figure>
+                            <img src="files/stage/freq_co.png" alt="Fréquence connexion" onclick="openModal('files/stage/freq_co.png')">
+                            <figcaption>Définition de la fréquence de ré-authentification périodique.</figcaption>
+                        </figure>
                     </div>
                 </div>
             </div>
@@ -403,15 +439,18 @@
                 <div class="flex-container">
                     <div class="flex-text">
                         <p>Les utilisateurs se connectant au VPN doivent faire partie du groupe <code>SSLVPN-Users</code> dans l’AD.</p>
-                        <p>Pour la connexion, nous avons pu déléguer l’authentification à Microsoft et donc appliquer nos stratégies définies précédemment. Pour mettre en place ce mode de connexion, nous sommes passés par l’ajout d’un serveur d’authentification SAML. Pour cela, dans Entra -> Applications d’entreprises, nous avons ajouté <strong>Firebox Authentication Portal SAML</strong>.</p>
+                        <p>Pour la connexion, nous avons pu <strong>déléguer l’authentification à Microsoft</strong> et donc appliquer nos stratégies définies précédemment. Pour mettre en place ce mode de connexion, nous sommes passés par l’ajout d’un serveur d’authentification SAML. Pour cela, dans Entra -> Applications d’entreprises, nous avons ajouté <strong>Firebox Authentication Portal SAML</strong>.</p>
                         <p>Dans la partie Authentification unique, nous avons configuré notre VPN, notamment avec un certificat de signature de jetons récupéré sur la page d’administration du vpn <code>vpn.domain.com/auth/saml</code>. Une fois que ce lien est configuré, nous avons pu gérer la partie utilisateurs.</p>
                         
                         <h4 style="margin-top: 25px;">Côté Utilisateur :</h4>
-                        <p>Cette délégation se présente sous la forme suivante : En sélectionnant “S’authentifier avec SAML”, l’utilisateur verra apparaître une page de connexion Microsoft classique, suivi d’un code pour le MFA comme d’habitude.</p>
+                        <p>Cette délégation se présente sous la forme suivante : En sélectionnant <strong>“S’authentifier avec SAML”</strong>, l’utilisateur verra apparaître une page de connexion Microsoft classique, suivi d’un code pour le MFA comme d’habitude.</p>
                         <p><em>Note : besoin de maj du client vpn pour la connexion via SAML.</em></p>
                     </div>
                     <div class="flex-image">
-                        <img src="files/stage/SAML_WG.png" alt="VPN SAML" onclick="openModal('files/stage/SAML_WG.png')">
+                        <figure>
+                            <img src="files/stage/SAML_WG.png" alt="VPN SAML" onclick="openModal('files/stage/SAML_WG.png')">
+                            <figcaption>Client WatchGuard paramétré pour déléguer l'authentification.</figcaption>
+                        </figure>
                     </div>
                 </div>
             </div>
@@ -422,7 +461,7 @@
             <div class="steps-grid">
                 <div class="step-card">
                     <h3>Sécurité Mail (DMARC, SPF, DKIM)</h3>
-                    <p>Nous avons mis en place une politique DMARC autorisant l'expéditeur à indiquer que ses courriels sont protégés. SPF sert d'« annuaire » des serveurs d'envoi et DKIM de signature sur mail. Ces enregistrements sont stockés dans le DNS.</p>
+                    <p>Nous avons mis en place une politique <strong>DMARC</strong> autorisant l'expéditeur à indiquer que ses courriels sont protégés. <strong>SPF</strong> sert d'« annuaire » des serveurs d'envoi et <strong>DKIM</strong> de signature sur mail. Ces enregistrements sont stockés dans le DNS.</p>
                 </div>
                 <div class="step-card">
                     <h3>Audit Microsoft 365</h3>
@@ -430,7 +469,7 @@
                 </div>
                 <div class="step-card">
                     <h3>Automatisation Powershell</h3>
-                    <p>Nous avons utilisé des scripts Powershell pour effectuer des exports de l'Active Directory sur un tableau Excel afin d'assurer une supervision précise des comptes (Hybrides ou Cloud only) et des appartenances aux groupes de sécurité durant le déploiement.</p>
+                    <p>Nous avons utilisé des <strong>scripts Powershell</strong> pour effectuer des exports de l'Active Directory sur un tableau Excel afin d'assurer une supervision précise des comptes (Hybrides ou Cloud only) et des appartenances aux groupes de sécurité durant le déploiement.</p>
                 </div>
                 <div class="step-card">
                     <h3>Documentations Techniques</h3>
@@ -443,9 +482,9 @@
             <h2 class="project-heading">Résumé des problèmes rencontrés</h2>
             <div class="content-block">
                 <ul class="ue-list">
-                    <li>La logique des stratégies nécessite une grande rigueur car la règle la plus restrictive l'emporte toujours. Une erreur de configuration aurait pu verrouiller l'accès de toute l'entreprise.</li>
-                    <li>Problèmes de configuration Outlook liés aux différentes versions logicielles et aux habitudes des utilisateurs (différence de gestion entre l'Authentification Moderne et la version Legacy).</li>
-                    <li>Difficultés d'enregistrement et de synchronisation des tokens physiques dans le cloud en respectant les formats stricts de Microsoft.</li>
+                    <li>La <strong>logique des stratégies</strong> nécessite une grande rigueur car la règle la plus restrictive l'emporte toujours. Une erreur de configuration aurait pu verrouiller l'accès de toute l'entreprise.</li>
+                    <li><strong>Problèmes de configuration Outlook</strong> liés aux différentes versions logicielles et aux habitudes des utilisateurs (différence de gestion entre l'Authentification Moderne et la version Legacy).</li>
+                    <li>Difficultés d'<strong>enregistrement et de synchronisation des tokens physiques</strong> dans le cloud en respectant les formats stricts de Microsoft.</li>
                 </ul>
             </div>
         </section>
@@ -466,7 +505,7 @@
         <section class="project-section">
             <div class="bilan-card">
                 <h3>Analyse Réflexive</h3>
-                <p>Analyse Réflexive : au cours de ce projet, j’ai pu m’investir dans la mise en place d’une solution de cybersécurité en environnement réel, en participant aux réflexions ainsi qu’à la mise en place de celle-ci. Je l’ai trouvé particulièrement intéressant car il s’appuie sur des notions importantes dans le monde réel, notamment en termes de cybersécurité. De plus, ce projet m’a permis de mettre en applications des compétences concrètes, qu’elles soient techniques ou relationnelles.</p>
+                <p>Au cours de ce projet, j’ai pu m’investir dans la mise en place d’une solution de cybersécurité en environnement réel, en participant aux réflexions ainsi qu’à la mise en place de celle-ci. Je l’ai trouvé particulièrement intéressant car il s’appuie sur des notions importantes dans le monde réel, notamment en termes de cybersécurité. De plus, ce projet m’a permis de mettre en applications des compétences concrètes, qu’elles soient techniques ou relationnelles.</p>
             </div>
         </section>
 
