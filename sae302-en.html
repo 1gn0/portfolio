@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SAE 3.Cyber.03 | Camille HENRY--DELANGLE</title>
+    <title>SAE 3.02 | Camille HENRY--DELANGLE</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Saira+Stencil+One&display=swap" rel="stylesheet">
@@ -17,6 +17,7 @@
             --accent: #9d4edd;          
             --accent-hover: #c77dff;    
             --accent-cyan: #4facfe;
+            --accent-glow: rgba(157, 78, 221, 0.25); 
             --border-color: #2d2a3a;
             --font-main: 'Inter', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
             --font-title: 'Saira Stencil One', sans-serif; 
@@ -24,17 +25,21 @@
             --radius-md: 16px; 
             --radius-lg: 30px; 
             
-            --danger: #e74c3c;
-            --danger-hover: #ff7675;
-            --danger-glow: rgba(231, 76, 60, 0.25);
+            --dev-color: #3498db;
+            --dev-hover: #5dade2;
+            --dev-glow: rgba(52, 152, 219, 0.2);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        /* Correction du décalage avec la barre de défilement */
+        html { scroll-behavior: smooth; overflow-x: hidden; scrollbar-gutter: stable; }
+        
         body { background-color: var(--bg-color); color: var(--text-main); font-family: var(--font-main); line-height: 1.7; overflow-x: hidden; display: flex; flex-direction: column; min-height: 100vh; }
         h1, h2, h3, h4, h5 { font-family: var(--font-title); font-weight: normal; }
         a { text-decoration: none; color: inherit; transition: all 0.3s ease; }
         ul { list-style: none; }
-        strong { color: var(--danger-hover); font-weight: 600; }
+        strong { color: var(--dev-hover); font-weight: 600; }
 
         @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
 
@@ -42,27 +47,29 @@
         
         .back-btn-container { text-align: left; margin-bottom: 40px; }
         .back-btn { display: inline-flex; align-items: center; gap: 8px; color: var(--text-muted); font-size: 0.95rem; font-weight: 500; transition: color 0.3s ease; }
-        .back-btn:hover { color: var(--danger); }
+        .back-btn:hover { color: var(--dev-color); }
         
         .page-header { padding: 120px 20px 40px 20px; text-align: center; }
 
-        .section-title { font-size: 3.2rem; color: var(--danger); margin-bottom: 25px; display: flex; align-items: center; justify-content: center; text-align: center; position: relative; padding-bottom: 25px; opacity: 0; animation: fadeIn 1s ease forwards; }
-        .section-title::before { content: ">"; margin-right: 15px; color: var(--danger); font-weight: bold; text-shadow: 0 0 10px var(--danger); font-family: var(--font-main); }
-        .section-title::after { content: ""; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 150px; height: 3px; background: linear-gradient(90deg, transparent, var(--danger-hover), var(--danger), transparent); border-radius: 2px; }
+        .section-title { font-size: 3.2rem; color: var(--dev-color); margin-bottom: 25px; display: flex; align-items: center; justify-content: center; text-align: center; position: relative; padding-bottom: 25px; opacity: 0; animation: fadeIn 1s ease forwards; }
+        .section-title::before { content: ">"; margin-right: 15px; color: var(--dev-color); font-weight: bold; text-shadow: 0 0 10px var(--dev-color); font-family: var(--font-main); }
+        .section-title::after { content: ""; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 150px; height: 3px; background: linear-gradient(90deg, transparent, var(--dev-hover), var(--dev-color), transparent); border-radius: 2px; }
 
         .page-subtitle { color: var(--text-muted); font-size: 1.15rem; max-width: 800px; margin: 0 auto; line-height: 1.8; opacity: 0; animation: fadeIn 1s ease forwards 0.2s; }
 
-        header { background-color: rgba(13, 11, 20, 0.95); padding: 10px 0; position: fixed; width: 100%; top: 0; z-index: 1000; backdrop-filter: blur(10px); border-bottom: 1px solid var(--border-color); box-shadow: 0 2px 20px rgba(0,0,0,0.4); }
-        nav { display: flex; justify-content: space-between; align-items: center; padding: 0 20px; max-width: 1200px; margin: 0 auto; width: 100%; position: relative; }
+        /* --- NAVBAR EXACTEMENT COMME SUR L'INDEX FR --- */
+        header { background-color: rgba(13, 11, 20, 0.95); padding: 10px 0; position: fixed; width: 100%; top: 0; z-index: 1000; backdrop-filter: blur(10px); box-shadow: 0 2px 20px rgba(0,0,0,0.4); border-bottom: 1px solid var(--border-color); }
+        nav { display: flex; justify-content: space-between; align-items: center; position: relative; }
         .logo { font-size: 1.8rem; color: var(--accent); font-family: var(--font-title); text-shadow: 0 0 10px var(--accent); }
         
         .menu-toggle { display: none; font-size: 1.8rem; color: var(--accent); cursor: pointer; transition: color 0.3s; }
         .menu-toggle:hover { color: var(--accent-cyan); }
-        
+
         .nav-links { display: flex; gap: 10px; align-items: center; background-color: var(--bg-card); padding: 5px 8px; border-radius: var(--radius-lg); border: 1px solid var(--border-color); margin-left: auto; }
         .nav-links li { margin: 0 5px; }
         .nav-links li a { font-weight: 500; font-size: 0.95rem; padding: 8px 18px; border-radius: var(--radius-lg); position: relative; display: block; }
         .nav-links li a:not(.nav-contact-btn):not(.lang-btn):hover, .nav-links li a.active { background-color: rgba(157, 78, 221, 0.15); color: var(--accent-hover); text-shadow: 0 0 5px var(--accent-hover); }
+        
         .nav-contact-btn { background-color: transparent; border: 2px solid var(--accent); color: var(--accent); font-weight: 600; text-transform: uppercase; font-size: 0.85rem; letter-spacing: 1px; transition: all 0.3s ease; text-align: center; }
         .nav-contact-btn:hover { background-color: var(--accent); color: #ffffff; box-shadow: 0 0 15px var(--accent-glow); border-color: var(--accent-hover); }
 
@@ -77,74 +84,61 @@
         .slider.round { border-radius: 34px; }
         .slider.round:before { border-radius: 50%; }
 
+        /* SUITE DU CSS SPECIFIQUE A LA SAE */
         .project-section { margin-bottom: 80px; opacity: 0; animation: fadeIn 1s ease forwards 0.3s; }
-        .project-heading { font-size: 2rem; color: #ffffff; margin-bottom: 20px; border-left: 4px solid var(--danger); padding-left: 15px; }
+        .project-heading { font-size: 2rem; color: #ffffff; margin-bottom: 20px; border-left: 4px solid var(--dev-color); padding-left: 15px; }
         
-        .resume-box { background: linear-gradient(145deg, rgba(231, 76, 60, 0.05), rgba(231, 76, 60, 0.02)); border-left: 4px solid var(--danger); padding: 30px 40px; border-radius: 0 var(--radius-md) var(--radius-md) 0; border-top: 1px solid rgba(231, 76, 60, 0.2); border-right: 1px solid rgba(231, 76, 60, 0.2); border-bottom: 1px solid rgba(231, 76, 60, 0.2); margin-bottom: 50px; box-shadow: 0 5px 20px var(--danger-glow); }
-        .resume-box h3 { color: var(--danger); margin-bottom: 15px; font-size: 1.6rem; text-shadow: 0 0 10px rgba(231, 76, 60, 0.2); }
+        .resume-box { background: linear-gradient(145deg, rgba(52, 152, 219, 0.05), rgba(52, 152, 219, 0.02)); border-left: 4px solid var(--dev-color); padding: 30px 40px; border-radius: 0 var(--radius-md) var(--radius-md) 0; border-top: 1px solid rgba(52, 152, 219, 0.2); border-right: 1px solid rgba(52, 152, 219, 0.2); border-bottom: 1px solid rgba(52, 152, 219, 0.2); margin-bottom: 50px; box-shadow: 0 5px 20px var(--dev-glow); }
+        .resume-box h3 { color: var(--dev-color); margin-bottom: 15px; font-size: 1.6rem; text-shadow: 0 0 10px rgba(52, 152, 219, 0.2); }
         .resume-box p { color: var(--text-main); font-size: 1.05rem; line-height: 1.7; margin-bottom: 15px; }
+        
+        .github-btn { display: inline-flex; align-items: center; gap: 10px; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); color: #fff; padding: 10px 20px; border-radius: var(--radius-lg); font-size: 0.9rem; font-weight: 600; transition: all 0.3s; }
+        .github-btn:hover { background: #fff; color: #000; box-shadow: 0 0 15px rgba(255,255,255,0.2); }
 
         .tools-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 30px; margin-top: 30px; }
         .tool-card { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 30px; display: flex; align-items: center; gap: 20px; transition: all 0.3s ease; box-shadow: 0 5px 20px rgba(0,0,0,0.2); }
-        .tool-card:hover { border-color: var(--danger); transform: translateY(-5px); box-shadow: 0 10px 30px var(--danger-glow); }
+        .tool-card:hover { border-color: var(--dev-color); transform: translateY(-5px); box-shadow: 0 10px 30px var(--dev-glow); }
         
-        .tool-img { width: 80px; height: 80px; flex-shrink: 0; background: rgba(255,255,255,0.05); border-radius: 12px; display: flex; align-items: center; justify-content: center; border: 1px solid rgba(255,255,255,0.1); overflow: hidden; padding: 10px; }
+        .tool-img { width: 80px; height: 80px; flex-shrink: 0; background: rgba(255,255,255,0.05); border-radius: 12px; padding: 10px; display: flex; align-items: center; justify-content: center; border: 1px solid rgba(255,255,255,0.1); overflow: hidden; }
         .tool-img.logo-style { background: transparent; overflow: visible; border: none; padding: 0; }
-        .tool-img img { width: 100%; height: 100%; object-fit: contain; transition: all 0.3s ease; }
-        .tool-card:hover .tool-img img { transform: scale(1.1); filter: drop-shadow(0 0 15px rgba(231, 76, 60, 0.8)); }
+        .tool-img img { width: 100%; height: 100%; object-fit: contain; }
+        .tool-img i { font-size: 3.5rem; color: var(--dev-color); transition: all 0.3s; }
         
         .tool-info h3 a { color: #fff; font-size: 1.3rem; margin-bottom: 5px; display: inline-flex; align-items: center; gap: 8px; transition: color 0.3s; }
-        .tool-info h3 a:hover { color: var(--danger); }
+        .tool-info h3 a:hover { color: var(--dev-color); }
         .tool-info p { color: var(--text-muted); font-size: 0.9rem; line-height: 1.5; margin-top: 5px; }
 
-        .docs-container { display: flex; flex-direction: column; gap: 15px; margin-top: 30px; }
-        .doc-box { background-color: rgba(255,255,255,0.02); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 15px 30px; display: flex; align-items: center; justify-content: space-between; transition: 0.3s; }
-        .doc-box:hover { border-color: var(--danger); background-color: rgba(231, 76, 60, 0.03); }
-        .doc-info { display: flex; align-items: center; gap: 20px; }
-        .doc-icon { font-size: 1.5rem; color: var(--danger); background: rgba(231, 76, 60, 0.1); padding: 10px 15px; border-radius: 8px; }
-        .doc-box h3 { font-size: 1.1rem; color: #ffffff; margin: 0; font-family: var(--font-main); font-weight: 600;}
-        .doc-actions { display: flex; gap: 10px; }
+        .gallery-grid { display: grid; grid-template-columns: 1fr; gap: 40px; margin-top: 30px; }
+        .gallery-row { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+        .gallery-box { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 20px; text-align: center; box-shadow: 0 10px 40px rgba(0,0,0,0.3); display: flex; flex-direction: column; align-items: center; justify-content: center; }
+        .gallery-box img { max-width: 100%; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 0 15px rgba(0,0,0,0.4); margin-bottom: 15px; }
+        .gallery-box.large img { max-height: 400px; object-fit: contain; }
+        .gallery-info { color: var(--text-muted); font-style: italic; font-size: 0.95rem; }
 
-        .btn { display: inline-flex; justify-content: center; align-items: center; padding: 10px 22px; border-radius: var(--radius-lg); font-weight: 600; text-transform: uppercase; letter-spacing: 1px; font-size: 0.8rem; transition: 0.4s; cursor: pointer; }
-        .btn-primary { border: 2px solid var(--danger); color: var(--danger-hover); background: transparent; }
-        .btn-primary:hover { background: var(--danger); color: #fff; box-shadow: 0 0 15px var(--danger-glow); }
-        .btn-secondary { background-color: rgba(231, 76, 60, 0.1); border: 2px solid var(--danger); color: #fff; }
-
-        .role-section-cohesive { background: var(--bg-card); border: 2px dashed var(--danger); border-radius: var(--radius-md); padding: 50px; margin-top: 30px; box-shadow: 0 10px 50px rgba(0,0,0,0.3); position: relative; }
-        .role-section-cohesive::before { content: "MY ROLE IN THE PROJECT"; position: absolute; top: -15px; left: 30px; background: var(--danger); color: #fff; padding: 2px 15px; border-radius: 4px; font-family: var(--font-title); font-size: 0.9rem; letter-spacing: 1px; }
-        
-        .role-intro-text { font-size: 1.1rem; line-height: 1.8; color: var(--text-main); margin-bottom: 30px; text-align: left; }
-        
-        .dashboard-img-large { width: 100%; text-align: center; background: rgba(0,0,0,0.2); padding: 20px; border-radius: 8px; border: 1px dashed var(--border-color); margin-bottom: 30px; }
-        .dashboard-img-large img { max-width: 100%; border-radius: 8px; box-shadow: 0 10px 30px rgba(0,0,0,0.4); }
-        
-        .dashboard-features-list h4 { color: var(--danger); font-size: 1.4rem; margin-bottom: 15px; font-family: var(--font-title); border-bottom: 1px solid rgba(231, 76, 60, 0.2); padding-bottom: 10px;}
-        .dashboard-features-list ul { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 15px; }
-        .dashboard-features-list ul li { position: relative; padding-left: 20px; color: var(--text-muted); font-size: 0.95rem; line-height: 1.6; }
-        .dashboard-features-list ul li::before { content: "→"; position: absolute; left: 0; color: var(--danger); font-weight: bold; font-family: var(--font-mono); }
+        .code-snippet-box { background: #1e1e1e; border: 1px solid var(--border-color); border-radius: 8px; padding: 20px; overflow-x: auto; margin-top: 20px; box-shadow: 0 5px 20px rgba(0,0,0,0.4); }
+        .code-snippet-box pre { margin: 0; font-family: var(--font-mono); font-size: 0.9rem; line-height: 1.5; color: #d4d4d4; }
+        .keyword { color: #569cd6; }
+        .function { color: #dcdcaa; }
+        .string { color: #ce9178; }
+        .comment { color: #6a9955; }
+        .builtin { color: #4ec9b0; }
 
         .steps-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 30px; margin-top: 30px; }
-        .step-card { background: rgba(255,255,255,0.02); border: 1px solid var(--border-color); border-top: 3px solid var(--danger); border-radius: var(--radius-md); padding: 30px; transition: all 0.3s ease; }
-        .step-card:hover { background: rgba(231, 76, 60, 0.05); border-color: var(--danger); }
-        .step-card h3 { color: var(--danger); font-size: 1.4rem; margin-bottom: 15px; }
+        .step-card { background: rgba(255,255,255,0.02); border: 1px solid var(--border-color); border-top: 3px solid var(--dev-color); border-radius: var(--radius-md); padding: 30px; transition: all 0.3s ease; }
+        .step-card:hover { background: rgba(52, 152, 219, 0.05); border-color: var(--dev-color); }
+        .step-card h3 { color: var(--dev-color); font-size: 1.4rem; margin-bottom: 15px; }
         .step-card p { color: var(--text-main); font-size: 0.95rem; line-height: 1.6; }
 
         .ac-box { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 40px; margin-top: 40px; }
         .ue-list { margin-top: 20px; }
         .ue-list li { position: relative; padding-left: 25px; margin-bottom: 15px; color: var(--text-muted); font-size: 1rem; }
-        .ue-list li::before { content: '>'; position: absolute; left: 0; color: var(--danger-hover); font-family: var(--font-mono); font-weight: bold; }
-        .ue-list li span.code { color: var(--danger-hover); font-weight: bold; margin-right: 10px; font-family: var(--font-mono); }
+        .ue-list li::before { content: '>'; position: absolute; left: 0; color: var(--dev-hover); font-family: var(--font-mono); font-weight: bold; }
+        .ue-list li span.code { color: var(--dev-hover); font-weight: bold; margin-right: 10px; font-family: var(--font-mono); }
 
-        .bilan-card { background: linear-gradient(145deg, var(--bg-card), rgba(231, 76, 60, 0.05)); border: 1px solid rgba(231, 76, 60, 0.3); border-radius: var(--radius-md); padding: 40px; margin-top: 60px; box-shadow: 0 10px 40px var(--danger-glow); position: relative; overflow: hidden; }
-        .bilan-card::before { content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 4px; background: linear-gradient(90deg, var(--danger-hover), var(--danger)); }
-        .bilan-card h3 { font-size: 2rem; color: var(--danger); margin-bottom: 20px; text-shadow: 0 0 10px rgba(231, 76, 60, 0.2); }
+        .bilan-card { background: linear-gradient(145deg, var(--bg-card), rgba(52, 152, 219, 0.05)); border: 1px solid rgba(52, 152, 219, 0.3); border-radius: var(--radius-md); padding: 40px; margin-top: 60px; box-shadow: 0 10px 40px var(--dev-glow); position: relative; overflow: hidden; }
+        .bilan-card::before { content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 4px; background: linear-gradient(90deg, var(--dev-hover), var(--dev-color)); }
+        .bilan-card h3 { font-size: 2rem; color: var(--dev-color); margin-bottom: 20px; text-shadow: 0 0 10px rgba(52, 152, 219, 0.2); }
         .bilan-card p { font-size: 1.05rem; color: var(--text-main); line-height: 1.8; margin-bottom: 0; }
-
-        .modal { display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(13, 11, 20, 0.9); backdrop-filter: blur(8px); align-items: center; justify-content: center; }
-        .modal-content { position: relative; width: 90%; max-width: 1000px; height: 85vh; background: var(--bg-card); border-radius: var(--radius-md); padding: 50px 20px 20px 20px; border: 1px solid var(--danger); }
-        .close-btn { position: absolute; top: 15px; right: 25px; font-size: 2rem; color: var(--text-muted); cursor: pointer; transition: 0.3s; }
-        .close-btn:hover { color: var(--danger); }
-        #pdf-frame { width: 100%; height: 100%; border: none; background: #fff; border-radius: 8px; }
 
         footer { text-align: center; padding: 40px 0; color: var(--text-muted); font-size: 0.95rem; border-top: 1px solid var(--border-color); width: 100%; margin-top: auto; }
 
@@ -160,10 +154,9 @@
             .nav-links.active { transform: translateY(0); opacity: 1; pointer-events: auto; }
             .nav-links li { margin: 15px 0; }
             .lang-switch-container { margin: 15px 0 0 0; justify-content: center; }
+            .flag { opacity: 1 !important; }
             
-            .tools-grid { grid-template-columns: 1fr; }
-            .doc-box { flex-direction: column; text-align: center; gap: 15px; }
-            .doc-info { flex-direction: column; }
+            .tools-grid, .gallery-row { grid-template-columns: 1fr; }
         }
         
         @media (max-width: 768px) {
@@ -195,7 +188,7 @@
                             <input type="checkbox" id="langToggle" checked>
                             <span class="slider round"></span>
                         </label>
-                        <span class="flag">🇬🇧</span>
+                        <span class="flag" style="opacity: 1;">🇬🇧</span>
                     </li>
                 </ul>
             </nav>
@@ -206,8 +199,8 @@
         <div class="back-btn-container">
             <a href="projets-but2-en.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i> Back to projects</a>
         </div>
-        <h1 class="section-title">SAE 3.Cyber.03</h1>
-        <p class="page-subtitle">Design a secure multi-site computer network: hierarchical architecture, advanced inter-AS routing (BGP/MPLS), and enterprise services deployment.</p>
+        <h1 class="section-title">SAE 3.02</h1>
+        <p class="page-subtitle">Develop communicating applications: design of a distributed infrastructure with onion routing and end-to-end encrypted messaging in Python.</p>
     </div>
 
     <main class="container">
@@ -215,12 +208,8 @@
         <section class="project-section">
             <div class="resume-box">
                 <h3>SAE Summary</h3>
-                <p>During this SAE, we had to create a complex multi-site network infrastructure using the EVE-NG emulator. The goal was to respond to a call for tenders for two client companies (UC Exchange and ABC Conseil). The overall infrastructure integrates 3 major parts:</p>
-                <ul style="color: var(--text-main); margin-top: 10px; line-height: 1.8; margin-left: 20px;">
-                    <li>A central <strong>"Internet Service Provider" (ISP)</strong> part comprising 3 Autonomous Systems (AS) and ensuring advanced routing via <strong>BGP, OSPF, RIP, and MPLS</strong> protocols.</li>
-                    <li>A <strong>LAN</strong> part simulating the hierarchical local networks of the companies' different geographic sites.</li>
-                    <li>A <strong>Services</strong> part integrating the secure deployment of enterprise servers (DNS, DHCP, Web, Mail, Active Directory).</li>
-                </ul>
+                <p>During this SAE, we had to develop an encrypted messaging application in <strong>Python</strong>, as well as create an "onion" routing infrastructure with a master server, routers, and clients. The goal was to encapsulate the message layer by layer using a custom-made <strong>RSA</strong> asymmetric encryption algorithm. We also produced extensive documentation to support this project.</p>
+                <a href="https://github.com/1gn0/SAE302-les2macaques" target="_blank" class="github-btn"><i class="fa-brands fa-github"></i> View the project and its documentation on GitHub</a>
             </div>
         </section>
 
@@ -229,123 +218,117 @@
             <div class="tools-grid">
                 <div class="tool-card">
                     <div class="tool-img logo-style">
-                        <img src="files/logo/eveng.jpg" alt="EVE-NG">
+                        <img src="files/logo/python.png" alt="Python" style="filter: drop-shadow(0 0 10px rgba(52, 152, 219, 0.5));">
                     </div>
                     <div class="tool-info">
-                        <h3><a href="https://www.eve-ng.net/" target="_blank">EVE-NG <i class="fa-solid fa-arrow-up-right-from-square"></i></a></h3>
-                        <p>Professional virtual network emulator used to simulate the entire multi-site topology, including routers and virtual machines.</p>
+                        <h3><a href="https://docs.python.org/3/library/socket.html" target="_blank">Python (Sockets & Threads) <i class="fa-solid fa-arrow-up-right-from-square"></i></a></h3>
+                        <p>Development of the distributed architecture using object-oriented programming, network connection management (Sockets), and parallelism (Threading).</p>
                     </div>
                 </div>
                 <div class="tool-card">
-                    <div class="tool-img logo-style">
-                        <img src="files/logo/cisco.png" alt="Cisco">
+                    <div class="tool-img">
+                        <i class="fa-solid fa-window-maximize"></i>
                     </div>
                     <div class="tool-info">
-                        <h3><a href="https://www.cisco.com/" target="_blank">Cisco Equipment <i class="fa-solid fa-arrow-up-right-from-square"></i></a></h3>
-                        <p>Advanced command-line configuration of Cisco IOS on routers (CE, PE, P, ASBR) for BGP/OSPF/RIP and MPLS routing.</p>
+                        <h3><a href="https://riverbankcomputing.com/software/pyqt/" target="_blank">PyQt6 <i class="fa-solid fa-arrow-up-right-from-square"></i></a></h3>
+                        <p>Library used to develop graphical user interfaces (GUI) for the various clients and the Master's supervision dashboard.</p>
                     </div>
                 </div>
                 <div class="tool-card">
-                    <div class="tool-img logo-style">
-                        <img src="files/logo/debian.png" alt="Debian Linux">
+                    <div class="tool-img">
+                        <i class="fa-solid fa-database"></i>
                     </div>
                     <div class="tool-info">
-                        <h3><a href="https://www.debian.org/" target="_blank">Debian Linux <i class="fa-solid fa-arrow-up-right-from-square"></i></a></h3>
-                        <p>Creation and administration of VMs for the DMZ zone hosting enterprise services (Apache, Bind9, Postfix/Dovecot).</p>
+                        <h3><a href="https://mariadb.org/" target="_blank">MariaDB <i class="fa-solid fa-arrow-up-right-from-square"></i></a></h3>
+                        <p>Relational database management system used by the Master to store public keys, IPs, and monitor machine status.</p>
                     </div>
                 </div>
                 <div class="tool-card">
-                    <div class="tool-img logo-style">
-                        <img src="files/logo/windows.png" alt="Windows Server">
+                    <div class="tool-img">
+                        <i class="fa-solid fa-calculator"></i>
                     </div>
                     <div class="tool-info">
-                        <h3><a href="https://www.microsoft.com/en-us/windows-server" target="_blank">Windows Server <i class="fa-solid fa-arrow-up-right-from-square"></i></a></h3>
-                        <p>Deployment of the primary DNS server and implementation of the Active Directory directory service for domain management.</p>
+                        <h3><a href="https://www.sympy.org/" target="_blank">Maths & SymPy <i class="fa-solid fa-arrow-up-right-from-square"></i></a></h3>
+                        <p>Creation of a custom RSA algorithm with prime number generation (SymPy), gcd, and extended Euclidean algorithm (modular inverse).</p>
                     </div>
                 </div>
             </div>
         </section>
 
         <section class="project-section">
-            <h2 class="project-heading">Deliverables and Documentation</h2>
-            <p style="color: var(--text-muted); font-size: 1.05rem; margin-bottom: 20px;">The work was documented in 3 distinct parts corresponding to the technical division of the project:</p>
-            
-            <div class="docs-container">
-                <div class="doc-box">
-                    <div class="doc-info">
-                        <div class="doc-icon"><i class="fa-solid fa-globe"></i></div>
-                        <h3>ISP Documentation (Core Network)</h3>
-                    </div>
-                    <div class="doc-actions">
-                        <button class="btn btn-secondary" onclick="openModal('files/2A/DocFAISAE303.pdf')">View</button>
-                        <a href="files/2A/DocFAISAE303.pdf" class="btn btn-primary" download>Download</a>
-                    </div>
-                </div>
-                <div class="doc-box">
-                    <div class="doc-info">
-                        <div class="doc-icon"><i class="fa-solid fa-sitemap"></i></div>
-                        <h3>LAN Documentation (Enterprise Network)</h3>
-                    </div>
-                    <div class="doc-actions">
-                        <button class="btn btn-secondary" onclick="openModal('files/2A/DocLanSAE303.pdf')">View</button>
-                        <a href="files/2A/DocLanSAE303.pdf" class="btn btn-primary" download>Download</a>
-                    </div>
-                </div>
-                <div class="doc-box">
-                    <div class="doc-info">
-                        <div class="doc-icon"><i class="fa-solid fa-server"></i></div>
-                        <h3>Services Documentation (DMZ & Servers)</h3>
-                    </div>
-                    <div class="doc-actions">
-                        <button class="btn btn-secondary" onclick="openModal('files/2A/DocServicesSAE303.pdf')">View</button>
-                        <a href="files/2A/DocServicesSAE303.pdf" class="btn btn-primary" download>Download</a>
-                    </div>
+            <h2 class="project-heading">System and Interface Overview</h2>
+            <div class="gallery-grid">
+                <figure class="gallery-box large">
+                    <img src="files/2A/schema_sae_302.png" alt="Encapsulation and routing diagram">
+                    <figcaption class="gallery-info">Conceptual network diagram: message transmission from Client A to Client B passing through a random path (onion routing).</figcaption>
+                </figure>
+                <div class="gallery-row">
+                    <figure class="gallery-box">
+                        <img src="files/2A/liste_machine_sae302.png" alt="Master Interface">
+                        <figcaption class="gallery-info">Master monitoring interface: live tracking of connected routers and public key database management.</figcaption>
+                    </figure>
+                    <figure class="gallery-box">
+                        <img src="files/2A/envoi_sae_302.png" alt="Client Interface">
+                        <figcaption class="gallery-info">Client graphical interface developed with PyQt6: selection of the recipient and the number of hops for anonymization.</figcaption>
+                    </figure>
                 </div>
             </div>
         </section>
 
-        <section class="project-section role-section-cohesive">
-            <p class="role-intro-text">
-                My main role in this project focused on the design and configuration of the <strong>Internet Service Provider (ISP)</strong> part. I was tasked with creating the core network to securely and isolatedly interconnect our clients' various geographic sites.
+        <section class="project-section">
+            <h2 class="project-heading">Onion Encapsulation Logic</h2>
+            <p style="color: var(--text-main); font-size: 1.05rem; line-height: 1.8; margin-bottom: 20px;">
+                Here is an excerpt of our asymmetric encryption implementation (based on RSA). Since in this type of algorithm, the data size must not exceed the key size (N), long multi-layer encapsulated messages posed a problem. I therefore implemented a <code>chunk_message</code> function to divide the string into fixed-size blocks (based on N's bytes) before encrypting them individually and concatenating them with separators.
             </p>
+            
+            <div class="code-snippet-box">
+<pre><code><span class="keyword">def</span> <span class="function">chunk_message</span>(message, block_size):
+    <span class="string">"""Divides the message into blocks of the maximum key size (N)"""</span>
+    data = message.<span class="function">encode</span>(<span class="string">"utf-8"</span>)
+    <span class="keyword">return</span> [data[i:i+block_size] <span class="keyword">for</span> i <span class="keyword">in</span> <span class="builtin">range</span>(0, <span class="builtin">len</span>(data), block_size)]
 
-            <div class="dashboard-showcase-stacked">
-                <div class="dashboard-img-large">
-                    <img src="files/2A/sae-multisite.png" alt="Multi-site topology diagram EVE-NG">
-                </div>
-                
-                <div class="dashboard-features-list">
-                    <h4>Technical missions carried out on the ISP part:</h4>
-                    <ul>
-                        <li>Deployment of IGP routing (RIP and OSPF) within the 3 Autonomous Systems.</li>
-                        <li>Configuration of <strong>MPLS</strong> label switching at the core of the AS to optimize transit.</li>
-                        <li>Implementation of <strong>Route Reflectors (RR)</strong> to optimize the intra-AS BGP mesh.</li>
-                        <li>Strict isolation of clients using Virtual Routing and Forwarding <strong>(VRF)</strong> tables on Provider Edge (PE) routers.</li>
-                        <li>Management of redundancy and failover between AS in case of hardware failure (BGP Additional-paths).</li>
-                        <li>Setup of a <strong>static NAT</strong> on an ASBR to expose a private web server to the public internet.</li>
-                    </ul>
-                </div>
+<span class="keyword">def</span> <span class="function">chiffrement</span>(message, pubkey):
+    <span class="string">"""Encrypts a long message by chunking it beforehand"""</span>
+    SEP_BLOCK = <span class="string">'$$$'</span> 
+    SEP_PART = <span class="string">'$#$'</span>
+
+    _, n = pubkey
+    block_size = (n.bit_length() - 1) // 8 
+    blocks = <span class="function">chunk_message</span>(message, block_size)
+    
+    cipher_blocks, lengths = [], []
+    <span class="keyword">for</span> block <span class="keyword">in</span> blocks:
+        c, l = <span class="function">encrypt_block</span>(block, pubkey) <span class="comment"># pow(m, e, n)</span>
+        cipher_blocks.append(c)
+        lengths.append(l)
+        
+    <span class="comment"># Reconstruction of the final encrypted payload with preserved lengths</span>
+    message_chiffre_parts = []
+    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="builtin">range</span>(<span class="builtin">len</span>(cipher_blocks)):
+        message_chiffre_parts.append(<span class="string">f"{</span>cipher_blocks[i]<span class="string">}{</span>SEP_BLOCK<span class="string">}{</span>lengths[i]<span class="string">}"</span>)
+        
+    <span class="keyword">return</span> SEP_PART.<span class="function">join</span>(message_chiffre_parts)</code></pre>
             </div>
         </section>
 
         <section class="project-section">
-            <h2 class="project-heading">Main project steps</h2>
+            <h2 class="project-heading">Main Steps and Project Management</h2>
             <div class="steps-grid">
                 <div class="step-card">
-                    <h3>1. Design and Addressing</h3>
-                    <p>Analysis of specifications, task distribution, creation of IP addressing plans (VLSM) for LANs and the ISP, and deployment of the topology in EVE-NG.</p>
+                    <h3>1. Management and Planning</h3>
+                    <p>Implementation of a Gantt chart to schedule tasks, use of Git/GitHub for collaborative code versioning, and strict definition of specifications upfront.</p>
                 </div>
                 <div class="step-card">
-                    <h3>2. LAN Administration</h3>
-                    <p>Configuration of switches for each site: creation of hierarchical VLANs, securing with MST (Multi Spanning Tree), and implementing high availability via VRRP.</p>
+                    <h3>2. Encryption and Mathematics</h3>
+                    <p>Development of the custom asymmetric algorithm. Creation of a prime number generation module, calculation of the modular inverse, and block size limit management.</p>
                 </div>
                 <div class="step-card">
-                    <h3>3. Interconnection (ISP)</h3>
-                    <p>Opening BGP (iBGP and eBGP) and MP-BGP sessions for transporting VPNv4 prefixes. Definition of Route-Targets (RD/RT) to secure the exchange of client routes.</p>
+                    <h3>3. Architecture and Sockets</h3>
+                    <p>Object-Oriented Programming to create the <code>Router</code> and <code>Client</code> (inheriting from Router) classes. TCP connection management via Sockets and implementation of multithreading to listen and relay simultaneously.</p>
                 </div>
                 <div class="step-card">
-                    <h3>4. Service Deployment</h3>
-                    <p>Installation and securing of virtual machines (Debian/Windows) in the DMZ zone. Configuration of DNS (with zone transfer), Web (Apache), Mail, and Active Directory servers.</p>
+                    <h3>4. Documentation</h3>
+                    <p>Writing comprehensive documentation: step-by-step installation manual (Python dependencies, MariaDB), user manual with console execution examples, and technical response document.</p>
                 </div>
             </div>
         </section>
@@ -353,12 +336,14 @@
         <section class="project-section">
             <h2 class="project-heading">Validated Skills</h2>
             <div class="ac-box">
-                <p style="color: var(--text-main); font-size: 1.05rem;">This project is at the heart of the Cybersecurity track and validates the following learnings:</p>
+                <p style="color: var(--text-main); font-size: 1.05rem;">This SAE was very comprehensive and mobilized numerous Critical Learnings:</p>
                 <ul class="ue-list">
-                    <li><span class="code">AC21.01</span> Configure and troubleshoot dynamic routing in a network (OSPF, RIP, BGP).</li>
-                    <li><span class="code">AC22.03</span> Set up a multi-site connection via a carrier network (MPLS-VPN).</li>
-                    <li><span class="code">AC24.02Cyber</span> Implement fundamental tools for securing an infrastructure (VRF, prefix lists, NAT).</li>
-                    <li><span class="code">CE4.04</span> Work in a team to create a complex interconnected architecture.</li>
+                    <li><span class="code">AC23.01</span> Automate system administration with scripts (installation scripts, virtual environment).</li>
+                    <li><span class="code">AC23.02</span> Develop an application based on given specifications, including a clean GUI.</li>
+                    <li><span class="code">AC23.03</span> Use a network protocol (TCP Sockets) to program a client/server application.</li>
+                    <li><span class="code">AC23.04</span> Install and administer a database management system (MariaDB for the Master).</li>
+                    <li><span class="code">CE3.01</span> Listen to requirements: rigorous implementation of the features requested in the specifications.</li>
+                    <li><span class="code">CE3.02</span> Document the completed work: strong investment in installation and user deliverables.</li>
                 </ul>
             </div>
         </section>
@@ -367,19 +352,12 @@
             <div class="bilan-card">
                 <h3>Reflective Analysis</h3>
                 <p>
-                    During this project, I was able to integrate into the center of a collaborative effort simulating a large-scale network infrastructure. This involves significant security issues because several clients are communicating over the same core network (which requires strict isolation via VRFs and route filtering). The use of the EVE-NG emulator was sometimes more complex than expected in terms of hardware resources, but we managed to overcome the technical challenges and successfully complete all the specifications.
+                    During this SAE, I was able to reflect on the various implementation challenges of the project, especially regarding the encapsulation logic (the encrypted message growing very quickly with each hop). At least 50% of the time on this project was also dedicated to <strong>documentation</strong>, which allowed us to think about the clearest and most pedagogical way to explain the installation and use of the application to someone completely external to the project, thereby consolidating my professional communication skills.
                 </p>
             </div>
         </section>
 
     </main>
-
-    <div id="results-modal" class="modal">
-        <div class="modal-content">
-            <span class="close-btn" onclick="closeModal()">&times;</span>
-            <iframe id="pdf-frame" src=""></iframe>
-        </div>
-    </div>
 
     <footer>
         <div class="container">
@@ -389,27 +367,12 @@
     </footer>
 
     <script>
-        function openModal(pdfSrc) {
-            document.getElementById('results-modal').style.display = 'flex';
-            document.getElementById('pdf-frame').src = pdfSrc;
-            document.body.style.overflow = 'hidden'; 
-        }
-        function closeModal() {
-            document.getElementById('results-modal').style.display = 'none';
-            document.getElementById('pdf-frame').src = ""; 
-            document.body.style.overflow = 'auto'; 
-        }
-        window.onclick = function(event) {
-            const modal = document.getElementById('results-modal');
-            if (event.target == modal) { closeModal(); }
-        }
-        
         document.addEventListener('DOMContentLoaded', () => {
             const langToggle = document.getElementById('langToggle');
             if(langToggle) {
                 langToggle.addEventListener('change', function() {
                     if(!this.checked) {
-                        window.location.href = "sae303.html";
+                        window.location.href = "sae302.html";
                     }
                 });
             }
