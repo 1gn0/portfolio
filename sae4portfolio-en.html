@@ -27,6 +27,10 @@
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        /* Correction du décalage avec la barre de défilement */
+        html { scroll-behavior: smooth; overflow-x: hidden; scrollbar-gutter: stable; }
+
         body { background-color: var(--bg-color); color: var(--text-main); font-family: var(--font-main); line-height: 1.7; overflow-x: hidden; display: flex; flex-direction: column; min-height: 100vh; }
         h1, h2, h3, h4, h5 { font-family: var(--font-title); font-weight: normal; }
         a { text-decoration: none; color: inherit; transition: all 0.3s ease; }
@@ -49,7 +53,8 @@
 
         .page-subtitle { color: var(--text-muted); font-size: 1.15rem; max-width: 800px; margin: 0 auto; line-height: 1.8; opacity: 0; animation: fadeIn 1s ease forwards 0.2s; }
 
-        header { background-color: rgba(13, 11, 20, 0.95); padding: 10px 0; position: fixed; width: 100%; top: 0; z-index: 1000; backdrop-filter: blur(10px); border-bottom: 1px solid var(--border-color); box-shadow: 0 2px 20px rgba(0,0,0,0.4); }
+        /* --- NAVBAR EXACTEMENT COMME SUR L'INDEX FR --- */
+        header { background-color: rgba(13, 11, 20, 0.95); padding: 10px 0; position: fixed; width: 100%; top: 0; z-index: 1000; backdrop-filter: blur(10px); box-shadow: 0 2px 20px rgba(0,0,0,0.4); border-bottom: 1px solid var(--border-color); }
         nav { display: flex; justify-content: space-between; align-items: center; position: relative; }
         .logo { font-size: 1.8rem; color: var(--accent); font-family: var(--font-title); text-shadow: 0 0 10px var(--accent); }
         
@@ -58,7 +63,7 @@
         
         .nav-links { display: flex; gap: 10px; align-items: center; background-color: var(--bg-card); padding: 5px 8px; border-radius: var(--radius-lg); border: 1px solid var(--border-color); margin-left: auto; }
         .nav-links li { margin: 0 5px; }
-        .nav-links li a { font-weight: 500; font-size: 0.95rem; padding: 8px 18px; border-radius: var(--radius-lg); position: relative; display: block; min-width: 120px; text-align: center; }
+        .nav-links li a { font-weight: 500; font-size: 0.95rem; padding: 8px 18px; border-radius: var(--radius-lg); position: relative; display: block; }
         .nav-links li a:not(.nav-contact-btn):not(.lang-btn):hover, .nav-links li a.active { background-color: rgba(157, 78, 221, 0.15); color: var(--accent-hover); text-shadow: 0 0 5px var(--accent-hover); }
         .nav-contact-btn { background-color: transparent; border: 2px solid var(--accent); color: var(--accent); font-weight: 600; text-transform: uppercase; font-size: 0.85rem; letter-spacing: 1px; transition: all 0.3s ease; text-align: center; }
         .nav-contact-btn:hover { background-color: var(--accent); color: #ffffff; box-shadow: 0 0 15px var(--accent-glow); border-color: var(--accent-hover); }
@@ -158,7 +163,7 @@
                             <input type="checkbox" id="langToggle" checked>
                             <span class="slider round"></span>
                         </label>
-                        <span class="flag">🇬🇧</span>
+                        <span class="flag" style="opacity: 1;">🇬🇧</span>
                     </li>
                 </ul>
             </nav>
@@ -167,7 +172,7 @@
 
     <div class="page-header container">
         <div class="back-btn-container">
-            <a href="projets-en.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i> Back to projects</a>
+            <a href="projets-but2-en.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i> Back to projects</a>
         </div>
         <h1 class="section-title">SAE 4.PORTFOLIO</h1>
         <p class="page-subtitle">Portfolio approach: reflective analysis, highlighting skills, and web design of a professional identity.</p>
