@@ -25,10 +25,15 @@
             --radius-md: 16px; 
             --radius-lg: 30px; 
             --danger: #e74c3c;
-            --danger-glow: rgba(231, 76, 60, 0.2);
+            --danger-hover: #ff7675;
+            --danger-glow: rgba(231, 76, 60, 0.25);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        /* Correction du décalage avec la barre de défilement */
+        html { scroll-behavior: smooth; overflow-x: hidden; scrollbar-gutter: stable; }
+        
         body { background-color: var(--bg-color); color: var(--text-main); font-family: var(--font-main); line-height: 1.7; overflow-x: hidden; display: flex; flex-direction: column; min-height: 100vh; }
         h1, h2, h3, h4, h5 { font-family: var(--font-title); font-weight: normal; }
         a { text-decoration: none; color: inherit; transition: all 0.3s ease; }
@@ -47,21 +52,23 @@
 
         .section-title { font-size: 3.2rem; color: var(--danger); margin-bottom: 25px; display: flex; align-items: center; justify-content: center; text-align: center; position: relative; padding-bottom: 25px; opacity: 0; animation: fadeIn 1s ease forwards; }
         .section-title::before { content: ">"; margin-right: 15px; color: var(--danger); font-weight: bold; text-shadow: 0 0 10px var(--danger); font-family: var(--font-main); }
-        .section-title::after { content: ""; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 150px; height: 3px; background: linear-gradient(90deg, transparent, var(--danger), var(--danger), transparent); border-radius: 2px; }
+        .section-title::after { content: ""; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 150px; height: 3px; background: linear-gradient(90deg, transparent, var(--danger-hover), var(--danger), transparent); border-radius: 2px; }
 
         .page-subtitle { color: var(--text-muted); font-size: 1.15rem; max-width: 800px; margin: 0 auto; line-height: 1.8; opacity: 0; animation: fadeIn 1s ease forwards 0.2s; }
 
-        header { background-color: rgba(13, 11, 20, 0.95); padding: 10px 0; position: fixed; width: 100%; top: 0; z-index: 1000; backdrop-filter: blur(10px); border-bottom: 1px solid var(--border-color); box-shadow: 0 2px 20px rgba(0,0,0,0.4); }
-        nav { display: flex; justify-content: space-between; align-items: center; padding: 0 20px; max-width: 1200px; margin: 0 auto; width: 100%; position: relative; }
+        /* --- NAVBAR EXACTE DES AUTRES PAGES --- */
+        header { background-color: rgba(13, 11, 20, 0.95); padding: 10px 0; position: fixed; width: 100%; top: 0; z-index: 1000; backdrop-filter: blur(10px); box-shadow: 0 2px 20px rgba(0,0,0,0.4); border-bottom: 1px solid var(--border-color); }
+        nav { display: flex; justify-content: space-between; align-items: center; position: relative; }
         .logo { font-size: 1.8rem; color: var(--accent); font-family: var(--font-title); text-shadow: 0 0 10px var(--accent); }
         
         .menu-toggle { display: none; font-size: 1.8rem; color: var(--accent); cursor: pointer; transition: color 0.3s; }
         .menu-toggle:hover { color: var(--accent-cyan); }
-        
+
         .nav-links { display: flex; gap: 10px; align-items: center; background-color: var(--bg-card); padding: 5px 8px; border-radius: var(--radius-lg); border: 1px solid var(--border-color); margin-left: auto; }
         .nav-links li { margin: 0 5px; }
         .nav-links li a { font-weight: 500; font-size: 0.95rem; padding: 8px 18px; border-radius: var(--radius-lg); position: relative; display: block; }
         .nav-links li a:not(.nav-contact-btn):not(.lang-btn):hover, .nav-links li a.active { background-color: rgba(157, 78, 221, 0.15); color: var(--accent-hover); text-shadow: 0 0 5px var(--accent-hover); }
+        
         .nav-contact-btn { background-color: transparent; border: 2px solid var(--accent); color: var(--accent); font-weight: 600; text-transform: uppercase; font-size: 0.85rem; letter-spacing: 1px; transition: all 0.3s ease; text-align: center; }
         .nav-contact-btn:hover { background-color: var(--accent); color: #ffffff; box-shadow: 0 0 15px var(--accent-glow); border-color: var(--accent-hover); }
 
@@ -76,6 +83,7 @@
         .slider.round { border-radius: 34px; }
         .slider.round:before { border-radius: 50%; }
 
+        /* SUITE DU CSS SPECIFIQUE A LA SAE */
         .project-section { margin-bottom: 80px; opacity: 0; animation: fadeIn 1s ease forwards 0.3s; }
         .project-heading { font-size: 2rem; color: #ffffff; margin-bottom: 20px; border-left: 4px solid var(--danger); padding-left: 15px; }
         
@@ -87,7 +95,7 @@
         .tool-card { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 30px; display: flex; align-items: center; gap: 20px; transition: all 0.3s ease; box-shadow: 0 5px 20px rgba(0,0,0,0.2); }
         .tool-card:hover { border-color: var(--danger); transform: translateY(-5px); box-shadow: 0 10px 30px var(--danger-glow); }
         
-        .tool-img { width: 80px; height: 80px; flex-shrink: 0; background: rgba(255,255,255,0.05); border-radius: 12px; padding: 0; display: flex; align-items: center; justify-content: center; border: 1px solid rgba(255,255,255,0.1); overflow: hidden; }
+        .tool-img { width: 80px; height: 80px; flex-shrink: 0; background: rgba(255,255,255,0.05); border-radius: 12px; display: flex; align-items: center; justify-content: center; border: 1px solid rgba(255,255,255,0.1); overflow: hidden; }
         .tool-img img { width: 100%; height: 100%; object-fit: cover; border-radius: 12px; }
         .tool-img i { font-size: 4.5rem; color: var(--danger); }
         
@@ -131,6 +139,8 @@
             .nav-links.active { transform: translateY(0); opacity: 1; pointer-events: auto; }
             .nav-links li { margin: 15px 0; }
             .lang-switch-container { margin: 15px 0 0 0; justify-content: center; }
+            .flag { opacity: 1 !important; }
+            
             .tools-grid { grid-template-columns: 1fr; }
         }
         
@@ -174,7 +184,7 @@
         <div class="back-btn-container">
             <a href="projets-but2.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i> Revenir aux projets</a>
         </div>
-        <h1 class="section-title">SAE 3.04</h1>
+        <h1 class="section-title">SAE 3.Cyber.04</h1>
         <p class="page-subtitle">Découverte du pentesting : initiation à la cybersécurité via la résolution de challenges de type Capture The Flag (CTF).</p>
     </div>
 
