@@ -27,13 +27,16 @@
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        html { scroll-behavior: smooth; overflow-x: hidden; }
+        
+        /* Correction du décalage avec la barre de défilement */
+        html { scroll-behavior: smooth; overflow-x: hidden; scrollbar-gutter: stable; }
 
+        /* line-height 1.7 pour correspondre à l'index et éviter le tassement */
         body { 
             background-color: var(--bg-color); 
             color: var(--text-main); 
             font-family: var(--font-main); 
-            line-height: 1.6; 
+            line-height: 1.7; 
             overflow-x: hidden; 
             display: flex; 
             flex-direction: column; 
@@ -44,6 +47,8 @@
         a { text-decoration: none; color: inherit; transition: all 0.3s ease; }
         ul { list-style: none; }
         strong { color: var(--accent-hover); font-weight: 600; }
+
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
 
         .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; width: 100%; }
         
@@ -95,76 +100,20 @@
             text-align: center; 
         }
 
-        @keyframes fadeIn { 
-            from { opacity: 0; transform: translateY(20px); } 
-            to { opacity: 1; transform: translateY(0); } 
-        }
-
-        header { 
-            background-color: rgba(13, 11, 20, 0.95); 
-            padding: 10px 0; 
-            position: fixed; 
-            width: 100%; 
-            top: 0; 
-            z-index: 1000; 
-            backdrop-filter: blur(10px); 
-            box-shadow: 0 2px 20px rgba(0,0,0,0.4); 
-            border-bottom: 1px solid var(--border-color); 
-        }
-        
+        /* --- NAVBAR PURE ET ORIGINALE --- */
+        header { background-color: rgba(13, 11, 20, 0.95); padding: 10px 0; position: fixed; width: 100%; top: 0; z-index: 1000; backdrop-filter: blur(10px); box-shadow: 0 2px 20px rgba(0,0,0,0.4); border-bottom: 1px solid var(--border-color); }
         nav { display: flex; justify-content: space-between; align-items: center; position: relative; }
-        
         .logo { font-size: 1.8rem; color: var(--accent); font-family: var(--font-title); text-shadow: 0 0 10px var(--accent); }
-
+        
         .menu-toggle { display: none; font-size: 1.8rem; color: var(--accent); cursor: pointer; transition: color 0.3s; }
         .menu-toggle:hover { color: var(--accent-cyan); }
         
-        .nav-links { 
-            display: flex; 
-            gap: 10px; 
-            align-items: center; 
-            background-color: var(--bg-card); 
-            padding: 5px 8px; 
-            border-radius: var(--radius-lg); 
-            border: 1px solid var(--border-color); 
-            margin-left: auto; 
-        }
-        
+        .nav-links { display: flex; gap: 10px; align-items: center; background-color: var(--bg-card); padding: 5px 8px; border-radius: var(--radius-lg); border: 1px solid var(--border-color); margin-left: auto; }
         .nav-links li { margin: 0 5px; }
-
-        .nav-links li a { 
-            font-weight: 500; 
-            font-size: 0.95rem; 
-            padding: 8px 18px; 
-            border-radius: var(--radius-lg); 
-            position: relative; 
-            display: block;
-        }
-
-        .nav-links li a:not(.nav-contact-btn):not(.lang-btn):hover, .nav-links li a.active { 
-            background-color: rgba(157, 78, 221, 0.15); 
-            color: var(--accent-hover); 
-            text-shadow: 0 0 5px var(--accent-hover); 
-        }
-
-        .nav-contact-btn { 
-            background-color: transparent; 
-            border: 2px solid var(--accent); 
-            color: var(--accent); 
-            font-weight: 600; 
-            text-transform: uppercase; 
-            font-size: 0.85rem; 
-            letter-spacing: 1px; 
-            transition: all 0.3s ease; 
-            text-align: center;
-        }
-
-        .nav-contact-btn:hover { 
-            background-color: var(--accent); 
-            color: #ffffff; 
-            box-shadow: 0 0 15px var(--accent-glow); 
-            border-color: var(--accent-hover); 
-        }
+        .nav-links li a { font-weight: 500; font-size: 0.95rem; padding: 8px 18px; border-radius: var(--radius-lg); position: relative; display: block; }
+        .nav-links li a:not(.nav-contact-btn):not(.lang-btn):hover, .nav-links li a.active { background-color: rgba(157, 78, 221, 0.15); color: var(--accent-hover); text-shadow: 0 0 5px var(--accent-hover); }
+        .nav-contact-btn { background-color: transparent; border: 2px solid var(--accent); color: var(--accent); font-weight: 600; text-transform: uppercase; font-size: 0.85rem; letter-spacing: 1px; transition: all 0.3s ease; text-align: center; }
+        .nav-contact-btn:hover { background-color: var(--accent); color: #ffffff; box-shadow: 0 0 15px var(--accent-glow); border-color: var(--accent-hover); }
 
         .lang-switch-container { display: flex; align-items: center; gap: 8px; margin-left: 15px; }
         .flag { font-size: 1.3rem; transition: opacity 0.3s; user-select: none; }
@@ -176,6 +125,7 @@
         input:checked + .slider:before { transform: translateX(26px); background-color: var(--accent); box-shadow: 0 0 10px var(--accent); }
         .slider.round { border-radius: 34px; }
         .slider.round:before { border-radius: 50%; }
+        /* -------------------------------- */
 
         .projets-grid { 
             display: grid; 
@@ -313,7 +263,7 @@
                             <input type="checkbox" id="langToggle" checked>
                             <span class="slider round"></span>
                         </label>
-                        <span class="flag">🇬🇧</span>
+                        <span class="flag" style="opacity: 1;">🇬🇧</span>
                     </li>
                 </ul>
             </nav>
@@ -353,18 +303,22 @@
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const langToggle = document.getElementById('langToggle');
-            langToggle.addEventListener('change', function() {
-                if(!this.checked) {
-                    window.location.href = "projets.html";
-                }
-            });
+            if(langToggle) {
+                langToggle.addEventListener('change', function() {
+                    if(!this.checked) {
+                        window.location.href = "projets.html";
+                    }
+                });
+            }
 
             const mobileMenu = document.getElementById('mobile-menu');
             const navLinksList = document.getElementById('nav-links');
             
-            mobileMenu.addEventListener('click', () => {
-                navLinksList.classList.toggle('active');
-            });
+            if(mobileMenu && navLinksList) {
+                mobileMenu.addEventListener('click', () => {
+                    navLinksList.classList.toggle('active');
+                });
+            }
         });
     </script>
 </body>
