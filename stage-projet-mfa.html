@@ -139,7 +139,6 @@
         .logic-card img { max-width: 100%; border-radius: 4px; cursor: pointer; transition: transform 0.3s; box-shadow: 0 5px 15px rgba(0,0,0,0.3); }
         .logic-card img:hover { transform: scale(1.03); }
 
-        /* Grille pour les autres tâches - Forcée à 2 par ligne */
         .steps-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin-top: 30px; }
         .step-card { background: rgba(255,255,255,0.02); border: 1px solid var(--border-color); border-top: 3px solid var(--stage-color); border-radius: var(--radius-md); padding: 30px; transition: all 0.3s ease; }
         .step-card:hover { background: rgba(230, 126, 34, 0.05); border-color: var(--stage-color); }
@@ -293,12 +292,12 @@
                 <div class="flex-container">
                     <div class="flex-text">
                         <h3>Microsoft Authenticator :</h3>
-                        <p>Authenticator est une application créée par Microsoft qui permet notamment la connexion à la suite Office 365. Lors de la saisie du mot de passe, une pop-up apparaît avec un nombre à deux chiffres. L’utilisateur peut alors rentrer ce code sur son téléphone pour se connecter.</p>
+                        <p>Authenticator est une application créée par Microsoft qui permet notamment la connexion à la suite Office 365. Lors de la saisie du mot de passe, une pop-up apparaît sur le PC avec un nombre à deux chiffres. L’utilisateur peut alors rentrer ce code sur son téléphone pour se connecter.</p>
                     </div>
                     <div class="flex-image">
                         <figure>
                             <img src="files/stage/msauth_page.png" alt="Interface Microsoft Authenticator" onclick="openModal('files/stage/msauth_page.png')">
-                            <figcaption>Interface de validation par code sur smartphone.</figcaption>
+                            <figcaption>Pop-up affichée sur PC avec le code de validation.</figcaption>
                         </figure>
                     </div>
                 </div>
@@ -540,6 +539,15 @@
             if (event.target == modal) { closeModal(); }
         }
         document.addEventListener('DOMContentLoaded', () => {
+            const langToggle = document.getElementById('langToggle');
+            if(langToggle) {
+                langToggle.addEventListener('change', function() {
+                    if(this.checked) {
+                        window.location.href = "stage-projet-mfa-en.html";
+                    }
+                });
+            }
+
             const mobileMenu = document.getElementById('mobile-menu');
             const navLinksList = document.getElementById('nav-links');
             if(mobileMenu && navLinksList) {
