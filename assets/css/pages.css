@@ -194,8 +194,6 @@ html[lang=en] .role-section-cohesive::before{content:'MY ROLE ON THE PROJECT'}
 .steps-grid .step-card.rvd::before{background:var(--a)}
 /* spotlight & tilt */
 .spot{position:relative}
-.spot::after{content:'';position:absolute;inset:0;pointer-events:none;border-radius:inherit;opacity:0;transition:opacity .25s;background:radial-gradient(260px circle at var(--mx,50%) var(--my,50%),color-mix(in srgb,var(--a) 16%,transparent),transparent 70%)}
-.spot:hover::after{opacity:1}
 .tilt{transition:transform .15s ease-out,border-color .25s,box-shadow .25s;will-change:transform}
 /* révélation */
 .rv{opacity:0;transform:translateY(22px);transition:opacity .6s ease,transform .6s ease}

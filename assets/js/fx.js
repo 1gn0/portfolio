@@ -4,7 +4,7 @@
   function $$(s,r){return [].slice.call((r||d).querySelectorAll(s))}
   // classes d'effets sur l'accueil aussi
   var SP='.tk,.ct,.uc,.cell,.tc,.doc,.big';
-  $$(SP).forEach(function(el){if(!el.classList.contains('spot')){el.classList.add('spot');el.addEventListener('pointermove',function(e){var r=el.getBoundingClientRect();el.style.setProperty('--mx',(e.clientX-r.left)+'px');el.style.setProperty('--my',(e.clientY-r.top)+'px')})}});
+  $$(SP).forEach(function(el){if(!el.classList.contains('spot')){el.classList.add('spot');0}});
   if(!reduce&&hov){
     $$('.tk,.uc,.doc,.cell,.tc').forEach(function(el){if(el.classList.contains('tilt'))return;el.classList.add('tilt');
       el.addEventListener('pointermove',function(e){var r=el.getBoundingClientRect(),px=(e.clientX-r.left)/r.width-.5,py=(e.clientY-r.top)/r.height-.5,k=el.classList.contains('tk')?3:6;el.style.transform='perspective(1000px) rotateX('+(-py*k)+'deg) rotateY('+(px*k*1.2)+'deg) translateY(-3px)';el.style.setProperty('--px',px);el.style.setProperty('--py',py)});

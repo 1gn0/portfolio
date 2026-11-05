@@ -55,7 +55,7 @@
   // spotlight + tilt
   var SP='.pw,.tool-card,.step-card,.mission-item,.structure-card,.logic-card,.sae-card,.uc,.tk,.ct,.doc,.tc,.company-card,.grade,.relc,.rb,.box,.cd';
   d.querySelectorAll(SP).forEach(function(el){el.classList.add('spot');
-    el.addEventListener('pointermove',function(e){var r=el.getBoundingClientRect();el.style.setProperty('--mx',(e.clientX-r.left)+'px');el.style.setProperty('--my',(e.clientY-r.top)+'px')})});
+    0});
   if(!reduce&&matchMedia('(hover:hover)').matches)d.querySelectorAll('.tool-card,.sae-card,.uc,.doc,.logic-card,.mission-item,.tc,.step-card').forEach(function(el){el.classList.add('tilt');
     el.addEventListener('pointermove',function(e){var r=el.getBoundingClientRect(),px=(e.clientX-r.left)/r.width-.5,py=(e.clientY-r.top)/r.height-.5;el.style.transform='perspective(900px) rotateX('+(-py*5)+'deg) rotateY('+(px*6)+'deg) translateY(-3px)'});
     el.addEventListener('pointerleave',function(){el.style.transform=''})});
