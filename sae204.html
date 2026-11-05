@@ -1,399 +1,179 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SAE 2.04 | Camille HENRY--DELANGLE</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Saira+Stencil+One&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <style>
-        :root {
-            --bg-color: #0d0b14; 
-            --bg-card: #161420;  
-            --text-main: #e0e6ed;
-            --text-muted: #a1aabf;
-            --accent: #9d4edd;          
-            --accent-hover: #c77dff;    
-            --accent-cyan: #4facfe;
-            --accent-glow: rgba(157, 78, 221, 0.25); 
-            --border-color: #2d2a3a;
-            --font-main: 'Inter', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            --font-title: 'Saira Stencil One', sans-serif; 
-            --font-mono: 'Courier New', Courier, monospace;
-            --radius-md: 16px; 
-            --radius-lg: 30px; 
-            
-            --indigo-accent: #6366f1;
-            --indigo-light: #818cf8;
-            --indigo-glow: rgba(99, 102, 241, 0.2);
-            
-            --success: #2ecc71;
-            --success-glow: rgba(46, 204, 113, 0.1);
-        }
-
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { background-color: var(--bg-color); color: var(--text-main); font-family: var(--font-main); line-height: 1.7; overflow-x: hidden; display: flex; flex-direction: column; min-height: 100vh; }
-        h1, h2, h3, h4, h5 { font-family: var(--font-title); font-weight: normal; }
-        a { text-decoration: none; color: inherit; transition: all 0.3s ease; }
-        ul { list-style: none; }
-        strong { color: var(--accent-hover); font-weight: 600; }
-
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-
-        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; width: 100%; }
-        
-        .back-btn-container { text-align: left; margin-bottom: 40px; }
-        .back-btn { display: inline-flex; align-items: center; gap: 8px; color: var(--text-muted); font-size: 0.95rem; font-weight: 500; transition: color 0.3s ease; }
-        .back-btn:hover { color: var(--indigo-light); }
-        
-        .page-header { padding: 120px 20px 40px 20px; text-align: center; }
-
-        .section-title { font-size: 3.2rem; color: var(--accent); margin-bottom: 25px; display: flex; align-items: center; justify-content: center; text-align: center; position: relative; padding-bottom: 25px; opacity: 0; animation: fadeIn 1s ease forwards; }
-        .section-title::before { content: ">"; margin-right: 15px; color: var(--indigo-light); font-weight: bold; text-shadow: 0 0 10px var(--indigo-light); font-family: var(--font-main); }
-        .section-title::after { content: ""; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 150px; height: 3px; background: linear-gradient(90deg, transparent, var(--accent-hover), var(--indigo-light), transparent); border-radius: 2px; }
-
-        .page-subtitle { color: var(--text-muted); font-size: 1.15rem; max-width: 800px; margin: 0 auto; line-height: 1.8; opacity: 0; animation: fadeIn 1s ease forwards 0.2s; }
-
-        header { background-color: rgba(13, 11, 20, 0.95); padding: 10px 0; position: fixed; width: 100%; top: 0; z-index: 1000; backdrop-filter: blur(10px); border-bottom: 1px solid var(--border-color); box-shadow: 0 2px 20px rgba(0,0,0,0.4); }
-        nav { display: flex; justify-content: space-between; align-items: center; }
-        .logo { font-size: 1.8rem; color: var(--accent); font-family: var(--font-title); text-shadow: 0 0 10px var(--accent); }
-        
-        .menu-toggle { display: none; font-size: 1.8rem; color: var(--accent); cursor: pointer; transition: color 0.3s; }
-        .menu-toggle:hover { color: var(--accent-cyan); }
-        
-        .nav-links { display: flex; gap: 10px; align-items: center; background-color: var(--bg-card); padding: 5px 8px; border-radius: var(--radius-lg); border: 1px solid var(--border-color); margin-left: auto; }
-        .nav-links li { margin: 0 5px; }
-        .nav-links li a { font-weight: 500; font-size: 0.95rem; padding: 8px 18px; border-radius: var(--radius-lg); position: relative; display: block; }
-        .nav-links li a:not(.nav-contact-btn):not(.lang-btn):hover, .nav-links li a.active { background-color: rgba(157, 78, 221, 0.15); color: var(--accent-hover); text-shadow: 0 0 5px var(--accent-hover); }
-        .nav-contact-btn { background-color: transparent; border: 2px solid var(--accent); color: var(--accent); font-weight: 600; text-transform: uppercase; font-size: 0.85rem; letter-spacing: 1px; transition: all 0.3s ease; text-align: center; }
-        .nav-contact-btn:hover { background-color: var(--accent); color: #ffffff; box-shadow: 0 0 15px var(--accent-glow); border-color: var(--accent-hover); }
-
-        .lang-switch-container { display: flex; align-items: center; gap: 8px; margin-left: 15px; }
-        .flag { font-size: 1.3rem; transition: opacity 0.3s; user-select: none; }
-        .switch { position: relative; display: inline-block; width: 54px; height: 28px; }
-        .switch input { opacity: 0; width: 0; height: 0; }
-        .slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: rgba(157, 78, 221, 0.1); transition: .4s; border: 1px solid var(--accent); }
-        .slider:before { position: absolute; content: ""; height: 20px; width: 20px; left: 3px; bottom: 3px; background-color: var(--accent-cyan); transition: .4s; box-shadow: 0 0 10px var(--accent-cyan); }
-        input:checked + .slider { background-color: rgba(79, 172, 254, 0.1); border-color: var(--accent-cyan); }
-        input:checked + .slider:before { transform: translateX(26px); background-color: var(--accent); box-shadow: 0 0 10px var(--accent); }
-        .slider.round { border-radius: 34px; }
-        .slider.round:before { border-radius: 50%; }
-
-        .project-section { margin-bottom: 80px; opacity: 0; animation: fadeIn 1s ease forwards 0.3s; }
-        .project-heading { font-size: 2rem; color: #ffffff; margin-bottom: 20px; border-left: 4px solid var(--indigo-light); padding-left: 15px; }
-        
-        .resume-box { background: linear-gradient(145deg, rgba(99, 102, 241, 0.05), rgba(22, 20, 32, 0.1)); border-left: 4px solid var(--indigo-accent); padding: 30px 40px; border-radius: 0 var(--radius-md) var(--radius-md) 0; border-top: 1px solid rgba(99, 102, 241, 0.2); border-right: 1px solid rgba(99, 102, 241, 0.2); border-bottom: 1px solid rgba(99, 102, 241, 0.2); margin-bottom: 50px; box-shadow: 0 5px 20px var(--indigo-glow); }
-        .resume-box h3 { color: var(--indigo-light); margin-bottom: 15px; font-size: 1.6rem; text-shadow: 0 0 10px rgba(99, 102, 241, 0.2); }
-        .resume-box p { color: var(--text-main); font-size: 1.05rem; line-height: 1.7; margin-bottom: 15px; }
-        
-        .github-btn { display: inline-flex; align-items: center; gap: 10px; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); color: #fff; padding: 10px 20px; border-radius: var(--radius-lg); font-size: 0.9rem; font-weight: 600; transition: all 0.3s; }
-        .github-btn:hover { background: #fff; color: #000; }
-
-        .tools-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; margin-top: 30px; }
-        .tool-card { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 25px; display: flex; align-items: flex-start; gap: 20px; transition: all 0.3s ease; box-shadow: 0 5px 20px rgba(0,0,0,0.2); height: 100%; }
-        .tool-card:hover { border-color: var(--indigo-light); transform: translateY(-5px); box-shadow: 0 10px 30px var(--indigo-glow); }
-        .tool-img { width: 60px; height: 60px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; overflow: hidden; }
-        .tool-img img { max-width: 100%; max-height: 100%; object-fit: contain; border-radius: 8px; }
-        .tool-img i { font-size: 3.5rem; color: var(--indigo-light); }
-        .tool-info h3 { margin-top: 0; }
-        .tool-info h3 a { color: #fff; font-size: 1.2rem; margin-bottom: 5px; display: inline-flex; align-items: center; gap: 8px; transition: color 0.3s; }
-        .tool-info h3 a:hover { color: var(--indigo-light); }
-        .tool-info h3 i { font-size: 0.85rem; opacity: 0.7; }
-        .tool-info p { color: var(--text-muted); font-size: 0.85rem; line-height: 1.5; margin-top: 5px; }
-
-        .architecture-box { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 40px; text-align: center; margin-top: 40px; box-shadow: 0 10px 40px rgba(0,0,0,0.3); display: block; }
-        .architecture-box img { max-width: 100%; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 0 20px rgba(0,0,0,0.5); }
-        .architecture-info { margin-top: 20px; color: var(--text-muted); font-style: italic; font-size: 1rem; display: block; }
-
-        .steps-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 30px; margin-top: 30px; }
-        .step-card { background: rgba(255,255,255,0.02); border: 1px solid var(--border-color); border-top: 3px solid var(--indigo-accent); border-radius: var(--radius-md); padding: 30px; transition: all 0.3s ease; }
-        .step-card h3 { color: var(--indigo-light); font-size: 1.3rem; margin-bottom: 15px; }
-        .step-card p { color: var(--text-main); font-size: 0.95rem; line-height: 1.6; }
-
-        .role-container { background: rgba(157, 78, 221, 0.05); border: 2px dashed var(--accent); border-radius: var(--radius-md); padding: 40px; margin-top: 30px; position: relative; }
-        .role-container::before { content: "MON RÔLE ET CONTRIBUTIONS"; position: absolute; top: -15px; left: 30px; background: var(--accent); color: #fff; padding: 2px 15px; border-radius: 4px; font-family: var(--font-title); font-size: 0.9rem; }
-        
-        .role-intro { font-size: 1.1rem; line-height: 1.8; color: var(--text-main); margin-bottom: 40px; }
-        .role-container h4 { color: var(--indigo-light); font-size: 1.8rem; margin-bottom: 20px; font-family: var(--font-title); border-bottom: 1px solid rgba(157, 78, 221, 0.2); padding-bottom: 10px; }
-
-        .bdd-grid-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 25px; margin: 25px 0 50px 0; }
-        .bdd-col-stacked { display: flex; flex-direction: column; gap: 25px; }
-        .bdd-card { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 15px; text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%; }
-        .bdd-card img { max-width: 100%; height: auto; object-fit: contain; border-radius: 4px; border: 1px solid rgba(255,255,255,0.1); }
-        .bdd-card figcaption { margin-top: 10px; font-size: 0.85rem; color: var(--text-muted); font-style: italic; }
-
-        .site-showcase { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 30px; display: flex; flex-direction: column; gap: 30px; margin-top: 25px; }
-        .site-img { width: 100%; text-align: center; }
-        .site-img img { width: 100%; max-width: 100%; border-radius: 8px; border: 1px solid var(--border-color); box-shadow: 0 10px 30px rgba(0,0,0,0.4); }
-        .site-details { width: 100%; }
-        .site-details ul { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 15px; }
-        .site-details ul li { position: relative; padding-left: 25px; color: var(--text-muted); font-size: 1rem; }
-        .site-details ul li::before { content: "→"; position: absolute; left: 0; color: var(--indigo-light); font-weight: bold; }
-
-        .ac-box { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 40px; margin-top: 40px; }
-        .ue-list li { position: relative; padding-left: 25px; margin-bottom: 15px; color: var(--text-muted); font-size: 1rem; }
-        .ue-list li::before { content: '>'; position: absolute; left: 0; color: var(--accent-hover); font-family: var(--font-mono); font-weight: bold; }
-        .ue-list li span.code { color: var(--indigo-light); font-weight: bold; margin-right: 10px; font-family: var(--font-mono); }
-
-        .bilan-card.success-theme { background: linear-gradient(145deg, var(--bg-card), rgba(46, 204, 113, 0.05)); border: 1px solid rgba(46, 204, 113, 0.3); border-radius: var(--radius-md); padding: 40px; margin-top: 60px; box-shadow: 0 10px 40px var(--success-glow); position: relative; overflow: hidden; }
-        .bilan-card.success-theme::before { content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 4px; background: linear-gradient(90deg, var(--success), var(--accent-cyan)); }
-        .bilan-card.success-theme h3 { font-size: 2rem; color: var(--success); margin-bottom: 20px; text-shadow: 0 0 10px rgba(46, 204, 113, 0.2); }
-        .bilan-card.success-theme p { font-size: 1.05rem; color: var(--text-main); line-height: 1.8; margin-bottom: 0; }
-
-        footer { text-align: center; padding: 40px 0; color: var(--text-muted); border-top: 1px solid var(--border-color); margin-top: auto; }
-
-        @media (max-width: 900px) { 
-            .menu-toggle { display: block; }
-            .nav-links {
-                position: absolute; top: 60px; left: 0; right: 0; background-color: rgba(22, 20, 32, 0.95);
-                flex-direction: column; gap: 0; padding: 20px 0; border-radius: 0 0 var(--radius-md) var(--radius-md);
-                border: 1px solid var(--border-color); border-top: none;
-                transform: translateY(-150%); opacity: 0; transition: all 0.4s ease; z-index: 999;
-                pointer-events: none;
-            }
-            .nav-links.active { transform: translateY(0); opacity: 1; pointer-events: auto; }
-            .nav-links li { margin: 15px 0; }
-            .lang-switch-container { margin: 15px 0 0 0; justify-content: center; }
-            
-            .site-details ul { grid-template-columns: 1fr; }
-            .bdd-grid-layout { grid-template-columns: 1fr; }
-        }
-    </style>
-</head>
-<body>
-
-    <header>
-        <div class="container">
-            <nav>
-                <div class="logo">C.H.D</div>
-                <div class="menu-toggle" id="mobile-menu">
-                    <i class="fa-solid fa-bars"></i>
-                </div>
-                <ul class="nav-links" id="nav-links">
-                    <li><a href="index.html#hero">Accueil</a></li>
-                    <li><a href="index.html#parcours">Parcours</a></li>
-                    <li><a href="competences.html">Compétences</a></li>
-                    <li><a href="projets.html" class="active">Projets</a></li> 
-                    <li><a href="index.html#cv">CV</a></li>
-                    <li><a href="contact.html" class="nav-contact-btn">Contact</a></li>
-                    <li class="lang-switch-container">
-                        <span class="flag">🇫🇷</span>
-                        <label class="switch">
-                            <input type="checkbox" id="langToggle">
-                            <span class="slider round"></span>
-                        </label>
-                        <span class="flag" style="opacity: 0.5;">🇬🇧</span>
-                    </li>
-                </ul>
-            </nav>
-        </div>
-    </header>
-
-    <div class="page-header container">
-        <div class="back-btn-container">
-            <a href="projets-but1.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i> Revenir aux projets</a>
-        </div>
-        <h1 class="section-title">SAE 2.04</h1>
-        <p class="page-subtitle">Projet Intégratif de BUT1 : synthèse complète des compétences en Réseau, Téléphonie, IoT et Développement Web.</p>
-    </div>
-
-    <main class="container">
-
-        <section class="project-section">
-            <div class="resume-box">
-                <h3>Résumé de la SAE</h3>
-                <p><strong>Objectif :</strong> Ce projet intégratif a pour but de regrouper les connaissances et projets de la première année au sein d'une même infrastructure. Il s'agit de mettre en place une solution informatique complète pour une entreprise, couvrant le réseau local, la téléphonie IP, la collecte de données via capteurs et leur restitution sur une interface web.</p>
-                <p>Le projet est divisé en quatre pôles majeurs : <strong>Réseau</strong>, <strong>Téléphonie</strong>, <strong>Collecte IoT</strong> et <strong>Web/BdD</strong>.</p>
-                <a href="https://github.com/AnonymousApexio/SAE-Projet-integrative" target="_blank" class="github-btn"><i class="fa-brands fa-github"></i> Consulter le code source sur GitHub</a>
-            </div>
-        </section>
-
-        <section class="project-section">
-            <h2 class="project-heading">Environnement et Outils</h2>
-            <div class="tools-grid">
-                <div class="tool-card">
-                    <div class="tool-img"><img src="files/logo/cisco.png" alt="Cisco"></div>
-                    <div class="tool-info">
-                        <h3><a href="https://www.cisco.com/" target="_blank">Infrastructure Cisco <i class="fa-solid fa-arrow-up-right-from-square"></i></a></h3>
-                        <p>Configuration de routeurs et commutateurs physiques pour le cœur de réseau (VLANs, Routage, NAT).</p>
-                    </div>
-                </div>
-                <div class="tool-card">
-                    <div class="tool-img"><i class="fa-brands fa-python"></i></div>
-                    <div class="tool-info">
-                        <h3><a href="https://www.python.org/" target="_blank">Python <i class="fa-solid fa-arrow-up-right-from-square"></i></a></h3>
-                        <p>Scripts d'acquisition MQTT et logique métier pour le traitement des données capteurs.</p>
-                    </div>
-                </div>
-                <div class="tool-card">
-                    <div class="tool-img"><i class="fa-brands fa-python"></i></div>
-                    <div class="tool-info">
-                        <h3><a href="https://www.djangoproject.com/" target="_blank">Django <i class="fa-solid fa-arrow-up-right-from-square"></i></a></h3>
-                        <p>Framework Web utilisé pour créer le dashboard dynamique et l'API de restitution des données.</p>
-                    </div>
-                </div>
-                <div class="tool-card">
-                    <div class="tool-img"><img src="files/logo/mariadb.png" alt="MariaDB"></div>
-                    <div class="tool-info">
-                        <h3><a href="https://mariadb.org/" target="_blank">MariaDB <i class="fa-solid fa-arrow-up-right-from-square"></i></a></h3>
-                        <p>Système de base de données relationnelle centralisant les relevés de température.</p>
-                    </div>
-                </div>
-                <div class="tool-card">
-                    <div class="tool-img"><img src="files/logo/debian.png" alt="Debian"></div>
-                    <div class="tool-info">
-                        <h3><a href="https://www.debian.org/" target="_blank">Debian <i class="fa-solid fa-arrow-up-right-from-square"></i></a></h3>
-                        <p>Système d'exploitation des serveurs virtualisés hébergeant les scripts et le site web.</p>
-                    </div>
-                </div>
-                <div class="tool-card">
-                    <div class="tool-img"><img src="files/logo/linphone.png" alt="Linphone"></div>
-                    <div class="tool-info">
-                        <h3><a href="https://www.linphone.org/" target="_blank">Linphone <i class="fa-solid fa-arrow-up-right-from-square"></i></a></h3>
-                        <p>Logiciel Softphone utilisé pour tester la connectivité SIP sur les différents VLANs.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section class="project-section">
-            <h2 class="project-heading">Architecture de l'Infrastructure</h2>
-            <figure class="architecture-box">
-                <img src="files/s2/schema_reseau_sae_integrative.png" alt="Schéma logique de l'infrastructure">
-                <figcaption class="architecture-info">Schéma réseau détaillé : interconnexion des VLANs et déploiement des services ToIP et Web.</figcaption>
-            </figure>
-            <figure class="architecture-box">
-                <img src="files/s2/photo_sae_24.jpg" alt="Installation physique">
-                <figcaption class="architecture-info">Mise en œuvre sur matériel physique : routeurs Cisco, switchs et bancs de test.</figcaption>
-            </figure>
-        </section>
-
-        <section class="project-section">
-            <h2 class="project-heading">Grandes étapes techniques</h2>
-            <div class="steps-grid">
-                <div class="step-card">
-                    <h3>1. Segmentation Réseau</h3>
-                    <p>Mise en place de <strong>4 VLANs</strong> (Voix, Utilisateurs, Serveur, Administrateur) et configuration du <strong>routage inter-VLAN</strong>.</p>
-                </div>
-                <div class="step-card">
-                    <h3>2. Sécurisation Infrasystème</h3>
-                    <p>Mise en place de filtrage <strong>ACL</strong> sur le routeur et de règles <strong>iptables</strong> strictes sur le serveur Debian.</p>
-                </div>
-                <div class="step-card">
-                    <h3>3. Communication VoIP</h3>
-                    <p>Inscription de softphones et téléphones physiques SIP, et configuration de la connectivité réseau pour les flux voix.</p>
-                </div>
-                <div class="step-card">
-                    <h3>4. Collecte MQTT (Python)</h3>
-                    <p>Développement du script d'écoute du broker <strong>MQTT</strong> et automatisation de l'insertion en base MariaDB.</p>
-                </div>
-                <div class="step-card">
-                    <h3>5. Développement Web (Django)</h3>
-                    <p>Conception du site dynamique gérant l'affichage temps réel des données collectées.</p>
-                </div>
-                <div class="step-card">
-                    <h3>6. Déploiement Services</h3>
-                    <p>Mise en production Apache2, synchronisation <strong>NTP</strong> et centralisation des logs via <strong>Rsyslog</strong>.</p>
-                </div>
-            </div>
-        </section>
-
-        <section class="project-section">
-            <h2 class="project-heading">Mon rôle dans le projet</h2>
-            <div class="role-container">
-                <p class="role-intro">
+<!doctype html>
+<html lang="fr" data-title-fr="SAE 2.04 — Camille Henry--Delangle" data-title-en="SAE 2.04 — Camille Henry--Delangle">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>SAE 2.04 — Camille Henry--Delangle</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Inter:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet" href="assets/css/site.css"><link rel="stylesheet" href="assets/css/pages.css"></head>
+<body data-theme="projets">
+<header class="top"><nav><a class="logo" href="index.html#top">~/chd<span>_</span></a><button class="burger" aria-label="Menu">☰</button><div class="links"><a class="nav" href="index.html#parcours"><span class="nn">01</span><span lang="fr">parcours</span><span lang="en">journey</span></a><a class="nav" href="index.html#experience"><span class="nn">02</span><span lang="fr">expérience</span><span lang="en">experience</span></a><a class="nav" href="index.html#competences"><span class="nn">03</span><span lang="fr">compétences</span><span lang="en">skills</span></a><a class="nav on" href="projets.html"><span class="nn">04</span><span lang="fr">projets</span><span lang="en">projects</span></a><a class="nav" href="index.html#cv"><span class="nn">05</span><span lang="fr">cv</span><span lang="en">resume</span></a><a class="nav" href="index.html#contact"><span class="nn">06</span><span lang="fr">contact</span><span lang="en">contact</span></a></div><div class="lang"><button type="button" data-l="fr">FR</button><button type="button" data-l="en">EN</button></div></nav></header><section class="uehead grid-bg"><div class="container" style="padding-top:72px;padding-bottom:48px"><div class="page-header container">
+<div class="back-btn-container">
+<a class="back-btn" href="projets.html#but1"><i class="fa-solid fa-arrow-left"></i><span lang="fr"> Revenir aux projets</span><span lang="en"> Back to projects</span></a>
+</div>
+<h1 class="section-title">SAE 2.04</h1>
+<p class="page-subtitle"><span lang="fr">Projet Intégratif de BUT1 : synthèse complète des compétences en Réseau, Téléphonie, IoT et Développement Web.</span><span lang="en">BUT1 Integrative Project: complete synthesis of skills in Networking, Telephony, IoT, and Web Development.</span></p>
+</div></div></section>
+<main class="container">
+<section class="project-section">
+<div class="resume-box">
+<h3><span lang="fr">Résumé de la SAE</span><span lang="en">SAE Summary</span></h3>
+<p><strong><span lang="fr">Objectif :</span><span lang="en">Objective:</span></strong><span lang="fr"> Ce projet intégratif a pour but de regrouper les connaissances et projets de la première année au sein d'une même infrastructure. Il s'agit de mettre en place une solution informatique complète pour une entreprise, couvrant le réseau local, la téléphonie IP, la collecte de données via capteurs et leur restitution sur une interface web.</span><span lang="en"> This integrative project aims to bring together the knowledge and projects of the first year within a single infrastructure. It involves setting up a complete IT solution for a company, covering the local network, IP telephony, data collection via sensors, and their display on a web interface.</span></p>
+<p><span lang="fr">Le projet est divisé en quatre pôles majeurs : </span><span lang="en">The project is divided into four major divisions: </span><strong><span lang="fr">Réseau</span><span lang="en">Networking</span></strong>, <strong><span lang="fr">Téléphonie</span><span lang="en">Telephony</span></strong>, <strong><span lang="fr">Collecte IoT</span><span lang="en">IoT Collection</span></strong><span lang="fr"> et </span><span lang="en">, and </span><strong><span lang="fr">Web/BdD</span><span lang="en">Web/Database</span></strong>.</p>
+<a class="github-btn" href="https://github.com/AnonymousApexio/SAE-Projet-integrative" target="_blank"><i class="fa-brands fa-github"></i><span lang="fr"> Consulter le code source sur GitHub</span><span lang="en"> View source code on GitHub</span></a>
+</div>
+</section>
+<section class="project-section">
+<h2 class="project-heading"><span lang="fr">Environnement et Outils</span><span lang="en">Environment and Tools</span></h2>
+<div class="tools-grid">
+<div class="tool-card">
+<div class="tool-img"><img alt="Cisco" src="files/logo/cisco.png"></img></div>
+<div class="tool-info">
+<h3><a href="https://www.cisco.com/" target="_blank"><span lang="fr">Infrastructure Cisco </span><span lang="en">Cisco Infrastructure </span><i class="fa-solid fa-arrow-up-right-from-square"></i></a></h3>
+<p><span lang="fr">Configuration de routeurs et commutateurs physiques pour le cœur de réseau (VLANs, Routage, NAT).</span><span lang="en">Configuration of physical routers and switches for the core network (VLANs, Routing, NAT).</span></p>
+</div>
+</div>
+<div class="tool-card">
+<div class="tool-img"><i class="fa-brands fa-python"></i></div>
+<div class="tool-info">
+<h3><a href="https://www.python.org/" target="_blank">Python <i class="fa-solid fa-arrow-up-right-from-square"></i></a></h3>
+<p><span lang="fr">Scripts d'acquisition MQTT et logique métier pour le traitement des données capteurs.</span><span lang="en">MQTT acquisition scripts and business logic for sensor data processing.</span></p>
+</div>
+</div>
+<div class="tool-card">
+<div class="tool-img"><i class="fa-brands fa-python"></i></div>
+<div class="tool-info">
+<h3><a href="https://www.djangoproject.com/" target="_blank">Django <i class="fa-solid fa-arrow-up-right-from-square"></i></a></h3>
+<p><span lang="fr">Framework Web utilisé pour créer le dashboard dynamique et l'API de restitution des données.</span><span lang="en">Web framework used to create the dynamic dashboard and the data retrieval API.</span></p>
+</div>
+</div>
+<div class="tool-card">
+<div class="tool-img"><img alt="MariaDB" src="files/logo/mariadb.png"></img></div>
+<div class="tool-info">
+<h3><a href="https://mariadb.org/" target="_blank">MariaDB <i class="fa-solid fa-arrow-up-right-from-square"></i></a></h3>
+<p><span lang="fr">Système de base de données relationnelle centralisant les relevés de température.</span><span lang="en">Relational database system centralizing temperature readings.</span></p>
+</div>
+</div>
+<div class="tool-card">
+<div class="tool-img"><img alt="Debian" src="files/logo/debian.png"></img></div>
+<div class="tool-info">
+<h3><a href="https://www.debian.org/" target="_blank">Debian <i class="fa-solid fa-arrow-up-right-from-square"></i></a></h3>
+<p><span lang="fr">Système d'exploitation des serveurs virtualisés hébergeant les scripts et le site web.</span><span lang="en">Operating system for the virtualized servers hosting the scripts and the website.</span></p>
+</div>
+</div>
+<div class="tool-card">
+<div class="tool-img"><img alt="Linphone" src="files/logo/linphone.png"></img></div>
+<div class="tool-info">
+<h3><a href="https://www.linphone.org/" target="_blank">Linphone <i class="fa-solid fa-arrow-up-right-from-square"></i></a></h3>
+<p><span lang="fr">Logiciel Softphone utilisé pour tester la connectivité SIP sur les différents VLANs.</span><span lang="en">Softphone software used to test SIP connectivity across the different VLANs.</span></p>
+</div>
+</div>
+</div>
+</section>
+<section class="project-section">
+<h2 class="project-heading"><span lang="fr">Architecture de l'Infrastructure</span><span lang="en">Infrastructure Architecture</span></h2>
+<figure class="architecture-box">
+<img alt="Schéma logique de l'infrastructure" src="files/s2/schema_reseau_sae_integrative.png"></img>
+<figcaption class="architecture-info"><span lang="fr">Schéma réseau détaillé : interconnexion des VLANs et déploiement des services ToIP et Web.</span><span lang="en">Detailed network diagram: interconnection of VLANs and deployment of ToIP and Web services.</span></figcaption>
+</figure>
+<figure class="architecture-box">
+<img alt="Installation physique" src="files/s2/photo_sae_24.jpg"></img>
+<figcaption class="architecture-info"><span lang="fr">Mise en œuvre sur matériel physique : routeurs Cisco, switchs et bancs de test.</span><span lang="en">Implementation on physical hardware: Cisco routers, switches, and test benches.</span></figcaption>
+</figure>
+</section>
+<section class="project-section">
+<h2 class="project-heading"><span lang="fr">Grandes étapes techniques</span><span lang="en">Main technical steps</span></h2>
+<div class="steps-grid">
+<div class="step-card">
+<h3><span lang="fr">1. Segmentation Réseau</span><span lang="en">1. Network Segmentation</span></h3>
+<p><span lang="fr">Mise en place de </span><span lang="en">Implementation of </span><strong>4 VLANs</strong><span lang="fr"> (Voix, Utilisateurs, Serveur, Administrateur) et configuration du </span><span lang="en"> (Voice, Users, Server, Administrator) and configuration of </span><strong><span lang="fr">routage inter-VLAN</span><span lang="en">inter-VLAN routing</span></strong>.</p>
+</div>
+<div class="step-card">
+<h3><span lang="fr">2. Sécurisation Infrasystème</span><span lang="en">2. System Infrastructure Security</span></h3>
+<p><span lang="fr">Mise en place de filtrage </span><span lang="en">Implementation of </span><strong>ACL</strong><span lang="fr"> sur le routeur et de règles </span><span lang="en"> filtering on the router and strict </span><strong>iptables</strong><span lang="fr"> strictes sur le serveur Debian.</span><span lang="en"> rules on the Debian server.</span></p>
+</div>
+<div class="step-card">
+<h3><span lang="fr">3. Communication VoIP</span><span lang="en">3. VoIP Communication</span></h3>
+<p><span lang="fr">Inscription de softphones et téléphones physiques SIP, et configuration de la connectivité réseau pour les flux voix.</span><span lang="en">Registration of softphones and physical SIP phones, and configuration of network connectivity for voice streams.</span></p>
+</div>
+<div class="step-card">
+<h3><span lang="fr">4. Collecte MQTT (Python)</span><span lang="en">4. MQTT Collection (Python)</span></h3>
+<p><span lang="fr">Développement du script d'écoute du broker </span><span lang="en">Development of the </span><strong>MQTT</strong><span lang="fr"> et automatisation de l'insertion en base MariaDB.</span><span lang="en"> broker listening script and automation of MariaDB database insertion.</span></p>
+</div>
+<div class="step-card">
+<h3><span lang="fr">5. Développement Web (Django)</span><span lang="en">5. Web Development (Django)</span></h3>
+<p><span lang="fr">Conception du site dynamique gérant l'affichage temps réel des données collectées.</span><span lang="en">Design of the dynamic website managing the real-time display of collected data.</span></p>
+</div>
+<div class="step-card">
+<h3><span lang="fr">6. Déploiement Services</span><span lang="en">6. Service Deployment</span></h3>
+<p><span lang="fr">Mise en production Apache2, synchronisation </span><span lang="en">Apache2 production deployment, </span><strong>NTP</strong><span lang="fr"> et centralisation des logs via </span><span lang="en"> synchronization, and centralized logging via </span><strong>Rsyslog</strong>.</p>
+</div>
+</div>
+</section>
+<section class="project-section">
+<h2 class="project-heading"><span lang="fr">Mon rôle dans le projet</span><span lang="en">My role in the project</span></h2>
+<div class="role-container">
+<p class="role-intro"><span lang="fr">
                     Lors de cette SAE effectuée en groupe, mon rôle était la récupération des données de température via MQTT et l'affichage de celle-ci sur un site Web. Pour la collecte, j'ai utilisé un script python sur une VM Debian, qui tournait en permanence et était relié à une base de données MariaDB. Cette base de données était elle-même reliée à un site web dynamique créé à l'aide de Django dont le but était d'afficher l'ensemble des données.
-                </p>
-
-                <h4>Organisation de la Base de Données</h4>
-                <p style="color: var(--text-muted);">La base MariaDB structure les informations pour identifier les capteurs et historiser les relevés.</p>
-                
-                <div class="bdd-grid-layout">
-                    <figure class="bdd-card">
-                        <img src="files/s2/tables_bdd_sae24.png" alt="Tables MariaDB">
-                        <figcaption>Structure globale des tables.</figcaption>
-                    </figure>
-                    <div class="bdd-col-stacked">
-                        <figure class="bdd-card">
-                            <img src="files/s2/capteur_bdd_sae24.png" alt="Table Capteurs">
-                            <figcaption>Table des capteurs et localisations.</figcaption>
-                        </figure>
-                        <figure class="bdd-card">
-                            <img src="files/s2/donnee_bdd_sae24.png" alt="Table Données">
-                            <figcaption>Historique des températures relevées.</figcaption>
-                        </figure>
-                    </div>
-                </div>
-
-                <h4>Dashboard Dynamique (Django)</h4>
-                <div class="site-showcase">
-                    <div class="site-img">
-                        <img src="files/s2/site_sae_integrative.png" alt="Aperçu du site web">
-                    </div>
-                    <div class="site-details">
-                        <ul>
-                            <li><strong>Actualisation AJAX :</strong> Requêtes asynchrones toutes les 5 secondes pour mettre à jour les données sans rechargement de page.</li>
-                            <li><strong>Visualisation Graphique :</strong> Intégration de <em>Chart.js</em> pour suivre l'évolution temporelle des capteurs.</li>
-                            <li><strong>Filtrage métier :</strong> Tri dynamique par ID capteur, nom ou plage de dates via les vues Django.</li>
-                            <li><strong>Export de données :</strong> Fonctionnalité permettant de télécharger les relevés filtrés au format CSV.</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section class="project-section">
-            <h2 class="project-heading">Compétences validées</h2>
-            <div class="ac-box">
-                <ul class="ue-list">
-                    <li><span class="code">AC11.03</span> Configurer les fonctions de base du réseau local.</li>
-                    <li><span class="code">AC12.04</span> Connecter les systèmes de ToIP (Téléphonie sur IP).</li>
-                    <li><span class="code">AC13.01</span> Utiliser un système informatique et ses outils (Virtualisation, Linux).</li>
-                    <li><span class="code">AC13.05</span> Choisir les mécanismes de gestion de données adaptés (MariaDB).</li>
-                    <li><span class="code">AC13.06</span> S'intégrer dans un environnement propice au développement (Gantt).</li>
-                </ul>
-            </div>
-        </section>
-
-        <section class="project-section">
-            <div class="bilan-card success-theme">
-                <h3>Analyse réflexive</h3>
-                <p>
+                </span><span lang="en">
+                    During this group SAE, my role was to retrieve temperature data via MQTT and display it on a website. For data collection, I used a Python script on a Debian VM, which ran continuously and was connected to a MariaDB database. This database was itself linked to a dynamic website created using Django whose goal was to display all the data.
+                </span></p>
+<h4><span lang="fr">Organisation de la Base de Données</span><span lang="en">Database Organization</span></h4>
+<p style="color: var(--text-muted);"><span lang="fr">La base MariaDB structure les informations pour identifier les capteurs et historiser les relevés.</span><span lang="en">The MariaDB database structures information to identify sensors and record readings over time.</span></p>
+<div class="bdd-grid-layout">
+<figure class="bdd-card">
+<img alt="Tables MariaDB" src="files/s2/tables_bdd_sae24.png"></img>
+<figcaption><span lang="fr">Structure globale des tables.</span><span lang="en">Overall table structure.</span></figcaption>
+</figure>
+<div class="bdd-col-stacked">
+<figure class="bdd-card">
+<img alt="Table Capteurs" src="files/s2/capteur_bdd_sae24.png"></img>
+<figcaption><span lang="fr">Table des capteurs et localisations.</span><span lang="en">Table of sensors and locations.</span></figcaption>
+</figure>
+<figure class="bdd-card">
+<img alt="Table Données" src="files/s2/donnee_bdd_sae24.png"></img>
+<figcaption><span lang="fr">Historique des températures relevées.</span><span lang="en">History of recorded temperatures.</span></figcaption>
+</figure>
+</div>
+</div>
+<h4><span lang="fr">Dashboard Dynamique (Django)</span><span lang="en">Dynamic Dashboard (Django)</span></h4>
+<div class="site-showcase">
+<div class="site-img">
+<img alt="Aperçu du site web" src="files/s2/site_sae_integrative.png"></img>
+</div>
+<div class="site-details">
+<ul>
+<li><strong><span lang="fr">Actualisation AJAX :</span><span lang="en">AJAX Refresh:</span></strong><span lang="fr"> Requêtes asynchrones toutes les 5 secondes pour mettre à jour les données sans rechargement de page.</span><span lang="en"> Asynchronous requests every 5 seconds to update data without reloading the page.</span></li>
+<li><strong><span lang="fr">Visualisation Graphique :</span><span lang="en">Graphical Visualization:</span></strong><span lang="fr"> Intégration de </span><span lang="en"> Integration of </span><em>Chart.js</em><span lang="fr"> pour suivre l'évolution temporelle des capteurs.</span><span lang="en"> to track the temporal evolution of the sensors.</span></li>
+<li><strong><span lang="fr">Filtrage métier :</span><span lang="en">Business Filtering:</span></strong><span lang="fr"> Tri dynamique par ID capteur, nom ou plage de dates via les vues Django.</span><span lang="en"> Dynamic sorting by sensor ID, name, or date range via Django views.</span></li>
+<li><strong><span lang="fr">Export de données :</span><span lang="en">Data Export:</span></strong><span lang="fr"> Fonctionnalité permettant de télécharger les relevés filtrés au format CSV.</span><span lang="en"> Feature allowing the download of filtered records in CSV format.</span></li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+<section class="project-section">
+<h2 class="project-heading"><span lang="fr">Compétences validées</span><span lang="en">Validated Skills</span></h2>
+<div class="ac-box">
+<ul class="ue-list">
+<li><span class="code"><a href="competence-administrer.html#but1" title="UE1">AC11.03</a></span><span lang="fr"> Configurer les fonctions de base du réseau local.</span><span lang="en"> Configure the basic functions of the local network.</span></li>
+<li><span class="code"><a href="competence-connecter.html#but1" title="UE2">AC12.04</a></span><span lang="fr"> Connecter les systèmes de ToIP (Téléphonie sur IP).</span><span lang="en"> Connect ToIP (Telephony over IP) systems.</span></li>
+<li><span class="code"><a href="competence-programmer.html#but1" title="UE3">AC13.01</a></span><span lang="fr"> Utiliser un système informatique et ses outils (Virtualisation, Linux).</span><span lang="en"> Use a computer system and its tools (Virtualization, Linux).</span></li>
+<li><span class="code"><a href="competence-programmer.html#but1" title="UE3">AC13.05</a></span><span lang="fr"> Choisir les mécanismes de gestion de données adaptés (MariaDB).</span><span lang="en"> Choose appropriate data management mechanisms (MariaDB).</span></li>
+<li><span class="code"><a href="competence-programmer.html#but1" title="UE3">AC13.06</a></span><span lang="fr"> S'intégrer dans un environnement propice au développement (Gantt).</span><span lang="en"> Integrate into an environment conducive to development (Gantt).</span></li>
+</ul>
+</div>
+</section>
+<section class="project-section">
+<div class="bilan-card success-theme">
+<h3><span lang="fr">Analyse réflexive</span><span lang="en">Reflective Analysis</span></h3>
+<p><span lang="fr">
                     Lors de ce projet, j'ai pu retravailler l'ensemble des notions vues en première année. Etant arrivé en cours d'année, ce projet m'a permis d'être confiant sur les acquis du second semestre. Je suis parvenu à m'organiser efficacement dans ce projet pour finir ma partie dans les temps et comprendre les autres sections du projet. De plus, j'ai apprécié travailler sur du matériel physique car cela renforce l'aspect réaliste du projet.
-                </p>
-            </div>
-        </section>
-
-    </main>
-
-    <footer>
-        <div class="container">
-            <p>&copy; 2026 <strong>Camille HENRY--DELANGLE</strong>.</p>
-            <p style="font-size: 0.85rem; font-family: var(--font-mono); opacity: 0.5; margin-top: 15px;">Root@Portfolio:~# exit</p>
-        </div>
-    </footer>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const langToggle = document.getElementById('langToggle');
-            if(langToggle) {
-                langToggle.addEventListener('change', function() {
-                    if(this.checked) {
-                        window.location.href = "sae204-en.html";
-                    }
-                });
-            }
-
-            const mobileMenu = document.getElementById('mobile-menu');
-            const navLinksList = document.getElementById('nav-links');
-            if(mobileMenu && navLinksList) {
-                mobileMenu.addEventListener('click', () => {
-                    navLinksList.classList.toggle('active');
-                });
-            }
-        });
-    </script>
-</body>
-</html>
+                </span><span lang="en">
+                    During this project, I was able to rework all the concepts covered in the first year. Having arrived mid-year, this project allowed me to be confident about the knowledge acquired during the second semester. I managed to organize myself effectively in this project to finish my part on time and understand the other sections of the project. Furthermore, I enjoyed working on physical hardware as it reinforces the realistic aspect of the project.
+                </span></p>
+</div>
+</section>
+</main>
+<footer class="f"><div class="wrap" style="display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px"><span>© 2026 Camille HENRY--DELANGLE · BUT R&amp;T Cybersécurité</span><span><span style="color:#FF5C7A">root@portfolio:~#</span> exit</span></div></footer>
+<div class="modal" id="modal"><div class="mi"><div class="bar2"><span class="mono" style="font-size:13px;color:var(--mut)">aperçu</span><button data-close aria-label="Fermer">×</button></div><iframe src="about:blank" title="PDF" hidden></iframe><div class="imgv" hidden><img alt="Zoom" src=""></div></div></div>
+<script src="assets/js/site.js"></script>
+</body></html>

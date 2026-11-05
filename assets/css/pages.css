@@ -1,0 +1,148 @@
+/* ===== pages de contenu (projets, stage) — composants communs ===== */
+.container{max-width:1200px;margin:0 auto;padding:0 32px;width:100%}
+main.container{padding-top:56px;padding-bottom:40px}
+.page-header{position:relative}
+.page-header::before{content:'';display:block;width:56px;height:4px;border-radius:2px;background:var(--a);margin:0 0 20px}
+.back-btn-container{display:flex;flex-wrap:wrap;gap:8px 20px;margin:0 0 24px}
+.back-btn{font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--mut);text-decoration:none}
+.back-btn:hover{color:var(--a)}
+.section-title{margin:0 0 14px;font-family:'JetBrains Mono',monospace;font-weight:700;font-size:clamp(30px,4.6vw,52px);line-height:1.1;letter-spacing:-1px;max-width:900px}
+.page-subtitle{margin:0;color:var(--tx2);font-size:18px;line-height:1.7;max-width:820px}
+.uehead .page-header{padding-bottom:8px}
+.project-section{margin:0 0 72px}
+.project-heading{margin:0 0 24px;font-family:'JetBrains Mono',monospace;font-size:clamp(22px,2.6vw,30px);font-weight:700;letter-spacing:-.5px;padding-left:16px;border-left:4px solid var(--a)}
+strong{color:var(--tx);font-weight:600}
+main code,main pre{font-family:'JetBrains Mono',monospace}
+main code{background:var(--panel2);border:1px solid var(--line);border-radius:4px;padding:1px 6px;font-size:.88em;color:var(--a)}
+main p{color:var(--tx2);margin:0 0 14px}
+main li{color:var(--tx2)}
+main h3{font-family:'JetBrains Mono',monospace}
+main h4{font-family:'JetBrains Mono',monospace;color:var(--tx)}
+main img{max-width:100%;height:auto}
+main figure{margin:0}
+main figcaption,.gallery-info,.architecture-info{color:var(--mut);font-size:14px;font-style:italic;margin-top:12px}
+main a{color:var(--a)}
+/* cartes */
+.resume-box,.tool-card,.step-card,.structure-card,.mission-item,.company-card,.logic-card,.bdd-card,.gallery-box,.double-image-container figure,.ac-box,.architecture-box,.content-block,.site-showcase,.role-box,.doc-box,.bilan-card,.dashboard-img-large,.code-snippet-box{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:28px}
+.tool-card,.step-card,.structure-card,.mission-item,.company-card,.logic-card,.doc-box,.gallery-box{transition:border-color .25s,transform .25s,box-shadow .25s}
+.tool-card:hover,.step-card:hover,.structure-card:hover,.mission-item:hover,.company-card:hover,.logic-card:hover,.doc-box:hover{border-color:var(--a);transform:translateY(-3px);box-shadow:0 14px 34px -18px var(--a)}
+.resume-box{border-left:4px solid var(--a);background:var(--ad)}
+.resume-box h3,.company-card h3,.content-block h3,.structure-card h3{margin:0 0 14px;font-size:22px;color:var(--a)}
+.resume-box p{font-size:16px;line-height:1.8;color:var(--tx)}
+.github-btn{display:inline-flex;align-items:center;gap:10px;margin-top:8px;padding:10px 18px;border:1px solid var(--a);border-radius:6px;color:var(--a);font-size:14px;font-weight:600;text-decoration:none;transition:background .2s,color .2s}
+.github-btn:hover{background:var(--a);color:var(--on-a)}
+/* grilles */
+.tools-grid,.steps-grid,.structure-grid,.missions-grid,.logic-grid,.company-grid,.double-image-container,.gallery-row,.bdd-grid-layout{display:grid;gap:20px;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));margin-top:0}
+.gallery-grid,.docs-container,.dashboard-showcase-stacked,.bdd-col-stacked,.stacked-img-box{display:flex;flex-direction:column;gap:20px}
+.double-image-container figure,.gallery-box,.bdd-card,.dashboard-img-large{text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:20px}
+.double-image-container img,.gallery-box img,.bdd-card img,.dashboard-img-large img,.architecture-box img,.site-img img,.flex-image img,.horizontal-img-box img,.stacked-img-box img,.side-by-side-images img,.logic-card img{border-radius:8px;border:1px solid var(--line2);box-shadow:0 10px 30px -14px #000}
+.double-image-container img{max-height:360px;object-fit:contain}
+.gallery-box.large img{max-height:420px;object-fit:contain}
+.architecture-box{text-align:center;margin-top:28px}.architecture-box img{max-height:620px;object-fit:contain}
+.tool-card{display:flex;align-items:flex-start;gap:20px}
+.tool-img{width:72px;height:72px;flex:none;border-radius:12px;display:flex;align-items:center;justify-content:center;background:var(--panel2)}
+.tool-img img{max-width:100%;max-height:100%;object-fit:contain;border:0;box-shadow:none}
+.tool-img i{font-size:2.4rem;color:var(--a)}
+.tool-img.logo-style{background:transparent}
+.iot-glow-icon,.python-glow-icon{font-size:3.6rem!important}
+.tool-info h3{margin:0 0 6px;font-size:17px}
+.tool-info h3 a{color:var(--tx);text-decoration:none;display:inline-flex;gap:8px;align-items:center}
+.tool-info h3 a:hover{color:var(--a)}
+.tool-info h3 i{font-size:.8em;opacity:.6}
+.tool-info p{margin:0;color:var(--mut);font-size:14px;line-height:1.55}
+.step-card{border-top:3px solid var(--a)}
+.step-card h3,.logic-card h3{margin:0 0 12px;font-size:18px;color:var(--tx)}
+.step-card p{margin:0;font-size:15px;line-height:1.65}
+.structure-card{border-left:3px solid var(--a)}
+.structure-card ul{margin:8px 0 0 20px;list-style:disc;font-size:14px}
+.main-template-card{grid-column:1/-1}
+.steps-container{margin-top:24px;border-left:2px dashed var(--line2);padding-left:28px}
+.step-item{position:relative;margin-bottom:28px}
+.step-item::before{content:'';position:absolute;left:-37px;top:6px;width:14px;height:14px;border-radius:50%;background:var(--a);border:3px solid var(--bg)}
+.step-item h3{margin:0 0 8px;font-size:18px;color:var(--tx)}
+/* AC */
+.ac-box{margin-top:0}
+.ue-list{list-style:none;margin:16px 0 0;padding:0;display:flex;flex-direction:column;gap:12px}
+.ue-list li{font-size:15px;color:var(--tx2)}
+.ue-list li:has(.code){display:grid;grid-template-columns:72px 1fr;gap:10px}
+.ue-list li:not(:has(.code)){position:relative;padding-left:22px}
+.ue-list li:not(:has(.code))::before{content:'▸';position:absolute;left:0;color:var(--a)}
+.ue-list li .code{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--a);padding-top:3px}
+.ue-list li .code a{color:var(--a);text-decoration:none;border-bottom:1px dashed var(--a)}
+.ac-box p{margin:0}
+/* bilan */
+.bilan-card{margin-top:0;position:relative;overflow:hidden;padding:36px}
+.bilan-card::before{content:'';position:absolute;inset:0 0 auto 0;height:4px;background:var(--a)}
+.bilan-card h3{margin:0 0 16px;font-size:26px}
+.bilan-card p{margin:0 0 12px;font-size:16px;line-height:1.8;color:var(--tx)}
+.bilan-card ul{margin:0 0 14px 20px;list-style:disc}
+.bilan-card.success-theme::before{background:var(--ok)}.bilan-card.success-theme h3{color:var(--ok)}
+.bilan-card.warning-theme::before,.bilan-card.red-theme::before{background:var(--warn)}.bilan-card.warning-theme h3,.bilan-card.red-theme h3{color:var(--warn)}
+/* rôle */
+.role-container,.role-section-cohesive{position:relative;margin-top:30px;padding:40px 32px 32px;border:2px dashed var(--a);border-radius:12px;background:var(--ad)}
+.role-container::before{content:'MON RÔLE ET CONTRIBUTIONS';position:absolute;top:-13px;left:28px;background:var(--a);color:var(--on-a);padding:2px 14px;border-radius:4px;font:700 12px 'JetBrains Mono',monospace}
+.role-section-cohesive::before{content:'MON RÔLE SUR LE PROJET';position:absolute;top:-13px;left:28px;background:var(--a);color:var(--on-a);padding:2px 14px;border-radius:4px;font:700 12px 'JetBrains Mono',monospace}
+html[lang=en] .role-container::before{content:'MY ROLE AND CONTRIBUTIONS'}
+html[lang=en] .role-section-cohesive::before{content:'MY ROLE ON THE PROJECT'}
+.role-intro,.role-intro-text{font-size:17px;line-height:1.8;color:var(--tx);margin-bottom:28px}
+.role-container h4,.dashboard-features-list h4{font-size:20px;margin:0 0 14px;padding-bottom:8px;border-bottom:1px solid var(--line2)}
+.dashboard-features-list ul,.site-details ul{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:12px}
+.dashboard-features-list li,.site-details li{position:relative;padding-left:22px;font-size:15px}
+.dashboard-features-list li::before,.site-details li::before{content:'→';position:absolute;left:0;color:var(--a);font-family:'JetBrains Mono',monospace}
+.site-showcase{display:flex;flex-direction:column;gap:24px;margin-top:20px}.site-img{text-align:center}
+.role-box{border-left:4px solid var(--a);text-align:center;margin-bottom:40px}
+.role-box h3{margin:0 0 12px;font-size:26px}
+.role-box .role-title{color:var(--a);font:600 18px 'JetBrains Mono',monospace;text-transform:uppercase;letter-spacing:1px;margin:0 0 8px}
+.role-box .details{max-width:800px;margin:0 auto}
+/* missions & entreprise */
+.missions-grid{grid-template-columns:repeat(auto-fill,minmax(280px,1fr))}
+.mission-item{display:flex;flex-direction:column;gap:14px}
+.mission-icon{width:44px;height:44px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.2rem;background:var(--ad);color:var(--a)}
+.mission-content h4{margin:0 0 8px;font-size:16px}.mission-content p{margin:0;font-size:14.5px;line-height:1.6;color:var(--mut)}
+.mission-detail-link{display:inline-flex;gap:6px;margin-top:10px;font:600 12px 'JetBrains Mono',monospace;text-transform:uppercase;text-decoration:none}
+.company-header img{width:100%;border-radius:12px;border:1px solid var(--line);margin-bottom:32px}
+.company-card h3{display:flex;gap:12px;align-items:center}
+.services-tags{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px}
+.service-tag{background:var(--ad);color:var(--a);border:1px solid var(--line2);padding:5px 14px;border-radius:999px;font-size:13px}
+.agency-list{list-style:none;margin:14px 0 0;padding:0}.agency-list li{position:relative;padding-left:26px;margin-bottom:10px}
+.agency-list li::before{content:'▸';position:absolute;left:0;color:var(--a)}
+.company-card p{font-size:16px;color:var(--tx)}
+.content-block{margin-bottom:32px}
+.content-block h4{margin:26px 0 12px;font-size:18px}
+.flex-container{display:flex;flex-wrap:wrap;gap:28px;align-items:flex-start}.flex-text{flex:1 1 320px}.flex-image{flex:1 1 320px;margin:0}
+.flex-image img,.horizontal-img-box img,.stacked-img-box img,.side-by-side-images img,.logic-card img,[data-view]{cursor:zoom-in}
+.horizontal-img-box{text-align:center;margin-top:24px}
+.side-by-side-images{display:flex;flex-wrap:wrap;justify-content:center;gap:24px;margin-top:24px}.side-by-side-images figure{flex:0 1 45%;text-align:center}
+.stacked-img-box{align-items:center}
+.logic-card{text-align:center;padding:14px;border-style:dashed}
+.doc-box{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.doc-info{display:flex;align-items:center;gap:14px}
+.doc-icon{font-size:1.4rem;color:var(--a);background:var(--ad);padding:10px 14px;border-radius:8px}
+.doc-box h3{margin:0;font-size:16px;font-family:Inter,sans-serif}
+.doc-actions{display:flex;gap:10px;flex-wrap:wrap}
+.doc-actions .btn-primary{background:var(--a);color:var(--on-a);border-color:var(--a)}
+.code-snippet-box{background:#0E1317;overflow-x:auto;padding:20px}.code-snippet-box pre{margin:0;font-size:14px;line-height:1.55;color:#C9D1D9}
+.keyword{color:#FF7B72}.function{color:#D2A8FF}.string{color:#A5D6FF}.comment{color:#8B949E}.builtin{color:#79C0FF}
+/* icônes missions */
+.icon-cyber{color:#ff7675;background:#2a1517}.icon-cloud{color:#74b9ff;background:#13202e}.icon-network{color:#55efc4;background:#102a22}.icon-system{color:#ffeaa7;background:#2a2512}.icon-support{color:#a29bfe;background:#1c1a30}
+/* hub projets */
+.sae-list{display:grid;gap:20px;grid-template-columns:repeat(auto-fit,minmax(340px,1fr))}
+.sae-card{position:relative;display:flex;flex-direction:column;gap:20px;padding:26px;background:var(--panel);border:1px solid var(--line);border-radius:12px;transition:border-color .25s,transform .25s,box-shadow .25s}
+.sae-card:hover{border-color:var(--a);transform:translateY(-3px);box-shadow:0 14px 34px -18px var(--a)}
+.sae-img-container{height:150px;display:flex}
+.sae-img{flex:1;border-radius:10px;background:#fff;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.sae-img.logo-style{background:var(--panel2)}.sae-img i{font-size:4rem;color:var(--a)}
+.sae-img img{width:100%;height:100%;object-fit:cover}
+.sae-content{flex:1;display:flex;flex-direction:column;gap:10px}
+.sae-title{margin:0;font-family:'JetBrains Mono',monospace;font-size:19px;line-height:1.3}
+.sae-desc{margin:0;color:var(--mut);font-size:15px}
+.tag-container{display:flex;flex-wrap:wrap;gap:6px}
+.btn-sae{display:inline-flex;gap:8px;align-items:center;padding:10px 18px;border:1px solid var(--a);border-radius:6px;color:var(--a);text-decoration:none;font-weight:600;font-size:14px;transition:background .2s,color .2s}
+.btn-sae:hover{background:var(--a);color:var(--on-a)}
+.offer-highlight{display:inline-block;padding:18px 26px;border:1px dashed var(--a);border-radius:12px;background:var(--ad);margin-top:20px}
+.alert-box{margin:0 0 28px;padding:14px 18px;border:1px dashed var(--a);border-radius:8px;background:var(--ad);color:var(--tx2);font-size:15px}
+/* visionneuse */
+.imgv{flex:1;overflow:auto;display:flex;align-items:center;justify-content:center;padding:16px;background:#0008}
+.imgv img{max-width:100%;max-height:100%;border-radius:8px}
+[hidden]{display:none!important}
+@media(max-width:700px){.container{padding:0 20px}.tool-card{flex-direction:column}}

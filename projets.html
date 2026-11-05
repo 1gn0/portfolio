@@ -1,336 +1,187 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Projets | Camille HENRY--DELANGLE</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Saira+Stencil+One&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <style>
-        :root {
-            --bg-color: #0d0b14; 
-            --bg-card: #161420;  
-            --text-main: #e0e6ed;
-            --text-muted: #a1aabf;
-            --accent: #9d4edd;          
-            --accent-hover: #c77dff;    
-            --accent-cyan: #4facfe;
-            --accent-glow: rgba(157, 78, 221, 0.25); 
-            --border-color: #2d2a3a;
-            --font-main: 'Inter', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            --font-title: 'Saira Stencil One', sans-serif; 
-            --font-mono: 'Courier New', Courier, monospace;
-            --radius-md: 16px; 
-            --radius-lg: 30px; 
-        }
-
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        
-        html { scroll-behavior: smooth; overflow-x: hidden; scrollbar-gutter: stable; }
-
-        /* CORRECTION ICI : line-height passé de 1.6 à 1.7 pour correspondre à l'index */
-        body { 
-            background-color: var(--bg-color); 
-            color: var(--text-main); 
-            font-family: var(--font-main); 
-            line-height: 1.7; 
-            overflow-x: hidden; 
-            display: flex; 
-            flex-direction: column; 
-            min-height: 100vh; 
-        }
-        
-        h1, h2, h3 { font-family: var(--font-title); font-weight: normal; }
-        a { text-decoration: none; color: inherit; transition: all 0.3s ease; }
-        ul { list-style: none; }
-        strong { color: var(--accent-hover); font-weight: 600; }
-
-        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; width: 100%; }
-        
-        .page-header { padding: 100px 20px 20px 20px; text-align: center; }
-
-        .section-title { 
-            font-size: 3rem; 
-            color: var(--accent); 
-            margin-bottom: 20px; 
-            display: flex; 
-            align-items: center; 
-            justify-content: center; 
-            text-align: center; 
-            opacity: 0; 
-            animation: fadeIn 1s ease forwards; 
-            position: relative; 
-            padding-bottom: 15px; 
-        }
-
-        .section-title::before { 
-            content: ">"; 
-            margin-right: 15px; 
-            color: var(--accent-cyan); 
-            font-weight: bold; 
-            text-shadow: 0 0 10px var(--accent-cyan); 
-            font-family: var(--font-main); 
-        }
-
-        .section-title::after { 
-            content: ""; 
-            position: absolute; 
-            bottom: 0; 
-            left: 50%; 
-            transform: translateX(-50%); 
-            width: 150px; 
-            height: 3px; 
-            background: linear-gradient(90deg, transparent, var(--accent-hover), var(--accent-cyan), transparent); 
-            border-radius: 2px; 
-        }
-
-        .page-subtitle { 
-            color: var(--text-main); 
-            font-size: 1.1rem; 
-            max-width: 900px; 
-            margin: 0 auto; 
-            opacity: 0; 
-            animation: fadeIn 1s ease forwards 0.2s; 
-            line-height: 1.7; 
-            text-align: center; 
-        }
-
-        @keyframes fadeIn { 
-            from { opacity: 0; transform: translateY(20px); } 
-            to { opacity: 1; transform: translateY(0); } 
-        }
-
-        header { background-color: rgba(13, 11, 20, 0.95); padding: 10px 0; position: fixed; width: 100%; top: 0; z-index: 1000; backdrop-filter: blur(10px); box-shadow: 0 2px 20px rgba(0,0,0,0.4); border-bottom: 1px solid var(--border-color); }
-        nav { display: flex; justify-content: space-between; align-items: center; position: relative; }
-        .logo { font-size: 1.8rem; color: var(--accent); font-family: var(--font-title); text-shadow: 0 0 10px var(--accent); }
-        
-        .menu-toggle { display: none; font-size: 1.8rem; color: var(--accent); cursor: pointer; transition: color 0.3s; }
-        .menu-toggle:hover { color: var(--accent-cyan); }
-
-        .nav-links { 
-            display: flex; 
-            gap: 10px; 
-            align-items: center; 
-            background-color: var(--bg-card); 
-            padding: 5px 8px; 
-            border-radius: var(--radius-lg); 
-            border: 1px solid var(--border-color); 
-            margin-left: auto;
-        }
-        
-        .nav-links li { margin: 0 5px; }
-        .nav-links li a { font-weight: 500; font-size: 0.95rem; padding: 8px 18px; border-radius: var(--radius-lg); position: relative; display: block; }
-        .nav-links li a:not(.nav-contact-btn):not(.lang-btn):hover, .nav-links li a.active { background-color: rgba(157, 78, 221, 0.15); color: var(--accent-hover); text-shadow: 0 0 5px var(--accent-hover); }
-        
-        .nav-contact-btn { background-color: transparent; border: 2px solid var(--accent); color: var(--accent); font-weight: 600; text-transform: uppercase; font-size: 0.85rem; letter-spacing: 1px; transition: all 0.3s ease; text-align: center; }
-        .nav-contact-btn:hover { background-color: var(--accent); color: #ffffff; box-shadow: 0 0 15px var(--accent-glow); border-color: var(--accent-hover); }
-
-        .lang-switch-container { display: flex; align-items: center; gap: 8px; margin-left: 15px; }
-        .flag { font-size: 1.3rem; transition: opacity 0.3s; user-select: none; }
-        .switch { position: relative; display: inline-block; width: 54px; height: 28px; }
-        .switch input { opacity: 0; width: 0; height: 0; }
-        .slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: rgba(157, 78, 221, 0.1); transition: .4s; border: 1px solid var(--accent); }
-        .slider:before { position: absolute; content: ""; height: 20px; width: 20px; left: 3px; bottom: 3px; background-color: var(--accent-cyan); transition: .4s; box-shadow: 0 0 10px var(--accent-cyan); }
-        input:checked + .slider { background-color: rgba(79, 172, 254, 0.1); border-color: var(--accent-cyan); }
-        input:checked + .slider:before { transform: translateX(26px); background-color: var(--accent); box-shadow: 0 0 10px var(--accent); }
-        .slider.round { border-radius: 34px; }
-        .slider.round:before { border-radius: 50%; }
-
-        .projets-grid { 
-            display: grid; 
-            grid-template-columns: 1fr 1fr; 
-            gap: 40px; 
-            margin: 20px auto 40px auto; 
-            opacity: 0; 
-            animation: fadeIn 1s ease forwards 0.4s; 
-        }
-
-        .projet-year-card { 
-            background-color: var(--bg-card); 
-            border: 1px solid var(--border-color); 
-            border-radius: var(--radius-md); 
-            padding: 40px 30px; 
-            text-align: center; 
-            transition: all 0.4s ease; 
-            position: relative; 
-            overflow: hidden; 
-            display: flex; 
-            flex-direction: column; 
-            align-items: center; 
-            justify-content: center; 
-        }
-
-        .projet-year-card::before { 
-            content: ""; 
-            position: absolute; 
-            top: 0; 
-            left: 0; 
-            width: 100%; 
-            height: 4px; 
-            background: linear-gradient(90deg, var(--accent-cyan), var(--accent)); 
-            transform: scaleX(0); 
-            transition: transform 0.4s ease; 
-        }
-
-        .projet-year-card:hover { 
-            transform: translateY(-10px); 
-            border-color: var(--accent-cyan); 
-            box-shadow: 0 15px 40px rgba(0,0,0,0.4), 0 0 20px var(--accent-glow); 
-        }
-        
-        .projet-year-card:hover::before { transform: scaleX(1); }
-
-        .year-icon { 
-            font-size: 3rem; 
-            color: var(--accent-cyan); 
-            margin-bottom: 15px; 
-            font-family: var(--font-title); 
-            text-shadow: 0 0 15px rgba(79, 172, 254, 0.3); 
-        }
-
-        .projet-year-card h3 { 
-            font-size: 1.8rem; 
-            color: #ffffff; 
-            margin-bottom: 25px; 
-        }
-
-        .btn-view { 
-            display: inline-flex; 
-            justify-content: center; 
-            align-items: center; 
-            padding: 12px 30px; 
-            background-color: transparent; 
-            border: 2px solid var(--accent); 
-            color: #ffffff; 
-            font-weight: 600; 
-            text-transform: uppercase; 
-            letter-spacing: 1px; 
-            cursor: pointer; 
-            border-radius: var(--radius-lg); 
-            transition: all 0.4s ease; 
-            font-size: 0.85rem; 
-        }
-
-        .projet-year-card:hover .btn-view { 
-            background-color: var(--accent); 
-            color: #ffffff; 
-            box-shadow: 0 0 20px var(--accent-glow); 
-        }
-
-        footer { 
-            text-align: center; 
-            padding: 20px 0; 
-            color: var(--text-muted); 
-            font-size: 0.95rem; 
-            border-top: 1px solid var(--border-color); 
-            width: 100%; 
-            margin-top: auto; 
-        }
-
-        @media (max-width: 900px) { 
-            .menu-toggle { display: block; }
-            .nav-links {
-                position: absolute; top: 60px; left: 0; right: 0; background-color: rgba(22, 20, 32, 0.95);
-                flex-direction: column; gap: 0; padding: 20px 0; border-radius: 0 0 var(--radius-md) var(--radius-md);
-                border: 1px solid var(--border-color); border-top: none;
-                transform: translateY(-150%); opacity: 0; transition: all 0.4s ease; z-index: 999;
-                pointer-events: none;
-            }
-            .nav-links.active { transform: translateY(0); opacity: 1; pointer-events: auto; }
-            .nav-links li { margin: 15px 0; }
-            .lang-switch-container { margin: 15px 0 0 0; justify-content: center; }
-            .flag { opacity: 1 !important; }
-            
-            .projets-grid { grid-template-columns: 1fr; } 
-            .section-title { font-size: 2.5rem; } 
-        }
-        
-        @media (max-width: 768px) { 
-            .page-header { padding-top: 100px; } 
-        }
-    </style>
-</head>
-<body>
-
-    <header>
-        <div class="container">
-            <nav>
-                <div class="logo">C.H.D</div>
-                <div class="menu-toggle" id="mobile-menu">
-                    <i class="fa-solid fa-bars"></i>
-                </div>
-                <ul class="nav-links" id="nav-links">
-                    <li><a href="index.html#hero">Accueil</a></li>
-                    <li><a href="index.html#parcours">Parcours</a></li>
-                    <li><a href="competences.html">Compétences</a></li>
-                    <li><a href="projets.html" class="active">Projets</a></li> 
-                    <li><a href="index.html#cv">CV</a></li>
-                    <li><a href="contact.html" class="nav-contact-btn">Contact</a></li>
-                    <li class="lang-switch-container">
-                        <span class="flag">🇫🇷</span>
-                        <label class="switch">
-                            <input type="checkbox" id="langToggle">
-                            <span class="slider round"></span>
-                        </label>
-                        <span class="flag" style="opacity: 0.5;">🇬🇧</span>
-                    </li>
-                </ul>
-            </nav>
-        </div>
-    </header>
-
-    <main class="container">
-        <div class="page-header">
-            <h1 class="section-title">Mes Projets</h1>
-            <p class="page-subtitle">
-                Découvrez les preuves d'acquisitions des compétences de BUT R&T sous la forme de projets concrets réalisés en cours d'année.
-            </p>
-        </div>
-
-        <div class="projets-grid">
-            <div class="projet-year-card">
-                <div class="year-icon">01</div>
-                <h3>Première Année</h3>
-                <a href="projets-but1.html" class="btn-view">Découvrir les SAE</a>
-            </div>
-
-            <div class="projet-year-card">
-                <div class="year-icon">02</div>
-                <h3>Deuxième Année</h3>
-                <a href="projets-but2.html" class="btn-view">Découvrir les SAE</a>
-            </div>
-        </div>
-    </main>
-
-    <footer>
-        <div class="container">
-            <p>&copy; 2026 <strong>Camille HENRY--DELANGLE</strong>.</p>
-            <p style="font-size: 0.85rem; font-family: var(--font-mono); opacity: 0.5; margin-top: 10px;">Root@Portfolio:~# ls -la /projets</p>
-        </div>
-    </footer>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const langToggle = document.getElementById('langToggle');
-            if(langToggle) {
-                langToggle.addEventListener('change', function() {
-                    if(this.checked) {
-                        window.location.href = "projets-en.html";
-                    }
-                });
-            }
-
-            const mobileMenu = document.getElementById('mobile-menu');
-            const navLinksList = document.getElementById('nav-links');
-            
-            if(mobileMenu && navLinksList) {
-                mobileMenu.addEventListener('click', () => {
-                    navLinksList.classList.toggle('active');
-                });
-            }
-        });
-    </script>
-</body>
-</html>
+<!doctype html>
+<html lang="fr" data-title-fr="Mes Projets — Camille Henry--Delangle" data-title-en="My Projects — Camille Henry--Delangle">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Mes Projets — Camille Henry--Delangle</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Inter:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet" href="assets/css/site.css"><link rel="stylesheet" href="assets/css/pages.css"></head>
+<body data-theme="projets">
+<header class="top"><nav><a class="logo" href="index.html#top">~/chd<span>_</span></a><button class="burger" aria-label="Menu">☰</button><div class="links"><a class="nav" href="index.html#parcours"><span class="nn">01</span><span lang="fr">parcours</span><span lang="en">journey</span></a><a class="nav" href="index.html#experience"><span class="nn">02</span><span lang="fr">expérience</span><span lang="en">experience</span></a><a class="nav" href="index.html#competences"><span class="nn">03</span><span lang="fr">compétences</span><span lang="en">skills</span></a><a class="nav on" href="projets.html"><span class="nn">04</span><span lang="fr">projets</span><span lang="en">projects</span></a><a class="nav" href="index.html#cv"><span class="nn">05</span><span lang="fr">cv</span><span lang="en">resume</span></a><a class="nav" href="index.html#contact"><span class="nn">06</span><span lang="fr">contact</span><span lang="en">contact</span></a></div><div class="lang"><button type="button" data-l="fr">FR</button><button type="button" data-l="en">EN</button></div></nav></header><section class="uehead grid-bg"><div class="wrap" style="padding-top:72px;padding-bottom:0"><span class="ghost">SAE</span><p class="crumb"><a href="index.html#projets"><span lang="fr">accueil</span><span lang="en">home</span></a> / <b>projets</b></p><div class="bar"></div><h1 style="margin:0 0 12px;font-family:'JetBrains Mono',monospace;font-size:clamp(30px,4.5vw,50px);letter-spacing:-1px"><span lang="fr">Mes Projets</span><span lang="en">My Projects</span><span class="ref"><b>$</b> ls -la projets/</span></h1><p class="official" style="max-width:760px;font-size:17px"><span lang="fr">Découvrez les preuves d'acquisitions des compétences de BUT R&amp;T sous la forme de projets concrets réalisés en cours d'année.</span><span lang="en">Discover the evidence of skill acquisition in the Networks &amp; Telecommunications BUT through concrete projects completed during the year.</span></p><div class="tabs" role="tablist"><button class="tab" role="tab" data-t="but1" aria-selected="false">BUT 1<small>S2</small></button><button class="tab" role="tab" data-t="but2" aria-selected="true">BUT 2<small>S3 · S4</small></button><button class="tab" role="tab" data-t="but3" aria-selected="false">BUT 3<small><span lang="fr">en cours</span><span lang="en">ongoing</span></small></button></div></div></section>
+<main class="wrap" style="padding-top:8px;padding-bottom:88px"><div class="panel" id="p-but1"><div class="alert" style="margin:0 0 28px"><div class="alert-box">
+<span lang="fr">   Etant arrivé en cours d'année, j'ai pu participer aux projets du </span><span lang="en">   Having arrived mid-year, I was only able to participate in the </span><strong><span lang="fr">second semestre</span><span lang="en">second semester</span></strong><span lang="fr"> uniquement.
+        </span><span lang="en"> projects.
+        </span></div></div><div class="sae-list"><div class="sae-list">
+<article class="sae-card">
+<div class="sae-img-container">
+<div class="sae-img zoom">
+<img alt="Architecture GNS3" src="files/s2/schema_sae_gns3.png"></img>
+</div>
+</div>
+<div class="sae-content">
+<h2 class="sae-title"><span lang="fr">SAE 2.01 : Créer un réseau pour une petite entreprise</span><span lang="en">SAE 2.01: Create a network for a small business</span></h2>
+<p class="sae-desc"><span lang="fr">Mise en place d'une architecture réseau sous GNS3 à l'échelle d'une PME.</span><span lang="en">Setting up a network architecture in GNS3 for a small to medium-sized business.</span></p>
+<div class="tag-container">
+<span class="tag"><span lang="fr">Réseau</span><span lang="en">Network</span></span><span class="tag">GNS3</span><span class="tag">VLAN</span><span class="tag">ACL</span><span class="tag"><span lang="fr">Serveurs</span><span lang="en">Servers</span></span>
+</div>
+</div>
+<div class="sae-action">
+<a class="btn-sae" href="sae201.html"><span lang="fr">Consulter </span><span lang="en">View </span><i class="fa-solid fa-arrow-right"></i></a>
+</div>
+</article>
+<article class="sae-card">
+<div class="sae-img-container">
+<div class="sae-img">
+<img alt="Web Radio ESP32" src="files/s2/photo_web_radio.jpg"></img>
+</div>
+</div>
+<div class="sae-content">
+<h2 class="sae-title"><span lang="fr">SAE 2.02 : Web Radio</span><span lang="en">SAE 2.02: Web Radio</span></h2>
+<p class="sae-desc"><span lang="fr">Création d'une radio connectée à l'aide d'une carte arduino ESP32.</span><span lang="en">Creation of a connected radio using an ESP32 Arduino board.</span></p>
+<div class="tag-container">
+<span class="tag"><span lang="fr">Télécom</span><span lang="en">Telecom</span></span><span class="tag">ESP32</span><span class="tag">Arduino IDE</span><span class="tag">C++</span>
+</div>
+</div>
+<div class="sae-action">
+<a class="btn-sae" href="sae202.html"><span lang="fr">Consulter </span><span lang="en">View </span><i class="fa-solid fa-arrow-right"></i></a>
+</div>
+</article>
+<article class="sae-card">
+<div class="sae-img-container">
+<div class="sae-img logo-style">
+<i class="fa-brands fa-python python-glow-icon"></i>
+</div>
+</div>
+<div class="sae-content">
+<h2 class="sae-title"><span lang="fr">SAE 2.03 : Application Web</span><span lang="en">SAE 2.03: Web Application</span></h2>
+<p class="sae-desc"><span lang="fr">Création d'un site web dynamique</span><span lang="en">Creation of a dynamic website.</span></p>
+<div class="tag-container">
+<span class="tag"><span lang="fr">Programmation</span><span lang="en">Programming</span></span><span class="tag">Web</span><span class="tag">Django</span><span class="tag">CRUD</span><span class="tag">SQL</span><span class="tag">VMs</span>
+</div>
+</div>
+<div class="sae-action">
+<a class="btn-sae" href="sae203.html"><span lang="fr">Consulter </span><span lang="en">View </span><i class="fa-solid fa-arrow-right"></i></a>
+</div>
+</article>
+<article class="sae-card">
+<div class="sae-img-container">
+<div class="sae-img zoom">
+<img alt="Projet Intégratif" src="files/s2/site_sae_integrative.png"></img>
+</div>
+</div>
+<div class="sae-content">
+<h2 class="sae-title"><span lang="fr">SAE 2.04 : Projet Intégratif</span><span lang="en">SAE 2.04: Integrative Project</span></h2>
+<p class="sae-desc"><span lang="fr">Regroupement des notions de première année en réseau, téléphonie, collecte et affichage de données</span><span lang="en">Combining first-year concepts in networking, telephony, data collection, and display.</span></p>
+<div class="tag-container">
+<span class="tag"><span lang="fr">Réseau</span><span lang="en">Network</span></span><span class="tag"><span lang="fr">Télécoms</span><span lang="en">Telecoms</span></span><span class="tag">Web</span><span class="tag">MQTT</span><span class="tag">SQL</span><span class="tag">VoIP</span>
+</div>
+</div>
+<div class="sae-action">
+<a class="btn-sae" href="sae204.html"><span lang="fr">Consulter </span><span lang="en">View </span><i class="fa-solid fa-arrow-right"></i></a>
+</div>
+</article>
+</div></div></div><div class="panel on" id="p-but2"><div class="sae-list"><div class="sae-list">
+<article class="sae-card">
+<div class="sae-img-container">
+<div class="sae-img logo-style">
+<i class="fa-solid fa-microchip iot-glow-icon"></i>
+</div>
+</div>
+<div class="sae-content">
+<h2 class="sae-title"><span lang="fr">SAE 3.01 : Mettre en œuvre un système de transmission</span><span lang="en">SAE 3.01: Implement a transmission system</span></h2>
+<p class="sae-desc"><span lang="fr">Mise en place d'une prise connectée avec ESP32, création d'une application et d'un site web pour la gestion à distance.</span><span lang="en">Setting up a smart plug with ESP8266, creating an application and a website for remote management.</span></p>
+<div class="tag-container">
+<span class="tag">ESP32</span><span class="tag">IoT</span><span class="tag">Web</span><span class="tag">Application</span><span class="tag">Transmission</span>
+</div>
+</div>
+<div class="sae-action">
+<a class="btn-sae" href="sae301.html"><span lang="fr">Consulter </span><span lang="en">View </span><i class="fa-solid fa-arrow-right"></i></a>
+</div>
+</article>
+<article class="sae-card">
+<div class="sae-img-container">
+<div class="sae-img logo-style">
+<i class="fa-brands fa-python python-glow-icon"></i>
+</div>
+</div>
+<div class="sae-content">
+<h2 class="sae-title"><span lang="fr">SAE 3.02 : Développer des applications communicantes</span><span lang="en">SAE 3.02: Develop communicating applications</span></h2>
+<p class="sae-desc"><span lang="fr">Création d'une simulation d'infrastructure réseau sous Python avec routage en oignon permettant une communication chiffrée entre clients avec interface graphique.</span><span lang="en">Creation of a network infrastructure simulation in Python with onion routing allowing encrypted communication between clients with a graphical interface.</span></p>
+<div class="tag-container">
+<span class="tag">Python</span><span class="tag"><span lang="fr">Cryptographie</span><span lang="en">Cryptography</span></span><span class="tag"><span lang="fr">Routage Oignon</span><span lang="en">Onion Routing</span></span><span class="tag">GUI</span><span class="tag"><span lang="fr">Réseau</span><span lang="en">Network</span></span>
+</div>
+</div>
+<div class="sae-action">
+<a class="btn-sae" href="sae302.html"><span lang="fr">Consulter </span><span lang="en">View </span><i class="fa-solid fa-arrow-right"></i></a>
+</div>
+</article>
+<article class="sae-card cyber-card">
+<div class="sae-img-container">
+<div class="sae-img zoom">
+<img alt="Aperçu SAE Multi-sites" src="files/2A/sae-multisite.png"></img>
+</div>
+</div>
+<div class="sae-content">
+<h2 class="sae-title"><span lang="fr">SAE 3.Cyber.03 : Concevoir un réseau informatique sécurisé multi-sites</span><span lang="en">SAE 3.Cyber.03: Design a secure multi-site computer network</span></h2>
+<p class="sae-desc"><span lang="fr">Conception et déploiement d'une architecture réseau multi-sites sécurisée (MPLS-VPN, BGP, VRF) intégrant des services d'entreprise (DNS, Web, Mail).</span><span lang="en">Design and deployment of a secure multi-site network architecture (MPLS-VPN, BGP, VRF) integrating enterprise services (DNS, Web, Mail).</span></p>
+<div class="tag-container">
+<span class="tag"><span lang="fr">Réseau Multi-sites</span><span lang="en">Multi-site Network</span></span><span class="tag">MPLS-VPN</span><span class="tag">BGP / OSPF</span><span class="tag"><span lang="fr">Sécurité</span><span lang="en">Security</span></span><span class="tag"><span lang="fr">Services Linux</span><span lang="en">Linux Services</span></span>
+</div>
+</div>
+<div class="sae-action">
+<a class="btn-sae" href="sae303.html"><span lang="fr">Consulter </span><span lang="en">View </span><i class="fa-solid fa-arrow-right"></i></a>
+</div>
+</article>
+<article class="sae-card cyber-card">
+<div class="sae-img-container">
+<div class="sae-img zoom">
+<img alt="Aperçu Root-Me" src="files/2A/root-me-parcours.png"></img>
+</div>
+</div>
+<div class="sae-content">
+<h2 class="sae-title"><span lang="fr">SAE 3.Cyber.04 : Découvrir le pentesting</span><span lang="en">SAE 3.Cyber.04: Discover pentesting</span></h2>
+<p class="sae-desc"><span lang="fr">Découverte des bases du pentesting, analyse de vulnérabilités et utilisation de la plateforme Root-Me pour la résolution de challenges (CTF).</span><span lang="en">Discovery of pentesting basics, vulnerability analysis and use of the Root-Me platform to solve challenges (CTF).</span></p>
+<div class="tag-container">
+<span class="tag">Pentest</span><span class="tag">CTF</span><span class="tag">Root-Me</span><span class="tag"><span lang="fr">Vulnérabilités</span><span lang="en">Vulnerabilities</span></span><span class="tag"><span lang="fr">Cybersécurité</span><span lang="en">Cybersecurity</span></span>
+</div>
+</div>
+<div class="sae-action">
+<a class="btn-sae" href="sae304.html"><span lang="fr">Consulter </span><span lang="en">View </span><i class="fa-solid fa-arrow-right"></i></a>
+</div>
+</article>
+<article class="sae-card portfolio-card">
+<div class="sae-img-container">
+<div class="sae-img zoom">
+<img alt="Aperçu Portfolio" src="files/2A/portfolio.png"></img>
+</div>
+</div>
+<div class="sae-content">
+<h2 class="sae-title"><span lang="fr">SAE 4.Portfolio : Démarche portfolio</span><span lang="en">SAE 4.Portfolio: Portfolio approach</span></h2>
+<p class="sae-desc"><span lang="fr">Analyse réflexive des compétences ciblées par la formation, auto-évaluation continue et valorisation des apprentissages à travers la conception de ce portfolio professionnel.</span><span lang="en">Reflective analysis of the skills targeted by the training, continuous self-assessment and highlighting of learning through the design of this professional portfolio.</span></p>
+<div class="tag-container">
+<span class="tag"><span lang="fr">Analyse Réflexive</span><span lang="en">Reflective Analysis</span></span><span class="tag"><span lang="fr">Compétences</span><span lang="en">Skills</span></span><span class="tag"><span lang="fr">Auto-évaluation</span><span lang="en">Self-assessment</span></span><span class="tag"><span lang="fr">Professionnalisation</span><span lang="en">Professionalization</span></span>
+</div>
+</div>
+<div class="sae-action">
+<a class="btn-sae" href="sae4portfolio.html"><span lang="fr">Consulter </span><span lang="en">View </span><i class="fa-solid fa-arrow-right"></i></a>
+</div>
+</article>
+<article class="sae-card stage-card">
+<div class="sae-img-container">
+<div class="sae-img">
+<img alt="Logo OCI" src="files/logo/oci.jpg" style="object-fit: contain; padding: 10px;"></img>
+</div>
+</div>
+<div class="sae-content">
+<h2 class="sae-title"><span lang="fr">Stage en entreprise</span><span lang="en">Company Internship</span></h2>
+<p class="sae-desc"><span lang="fr">Stage d'application d'une durée de 8 semaines au sein de la structure OCI à Mulhouse afin de consolider mes compétences et de m'immerger dans un environnement professionnel réel.</span><span lang="en">8-week practical internship at OCI in Mulhouse to consolidate my skills and immerse myself in a real professional environment.</span></p>
+<div class="tag-container">
+<span class="tag"><span lang="fr">Stage</span><span lang="en">Internship</span></span><span class="tag"><span lang="fr">Entreprise</span><span lang="en">Company</span></span><span class="tag">OCI Mulhouse</span><span class="tag">Immersion</span><span class="tag"><span lang="fr">Réseaux &amp; Télécoms</span><span lang="en">Networks &amp; Telecoms</span></span>
+</div>
+</div>
+<div class="sae-action">
+<a class="btn-sae" href="stage-oci.html"><span lang="fr">Consulter </span><span lang="en">View </span><i class="fa-solid fa-arrow-right"></i></a>
+</div>
+</article>
+</div></div></div><div class="panel" id="p-but3"><div class="todo"><span class="placeholder">[À COMPLÉTER : SAE et projets de BUT3]</span></div></div></main><footer class="f"><div class="wrap" style="display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px"><span>© 2026 Camille HENRY--DELANGLE · BUT R&amp;T Cybersécurité</span><span><span style="color:#FF5C7A">root@portfolio:~#</span> exit</span></div></footer>
+<div class="modal" id="modal"><div class="mi"><div class="bar2"><span class="mono" style="font-size:13px;color:var(--mut)">aperçu</span><button data-close aria-label="Fermer">×</button></div><iframe src="about:blank" title="PDF" hidden></iframe><div class="imgv" hidden><img alt="Zoom" src=""></div></div></div>
+<script src="assets/js/site.js"></script>
+</body></html>

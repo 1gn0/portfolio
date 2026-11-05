@@ -1,330 +1,128 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SAE 2.02 | Camille HENRY--DELANGLE</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Saira+Stencil+One&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <style>
-        :root {
-            --bg-color: #0d0b14; 
-            --bg-card: #161420;  
-            --text-main: #e0e6ed;
-            --text-muted: #a1aabf;
-            --accent: #9d4edd;          
-            --accent-hover: #c77dff;    
-            --accent-cyan: #4facfe;
-            --accent-glow: rgba(157, 78, 221, 0.25); 
-            --border-color: #2d2a3a;
-            --font-main: 'Inter', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            --font-title: 'Saira Stencil One', sans-serif; 
-            --font-mono: 'Courier New', Courier, monospace;
-            --radius-md: 16px; 
-            --radius-lg: 30px; 
-            --success: #2ecc71;
-            --success-glow: rgba(46, 204, 113, 0.2);
-            --danger: #e74c3c;
-            --danger-glow: rgba(231, 76, 60, 0.2);
-        }
-
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { background-color: var(--bg-color); color: var(--text-main); font-family: var(--font-main); line-height: 1.7; overflow-x: hidden; display: flex; flex-direction: column; min-height: 100vh; }
-        h1, h2, h3, h4, h5 { font-family: var(--font-title); font-weight: normal; }
-        a { text-decoration: none; color: inherit; transition: all 0.3s ease; }
-        ul { list-style: none; }
-        strong { color: var(--accent-hover); font-weight: 600; }
-
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-
-        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; width: 100%; }
-        
-        .back-btn-container { text-align: left; margin-bottom: 40px; }
-        .back-btn { display: inline-flex; align-items: center; gap: 8px; color: var(--text-muted); font-size: 0.95rem; font-weight: 500; transition: color 0.3s ease; }
-        .back-btn:hover { color: var(--accent-cyan); }
-        
-        .page-header { padding: 120px 20px 40px 20px; text-align: center; }
-
-        .section-title { font-size: 3.2rem; color: var(--accent); margin-bottom: 25px; display: flex; align-items: center; justify-content: center; text-align: center; position: relative; padding-bottom: 25px; opacity: 0; animation: fadeIn 1s ease forwards; }
-        .section-title::before { content: ">"; margin-right: 15px; color: var(--accent-cyan); font-weight: bold; text-shadow: 0 0 10px var(--accent-cyan); font-family: var(--font-main); }
-        .section-title::after { content: ""; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 150px; height: 3px; background: linear-gradient(90deg, transparent, var(--accent-hover), var(--accent-cyan), transparent); border-radius: 2px; }
-
-        .page-subtitle { color: var(--text-muted); font-size: 1.15rem; max-width: 800px; margin: 0 auto; line-height: 1.8; opacity: 0; animation: fadeIn 1s ease forwards 0.2s; }
-
-        header { background-color: rgba(13, 11, 20, 0.95); padding: 10px 0; position: fixed; width: 100%; top: 0; z-index: 1000; backdrop-filter: blur(10px); border-bottom: 1px solid var(--border-color); box-shadow: 0 2px 20px rgba(0,0,0,0.4); }
-        nav { display: flex; justify-content: space-between; align-items: center; }
-        .logo { font-size: 1.8rem; color: var(--accent); font-family: var(--font-title); text-shadow: 0 0 10px var(--accent); }
-        
-        .menu-toggle { display: none; font-size: 1.8rem; color: var(--accent); cursor: pointer; transition: color 0.3s; }
-        .menu-toggle:hover { color: var(--accent-cyan); }
-        
-        .nav-links { display: flex; gap: 10px; align-items: center; background-color: var(--bg-card); padding: 5px 8px; border-radius: var(--radius-lg); border: 1px solid var(--border-color); margin-left: auto; }
-        .nav-links li { margin: 0 5px; }
-        .nav-links li a { font-weight: 500; font-size: 0.95rem; padding: 8px 18px; border-radius: var(--radius-lg); position: relative; display: block; }
-        .nav-links li a:not(.nav-contact-btn):not(.lang-btn):hover, .nav-links li a.active { background-color: rgba(157, 78, 221, 0.15); color: var(--accent-hover); text-shadow: 0 0 5px var(--accent-hover); }
-        .nav-contact-btn { background-color: transparent; border: 2px solid var(--accent); color: var(--accent); font-weight: 600; text-transform: uppercase; font-size: 0.85rem; letter-spacing: 1px; transition: all 0.3s ease; text-align: center; }
-        .nav-contact-btn:hover { background-color: var(--accent); color: #ffffff; box-shadow: 0 0 15px var(--accent-glow); border-color: var(--accent-hover); }
-
-        .lang-switch-container { display: flex; align-items: center; gap: 8px; margin-left: 15px; }
-        .flag { font-size: 1.3rem; transition: opacity 0.3s; user-select: none; }
-        .switch { position: relative; display: inline-block; width: 54px; height: 28px; }
-        .switch input { opacity: 0; width: 0; height: 0; }
-        .slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: rgba(157, 78, 221, 0.1); transition: .4s; border: 1px solid var(--accent); }
-        .slider:before { position: absolute; content: ""; height: 20px; width: 20px; left: 3px; bottom: 3px; background-color: var(--accent-cyan); transition: .4s; box-shadow: 0 0 10px var(--accent-cyan); }
-        input:checked + .slider { background-color: rgba(79, 172, 254, 0.1); border-color: var(--accent-cyan); }
-        input:checked + .slider:before { transform: translateX(26px); background-color: var(--accent); box-shadow: 0 0 10px var(--accent); }
-        .slider.round { border-radius: 34px; }
-        .slider.round:before { border-radius: 50%; }
-
-        .project-section { margin-bottom: 80px; opacity: 0; animation: fadeIn 1s ease forwards 0.3s; }
-        .project-heading { font-size: 2rem; color: #ffffff; margin-bottom: 20px; border-left: 4px solid var(--accent-cyan); padding-left: 15px; }
-        
-        .resume-box { background: linear-gradient(145deg, rgba(79, 172, 254, 0.05), rgba(157, 78, 221, 0.05)); border-left: 4px solid var(--accent-cyan); padding: 30px 40px; border-radius: 0 var(--radius-md) var(--radius-md) 0; border-top: 1px solid rgba(79, 172, 254, 0.2); border-right: 1px solid rgba(79, 172, 254, 0.2); border-bottom: 1px solid rgba(79, 172, 254, 0.2); margin-bottom: 50px; box-shadow: 0 5px 20px rgba(79, 172, 254, 0.1); }
-        .resume-box h3 { color: var(--accent-cyan); margin-bottom: 15px; font-size: 1.6rem; text-shadow: 0 0 10px rgba(79, 172, 254, 0.2); }
-        .resume-box p { color: var(--text-main); font-size: 1.05rem; line-height: 1.7; margin-bottom: 15px; }
-        
-        .github-btn { display: inline-flex; align-items: center; gap: 10px; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); color: #fff; padding: 10px 20px; border-radius: var(--radius-lg); font-size: 0.9rem; font-weight: 600; transition: all 0.3s; }
-        .github-btn:hover { background: #fff; color: #000; }
-
-        .tools-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 30px; margin-top: 30px; }
-        .tool-card { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 30px; display: flex; align-items: center; gap: 20px; transition: all 0.3s ease; box-shadow: 0 5px 20px rgba(0,0,0,0.2); }
-        .tool-card:hover { border-color: var(--accent); transform: translateY(-5px); box-shadow: 0 10px 30px var(--accent-glow); }
-        .tool-img { width: 80px; height: 80px; flex-shrink: 0; background: #fff; border-radius: 12px; padding: 10px; display: flex; align-items: center; justify-content: center; overflow: hidden; }
-        .tool-img img { max-width: 100%; max-height: 100%; object-fit: contain; }
-        .tool-img i { font-size: 3rem; color: var(--accent-cyan); }
-        .tool-info h3 a { color: #fff; font-size: 1.3rem; margin-bottom: 5px; display: inline-flex; align-items: center; gap: 8px; transition: color 0.3s; }
-        .tool-info h3 a:hover { color: var(--accent-cyan); }
-        .tool-info h3 i { font-size: 0.9rem; opacity: 0.7; }
-        .tool-info p { color: var(--text-muted); font-size: 0.9rem; line-height: 1.5; margin-top: 5px; }
-
-        .double-image-container { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin-top: 40px; }
-        .double-image-container figure { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 25px; text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,0.3); display: flex; flex-direction: column; justify-content: center;}
-        .double-image-container img { max-width: 100%; max-height: 400px; object-fit: contain; border-radius: 8px; margin-bottom: 15px; }
-        .double-image-container figcaption { color: var(--text-muted); font-style: italic; font-size: 0.95rem; display: block; }
-
-        .steps-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 30px; margin-top: 30px; }
-        .step-card { background: rgba(255,255,255,0.02); border: 1px solid var(--border-color); border-top: 3px solid var(--accent-cyan); border-radius: var(--radius-md); padding: 30px; transition: all 0.3s ease; }
-        .step-card:hover { background: rgba(79, 172, 254, 0.05); border-color: var(--accent-cyan); }
-        .step-card h3 { color: var(--accent-cyan); font-size: 1.4rem; margin-bottom: 15px; }
-        .step-card p { color: var(--text-main); font-size: 0.95rem; line-height: 1.6; }
-
-        .ac-box { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 40px; margin-top: 40px; }
-        .ue-list { margin-top: 20px; }
-        .ue-list li { position: relative; padding-left: 25px; margin-bottom: 15px; color: var(--text-muted); font-size: 1rem; }
-        .ue-list li::before { content: '>'; position: absolute; left: 0; color: var(--accent-hover); font-family: var(--font-mono); font-weight: bold; }
-        .ue-list li span.code { color: var(--accent-cyan); font-weight: bold; margin-right: 10px; font-family: var(--font-mono); }
-
-        .bilan-card.success-theme { background: linear-gradient(145deg, var(--bg-card), rgba(46, 204, 113, 0.05)); border: 1px solid rgba(46, 204, 113, 0.3); border-radius: var(--radius-md); padding: 40px; margin-top: 60px; box-shadow: 0 10px 40px var(--success-glow); position: relative; overflow: hidden; }
-        .bilan-card.success-theme::before { content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 4px; background: linear-gradient(90deg, var(--success), #27ae60); }
-        .bilan-card.success-theme h3 { font-size: 2rem; color: var(--success); margin-bottom: 20px; text-shadow: 0 0 10px rgba(46, 204, 113, 0.2); }
-        .bilan-card.success-theme p { font-size: 1.05rem; color: var(--text-main); line-height: 1.8; margin-bottom: 0; }
-
-        footer { text-align: center; padding: 40px 0; color: var(--text-muted); border-top: 1px solid var(--border-color); margin-top: auto; }
-
-        @media (max-width: 900px) { 
-            .menu-toggle { display: block; }
-            .nav-links {
-                position: absolute; top: 60px; left: 0; right: 0; background-color: rgba(22, 20, 32, 0.95);
-                flex-direction: column; gap: 0; padding: 20px 0; border-radius: 0 0 var(--radius-md) var(--radius-md);
-                border: 1px solid var(--border-color); border-top: none;
-                transform: translateY(-150%); opacity: 0; transition: all 0.4s ease; z-index: 999;
-                pointer-events: none;
-            }
-            .nav-links.active { transform: translateY(0); opacity: 1; pointer-events: auto; }
-            .nav-links li { margin: 15px 0; }
-            .lang-switch-container { margin: 15px 0 0 0; justify-content: center; }
-            .tools-grid { grid-template-columns: 1fr; }
-            .double-image-container { grid-template-columns: 1fr; }
-        }
-        
-        @media (max-width: 768px) {
-            .section-title { font-size: 2.2rem; }
-            .page-header { padding-top: 120px; }
-            .steps-grid { grid-template-columns: 1fr; }
-        }
-    </style>
-</head>
-<body>
-
-    <header>
-        <div class="container">
-            <nav>
-                <div class="logo">C.H.D</div>
-                <div class="menu-toggle" id="mobile-menu">
-                    <i class="fa-solid fa-bars"></i>
-                </div>
-                <ul class="nav-links" id="nav-links">
-                    <li><a href="index.html#hero">Accueil</a></li>
-                    <li><a href="index.html#parcours">Parcours</a></li>
-                    <li><a href="competences.html">Compétences</a></li>
-                    <li><a href="projets.html" class="active">Projets</a></li> 
-                    <li><a href="index.html#cv">CV</a></li>
-                    <li><a href="contact.html" class="nav-contact-btn">Contact</a></li>
-                    <li class="lang-switch-container">
-                        <span class="flag">🇫🇷</span>
-                        <label class="switch">
-                            <input type="checkbox" id="langToggle">
-                            <span class="slider round"></span>
-                        </label>
-                        <span class="flag" style="opacity: 0.5;">🇬🇧</span>
-                    </li>
-                </ul>
-            </nav>
-        </div>
-    </header>
-
-    <div class="page-header container">
-        <div class="back-btn-container">
-            <a href="projets-but1.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i> Revenir aux projets</a>
-        </div>
-        <h1 class="section-title">SAE 2.02</h1>
-        <p class="page-subtitle">Création d'une Web Radio portable : programmation de microcontrôleurs pour l'accès aux flux audio Internet et pilotage à distance.</p>
-    </div>
-
-    <main class="container">
-
-        <section class="project-section">
-            <div class="resume-box">
-                <h3>Résumé de la SAE</h3>
-                <p><strong>Objectif :</strong> Le but de ce projet est d'utiliser et de programmer deux cartes Arduino imbriquées dans le but d'accéder à la radio via internet. J'ai utilisé une application sur Android pour commander cette webradio à distance.</p>
-                <p>Au cours de ce projet, j'ai pu acquérir des compétences en <strong>programmation C++</strong>, l'utilisation de la carte <strong>Arduino ESP32</strong> et la prise en main de l'<strong>Arduino IDE</strong>.</p>
-                <a href="https://github.com/1gn0/SAE22" target="_blank" class="github-btn"><i class="fa-brands fa-github"></i> Consulter le code source sur GitHub</a>
-            </div>
-        </section>
-
-        <section class="project-section">
-            <h2 class="project-heading">Environnement et Outils</h2>
-            <div class="tools-grid">
-                <div class="tool-card">
-                    <div class="tool-img" style="background: transparent; border: none;">
-                        <i class="fa-solid fa-microchip"></i>
-                    </div>
-                    <div class="tool-info">
-                        <h3><a href="https://www.espressif.com/en/products/socs/esp32" target="_blank">ESP32 & VS1053b <i class="fa-solid fa-arrow-up-right-from-square"></i></a></h3>
-                        <p>Microcontrôleur ESP32 (module Wi-Fi) couplé à une carte Codec audio VS1053b pour le décodage matériel des flux mp3 et AAC.</p>
-                    </div>
-                </div>
-                <div class="tool-card">
-                    <div class="tool-img">
-                        <img src="files/logo/arduino_ide.jpg" alt="Logo Arduino IDE">
-                    </div>
-                    <div class="tool-info">
-                        <h3><a href="https://www.arduino.cc/en/software" target="_blank">Arduino IDE <i class="fa-solid fa-arrow-up-right-from-square"></i></a></h3>
-                        <p>Environnement de développement utilisé pour la programmation en C++ du microcontrôleur et l'intégration des différentes bibliothèques réseau et audio.</p>
-                    </div>
-                </div>
-                <div class="tool-card">
-                    <div class="tool-img">
-                        <img src="files/logo/iot_mqtt_panel.png" alt="Logo IoT MQTT Panel">
-                    </div>
-                    <div class="tool-info">
-                        <h3><a href="https://play.google.com/store/apps/details?id=snr.lab.iotmqttpanel.prod" target="_blank">IoT MQTT Panel <i class="fa-solid fa-arrow-up-right-from-square"></i></a></h3>
-                        <p>Application Android permettant de créer une interface de contrôle à distance (sliders, boutons) communiquant via le protocole MQTT.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section class="project-section">
-            <h2 class="project-heading">Aperçu du système</h2>
-            <div class="double-image-container">
-                <figure>
-                    <img src="files/s2/photo_web_radio.jpg" alt="Montage physique de la Web Radio">
-                    <figcaption>Montage matériel : carte ESP32 Feather empilée avec le Music Maker FeatherWing (Codec VS1053).</figcaption>
-                </figure>
-                <figure>
-                    <img src="files/s2/app_web_radio.jpg" alt="Interface de l'application IoT MQTT Panel">
-                    <figcaption>Interface de pilotage à distance créée sous Android via l'application IoT MQTT Panel.</figcaption>
-                </figure>
-            </div>
-        </section>
-
-        <section class="project-section">
-            <h2 class="project-heading">Grandes étapes techniques</h2>
-            <div class="steps-grid">
-                <div class="step-card">
-                    <h3>1. Communication Matérielle</h3>
-                    <p>L'ESP32 interagit avec le codec audio VS1053b via le bus <strong>SPI (Serial Peripheral Interface)</strong>, un protocole synchrone utilisant les broches <strong>MOSI</strong>, <strong>MISO</strong>, <strong>SCK</strong> et des signaux de contrôle comme <strong>XDCS</strong>.</p>
-                </div>
-                <div class="step-card">
-                    <h3>2. Décodage Audio Matériel</h3>
-                    <p>Le <strong>VS1053b</strong> prend en charge le décodage direct des flux MP3/AAC. Le contrôle du son s'effectue en écrivant dans ses <strong>registres SCI</strong>, comme <code>SCI_VOL</code> (volume) et <code>SCI_BASS</code> (basses et aigus).</p>
-                </div>
-                <div class="step-card">
-                    <h3>3. Gestion Dynamique du Wi-Fi</h3>
-                    <p>Implémentation de la bibliothèque <strong>WiFiManager</strong>. Elle permet à l'ESP32 de créer un portail captif temporaire si aucun réseau n'est connu, évitant ainsi de coder les identifiants Wi-Fi en dur dans le programme.</p>
-                </div>
-                <div class="step-card">
-                    <h3>4. Lecture des Flux (Streaming)</h3>
-                    <p>Utilisation de la bibliothèque <strong>ESP32_VS1053_Stream</strong> pour récupérer les flux audio des webradios directement depuis leurs URL et les envoyer au décodeur de manière fluide.</p>
-                </div>
-                <div class="step-card">
-                    <h3>5. Commandes Clavier (Série)</h3>
-                    <p>Création d'une interface de pilotage local via la <strong>console série USB (115200 baud)</strong>. L'écoute du clavier permet à l'utilisateur de changer de station (<strong>n/v</strong>), régler le volume (<strong>y/b</strong>), ajuster les basses/aigus, ou activer la spatialisation (<strong>s</strong>).</p>
-                </div>
-                <div class="step-card">
-                    <h3>6. Télémétrie et Contrôle MQTT</h3>
-                    <p>Mise en place du protocole <strong>MQTT (Message Queuing Telemetry Transport)</strong>, basé sur la publication-abonnement (PubSub). Il permet de recevoir les commandes de l'application Android et de renvoyer l'état actuel de la radio.</p>
-                </div>
-                <div class="step-card">
-                    <h3>7. Traitement Spatialisant</h3>
-                    <p>Activation de la fonction <strong>EarSpeaker</strong> du codec via le registre <code>SCI_MODE</code> pour simuler une écoute sur haut-parleurs via un casque, et utilisation d'un plugin pour intégrer un <strong>égaliseur 5 bandes</strong>.</p>
-                </div>
-            </div>
-        </section>
-
-        <section class="project-section">
-            <h2 class="project-heading">Compétences validées</h2>
-            <div class="ac-box">
-                <p style="color: var(--text-main); font-size: 1.05rem;">Détail des Apprentissages Critiques (BUT1) développés lors de cette SAE :</p>
-                <ul class="ue-list">
-                    <li><span class="code">AC12.03</span> Déployer des supports de transmission.</li>
-                    <li><span class="code">AC13.01</span> Utiliser un système informatique et ses outils.</li>
-                    <li><span class="code">AC13.02</span> Lire, exécuter, corriger et modifier un programme.</li>
-                    <li><span class="code">AC13.06</span> S'intégrer dans un environnement propice au développement et au travail collaboratif.</li>
-                </ul>
-            </div>
-        </section>
-
-        <section class="project-section">
-            <div class="bilan-card success-theme">
-                <h3>Analyse réflexive</h3>
-                <p>
+<!doctype html>
+<html lang="fr" data-title-fr="SAE 2.02 — Camille Henry--Delangle" data-title-en="SAE 2.02 — Camille Henry--Delangle">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>SAE 2.02 — Camille Henry--Delangle</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Inter:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet" href="assets/css/site.css"><link rel="stylesheet" href="assets/css/pages.css"></head>
+<body data-theme="projets">
+<header class="top"><nav><a class="logo" href="index.html#top">~/chd<span>_</span></a><button class="burger" aria-label="Menu">☰</button><div class="links"><a class="nav" href="index.html#parcours"><span class="nn">01</span><span lang="fr">parcours</span><span lang="en">journey</span></a><a class="nav" href="index.html#experience"><span class="nn">02</span><span lang="fr">expérience</span><span lang="en">experience</span></a><a class="nav" href="index.html#competences"><span class="nn">03</span><span lang="fr">compétences</span><span lang="en">skills</span></a><a class="nav on" href="projets.html"><span class="nn">04</span><span lang="fr">projets</span><span lang="en">projects</span></a><a class="nav" href="index.html#cv"><span class="nn">05</span><span lang="fr">cv</span><span lang="en">resume</span></a><a class="nav" href="index.html#contact"><span class="nn">06</span><span lang="fr">contact</span><span lang="en">contact</span></a></div><div class="lang"><button type="button" data-l="fr">FR</button><button type="button" data-l="en">EN</button></div></nav></header><section class="uehead grid-bg"><div class="container" style="padding-top:72px;padding-bottom:48px"><div class="page-header container">
+<div class="back-btn-container">
+<a class="back-btn" href="projets.html#but1"><i class="fa-solid fa-arrow-left"></i><span lang="fr"> Revenir aux projets</span><span lang="en"> Back to projects</span></a>
+</div>
+<h1 class="section-title">SAE 2.02</h1>
+<p class="page-subtitle"><span lang="fr">Création d'une Web Radio portable : programmation de microcontrôleurs pour l'accès aux flux audio Internet et pilotage à distance.</span><span lang="en">Creation of a portable Web Radio: microcontroller programming for internet audio stream access and remote control.</span></p>
+</div></div></section>
+<main class="container">
+<section class="project-section">
+<div class="resume-box">
+<h3><span lang="fr">Résumé de la SAE</span><span lang="en">SAE Summary</span></h3>
+<p><strong><span lang="fr">Objectif :</span><span lang="en">Objective:</span></strong><span lang="fr"> Le but de ce projet est d'utiliser et de programmer deux cartes Arduino imbriquées dans le but d'accéder à la radio via internet. J'ai utilisé une application sur Android pour commander cette webradio à distance.</span><span lang="en"> The goal of this project is to use and program two stacked Arduino boards to access internet radio. I used an Android application to remotely control this web radio.</span></p>
+<p><span lang="fr">Au cours de ce projet, j'ai pu acquérir des compétences en </span><span lang="en">During this project, I gained skills in </span><strong><span lang="fr">programmation C++</span><span lang="en">C++ programming</span></strong><span lang="fr">, l'utilisation de la carte </span><span lang="en">, using the </span><strong>Arduino ESP32</strong><span lang="fr"> et la prise en main de l'</span><span lang="en"> board, and familiarizing myself with the </span><strong>Arduino IDE</strong>.</p>
+<a class="github-btn" href="https://github.com/1gn0/SAE22" target="_blank"><i class="fa-brands fa-github"></i><span lang="fr"> Consulter le code source sur GitHub</span><span lang="en"> View source code on GitHub</span></a>
+</div>
+</section>
+<section class="project-section">
+<h2 class="project-heading"><span lang="fr">Environnement et Outils</span><span lang="en">Environment and Tools</span></h2>
+<div class="tools-grid">
+<div class="tool-card">
+<div class="tool-img" style="background: transparent; border: none;">
+<i class="fa-solid fa-microchip"></i>
+</div>
+<div class="tool-info">
+<h3><a href="https://www.espressif.com/en/products/socs/esp32" target="_blank">ESP32 &amp; VS1053b <i class="fa-solid fa-arrow-up-right-from-square"></i></a></h3>
+<p><span lang="fr">Microcontrôleur ESP32 (module Wi-Fi) couplé à une carte Codec audio VS1053b pour le décodage matériel des flux mp3 et AAC.</span><span lang="en">ESP32 microcontroller (Wi-Fi module) paired with a VS1053b audio Codec board for hardware decoding of MP3 and AAC streams.</span></p>
+</div>
+</div>
+<div class="tool-card">
+<div class="tool-img">
+<img alt="Logo Arduino IDE" src="files/logo/arduino_ide.jpg"></img>
+</div>
+<div class="tool-info">
+<h3><a href="https://www.arduino.cc/en/software" target="_blank">Arduino IDE <i class="fa-solid fa-arrow-up-right-from-square"></i></a></h3>
+<p><span lang="fr">Environnement de développement utilisé pour la programmation en C++ du microcontrôleur et l'intégration des différentes bibliothèques réseau et audio.</span><span lang="en">Development environment used for C++ programming of the microcontroller and integration of various network and audio libraries.</span></p>
+</div>
+</div>
+<div class="tool-card">
+<div class="tool-img">
+<img alt="Logo IoT MQTT Panel" src="files/logo/iot_mqtt_panel.png"></img>
+</div>
+<div class="tool-info">
+<h3><a href="https://play.google.com/store/apps/details?id=snr.lab.iotmqttpanel.prod" target="_blank">IoT MQTT Panel <i class="fa-solid fa-arrow-up-right-from-square"></i></a></h3>
+<p><span lang="fr">Application Android permettant de créer une interface de contrôle à distance (sliders, boutons) communiquant via le protocole MQTT.</span><span lang="en">Android application used to create a remote control interface (sliders, buttons) communicating via the MQTT protocol.</span></p>
+</div>
+</div>
+</div>
+</section>
+<section class="project-section">
+<h2 class="project-heading"><span lang="fr">Aperçu du système</span><span lang="en">System Overview</span></h2>
+<div class="double-image-container">
+<figure>
+<img alt="Montage physique de la Web Radio" src="files/s2/photo_web_radio.jpg"></img>
+<figcaption><span lang="fr">Montage matériel : carte ESP32 Feather empilée avec le Music Maker FeatherWing (Codec VS1053).</span><span lang="en">Hardware assembly: ESP32 Feather board stacked with the Music Maker FeatherWing (VS1053 Codec).</span></figcaption>
+</figure>
+<figure>
+<img alt="Interface de l'application IoT MQTT Panel" src="files/s2/app_web_radio.jpg"></img>
+<figcaption><span lang="fr">Interface de pilotage à distance créée sous Android via l'application IoT MQTT Panel.</span><span lang="en">Remote control interface created on Android via the IoT MQTT Panel application.</span></figcaption>
+</figure>
+</div>
+</section>
+<section class="project-section">
+<h2 class="project-heading"><span lang="fr">Grandes étapes techniques</span><span lang="en">Main Technical Steps</span></h2>
+<div class="steps-grid">
+<div class="step-card">
+<h3><span lang="fr">1. Communication Matérielle</span><span lang="en">1. Hardware Communication</span></h3>
+<p><span lang="fr">L'ESP32 interagit avec le codec audio VS1053b via le bus </span><span lang="en">The ESP32 interacts with the VS1053b audio codec via the </span><strong>SPI (Serial Peripheral Interface)</strong><span lang="fr">, un protocole synchrone utilisant les broches </span><span lang="en"> bus, a synchronous protocol using the </span><strong>MOSI</strong>, <strong>MISO</strong>, <strong>SCK</strong><span lang="fr"> et des signaux de contrôle comme </span><span lang="en"> pins, and control signals like </span><strong>XDCS</strong>.</p>
+</div>
+<div class="step-card">
+<h3><span lang="fr">2. Décodage Audio Matériel</span><span lang="en">2. Hardware Audio Decoding</span></h3>
+<p><span lang="fr">Le </span><span lang="en">The </span><strong>VS1053b</strong><span lang="fr"> prend en charge le décodage direct des flux MP3/AAC. Le contrôle du son s'effectue en écrivant dans ses </span><span lang="en"> supports direct decoding of MP3/AAC streams. Sound control is achieved by writing to its </span><strong><span lang="fr">registres SCI</span><span lang="en">SCI registers</span></strong><span lang="fr">, comme </span><span lang="en">, such as </span><code>SCI_VOL</code><span lang="fr"> (volume) et </span><span lang="en"> (volume) and </span><code>SCI_BASS</code><span lang="fr"> (basses et aigus).</span><span lang="en"> (bass and treble).</span></p>
+</div>
+<div class="step-card">
+<h3><span lang="fr">3. Gestion Dynamique du Wi-Fi</span><span lang="en">3. Dynamic Wi-Fi Management</span></h3>
+<p><span lang="fr">Implémentation de la bibliothèque </span><span lang="en">Implementation of the </span><strong>WiFiManager</strong><span lang="fr">. Elle permet à l'ESP32 de créer un portail captif temporaire si aucun réseau n'est connu, évitant ainsi de coder les identifiants Wi-Fi en dur dans le programme.</span><span lang="en"> library. It allows the ESP32 to create a temporary captive portal if no known network is found, avoiding hardcoding Wi-Fi credentials into the program.</span></p>
+</div>
+<div class="step-card">
+<h3><span lang="fr">4. Lecture des Flux (Streaming)</span><span lang="en">4. Stream Reading (Streaming)</span></h3>
+<p><span lang="fr">Utilisation de la bibliothèque </span><span lang="en">Use of the </span><strong>ESP32_VS1053_Stream</strong><span lang="fr"> pour récupérer les flux audio des webradios directement depuis leurs URL et les envoyer au décodeur de manière fluide.</span><span lang="en"> library to retrieve audio streams from web radios directly from their URLs and send them seamlessly to the decoder.</span></p>
+</div>
+<div class="step-card">
+<h3><span lang="fr">5. Commandes Clavier (Série)</span><span lang="en">5. Keyboard Commands (Serial)</span></h3>
+<p><span lang="fr">Création d'une interface de pilotage local via la </span><span lang="en">Creation of a local control interface via the </span><strong><span lang="fr">console série USB (115200 baud)</span><span lang="en">USB serial console (115200 baud)</span></strong><span lang="fr">. L'écoute du clavier permet à l'utilisateur de changer de station (</span><span lang="en">. Listening to the keyboard allows the user to change stations (</span><strong>n/v</strong><span lang="fr">), régler le volume (</span><span lang="en">), adjust volume (</span><strong>y/b</strong><span lang="fr">), ajuster les basses/aigus, ou activer la spatialisation (</span><span lang="en">), tweak bass/treble, or enable spatialization (</span><strong>s</strong>).</p>
+</div>
+<div class="step-card">
+<h3><span lang="fr">6. Télémétrie et Contrôle MQTT</span><span lang="en">6. Telemetry and MQTT Control</span></h3>
+<p><span lang="fr">Mise en place du protocole </span><span lang="en">Implementation of the </span><strong>MQTT (Message Queuing Telemetry Transport)</strong><span lang="fr">, basé sur la publication-abonnement (PubSub). Il permet de recevoir les commandes de l'application Android et de renvoyer l'état actuel de la radio.</span><span lang="en"> protocol, based on publish-subscribe (PubSub). It receives commands from the Android app and sends back the current state of the radio.</span></p>
+</div>
+<div class="step-card">
+<h3><span lang="fr">7. Traitement Spatialisant</span><span lang="en">7. Spatial Processing</span></h3>
+<p><span lang="fr">Activation de la fonction </span><span lang="en">Activation of the codec's </span><strong>EarSpeaker</strong><span lang="fr"> du codec via le registre </span><span lang="en"> function via the </span><code>SCI_MODE</code><span lang="fr"> pour simuler une écoute sur haut-parleurs via un casque, et utilisation d'un plugin pour intégrer un </span><span lang="en"> register to simulate loudspeaker listening through headphones, and use of a plugin to integrate a </span><strong><span lang="fr">égaliseur 5 bandes</span><span lang="en">5-band equalizer</span></strong>.</p>
+</div>
+</div>
+</section>
+<section class="project-section">
+<h2 class="project-heading"><span lang="fr">Compétences validées</span><span lang="en">Validated Skills</span></h2>
+<div class="ac-box">
+<p style="color: var(--text-main); font-size: 1.05rem;"><span lang="fr">Détail des Apprentissages Critiques (BUT1) développés lors de cette SAE :</span><span lang="en">Details of the Critical Learnings (BUT1) developed during this SAE:</span></p>
+<ul class="ue-list">
+<li><span class="code"><a href="competence-connecter.html#but1" title="UE2">AC12.03</a></span><span lang="fr"> Déployer des supports de transmission.</span><span lang="en"> Deploy transmission media.</span></li>
+<li><span class="code"><a href="competence-programmer.html#but1" title="UE3">AC13.01</a></span><span lang="fr"> Utiliser un système informatique et ses outils.</span><span lang="en"> Use a computer system and its tools.</span></li>
+<li><span class="code"><a href="competence-programmer.html#but1" title="UE3">AC13.02</a></span><span lang="fr"> Lire, exécuter, corriger et modifier un programme.</span><span lang="en"> Read, execute, debug, and modify a program.</span></li>
+<li><span class="code"><a href="competence-programmer.html#but1" title="UE3">AC13.06</a></span><span lang="fr"> S'intégrer dans un environnement propice au développement et au travail collaboratif.</span><span lang="en"> Integrate into an environment conducive to development and collaborative work.</span></li>
+</ul>
+</div>
+</section>
+<section class="project-section">
+<div class="bilan-card success-theme">
+<h3><span lang="fr">Analyse réflexive</span><span lang="en">Reflective Analysis</span></h3>
+<p><span lang="fr">
                     Ce projet fut particulièrement intéressant à réaliser car il nous invite à découvrir par nous-mêmes les différentes fonctionnalités disponibles en explorant les fiches techniques des composants et les capacités des bibliothèques. Ce travail de programmation conjointe m'a de plus appris à gérer efficacement un projet en équipe.
-                </p>
-            </div>
-        </section>
-
-    </main>
-
-    <footer>
-        <div class="container">
-            <p>&copy; 2026 <strong>Camille HENRY--DELANGLE</strong>.</p>
-            <p style="font-size: 0.85rem; font-family: var(--font-mono); opacity: 0.5; margin-top: 15px;">Root@Portfolio:~# exit</p>
-        </div>
-    </footer>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const langToggle = document.getElementById('langToggle');
-            if(langToggle) {
-                langToggle.addEventListener('change', function() {
-                    if(this.checked) {
-                        window.location.href = "sae202-en.html";
-                    }
-                });
-            }
-
-            const mobileMenu = document.getElementById('mobile-menu');
-            const navLinksList = document.getElementById('nav-links');
-            if(mobileMenu && navLinksList) {
-                mobileMenu.addEventListener('click', () => {
-                    navLinksList.classList.toggle('active');
-                });
-            }
-        });
-    </script>
-</body>
-</html>
+                </span><span lang="en">
+                    This project was particularly interesting to carry out as it invited us to discover the available features on our own by exploring component datasheets and library capabilities. Furthermore, this joint programming work taught me how to effectively manage a team project.
+                </span></p>
+</div>
+</section>
+</main>
+<footer class="f"><div class="wrap" style="display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px"><span>© 2026 Camille HENRY--DELANGLE · BUT R&amp;T Cybersécurité</span><span><span style="color:#FF5C7A">root@portfolio:~#</span> exit</span></div></footer>
+<div class="modal" id="modal"><div class="mi"><div class="bar2"><span class="mono" style="font-size:13px;color:var(--mut)">aperçu</span><button data-close aria-label="Fermer">×</button></div><iframe src="about:blank" title="PDF" hidden></iframe><div class="imgv" hidden><img alt="Zoom" src=""></div></div></div>
+<script src="assets/js/site.js"></script>
+</body></html>
