@@ -146,3 +146,73 @@ html[lang=en] .role-section-cohesive::before{content:'MY ROLE ON THE PROJECT'}
 .imgv img{max-width:100%;max-height:100%;border-radius:8px}
 [hidden]{display:none!important}
 @media(max-width:700px){.container{padding:0 20px}.tool-card{flex-direction:column}}
+
+/* ===== v2 : fenêtres, sommaire, timeline, interactions ===== */
+.rprog{position:fixed;top:0;left:0;height:3px;width:100%;transform-origin:left;transform:scaleX(var(--rp,0));background:linear-gradient(90deg,var(--a),#FF5C7A);z-index:80}
+.hsplit{padding-top:72px;padding-bottom:56px;display:grid;grid-template-columns:minmax(0,1.5fr) minmax(280px,1fr);gap:48px;align-items:center}
+.hsplit .page-header{padding:0}
+.chips2{display:flex;flex-wrap:wrap;gap:8px;margin-top:24px}
+.chip{font-family:'JetBrains Mono',monospace;font-size:12px;padding:5px 10px;border:1px solid var(--a);border-radius:4px;color:var(--a);text-decoration:none;transition:background .2s,color .2s}
+.chip:hover{background:var(--a);color:var(--on-a)}
+.hsplit .win .body{font-size:13px}
+.hsplit .win .body a{color:var(--a)}
+@media(max-width:900px){.hsplit{grid-template-columns:1fr}}
+.layout{display:grid;grid-template-columns:210px minmax(0,1fr);gap:48px;padding-top:56px;padding-bottom:40px;align-items:start}
+.layout>main{min-width:0;padding:0!important}
+.toc{position:sticky;top:92px;display:flex;flex-direction:column;gap:2px;border-left:1px solid var(--line);padding-left:4px}
+.tocl{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--mut);margin:0 0 10px 12px}
+.toc a{display:flex;gap:10px;align-items:baseline;padding:7px 12px;border-radius:0 6px 6px 0;color:var(--mut);text-decoration:none;font-size:13.5px;line-height:1.35;border-left:2px solid transparent;margin-left:-1px;transition:color .2s,background .2s,border-color .2s}
+.toc a .tn{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--a);opacity:.7}
+.toc a:hover{color:var(--tx);background:var(--panel)}
+.toc a.on{color:var(--tx);border-left-color:var(--a);background:var(--ad)}
+.toc a.on .tn{opacity:1}
+@media(max-width:1000px){.layout{grid-template-columns:1fr}.toc{display:none}}
+/* sections = fenêtres */
+.pw{margin:0 0 36px;background:var(--panel);border:1px solid var(--line);border-radius:14px;overflow:hidden;position:relative;box-shadow:0 24px 60px -34px #000}
+.pwbar{display:flex;align-items:center;gap:8px;padding:11px 16px;background:var(--panel2);border-bottom:1px solid var(--line);user-select:none}
+.pwbar .wd{cursor:pointer;transition:transform .2s,background .2s}
+.pwbar .wd:hover{transform:scale(1.35)}
+.pwbar:hover .wd.r{background:#FF5F57}.pwbar:hover .wd.y{background:#FEBC2E}.pwbar:hover .wd.g{background:#28C840}
+.pwbar .fn{margin-left:10px;font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--mut)}
+.pwn{margin-left:auto;font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--a);opacity:.8}
+.pwbody{padding:36px;display:grid;grid-template-rows:1fr;transition:padding .3s}
+.pwbody>*:last-child{margin-bottom:0}
+.pw.min .pwbody{display:none}
+.pw.min .pwbar{border-bottom:0}
+.pw .project-heading{border:0;padding:0;margin:0 0 26px;font-size:clamp(24px,3vw,34px);letter-spacing:-1px}
+.pw .project-heading::before{content:'## ';color:var(--a);font-weight:400}
+.pw .resume-box,.pw .ac-box,.pw .bilan-card{background:transparent;border:1px solid var(--line2)}
+.pw .resume-box{background:var(--ad);border-left:4px solid var(--a)}
+.pw .tool-card,.pw .step-card,.pw .structure-card,.pw .logic-card,.pw .mission-item,.pw .company-card,.pw .content-block,.pw .doc-box,.pw .double-image-container figure,.pw .gallery-box,.pw .bdd-card,.pw .role-box,.pw .architecture-box,.pw .site-showcase{background:var(--bg)}
+@media(max-width:700px){.pwbody{padding:20px}}
+/* timeline pour les étapes */
+.steps-grid{display:flex!important;flex-direction:column;gap:22px;position:relative;padding-left:44px;counter-reset:st}
+.steps-grid::before{content:'';position:absolute;left:13px;top:8px;bottom:8px;width:2px;background:var(--line2);border-radius:2px}
+.steps-grid::after{content:'';position:absolute;left:13px;top:8px;width:2px;height:calc((100% - 16px)*var(--sp,0));background:var(--a);border-radius:2px;box-shadow:0 0 12px var(--a);transition:height .15s linear}
+.steps-grid .step-card{position:relative;border-top:1px solid var(--line);border-left:3px solid var(--a)}
+.steps-grid .step-card::before{content:'';position:absolute;left:-41px;top:26px;width:14px;height:14px;border-radius:50%;background:var(--bg);border:2px solid var(--a);box-shadow:0 0 0 4px var(--bg)}
+.steps-grid .step-card.rvd::before{background:var(--a)}
+/* spotlight & tilt */
+.spot{position:relative}
+.spot::after{content:'';position:absolute;inset:0;pointer-events:none;border-radius:inherit;opacity:0;transition:opacity .25s;background:radial-gradient(260px circle at var(--mx,50%) var(--my,50%),color-mix(in srgb,var(--a) 16%,transparent),transparent 70%)}
+.spot:hover::after{opacity:1}
+.tilt{transition:transform .15s ease-out,border-color .25s,box-shadow .25s;will-change:transform}
+/* révélation */
+.rv{opacity:0;transform:translateY(22px);transition:opacity .6s ease,transform .6s ease}
+.rv.rvd{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none}.tilt{transform:none!important}}
+/* fenêtres déplaçables (verrouillées dans leur section) */
+.win[data-drag]{touch-action:none}
+.win.dragging{box-shadow:0 40px 80px -20px #000,0 0 0 1px var(--a);z-index:30}
+.win .wd.r{cursor:pointer}
+/* palette de commandes */
+.kbtn{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--mut);border:1px solid var(--line2);border-radius:5px;padding:4px 8px;background:transparent;cursor:pointer}
+.kbtn:hover{color:var(--tx);border-color:var(--a)}
+.cmdk{position:fixed;inset:0;z-index:120;background:#000A;display:none;align-items:flex-start;justify-content:center;padding-top:14vh;backdrop-filter:blur(4px)}
+.cmdk.on{display:flex}
+.cmdk .bx{width:min(560px,92vw);background:var(--panel);border:1px solid var(--line2);border-radius:12px;overflow:hidden;box-shadow:0 30px 80px #000}
+.cmdk input{width:100%;padding:16px 18px;background:var(--panel2);border:0;border-bottom:1px solid var(--line);color:var(--tx);font:15px 'JetBrains Mono',monospace;outline:none}
+.cmdk ul{list-style:none;margin:0;padding:6px;max-height:50vh;overflow:auto}
+.cmdk li a{display:flex;justify-content:space-between;gap:12px;padding:10px 12px;border-radius:6px;color:var(--tx2);text-decoration:none;font-size:14px}
+.cmdk li a small{font-family:'JetBrains Mono',monospace;color:var(--mut)}
+.cmdk li.sel a,.cmdk li a:hover{background:var(--ad);color:var(--tx)}

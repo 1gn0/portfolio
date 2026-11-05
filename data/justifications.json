@@ -1,0 +1,182 @@
+{
+ "AC13.03": {
+  "sae202": {
+   "confiance": "fort",
+   "pourquoi": "Programmation C++ d'un ESP32 (pilotage du codec, commandes série, MQTT).",
+   "fr": "",
+   "en": ""
+  },
+  "sae203": {
+   "confiance": "fort",
+   "pourquoi": "Application web : traduction d'une logique métier en code Python/Django.",
+   "fr": "",
+   "en": ""
+  }
+ },
+ "AC11.02": {
+  "sae202": {
+   "confiance": "moyen",
+   "pourquoi": "Architecture matérielle ESP32 + codec VS1053 (bus SPI, registres).",
+   "fr": "",
+   "en": ""
+  },
+  "sae204": {
+   "confiance": "faible",
+   "pourquoi": "Projet intégratif regroupant réseau, téléphonie et collecte de données dans une même infrastructure.",
+   "fr": "",
+   "en": ""
+  }
+ },
+ "AC11.05": {
+  "sae201": {
+   "confiance": "moyen",
+   "pourquoi": "Mise en place et validation d'un réseau GNS3 (VLAN, ACL, serveurs) : tests et corrections de configuration.",
+   "fr": "",
+   "en": ""
+  },
+  "stage-oci": {
+   "confiance": "moyen",
+   "pourquoi": "Support hotline et résolution de tickets d'incidents techniques chez des clients.",
+   "fr": "",
+   "en": ""
+  }
+ },
+ "AC21.02": {
+  "sae303": {
+   "confiance": "moyen",
+   "pourquoi": "Réseau multi-sites sécurisé : filtrage, ACL, sécurité de l'architecture.",
+   "fr": "",
+   "en": ""
+  },
+  "stage-oci": {
+   "confiance": "moyen",
+   "pourquoi": "Configuration de règles sur pare-feu WatchGuard physiques.",
+   "fr": "",
+   "en": ""
+  }
+ },
+ "AC21.03": {
+  "stage-oci": {
+   "confiance": "fort",
+   "pourquoi": "Déploiement du parc client : installation et configuration de postes, comptes utilisateurs.",
+   "fr": "",
+   "en": ""
+  },
+  "sae303": {
+   "confiance": "moyen",
+   "pourquoi": "Services Linux et machines virtualisées déployés dans l'architecture multi-sites.",
+   "fr": "",
+   "en": ""
+  }
+ },
+ "AC22.02": {
+  "stage-projet-mfa": {
+   "confiance": "fort",
+   "pourquoi": "VPN client avec authentification multifacteur (SAML) sur WatchGuard.",
+   "fr": "",
+   "en": ""
+  },
+  "stage-oci": {
+   "confiance": "moyen",
+   "pourquoi": "Configuration de tunnels VPN lors du stage.",
+   "fr": "",
+   "en": ""
+  }
+ },
+ "AC22.04": {
+  "sae303": {
+   "confiance": "moyen",
+   "pourquoi": "Architecture de type opérateur : MPLS-VPN, BGP, VRF.",
+   "fr": "",
+   "en": ""
+  }
+ },
+ "AC22.05": {
+  "sae301": {
+   "confiance": "moyen",
+   "pourquoi": "Le cahier des charges de la SAE est analysé et couvert point par point.",
+   "fr": "",
+   "en": ""
+  },
+  "sae303": {
+   "confiance": "moyen",
+   "pourquoi": "Réalisation intégrale du cahier des charges multi-sites.",
+   "fr": "",
+   "en": ""
+  }
+ },
+ "AC23.05": {
+  "sae302": {
+   "confiance": "fort",
+   "pourquoi": "Application qui lit/écrit des données dans une base de données (à vérifier sur la page).",
+   "fr": "",
+   "en": ""
+  },
+  "sae301": {
+   "confiance": "moyen",
+   "pourquoi": "Site web et application qui exploitent les données de la prise connectée (à vérifier).",
+   "fr": "",
+   "en": ""
+  }
+ },
+ "AC24.01": {
+  "stage-projet-mfa": {
+   "confiance": "moyen",
+   "pourquoi": "Mise en place du MFA : application de bonnes pratiques de sécurité des accès.",
+   "fr": "",
+   "en": ""
+  }
+ },
+ "AC24.04": {
+  "sae302": {
+   "confiance": "fort",
+   "pourquoi": "Chiffrement des communications (routage en oignon, chiffrement entre clients).",
+   "fr": "",
+   "en": ""
+  },
+  "stage-projet-mfa": {
+   "confiance": "faible",
+   "pourquoi": "Authentification SAML et jetons : choix de mécanismes d'authentification.",
+   "fr": "",
+   "en": ""
+  }
+ },
+ "AC24.05": {
+  "sae304": {
+   "confiance": "fort",
+   "pourquoi": "Pentesting : 75 challenges Root-Me couvrant plusieurs familles d'attaques.",
+   "fr": "",
+   "en": ""
+  }
+ },
+ "AC24.06": {
+  "sae304": {
+   "confiance": "moyen",
+   "pourquoi": "Challenges et documentation Root-Me majoritairement en anglais.",
+   "fr": "",
+   "en": ""
+  },
+  "stage-projet-mfa": {
+   "confiance": "moyen",
+   "pourquoi": "Documentation technique Microsoft / WatchGuard pour la mise en place du MFA.",
+   "fr": "",
+   "en": ""
+  }
+ },
+ "AC25.01": {
+  "stage-oci": {
+   "confiance": "faible",
+   "pourquoi": "À confirmer : gestion de postes (Intune/mises à jour) ou protection antimalware pendant le stage.",
+   "fr": "",
+   "en": ""
+  }
+ },
+ "AC25.02": {
+  "sae304": {
+   "confiance": "fort",
+   "pourquoi": "Prise en main d'outils et méthodes de test d'intrusion sur Root-Me.",
+   "fr": "",
+   "en": ""
+  }
+ }
+}
