@@ -148,7 +148,7 @@ html[lang=en] .role-section-cohesive::before{content:'MY ROLE ON THE PROJECT'}
 @media(max-width:700px){.container{padding:0 20px}.tool-card{flex-direction:column}}
 
 /* ===== v2 : fenêtres, sommaire, timeline, interactions ===== */
-.rprog{position:fixed;top:0;left:0;height:3px;width:100%;transform-origin:left;transform:scaleX(var(--rp,0));background:linear-gradient(90deg,var(--a),#FF5C7A);z-index:80}
+.rprog{position:fixed;top:0;left:0;height:3px;width:100%;transform-origin:left;transform:scaleX(var(--rp,0));background:linear-gradient(90deg,var(--a),var(--brand));z-index:80}
 .hsplit{padding-top:72px;padding-bottom:56px;display:grid;grid-template-columns:minmax(0,1.5fr) minmax(280px,1fr);gap:48px;align-items:center}
 .hsplit .page-header{padding:0}
 .chips2{display:flex;flex-wrap:wrap;gap:8px;margin-top:24px}
@@ -168,7 +168,7 @@ html[lang=en] .role-section-cohesive::before{content:'MY ROLE ON THE PROJECT'}
 .toc a.on .tn{opacity:1}
 @media(max-width:1000px){.layout{grid-template-columns:1fr}.toc{display:none}}
 /* sections = fenêtres */
-.pw{margin:0 0 36px;background:var(--panel);border:1px solid var(--line);border-radius:14px;overflow:hidden;position:relative;box-shadow:0 24px 60px -34px #000}
+.pw{margin:0 0 36px;background:var(--panel);border:1px solid var(--line);border-radius:14px;overflow:hidden;position:relative;box-shadow:0 24px 60px -34px var(--sh)}
 .pwbar{display:flex;align-items:center;gap:8px;padding:11px 16px;background:var(--panel2);border-bottom:1px solid var(--line);user-select:none}
 .pwbar .wd{cursor:pointer;transition:transform .2s,background .2s}
 .pwbar .wd:hover{transform:scale(1.35)}
@@ -201,14 +201,14 @@ html[lang=en] .role-section-cohesive::before{content:'MY ROLE ON THE PROJECT'}
 @media(prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none}.tilt{transform:none!important}}
 /* fenêtres déplaçables (verrouillées dans leur section) */
 .win[data-drag]{touch-action:none}
-.win.dragging{box-shadow:0 40px 80px -20px #000,0 0 0 1px var(--a);z-index:30}
+.win.dragging{box-shadow:0 40px 80px -20px var(--sh),0 0 0 1px var(--a);z-index:30}
 .win .wd.r{cursor:pointer}
 /* palette de commandes */
 .kbtn{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--mut);border:1px solid var(--line2);border-radius:5px;padding:4px 8px;background:transparent;cursor:pointer}
 .kbtn:hover{color:var(--tx);border-color:var(--a)}
-.cmdk{position:fixed;inset:0;z-index:120;background:#000A;display:none;align-items:flex-start;justify-content:center;padding-top:14vh;backdrop-filter:blur(4px)}
+.cmdk{position:fixed;inset:0;z-index:120;background:var(--overlay);display:none;align-items:flex-start;justify-content:center;padding-top:14vh;backdrop-filter:blur(4px)}
 .cmdk.on{display:flex}
-.cmdk .bx{width:min(560px,92vw);background:var(--panel);border:1px solid var(--line2);border-radius:12px;overflow:hidden;box-shadow:0 30px 80px #000}
+.cmdk .bx{width:min(560px,92vw);background:var(--panel);border:1px solid var(--line2);border-radius:12px;overflow:hidden;box-shadow:0 30px 80px var(--sh)}
 .cmdk input{width:100%;padding:16px 18px;background:var(--panel2);border:0;border-bottom:1px solid var(--line);color:var(--tx);font:15px 'JetBrains Mono',monospace;outline:none}
 .cmdk ul{list-style:none;margin:0;padding:6px;max-height:50vh;overflow:auto}
 .cmdk li a{display:flex;justify-content:space-between;gap:12px;padding:10px 12px;border-radius:6px;color:var(--tx2);text-decoration:none;font-size:14px}
