@@ -8,7 +8,7 @@
   d.addEventListener('click',function(e){
     var b=e.target.closest('.lang button');if(b)setLang(b.dataset.l);
     var g=e.target.closest('.burger');if(g)d.querySelector('.links').classList.toggle('open');
-    var o=e.target.closest('[data-pdf],[data-view]');if(o){e.preventDefault();view(o.dataset.pdf||o.dataset.view);}
+    var o=e.target.closest('[data-pdf],[data-view]');if(o){e.preventDefault();if(window.FV)FV.open(o.dataset.pdf||o.dataset.view,o);else view(o.dataset.pdf||o.dataset.view);}
     if(e.target.closest('[data-close]')||e.target.id==='modal'){var m2=d.getElementById('modal');if(m2){m2.classList.remove('on');m2.querySelector('iframe').src='about:blank';}}
     var t=e.target.closest('.tab,.step');if(t&&!t.disabled)showTab(t.dataset.t);
     var ln=e.target.closest('a[data-tab]');if(ln){showTab(ln.dataset.tab);}
