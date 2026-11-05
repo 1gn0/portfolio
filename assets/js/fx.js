@@ -58,4 +58,14 @@
     rows.forEach(function(r){r.addEventListener('pointerenter',function(){r.classList.add('near')});r.addEventListener('pointerleave',function(){r.classList.remove('near')});
       r.addEventListener('click',function(){r.classList.remove('pop');void r.offsetWidth;r.classList.add('pop')})});
   }
+
+  // images : logos jamais recadrés, captures larges sur toute la ligne, zoom au clic
+  function fixImgs(){$$('main img').forEach(function(im){if(!im.naturalWidth)return;var src=im.getAttribute('src')||'',ar=im.naturalWidth/im.naturalHeight,cs=getComputedStyle(im),r=im.getBoundingClientRect();
+      if(cs.objectFit==='cover'&&r.height>0){var br=r.width/r.height;if(/files\/logo\//.test(src)||Math.abs(br-ar)/ar>.45)im.classList.add('logoimg')}
+      if(!im.closest('a,[data-view],[data-pdf],.tool-img,.sae-card,.pc')&&im.naturalWidth>r.width*1.15&&!im.classList.contains('logoimg')){im.dataset.view=src;im.classList.add('zoomable')}
+      if(ar>1.7&&im.naturalWidth>r.width*1.25){var c=im;while(c&&c.parentElement&&c.parentElement.tagName!=='MAIN'){var pd=getComputedStyle(c.parentElement);if(pd.display==='grid'&&pd.gridTemplateColumns.split(' ').length>1){c.classList.add('full-row');break}if(c.parentElement.classList.contains('side-by-side-images')){c.classList.add('full-row');break}c=c.parentElement}}
+    });
+    // si une seule case reste seule dans une grille dont les autres passent en pleine ligne, elle passe aussi en pleine ligne
+    $$('main .full-row').map(function(c){return c.parentElement}).filter(function(g,i,a){return a.indexOf(g)===i}).forEach(function(g){var rest=[].filter.call(g.children,function(c){return !c.classList.contains('full-row')});if(rest.length===1)rest[0].classList.add('full-row')})}
+  if(d.readyState==='complete')fixImgs();else addEventListener('load',fixImgs);
 })();
