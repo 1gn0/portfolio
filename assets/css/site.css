@@ -212,3 +212,4 @@ footer.f{border-top:1px solid #1E252C;padding:28px 0;color:var(--mut);font-size:
 .ct small{font-family:'JetBrains Mono',monospace;color:var(--a);font-size:12px}
 .ct>span{color:var(--tx2);font-size:14px;word-break:break-word}
 @media(prefers-reduced-motion:reduce){.tk:hover,.doc:hover{transform:none}}
+@media(max-width:700px){.ref{display:block;margin:8px 0 0;white-space:normal}.in{padding:72px 20px}.wrap{padding:0 20px}.hero .in2{padding:64px 20px}}
