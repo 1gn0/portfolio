@@ -24,3 +24,14 @@
   if(hs&&d.getElementById('p-'+hs))showTab(hs);
   else{var f=d.querySelector('.tab[aria-selected=true]');if(f)showTab(f.dataset.t);}
 })();
+// fenêtre « profil.yml » déplaçable (easter egg)
+(function(){
+  var w=document.querySelector('.win'),b=w&&w.querySelector('.wbar');if(!b)return;
+  var ox=0,oy=0,x=0,y=0,on=false;
+  function set(){w.style.setProperty('--wx',x+'px');w.style.setProperty('--wy',y+'px')}
+  b.addEventListener('pointerdown',function(e){on=true;ox=e.clientX-x;oy=e.clientY-y;b.setPointerCapture(e.pointerId);b.classList.add('drag')});
+  b.addEventListener('pointermove',function(e){if(!on)return;x=e.clientX-ox;y=e.clientY-oy;set()});
+  function up(){on=false;b.classList.remove('drag')}
+  b.addEventListener('pointerup',up);b.addEventListener('pointercancel',up);
+  b.addEventListener('dblclick',function(){x=0;y=0;set()});
+})();
