@@ -1,0 +1,119 @@
+/* ===== FX : effets partagés (accueil + toutes les pages) ===== */
+@property --ang{syntax:'<angle>';inherits:false;initial-value:0deg}
+.spot{position:relative}
+.spot::after{content:'';position:absolute;inset:0;pointer-events:none;border-radius:inherit;opacity:0;transition:opacity .25s;background:radial-gradient(260px circle at var(--mx,50%) var(--my,50%),color-mix(in srgb,var(--a) 16%,transparent),transparent 70%)}
+.spot:hover::after{opacity:1}
+.tilt{transition:transform .15s ease-out,border-color .25s,box-shadow .25s;will-change:transform}
+.rv{opacity:0;transform:translateY(26px);transition:opacity .7s ease,transform .7s cubic-bezier(.2,.8,.2,1);transition-delay:calc(var(--i,0)*70ms)}
+.rv.rvd{opacity:1;transform:none}
+.rv.tilt.rvd{transition-delay:0s}
+
+/* curseur lumineux global */
+.aura{position:fixed;left:0;top:0;width:420px;height:420px;margin:-210px 0 0 -210px;border-radius:50%;pointer-events:none;z-index:0;opacity:0;transition:opacity .4s;background:radial-gradient(circle,color-mix(in srgb,var(--a) 13%,transparent),transparent 65%);mix-blend-mode:screen}
+.aura.on{opacity:1}
+/* éclats de caractères au clic */
+.burst{position:fixed;z-index:9999;pointer-events:none;font:700 14px 'JetBrains Mono',monospace;color:var(--a);animation:burst .8s ease-out forwards;text-shadow:0 0 8px var(--a)}
+@keyframes burst{to{transform:translate(var(--dx),var(--dy)) rotate(var(--r));opacity:0}}
+/* ondulation des boutons */
+.btn{position:relative;overflow:hidden}
+.btn::before{content:'';position:absolute;top:0;left:-60%;width:40%;height:100%;transform:skewX(-20deg);background:linear-gradient(90deg,transparent,rgba(255,255,255,.22),transparent);transition:left .6s}
+.btn:hover::before{left:130%}
+.rip{position:absolute;border-radius:50%;pointer-events:none;background:currentColor;opacity:.3;transform:scale(0);animation:rip .6s ease-out forwards}
+@keyframes rip{to{transform:scale(1);opacity:0}}
+
+/* titres : barre qui se trace, décodage, commande tapée */
+.bar{width:0;transition:width .8s cubic-bezier(.2,.8,.2,1) .1s;position:relative}
+.bar.rvd{width:56px}
+.bar.rvd::after{content:'';position:absolute;right:-6px;top:-2px;width:8px;height:8px;border-radius:50%;background:var(--a);box-shadow:0 0 12px 3px var(--a);animation:blink 1.4s steps(2) infinite}
+@keyframes blink{50%{opacity:0}}
+.tt .scr{color:var(--a)}
+.ref .caret{display:inline-block;width:7px;height:13px;margin-left:2px;vertical-align:-2px;background:var(--a);animation:blink 1s steps(2) infinite}
+
+/* surlignage des mots forts au scroll */
+.big strong,.lead strong,.txt span strong{background:linear-gradient(var(--ad),var(--ad)) no-repeat 0 92%/0% 55%;transition:background-size .9s ease .3s}
+.rvd .big strong,.rvd.big strong,.rvd .lead strong,.rvd.lead strong,.big.rvd strong,.gr.rvd .txt span strong{background-size:100% 55%}
+
+/* parcours : lignes interactives */
+.gr{position:relative;transition:transform .3s}
+.gr .txt{transition:transform .3s,color .3s}
+.gr:hover .txt{transform:translateX(8px)}
+.gr:hover .txt>strong{color:var(--a)}
+.gr:hover .dm{transform:scale(1.35);box-shadow:0 0 0 6px var(--ad),0 0 18px var(--a)}
+.dm{transition:transform .3s,box-shadow .3s}
+.dmh{animation:pulse 2s ease-out infinite}
+@keyframes pulse{0%{box-shadow:0 0 0 0 var(--a)}100%{box-shadow:0 0 0 14px transparent}}
+.gr .date{transition:letter-spacing .3s,color .3s}
+.gr:hover .date{letter-spacing:1.5px;color:var(--a)}
+.gr.rv{transform:translateX(-30px)}
+.gr.rv.rvd{transform:none}
+.gr.rvd:hover .txt{transform:translateX(8px)}
+
+/* cartes d'expérience */
+.tk{position:relative}
+.tk::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--a);transform:scaleY(0);transform-origin:top;transition:transform .45s;z-index:2}
+.tk:hover::before{transform:scaleY(1)}
+.tk:hover{box-shadow:0 18px 40px -22px var(--a)}
+.tks{position:relative;overflow:hidden;transition:background .4s}
+.tks::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(135deg,transparent 0 10px,color-mix(in srgb,var(--a) 10%,transparent) 10px 11px);opacity:0;transition:opacity .4s;background-size:200% 200%}
+.tk:hover .tks::before{opacity:1;animation:hatch 6s linear infinite}
+@keyframes hatch{to{background-position:60px 60px}}
+.tks>*{position:relative}
+.tks img{transition:transform .5s cubic-bezier(.3,1.6,.5,1)}
+.tk:hover .tks img{transform:rotate(-6deg) scale(1.12)}
+.tks>span:nth-of-type(2),.tks>span[style*="font-size:24px"]{transition:transform .35s,letter-spacing .35s}
+.tk:hover .tks>span[style*="font-size:24px"]{transform:translateX(6px);letter-spacing:1px}
+.tkb a{display:inline-block;transition:transform .3s,letter-spacing .3s}
+.tkb a:hover{transform:translateX(8px)}
+.tkb .tag,.tag{transition:transform .25s,background .25s,color .25s,box-shadow .25s}
+.tag:hover{transform:translateY(-3px) rotate(-2deg);background:var(--a);color:var(--on-a);box-shadow:0 8px 16px -8px var(--a)}
+.tk.hl{--ang:0deg;border:1px solid transparent;background:linear-gradient(var(--panel),var(--panel)) padding-box,conic-gradient(from var(--ang),var(--a),transparent 25%,transparent 75%,var(--a)) border-box;animation:spin 6s linear infinite}
+@keyframes spin{to{--ang:360deg}}
+.placeholder{animation:ph 2.4s ease-in-out infinite}
+@keyframes ph{50%{opacity:.55}}
+
+/* contacts */
+.ct{position:relative;overflow:hidden;transition:transform .2s ease-out,border-color .25s,box-shadow .25s}
+.ct::before{content:'';position:absolute;inset:0;background:linear-gradient(120deg,transparent 30%,color-mix(in srgb,var(--a) 14%,transparent) 50%,transparent 70%);transform:translateX(-120%);transition:transform .7s}
+.ct:hover::before{transform:translateX(120%)}
+.ct:hover{border-color:var(--a);box-shadow:0 16px 34px -18px var(--a)}
+.ct small::before{content:'> ';opacity:.6}
+.ct small{transition:letter-spacing .3s}
+.ct:hover small{letter-spacing:1.5px}
+.ct>span:not(.cp)::after{content:'_';color:var(--a);opacity:0;margin-left:2px}
+.ct:hover>span:not(.cp)::after{opacity:1;animation:blink 1s steps(2) infinite}
+.cp{position:absolute;top:14px;right:14px;padding:3px 9px;border-radius:5px;border:1px solid var(--line2);background:var(--bg);color:var(--mut);font:11px 'JetBrains Mono',monospace;cursor:pointer;opacity:0;transform:translateY(-4px);transition:.25s;z-index:3}
+.ct:hover .cp,.cp:focus-visible{opacity:1;transform:none}
+.cp:hover{color:var(--a);border-color:var(--a)}
+.toast{position:fixed;left:50%;bottom:32px;transform:translate(-50%,30px);opacity:0;padding:10px 18px;border-radius:8px;background:var(--panel);border:1px solid var(--a);color:var(--a);font:13px 'JetBrains Mono',monospace;z-index:9999;transition:.35s;pointer-events:none}
+.toast.on{opacity:1;transform:translate(-50%,0)}
+
+/* cartes UE, cellules, chips, blocs */
+.uc .gh{transition:transform .2s ease-out,opacity .3s;transform:translate(calc(var(--px,0)*-14px),calc(var(--py,0)*-10px))}
+.uc:hover .gh{opacity:.7}
+.uc .go{transition:transform .3s}
+.uc:hover .go{transform:translateX(8px)}
+.cell,.tc,.big,.chipl a,.chip{transition:transform .25s,border-color .25s,box-shadow .25s,color .25s}
+.cell:hover,.tc:hover{transform:translateY(-4px);border-color:var(--a);box-shadow:0 14px 30px -18px var(--a)}
+.chipl a:hover,.chip:hover{transform:translateY(-3px) scale(1.04);box-shadow:0 8px 18px -10px var(--a)}
+.big{position:relative}
+.big::before{content:'';position:absolute;left:0;top:0;height:2px;width:100%;background:linear-gradient(90deg,var(--a),transparent);transform:scaleX(0);transform-origin:left;transition:transform 1.2s}
+.big.rvd::before{transform:scaleX(1)}
+/* CV : documents */
+.doc .fold{transition:transform .4s,width .4s,height .4s}
+.doc:hover .fold{transform:scale(1.25)}
+.doc .big2{transition:transform .4s cubic-bezier(.3,1.6,.5,1),letter-spacing .4s}
+.doc:hover .big2{transform:scale(1.12) rotate(-3deg);letter-spacing:3px}
+
+@media(prefers-reduced-motion:reduce){.rv,.gr.rv{opacity:1;transform:none;transition:none}.tilt{transform:none!important}.bar{width:56px}.aura,.burst{display:none}.tk.hl,.dmh,.placeholder{animation:none}.big strong,.lead strong,.txt span strong{background-size:100% 55%}}
+@media(hover:none){.aura{display:none}}
+/* palette de commandes (partagée) */
+.kbtn{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--mut);border:1px solid var(--line2);border-radius:5px;padding:4px 8px;background:transparent;cursor:pointer}
+.kbtn:hover{color:var(--tx);border-color:var(--a)}
+.cmdk{position:fixed;inset:0;z-index:120;background:#000A;display:none;align-items:flex-start;justify-content:center;padding-top:14vh;backdrop-filter:blur(4px)}
+.cmdk.on{display:flex}
+.cmdk .bx{width:min(560px,92vw);background:var(--panel);border:1px solid var(--line2);border-radius:12px;overflow:hidden;box-shadow:0 30px 80px #000}
+.cmdk input{width:100%;padding:16px 18px;background:var(--panel2);border:0;border-bottom:1px solid var(--line);color:var(--tx);font:15px 'JetBrains Mono',monospace;outline:none}
+.cmdk ul{list-style:none;margin:0;padding:6px;max-height:50vh;overflow:auto}
+.cmdk li a{display:flex;justify-content:space-between;gap:12px;padding:10px 12px;border-radius:6px;color:var(--tx2);text-decoration:none;font-size:14px}
+.cmdk li a small{font-family:'JetBrains Mono',monospace;color:var(--mut)}
+.cmdk li.sel a,.cmdk li a:hover{background:var(--ad);color:var(--tx)}
