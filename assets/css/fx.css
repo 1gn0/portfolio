@@ -169,18 +169,20 @@ body,.top,.tk,.uc,.ct,.pw,.box,.cell,.tc,.doc,.step{transition-property:backgrou
 html{background:var(--bg)}
 body{background:transparent}
 .bgfx{position:fixed;inset:0;z-index:-1;pointer-events:none}
-.bgau{position:fixed;inset:0;z-index:-2;pointer-events:none;overflow:hidden;opacity:0;transition:opacity .6s}
-html[data-bg=aurore] .bgau{opacity:1}
-.bgau i{position:absolute;width:55vmax;height:55vmax;border-radius:50%;filter:blur(90px);opacity:.13;background:var(--a);animation:drift 28s ease-in-out infinite alternate}
-.bgau i:nth-child(1){left:-15vmax;top:30vh}
-.bgau i:nth-child(2){right:-20vmax;top:60vh;background:color-mix(in srgb,var(--a) 50%,#6D5BFF);animation-duration:34s;animation-delay:-8s}
-.bgau i:nth-child(3){left:30vw;top:110vh;background:color-mix(in srgb,var(--a) 60%,#FFB86B);opacity:.09;animation-duration:40s;animation-delay:-16s}
-html[data-mode=light] .bgau i{opacity:.16}
-@keyframes drift{0%{transform:translate(0,0) scale(1)}50%{transform:translate(12vw,-18vh) scale(1.15)}100%{transform:translate(-8vw,10vh) scale(.9)}}
-.bgau::after{content:'';position:absolute;inset:0;background:linear-gradient(var(--bg) 0,transparent 95vh)}
-.bgp{position:fixed;left:16px;bottom:16px;z-index:90;display:flex;gap:4px;align-items:center;padding:6px;border:1px dashed var(--warn);border-radius:10px;background:var(--panel);font:12px 'JetBrains Mono',monospace;color:var(--mut);box-shadow:0 10px 30px -12px var(--sh)}
-.bgp>span{padding:0 6px}.bgp em{color:var(--warn);font-style:normal}
-.bgp b{font-weight:500;padding:6px 10px;border-radius:6px;cursor:pointer;color:var(--tx2)}
-.bgp b:hover{background:var(--panel2)}
-.bgp b.on{background:var(--a);color:var(--on-a)}
-@media(max-width:700px){.bgp{left:8px;right:8px;bottom:8px;flex-wrap:wrap}}
+
+/* orbites « Nuit éditoriale » */
+body{position:relative}
+.orbits{position:absolute;left:0;top:0;width:100%;overflow:hidden;pointer-events:none;z-index:-1}
+.orb{position:absolute;width:600px;height:600px;opacity:.9;transform:translateY(var(--ty,0)) rotate(var(--rz,0));transition:transform .2s linear}
+.orb.r{right:-150px}.orb.l{left:-170px}
+.orb svg{width:100%;height:100%;overflow:visible}
+.orb circle{fill:none;stroke:color-mix(in srgb,var(--a) 28%,var(--line2));stroke-width:1.2}
+.orb .c2{stroke-dasharray:4 10}
+.orb .p1{fill:var(--a);stroke:none;filter:drop-shadow(0 0 6px var(--a))}
+.orb .p2{fill:color-mix(in srgb,var(--a) 45%,#7C84C9);stroke:none}
+.orb .spin{transform-origin:280px 280px;animation:orbspin 40s linear infinite}
+.orb .spin2{transform-origin:280px 280px;animation:orbspin 22s linear infinite reverse}
+@keyframes orbspin{to{transform:rotate(360deg)}}
+html[data-mode=light] .orb{opacity:.85}
+@media(max-width:900px){.orb{width:380px;height:380px}.orb.r{right:-200px}.orb.l{left:-220px}}
+@media(prefers-reduced-motion:reduce){.orb .spin,.orb .spin2{animation:none}}
