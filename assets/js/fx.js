@@ -68,4 +68,37 @@
     // si une seule case reste seule dans une grille dont les autres passent en pleine ligne, elle passe aussi en pleine ligne
     $$('main .full-row').map(function(c){return c.parentElement}).filter(function(g,i,a){return a.indexOf(g)===i}).forEach(function(g){var rest=[].filter.call(g.children,function(c){return !c.classList.contains('full-row')});if(rest.length===1)rest[0].classList.add('full-row')})}
   if(d.readyState==='complete')fixImgs();else addEventListener('load',fixImgs);
+
+  // liens externes automatiques (établissements, entreprises, outils) — première mention par bloc
+  (function(){
+    var X=[
+      ['IUT de Colmar|IUT Colmar|BUT R&T Colmar','https://www.iutcolmar.uha.fr/'],['INSA Rennes','https://www.insa-rennes.fr/'],
+      ['Lycée Victor Grignard|Victor Grignard High School','https://www.lycee-grignard.fr/'],['Oreka Ingénierie|Oreka','https://oreka-group.fr/'],
+      ['OCI Mulhouse|OCI','https://www.oci.fr/'],['CIC','https://www.cic.fr/'],['Intermarché','https://www.intermarche.com/'],
+      ['Root-Me','https://www.root-me.org/'],['Kali Linux','https://www.kali.org/'],['Cisco Packet Tracer|Packet Tracer','https://www.netacad.com/cisco-packet-tracer'],
+      ['GNS3','https://www.gns3.com/'],['EVE-NG|Eve-NG','https://www.eve-ng.net/'],['Cisco','https://www.cisco.com/'],['Debian','https://www.debian.org/'],
+      ['Django','https://www.djangoproject.com/'],['PyQt6|PyQt','https://www.riverbankcomputing.com/software/pyqt/'],['Wireshark','https://www.wireshark.org/'],
+      ['WatchGuard','https://www.watchguard.com/'],['Microsoft Entra ID|Microsoft Entra|Entra ID','https://www.microsoft.com/security/business/microsoft-entra'],
+      ['Microsoft 365','https://www.microsoft.com/microsoft-365'],['MariaDB','https://mariadb.org/'],['Python','https://www.python.org/'],
+      ['Apache','https://httpd.apache.org/'],['Postfix','https://www.postfix.org/'],['Dovecot','https://www.dovecot.org/'],['Bind9','https://www.isc.org/bind/'],
+      ['Windows Server','https://www.microsoft.com/windows-server'],['Proxmox','https://www.proxmox.com/'],['Linphone','https://www.linphone.org/'],
+      ['Asterisk','https://www.asterisk.org/'],['Chart\\.js','https://www.chartjs.org/'],['Arduino','https://www.arduino.cc/'],['MQTT','https://mqtt.org/'],
+      ['VirtualBox','https://www.virtualbox.org/'],['Nginx','https://nginx.org/'],['GitHub Pages','https://pages.github.com/'],['Raspberry Pi','https://www.raspberrypi.com/']];
+    var alts=[],urls={};X.forEach(function(x){x[0].split('|').forEach(function(t){alts.push(t);urls[t.replace(/\\/g,'')]=x[1]})});
+    alts.sort(function(a,b){return b.length-a.length});
+    var RE;try{RE=new RegExp('(?<![\\p{L}\\p{N}_-])('+alts.join('|')+')(?![\\p{L}\\p{N}_-])','gu')}catch(e){return}
+    var SKIP='a,button,h1,h2,h3,code,pre,script,style,input,textarea,svg,nav,footer,.tag,.chip,.chips,.sk,.stack,.ref,.crumb,.toc,.pill,.placeholder,.fvx,.cmdk,.tt,.step,.stepper,.uestrip,.map,.pn,.ghost,.gh,.pt,.tabs,.tab,.kbtn,.mode,.lang,title';
+    var SCOPE='.pw,.tk,.gr,.tc,.tool-card,.step-card,.mission-item,.logic-card,.structure-card,.company-card,.box,.uc,.cell,.win,.pc,.rb,.sae-card,section,main';
+    var seen=new Map();
+    function host(u){return u.replace(/^https?:\/\/(www\.)?/,'').replace(/\/.*$/,'')}
+    var w=d.createTreeWalker(d.body,NodeFilter.SHOW_TEXT,{acceptNode:function(n){var p=n.parentElement;if(!p||!n.nodeValue.trim())return 2;if(p.closest(SKIP))return 2;if(!p.closest('main,section,.win'))return 2;RE.lastIndex=0;return RE.test(n.nodeValue)?1:2}});
+    var list=[];while(w.nextNode())list.push(w.currentNode);
+    list.forEach(function(n){var p=n.parentElement,sc=p.closest(SCOPE)||d.body,lg=(p.closest('[lang]')||H).getAttribute('lang');
+      var set=seen.get(sc);if(!set){set={};seen.set(sc,set)}
+      var txt=n.nodeValue,out=d.createDocumentFragment(),last=0,m,done=false;RE.lastIndex=0;
+      while((m=RE.exec(txt))){var t=m[1],u=urls[t],k=u+'|'+lg;if(set[k])continue;set[k]=1;
+        out.appendChild(d.createTextNode(txt.slice(last,m.index)));var a=d.createElement('a');a.className='xl';a.href=u;a.target='_blank';a.rel='noopener';a.textContent=t;a.dataset.host=host(u);
+        a.setAttribute('aria-label',t+' ('+host(u)+', '+(lg==='en'?'opens in a new tab':'nouvel onglet')+')');out.appendChild(a);last=m.index+t.length;done=true}
+      if(done){out.appendChild(d.createTextNode(txt.slice(last)));n.parentNode.replaceChild(out,n)}});
+  })();
 })();
