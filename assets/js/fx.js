@@ -13,13 +13,23 @@
     $$('.ct').forEach(function(el){el.addEventListener('pointermove',function(e){var r=el.getBoundingClientRect();el.style.transform='translate('+((e.clientX-r.left-r.width/2)*.06)+'px,'+((e.clientY-r.top-r.height/2)*.12-3)+'px)'});el.addEventListener('pointerleave',function(){el.style.transform=''})});
     // boutons magnétiques
     $$('.btn').forEach(function(el){el.addEventListener('pointermove',function(e){var r=el.getBoundingClientRect();el.style.transform='translate('+((e.clientX-r.left-r.width/2)*.18)+'px,'+((e.clientY-r.top-r.height/2)*.3-2)+'px)'});el.addEventListener('pointerleave',function(){el.style.transform=''})});
-    // aura qui suit le curseur
-    var a=d.createElement('div');a.className='aura';d.body.appendChild(a);var tx=0,ty=0,x=0,y=0,run=false;
-    function loop(){x+=(tx-x)*.12;y+=(ty-y)*.12;a.style.transform='translate('+x+'px,'+y+'px)';if(Math.abs(tx-x)+Math.abs(ty-y)>.5)requestAnimationFrame(loop);else run=false}
-    addEventListener('pointermove',function(e){tx=e.clientX;ty=e.clientY;a.classList.add('on');if(!run){run=true;requestAnimationFrame(loop)}},{passive:true});
-    d.addEventListener('pointerleave',function(){a.classList.remove('on')});
     // éclats de code au clic
     addEventListener('pointerdown',function(e){if(e.target.closest('input,textarea,.cmdk'))return;var C='01{}<>;/#$_';for(var i=0;i<7;i++){var s=d.createElement('span'),ang=Math.random()*6.28,dist=30+Math.random()*50;s.className='burst';s.textContent=C[Math.floor(Math.random()*C.length)];s.style.left=e.clientX+'px';s.style.top=e.clientY+'px';s.style.setProperty('--dx',Math.cos(ang)*dist+'px');s.style.setProperty('--dy',Math.sin(ang)*dist+'px');s.style.setProperty('--r',(Math.random()*180-90)+'deg');d.body.appendChild(s);setTimeout(function(s){s.remove()}.bind(null,s),850)}})
+  }
+
+  // curseur personnalisé : point + réticule
+  if(!reduce&&hov&&matchMedia('(pointer:fine)').matches){
+    var H=d.documentElement,dot=d.createElement('div'),ring=d.createElement('div');dot.className='cur-dot';ring.className='cur-ring';d.body.appendChild(ring);d.body.appendChild(dot);H.classList.add('cc');
+    var mx=-100,my=-100,rx=-100,ry=-100,on=false;
+    function frame(){rx+=(mx-rx)*.2;ry+=(my-ry)*.2;ring.style.transform='translate('+rx+'px,'+ry+'px)';requestAnimationFrame(frame)}requestAnimationFrame(frame);
+    var LINK='a,button,.btn,[data-pdf],.step,.tk,.uc,.ct,summary,.pc,.sk,.tag,.chip,.doc,.wbar,.cell,.tc,.gr',TXT='.big p,.lead,.summary,.txt span,.tkb p,.rb p';
+    addEventListener('pointermove',function(e){mx=e.clientX;my=e.clientY;dot.style.transform='translate('+mx+'px,'+my+'px)';
+      var t=e.target,bad=t.closest&&t.closest('iframe,input,textarea,.imgv');
+      if(bad){H.classList.remove('cur-on');H.classList.remove('cc');return}
+      H.classList.add('cc');if(!on){on=true;rx=mx;ry=my}H.classList.add('cur-on');
+      var l=t.closest&&t.closest(LINK),x=!l&&t.closest&&t.closest(TXT);H.classList.toggle('cur-link',!!l);H.classList.toggle('cur-text',!!x)},{passive:true});
+    d.addEventListener('pointerleave',function(){H.classList.remove('cur-on')});
+    addEventListener('pointerdown',function(){H.classList.add('cur-down')});addEventListener('pointerup',function(){H.classList.remove('cur-down')});
   }
   // ondulation au clic sur les boutons
   $$('.btn').forEach(function(b){b.addEventListener('pointerdown',function(e){var r=b.getBoundingClientRect(),s=Math.max(r.width,r.height)*2,p=d.createElement('span');p.className='rip';p.style.cssText='width:'+s+'px;height:'+s+'px;left:'+(e.clientX-r.left-s/2)+'px;top:'+(e.clientY-r.top-s/2)+'px';b.appendChild(p);setTimeout(function(){p.remove()},650)})});
@@ -42,4 +52,13 @@
     var io2=new IntersectionObserver(function(es){es.forEach(function(e){if(!e.isIntersecting)return;var t=e.target;io2.unobserve(t);$$(':scope>span[lang]',t).forEach(scramble);var r=t.querySelector('.ref');if(r)typeRef(r)})},{threshold:.6});
     tts.forEach(function(t){io2.observe(t)});
   }else{$$('.rv').forEach(function(el){el.classList.add('rvd')})}
+
+  // parcours : fil qui se remplit au scroll, commits qui s'allument, ligne survolée, clic = pulsation
+  var rows=$$('#parcours .gr');
+  if(rows.length){
+    function pscroll(){var y=innerHeight*.62;rows.forEach(function(r){var b=r.getBoundingClientRect(),lm=r.querySelector('.lm');r.classList.toggle('lit',b.top+22<y);if(lm)lm.style.setProperty('--lf',Math.min(1,Math.max(0,(y-b.top-22)/(b.height))))})}
+    addEventListener('scroll',pscroll,{passive:true});pscroll();
+    rows.forEach(function(r){r.addEventListener('pointerenter',function(){r.classList.add('near')});r.addEventListener('pointerleave',function(){r.classList.remove('near')});
+      r.addEventListener('click',function(){r.classList.remove('pop');void r.offsetWidth;r.classList.add('pop')})});
+  }
 })();
