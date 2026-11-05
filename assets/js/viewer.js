@@ -68,7 +68,7 @@
       [].forEach.call(pagesEl.querySelectorAll('.fvpage'),function(w){var r=w.getBoundingClientRect(),sr=scr.getBoundingClientRect();if(r.bottom>sr.top-600&&r.top<sr.bottom+600)render(+w.dataset.p)})}
     else if(st.img){st.img.style.width=st.img.naturalWidth*st.scale+'px'}
     zb.textContent=Math.round(st.scale*100)+'%';if(keep)scr.scrollTop=prev*scr.scrollHeight}
-  function fitW(){var avail=scr.clientWidth-56,ah=scr.clientHeight-56;if(st.kind==='pdf'){st.fit=Math.min(1.6,avail/st.pw);if(st.n===1)st.fit=Math.min(st.fit,Math.max(ah/st.ph,.5))}else if(st.img){st.fit=Math.min(1,avail/st.img.naturalWidth,ah/st.img.naturalHeight);if(st.fit<.2)st.fit=Math.min(1,avail/st.img.naturalWidth)}
+  function fitW(){var avail=scr.clientWidth-56,ah=scr.clientHeight-56;if(st.kind==='pdf'){st.fit=Math.min(2,avail/st.pw)}else if(st.img){st.fit=Math.min(1,avail/st.img.naturalWidth,ah/st.img.naturalHeight);if(st.fit<.2)st.fit=Math.min(1,avail/st.img.naturalWidth)}
     st.scale=st.fit;apply(false)}
   function zoom(f){st.scale=Math.max(.25,Math.min(5,st.scale*f));apply(true)}
   function go(i){i=Math.max(1,Math.min(st.n,i));st.want=i;clearTimeout(st.wt);st.wt=setTimeout(function(){st.want=0},700);pi.value=i;var w=pagesEl.querySelector('.fvpage[data-p="'+i+'"]');if(w)scr.scrollTo({top:w.offsetTop-24,behavior:reduce?'auto':'smooth'})}
